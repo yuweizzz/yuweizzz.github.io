@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='js/theme-mode.js'></script>
+    <link rel="stylesheet" href='css/frameworks.min.css' />
+    <link rel="stylesheet" href='css/github.min.css' />
+    <link rel="stylesheet" href='css/github-style.css' />
+    <link rel="stylesheet" href='css/light.css' />
+    <link rel="stylesheet" href='css/dark.css' />
+    <link rel="stylesheet" href='css/syntax.css' />
+    <title>配置GitHub SSH Key - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/authenticating_to_github/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="配置GitHub SSH Key - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+" />
+<meta name="twitter:site" content="" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="配置GitHub SSH Key - Wei&#39;s blog">
+<meta property="og:description"
+  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+" />
+<meta property="og:url" content="/post/authenticating_to_github/" />
+<meta property="og:site_name" content="配置GitHub SSH Key" />
+<meta property="og:image"
+  content="">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2020-07-20 23:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="">
+                  <img class=" avatar-user"
+                    src="images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="">Wei</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="/post/authenticating_to_github/">配置GitHub SSH Key</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Mon, 20 Jul 2020 23:00:00 &#43;0000"
+                    class="no-wrap">
+                    Mon, 20 Jul 2020 23:00:00 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Sun, 21 Mar 2021 15:02:30 &#43;0000"
+                    class="no-wrap">
+                    Sun, 21 Mar 2021 15:02:30 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div class="file-header d-flex flex-md-items-center flex-items-start">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    881 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/github">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      GitHub
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/ssh">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      SSH
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/git">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Git
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5">
+                <article class="markdown-body entry-content container-lg"><p>通过配置 Github SSH Key 实现 GitHub 免密推送。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
+                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+                                  <span class="o">(</span>   <span class="o">)</span>
+                              <span class="o">(</span>@@@@<span class="o">)</span>
+                           <span class="o">(</span>    <span class="o">)</span>
+
+                         <span class="o">(</span>@@@<span class="o">)</span>
+                       <span class="o">====</span>        ________                ___________
+                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+
+</code></pre></div><h2 id="配置ssh-key实现免密推送">配置SSH Key实现免密推送</h2>
+<p>我们通过本地 Git 来远程管理 GitHub 上的仓库，在每次推送都需要输入账户和密码，可以通过配置 GitHub 公钥，省去重复输入账户密码的麻烦。</p>
+<h3 id="创建秘钥对">创建秘钥对</h3>
+<p>GitHub 的推送和 SSH 的登陆原理非常相似，通常是本地使用私钥，GitHub 端保存公钥信息，我们使用 Git 推送时，以私钥加密的信息可以被对应的公钥解析，通信就能够建立了。</p>
+<p>我们需要在本地先生成一个新的秘钥对。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span>
+<span class="c1"># -t 代表秘钥对的加密算法，rsa是最常见的非对称加密算法</span>
+<span class="c1"># -C 可以指定公钥的文本信息，这一步是GitHub要求的</span>
+</code></pre></div><p>上述的命令会产生一个交互对话，按照对话提示输入对应信息即可。</p>
+<p>在交互式生成模式下，会提示我们指定生成秘钥对的文件名和路径，通常在 Linux 环境下，保持默认则为 /home/user/.ssh/id_rsa ，user 为当前使用的用户。</p>
+<p>此外，在交互式生成模式下，还会提示使用 passphrase 再度加密，这个功能一般不使用，否则每次使用密钥都需要再次输入 passphrase 。</p>
+<p>所以，我比较推荐使用非交互式的命令生成秘钥对。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span> -P <span class="s2">&#34;&#34;</span> -f ~/.ssh/id_rsa
+<span class="c1"># 非交互生成的参考命令</span>
+<span class="c1"># -P passphrase为空</span>
+<span class="c1"># -f 指定路径名称</span>
+</code></pre></div><p>执行完命令后，我们可以得到 id_rsa 和 id_rsa.pub 两个文件，其中 id_rsa 是私钥，id_rsa.pub 是公钥。</p>
+<h3 id="在github账户中添加公钥">在GitHub账户中添加公钥</h3>
+<p>我们需要把公钥信息上传到自己的 GitHub 账户。</p>
+<p>打开自己的<a href="https://github.com/settings/keys"> GitHub 账户 </a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的喜好命名，然后 Add SSH Key ，完成公钥添加。</p>
+<h3 id="测试公钥">测试公钥</h3>
+<p>完成云端公钥信息的添加后，我们可以在本地测试公钥是否正确设置。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh git@github.com
+<span class="c1"># 使用生成秘钥的账户测试</span>
+</code></pre></div><p>在第一次使用免密登录时会需要我们确认 GitHub 的主机信息，输入 yes 即可。</p>
+<p>如果一切正常，会返回下面的信息：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ssh git@github.com</span>
+PTY allocation request failed on channel <span class="m">0</span>
+Hi yuweizzz! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
+Connection to github.com closed.
+</code></pre></div><p>其实从这部分可以得出 Github 推送仓库是基于 OpenSSH 来实现的。</p>
+<p>更多信息可以参考 GitHub 的<a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">官方文档</a>。</p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="js/github-style.js"></script>
+
+
+
+</html>
