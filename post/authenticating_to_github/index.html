@@ -153,9 +153,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 17 May 2021 16:06:50 &#43;0000"
+                  Modified <relative-time datetime="Mon, 17 May 2021 16:10:14 &#43;0000"
                     class="no-wrap">
-                    Mon, 17 May 2021 16:06:50 &#43;0000</relative-time>
+                    Mon, 17 May 2021 16:10:14 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -173,7 +173,7 @@
               <div class="file-header d-flex flex-md-items-center flex-items-start">
                 <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
                   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    881 Words
+                    884 Words
                     
 
                   </div>
@@ -235,7 +235,7 @@
 
 </code></pre></div><h2 id="配置ssh-key实现免密推送">配置SSH Key实现免密推送</h2>
 <p>我们通过本地 Git 来远程管理 GitHub 上的仓库，在每次推送都需要输入账户和密码，可以通过配置 GitHub 公钥，省去重复输入账户密码的麻烦。</p>
-<h3 id="创建秘钥对">创建秘钥对</h3>
+<h3 id="创建秘钥对">创建秘钥对：</h3>
 <p>GitHub 的推送和 SSH 的登陆原理非常相似，通常是本地使用私钥，GitHub 端保存公钥信息，我们使用 Git 推送时，以私钥加密的信息可以被对应的公钥解析，通信就能够建立了。</p>
 <p>我们需要在本地先生成一个新的秘钥对。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span>
@@ -250,10 +250,10 @@
 <span class="c1"># -P passphrase为空</span>
 <span class="c1"># -f 指定路径名称</span>
 </code></pre></div><p>执行完命令后，我们可以得到 id_rsa 和 id_rsa.pub 两个文件，其中 id_rsa 是私钥，id_rsa.pub 是公钥。</p>
-<h3 id="在github账户中添加公钥">在GitHub账户中添加公钥</h3>
+<h3 id="在github账户中添加公钥">在GitHub账户中添加公钥：</h3>
 <p>我们需要把公钥信息上传到自己的 GitHub 账户。</p>
 <p>打开自己的<a href="https://github.com/settings/keys"> GitHub 账户 </a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的喜好命名，然后 Add SSH Key ，完成公钥添加。</p>
-<h3 id="测试公钥">测试公钥</h3>
+<h3 id="测试公钥">测试公钥：</h3>
 <p>完成云端公钥信息的添加后，我们可以在本地测试公钥是否正确设置。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh git@github.com
 <span class="c1"># 使用生成秘钥的账户测试</span>
