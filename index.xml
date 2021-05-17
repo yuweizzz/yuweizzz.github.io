@@ -6,7 +6,16 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 20 Jul 2020 23:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 30 Mar 2021 21:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>安装Linux图形界面</title>
+      <link>https://yuweizzz.github.io/post/install_gui_in_linux/</link>
+      <pubDate>Tue, 30 Mar 2021 21:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/install_gui_in_linux/</guid>
+      <description>&lt;p&gt;这篇文档主要介绍如何为 CentOS 安装图形界面。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>配置GitHub SSH Key</title>
       <link>https://yuweizzz.github.io/post/authenticating_to_github/</link>
