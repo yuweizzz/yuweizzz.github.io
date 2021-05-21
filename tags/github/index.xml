@@ -6,7 +6,16 @@
     <description>Recent content in GitHub on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 20 Jul 2020 23:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 06 Sep 2020 21:08:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/github/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用GitHub Actions部署应用</title>
+      <link>https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/</link>
+      <pubDate>Sun, 06 Sep 2020 21:08:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/</guid>
+      <description>&lt;p&gt;通过 GitHub Actions 实现持续集成和持续部署。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>配置GitHub SSH Key</title>
       <link>https://yuweizzz.github.io/post/authenticating_to_github/</link>

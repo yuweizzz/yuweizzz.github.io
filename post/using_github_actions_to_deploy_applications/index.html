@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>配置GitHub SSH Key - Wei&#39;s blog</title>
+    <title>使用GitHub Actions部署应用 - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/github.png'>
     
@@ -18,18 +18,18 @@
 
     
     <meta name="description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="通过 GitHub Actions 实现持续集成和持续部署。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://yuweizzz.github.io/post/authenticating_to_github/" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="配置GitHub SSH Key - Wei&#39;s blog" />
+<meta name="twitter:title" content="使用GitHub Actions部署应用 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="通过 GitHub Actions 实现持续集成和持续部署。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
@@ -38,18 +38,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="配置GitHub SSH Key - Wei&#39;s blog">
+<meta property="og:title" content="使用GitHub Actions部署应用 - Wei&#39;s blog">
 <meta property="og:description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="通过 GitHub Actions 实现持续集成和持续部署。
 " />
-<meta property="og:url" content="https://yuweizzz.github.io/post/authenticating_to_github/" />
-<meta property="og:site_name" content="配置GitHub SSH Key" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/" />
+<meta property="og:site_name" content="使用GitHub Actions部署应用" />
 <meta property="og:image"
   content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2020-07-20 23:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2020-09-06 21:08:45 &#43;0000 UTC" />
 
 
 
@@ -144,12 +144,12 @@
                   <span class="author">
                     <a href="https://yuweizzz.github.io/">Wei</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://yuweizzz.github.io/post/authenticating_to_github/">配置GitHub SSH Key</a></strong>
+                      href="https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/">使用GitHub Actions部署应用</a></strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Mon, 20 Jul 2020 23:00:00 &#43;0000"
+                  Created <relative-time datetime="Sun, 06 Sep 2020 21:08:45 &#43;0000"
                     class="no-wrap">
-                    Mon, 20 Jul 2020 23:00:00 &#43;0000</relative-time>
+                    Sun, 06 Sep 2020 21:08:45 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -173,7 +173,7 @@
               <div class="file-header d-flex flex-md-items-center flex-items-start">
                 <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
                   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    884 Words
+                    2504 Words
                     
 
                   </div>
@@ -189,22 +189,13 @@
                       GitHub
                     </a>
                     
-                    <a class="muted-link mr-3" href="/tags/ssh">
+                    <a class="muted-link mr-3" href="/tags/github-actions">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      SSH
-                    </a>
-                    
-                    <a class="muted-link mr-3" href="/tags/git">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      Git
+                      GitHub Actions
                     </a>
                     
                     
@@ -214,7 +205,7 @@
 
 
               <div class="Box-body px-5 pb-5">
-                <article class="markdown-body entry-content container-lg"><p>通过配置 Github SSH Key 实现 GitHub 免密推送。</p>
+                <article class="markdown-body entry-content container-lg"><p>通过 GitHub Actions 实现持续集成和持续部署。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
                                        <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
                                   <span class="o">(</span>   <span class="o">)</span>
@@ -233,38 +224,154 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="配置ssh-key实现免密推送">配置SSH Key实现免密推送</h2>
-<p>我们通过本地 Git 来远程管理 GitHub 上的仓库，在每次推送都需要输入账户和密码，可以通过配置 GitHub 公钥，省去重复输入账户密码的麻烦。</p>
-<h3 id="创建秘钥对">创建秘钥对：</h3>
-<p>GitHub 的推送和 SSH 的登陆原理非常相似，通常是本地使用私钥，GitHub 端保存公钥信息，我们使用 Git 推送时，以私钥加密的信息可以被对应的公钥解析，通信就能够建立了。</p>
-<p>我们需要在本地先生成一个新的秘钥对。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span>
-<span class="c1"># -t 代表秘钥对的加密算法，rsa是最常见的非对称加密算法</span>
-<span class="c1"># -C 可以指定公钥的文本信息，这一步是GitHub要求的</span>
-</code></pre></div><p>上述的命令会产生一个交互对话，按照对话提示输入对应信息即可。</p>
-<p>在交互式生成模式下，会提示我们指定生成秘钥对的文件名和路径，通常在 Linux 环境下，保持默认则为 /home/user/.ssh/id_rsa ，user 为当前使用的用户。</p>
-<p>此外，在交互式生成模式下，还会提示使用 passphrase 再度加密，这个功能一般不使用，否则每次使用密钥都需要再次输入 passphrase 。</p>
-<p>所以，我比较推荐使用非交互式的命令生成秘钥对。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span> -P <span class="s2">&#34;&#34;</span> -f ~/.ssh/id_rsa
-<span class="c1"># 非交互生成的参考命令</span>
-<span class="c1"># -P passphrase为空</span>
-<span class="c1"># -f 指定路径名称</span>
-</code></pre></div><p>执行完命令后，我们可以得到 id_rsa 和 id_rsa.pub 两个文件，其中 id_rsa 是私钥，id_rsa.pub 是公钥。</p>
-<h3 id="在github账户中添加公钥">在GitHub账户中添加公钥：</h3>
-<p>我们需要把公钥信息上传到自己的 GitHub 账户。</p>
-<p>打开自己的<a href="https://github.com/settings/keys"> GitHub 账户 </a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的喜好命名，然后 Add SSH Key ，完成公钥添加。</p>
-<h3 id="测试公钥">测试公钥：</h3>
-<p>完成云端公钥信息的添加后，我们可以在本地测试公钥是否正确设置。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh git@github.com
-<span class="c1"># 使用生成秘钥的账户测试</span>
-</code></pre></div><p>在第一次使用免密登录时会需要我们确认 GitHub 的主机信息，输入 yes 即可。</p>
-<p>如果一切正常，会返回下面的信息：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ssh git@github.com</span>
-PTY allocation request failed on channel <span class="m">0</span>
-Hi yuweizzz! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
-Connection to github.com closed.
-</code></pre></div><p>其实从这部分可以得出 Github 推送仓库是基于 OpenSSH 来实现的。</p>
-<p>更多信息可以参考 GitHub 的<a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">官方文档</a>。</p></article>
+</code></pre></div><h2 id="持续集成和持续部署">持续集成和持续部署</h2>
+<p>使用 GitHub Actions 之前，我们需要了解持续集成和持续部署的概念。</p>
+<p>持续集成 (Continuous integration, CI) 和持续部署 (Continuous deployment, CD) 是随着 DevOps 的兴起而出现的开发工作流程，使用 CI 和 CD 可以省去重复工作，提高工作效率。</p>
+<p>CI 指的是频繁地把代码更新提交到主干中，为了实现这一过程，代码的提交需要通过测试才行，而很多时候代码的构建和测试是重复的步骤，所以我们把构建环节和测试环节自动化，省去每次手动操作的麻烦。</p>
+<p>CD 建立在 CI 的基础上，将成功集成的主干代码部署到生产环境中，这个过程同样有一些重复性工作，所以这一环节也可以自动化实现。</p>
+<h2 id="快速使用github-actions">快速使用GitHub Actions</h2>
+<p>GitHub Actions 是 GitHub 提供的一项服务，可以通过自定义 workflow 实现代码仓库的 CI 和 CD 工作流程，使用起来快速简单，完成满足个人项目的使用。</p>
+<p>使用 GitHub Actions 大概有以下几个步骤：</p>
+<ol>
+<li>首先在 GitHub 上建立一个 repository 。</li>
+<li>进入你的 repository ，点击 Actions ，直接点击 Setup up this workflow ， workflow 可以选择创建一个新的 workflow ，也可以选择使用 GitHub 社区提供的各种编程环境的 workflow 模板。</li>
+<li>将 workflow 文件 commit 到分支中。</li>
+</ol>
+<p>提交了 workflow 文件后， GitHub Actions 会根据定义的 workflow 执行相关操作，可以在 Actions 中查看 workflow 的运行结果和运行日志。</p>
+<h2 id="编写workflow文件">编写workflow文件</h2>
+<p>除了 GitHub 社区提供的各种编程环境的 workflow ，我们还可以自行编写 workflow 文件。</p>
+<p>workflow 文件是使用 YAML 编写的配置文件，它会涉及以下列出的名词：</p>
+<ul>
+<li>
+<p>workflow : 一个完整的 CI 和 CD 工作流程认为是一个 workflow ，每个 workflow 以后缀命名为 .yml 的文件保存在代码仓库的 .github/workflows 目录中。一个库允许拥有多个 workflow 。</p>
+</li>
+<li>
+<p>jobs : 一个 workflow 由一个或多个 job 构成，job 是可以自由命名的，比较常见的命名有 lint ， test ， build ， deploy 等。 job 默认是并行运行的，可以使用 needs 来规定依赖关系以实现顺序运行。</p>
+</li>
+<li>
+<p>step : 一个 job 由一个或多个 step 构成， step 是按照顺序关系执行的。</p>
+</li>
+<li>
+<p>action : 一个 step 由一个或多个 action 构成， action 也是按照顺序关系执行的。 action 规定了细节工作，基本上由 shell 命令构成，可以自行编写 action 或使用 GitHub 社区提供的 action 。</p>
+</li>
+</ul>
+<p>YAML 语法比较简单，这里会跳过相关介绍，直接通过实例来学习 workflow 编写。</p>
+<h3 id="python自动测试实例">python自动测试实例：</h3>
+<p>以下是 GitHub 社区提供的基于 python 环境的 CI 工作流程。</p>
+<pre><code>name: Python package
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install flake8 pytest
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Lint with flake8
+        run: |
+          # stop the build if there are Python syntax errors or undefined names
+          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
+          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+      - name: Test with pytest
+        run: |
+          pytest
+</code></pre><p>可以看到，这个 workflow 比较简单，只定义了一个 job 。</p>
+<p>在 jobs 被定义之前的 on 是 workflow 的关键字，用来定义这个 workflow 的运行触发条件。对于这个文件来说，在分支 master 上的 push 或 pull 动作都会激活这个 workflow 。除了 push 和 pull 两种触发方式，还可以使用 crontab 定时调度触发。</p>
+<p>在 jobs 定义 step 之前，还有运行环境的相关定义。 runs-on 关键字用来定义 workflow 的主机工作环境，一般的工作环境有 Linux ， MacOS 和 Windows ，这里使用的是 ubuntu 最新版本。 matrix 是构建矩阵，常用于定义 jobs 运行在多个不同版本的工作环境，这里定义了不同的 python 解释器版本，包括了3.5，3.6，3.7，3.8，所以这个 workflow 会在不同的解释器版本下都运行一次。</p>
+<p>主要部分 steps 列表定义了5个成员，在每个成员中， name 用来定义该 action 的名称， run 用来定义该 action 的具体内容， with 用来设置参数和变量， uses 用来调用社区公共 action ，它们是可以灵活组合的。</p>
+<p>这个 workflow 的具体 step 完成了以下工作：</p>
+<ol>
+<li>调用公共 action checkout@v2 ，我们可以在公共模板看到这个 action 的大量使用，它的工作内容是把 workflow 所在的仓库代码拉取到当前 runs-on 的工作环境中。</li>
+<li>调用公共 action setup-python@v2 ，用来设置 python 的工作环境。</li>
+<li>自定义 action ，升级 pip ，并且安装测试所需要的模块和代码仓库的依赖。</li>
+<li>自定义 action ，使用 flake8 模块来检查代码语法和编写规范。</li>
+<li>自定义 action ，使用 pytest 模块来进行单元测试。</li>
+</ol>
+<p>除了 python 之外，社区还有对各类开发语言的 workflow 支持，可以根据自己的需要选用。</p>
+<h3 id="hexo自动构建部署实例">Hexo自动构建部署实例：</h3>
+<p>在很多情况下需要使用自定义 workflow ，以下是我使用过的工作流程，略微比 python 自动测试的 workflow 复杂，用来自动构建并部署静态博客。</p>
+<pre><code>name: deploy blog
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Build and deploy blog
+    env:
+      MY_SECRET   : ${{secrets.commit_secret}}
+      USER_NAME   : username
+      USER_EMAIL  : username@mail.com
+      PUBLISH_DIR : ./public
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: generate key and identify host 
+        run: |
+          mkdir ~/.ssh/
+          echo &quot;$MY_SECRET&quot; | tr -d '\r'  &gt; ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts
+      - name: install package and build
+        run: |
+          npm install
+          npm run build
+      - name: commit and push to remote repository
+        run: |
+          cd $PUBLISH_DIR
+          git init
+          git config --local user.name $USER_NAME
+          git config --local user.email $USER_EMAIL
+          git remote add origin your_remote_repository
+          git add --all
+          message=$(date '+%Y-%m-%d %H:%M:%S')
+          git commit -m &quot;$message UTC&quot;
+          git push -f origin master 
+          echo deploy complete.
+</code></pre><p>workflow 使用 env 关键字在 job 中定义环境变量，在这个文件中，除了明文的环境变量，还使用了 Github 仓库中的 Actions secrets 来设置环境变量。</p>
+<p>Actions secrets 是在每个 Github 仓库都可以进行设置，用来存放敏感信息的键值对。在代码仓库的 Settings/Secrets 中添加新的键值对之后，就可以在 workflow 文件中使用<code>${{secrets.Name}}</code>进行引用。</p>
+<p>Actions secrets 在 workflow 工作过程中是保密的，可以在 workflow 运行日志中观察到这些值由<code>*</code>号所保护。</p>
+<p>这个 workflow 的具体 step 完成了以下工作：</p>
+<ol>
+<li>调用公共 action checkout@v1 ，拉取仓库代码到当前 runs-on 的工作环境中。</li>
+<li>调用公共 action setup-node@v1 ，用来设置 nodejs 的工作环境。</li>
+<li>自定义 action ，从 Actions secrets 读取密钥内容写入到文件中，然后认证 GitHub 远程主机。这一步 action 是为了实现免密推送，具体的实现方法可以参考之前的<a href="https://yuweizzz.github.io/post/authenticating_to_github/">文章</a>。为了使这一步 action 执行成功，需要在 Github 账户上传公钥文件，并且把对应的私钥文件添加到仓库的 Settings/Secrets 中。</li>
+<li>自定义 action ，安装 nodejs 的依赖包并进行构建，生成静态文件。</li>
+<li>自定义 action ，将代码仓库关联到 GitHub 上的运程仓库，做好配置之后 commit 并且 push 代码仓库。</li>
+</ol>
+<p>因为在最后一步的 action 中关联的远程仓库设置了 GitHub Pages 服务，所以在 push 之后，应用也就部署完成了。可以看到，整个过程其实是集合了我们平时编译部署需要执行的命令，模拟了一次完整的部署过程。这个 workflow 的最后一步处理还不是很完美，会把原有的 commit 信息破坏，改进后的版本可以参考这个 blog 源代码仓库的 <a href="https://github.com/yuweizzz/Blog/blob/main/.github/workflows/main.yml">workflow</a> 。</p>
+<h3 id="总结">总结</h3>
+<p>GitHub Actions 服务可以很方便实现 CI 和 CD 的工作流程。</p>
+<p>Github 社区提供了大量的 workflow 模板，在我个人的角度看，它们大部分时候不适合直接在自己项目中使用，但对我们编写自己的工作流程是非常有用的，比较好的办法是直接引用社区模板，再进行适配修改。</p>
+<p>workflow 在使用过程中免不了出错和异常，如果其中一个环节出现错误，整个执行过程就会被中断，这时可以通过 Actions 中的执行日志进行排查。</p>
+<p>这篇文章涉及到的工作流程比较简单，有很多 workflow 关键词没有被使用，更多信息可以参考 GitHub Actions 的<a href="https://docs.github.com/en/actions">官方文档</a>。</p></article>
               </div>
             </div>
           </div>
