@@ -6,13 +6,22 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 30 Mar 2021 21:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 03 Jul 2021 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
       <link>https://yuweizzz.github.io/tags/linux/</link>
-      <pubDate>Tue, 30 Mar 2021 21:00:00 +0000</pubDate>
+      <pubDate>Sat, 03 Jul 2021 15:00:00 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Shell</title>
+      <link>https://yuweizzz.github.io/tags/shell/</link>
+      <pubDate>Sat, 03 Jul 2021 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/shell/</guid>
       <description></description>
     </item>
     
