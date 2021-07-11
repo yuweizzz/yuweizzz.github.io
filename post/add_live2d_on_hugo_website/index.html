@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>使用GitHub Actions部署应用 - Wei&#39;s blog</title>
+    <title>在网页上添加Live2D看板娘 - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/github.png'>
     
@@ -18,18 +18,18 @@
 
     
     <meta name="description"
-  content="通过 GitHub Actions 实现持续集成和持续部署。
+  content="在 Hugo 静态网站添加 Live2D 看板娘。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/add_live2d_on_hugo_website/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="使用GitHub Actions部署应用 - Wei&#39;s blog" />
+<meta name="twitter:title" content="在网页上添加Live2D看板娘 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="通过 GitHub Actions 实现持续集成和持续部署。
+  content="在 Hugo 静态网站添加 Live2D 看板娘。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
@@ -38,18 +38,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="使用GitHub Actions部署应用 - Wei&#39;s blog">
+<meta property="og:title" content="在网页上添加Live2D看板娘 - Wei&#39;s blog">
 <meta property="og:description"
-  content="通过 GitHub Actions 实现持续集成和持续部署。
+  content="在 Hugo 静态网站添加 Live2D 看板娘。
 " />
-<meta property="og:url" content="https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/" />
-<meta property="og:site_name" content="使用GitHub Actions部署应用" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/add_live2d_on_hugo_website/" />
+<meta property="og:site_name" content="在网页上添加Live2D看板娘" />
 <meta property="og:image"
   content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2020-09-06 21:08:45 &#43;0000 UTC" />
+<meta property="article:published_time" content="2021-07-05 21:08:45 &#43;0000 UTC" />
 
 
 
@@ -144,12 +144,12 @@
                   <span class="author">
                     <a href="https://yuweizzz.github.io/">Wei</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/">使用GitHub Actions部署应用</a></strong>
+                      href="https://yuweizzz.github.io/post/add_live2d_on_hugo_website/">在网页上添加Live2D看板娘</a></strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sun, 06 Sep 2020 21:08:45 &#43;0000"
+                  Created <relative-time datetime="Mon, 05 Jul 2021 21:08:45 &#43;0000"
                     class="no-wrap">
-                    Sun, 06 Sep 2020 21:08:45 &#43;0000</relative-time>
+                    Mon, 05 Jul 2021 21:08:45 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -173,29 +173,29 @@
               <div class="file-header d-flex flex-md-items-center flex-items-start">
                 <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
                   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    2504 Words
+                    1577 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/github">
+                    <a class="muted-link mr-3" href="/tags/hugo">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      GitHub
+                      Hugo
                     </a>
                     
-                    <a class="muted-link mr-3" href="/tags/github-actions">
+                    <a class="muted-link mr-3" href="/tags/live2d">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      GitHub Actions
+                      Live2D
                     </a>
                     
                     
@@ -205,7 +205,7 @@
 
 
               <div class="Box-body px-5 pb-5">
-                <article class="markdown-body entry-content container-lg"><p>通过 GitHub Actions 实现持续集成和持续部署。</p>
+                <article class="markdown-body entry-content container-lg"><p>在 Hugo 静态网站添加 Live2D 看板娘。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
                                        <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
                                   <span class="o">(</span>   <span class="o">)</span>
@@ -224,154 +224,71 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="持续集成和持续部署">持续集成和持续部署</h2>
-<p>使用 GitHub Actions 之前，我们需要了解持续集成和持续部署的概念。</p>
-<p>持续集成 (Continuous integration, CI) 和持续部署 (Continuous deployment, CD) 是随着 DevOps 的兴起而出现的开发工作流程，使用 CI 和 CD 可以省去重复工作，提高工作效率。</p>
-<p>CI 指的是频繁地把代码更新提交到主干中，为了实现这一过程，代码的提交需要通过测试才行，而很多时候代码的构建和测试是重复的步骤，所以我们把构建环节和测试环节自动化，省去每次手动操作的麻烦。</p>
-<p>CD 建立在 CI 的基础上，将成功集成的主干代码部署到生产环境中，这个过程同样有一些重复性工作，所以这一环节也可以自动化实现。</p>
-<h2 id="快速使用github-actions">快速使用GitHub Actions</h2>
-<p>GitHub Actions 是 GitHub 提供的一项服务，可以通过自定义 workflow 实现代码仓库的 CI 和 CD 工作流程，使用起来快速简单，完成满足个人项目的使用。</p>
-<p>使用 GitHub Actions 大概有以下几个步骤：</p>
-<ol>
-<li>首先在 GitHub 上建立一个 repository 。</li>
-<li>进入你的 repository ，点击 Actions ，直接点击 Setup up this workflow ， workflow 可以选择创建一个新的 workflow ，也可以选择使用 GitHub 社区提供的各种编程环境的 workflow 模板。</li>
-<li>将 workflow 文件 commit 到分支中。</li>
-</ol>
-<p>提交了 workflow 文件后， GitHub Actions 会根据定义的 workflow 执行相关操作，可以在 Actions 中查看 workflow 的运行结果和运行日志。</p>
-<h2 id="编写workflow文件">编写workflow文件</h2>
-<p>除了 GitHub 社区提供的各种编程环境的 workflow ，我们还可以自行编写 workflow 文件。</p>
-<p>workflow 文件是使用 YAML 编写的配置文件，它会涉及以下列出的名词：</p>
-<ul>
-<li>
-<p>workflow : 一个完整的 CI 和 CD 工作流程认为是一个 workflow ，每个 workflow 以后缀命名为 .yml 的文件保存在代码仓库的 .github/workflows 目录中。一个库允许拥有多个 workflow 。</p>
-</li>
-<li>
-<p>jobs : 一个 workflow 由一个或多个 job 构成，job 是可以自由命名的，比较常见的命名有 lint ， test ， build ， deploy 等。 job 默认是并行运行的，可以使用 needs 来规定依赖关系以实现顺序运行。</p>
-</li>
-<li>
-<p>step : 一个 job 由一个或多个 step 构成， step 是按照顺序关系执行的。</p>
-</li>
-<li>
-<p>action : 一个 step 由一个或多个 action 构成， action 也是按照顺序关系执行的。 action 规定了细节工作，基本上由 shell 命令构成，可以自行编写 action 或使用 GitHub 社区提供的 action 。</p>
-</li>
-</ul>
-<p>YAML 语法比较简单，这里会跳过相关介绍，直接通过实例来学习 workflow 编写。</p>
-<h3 id="python自动测试实例">python自动测试实例：</h3>
-<p>以下是 GitHub 社区提供的基于 python 环境的 CI 工作流程。</p>
-<pre><code>name: Python package
+</code></pre></div><h2 id="前言">前言</h2>
+<p>在没有建设自己的站点之前，见到别人站点上的 Live2D 看板娘觉得很有趣，所以在搭建了自己的站点后，也想要在自己的站点实现。</p>
+<h2 id="hugo站点自定义">Hugo站点自定义</h2>
+<p>实现网页添加 Live2D 看板娘需要先对站点进行适配改造。</p>
+<p>Jekyll ， Hexo 和 Hugo 这一类静态网站生成器的工作方式都是类似的，它们大都是以 Markdown 语法编写网页的主体，通过不同的模板组合来渲染静态页面，这种工作方式使得自定义非常方便，一般只需要修改或者添加模板就可以达到自定义的效果了。</p>
+<p>自定义过程中为了避免修改过多的模板，把需要进行的工作全部放在 Javascript 中是个不错的选择。本次自定义也遵循这样的做法，基本上只需要额外引用 Javascript 文件就可以了，在 Hugo 中，负责加载 Javascript 的部分一般存放在 Partial Templates 中。</p>
+<p>以下片段出自 Hugo 的<a href="https://gohugo.io/templates/partials/%5D">官方文档</a>：</p>
+<pre><code>Partial templates—like single page templates and list page templates—have a specific lookup order.
+However, partials are simpler in that Hugo will only check in two places:
 
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+1.layouts/partials/*&lt;PARTIALNAME&gt;.html
+2.themes/&lt;THEME&gt;/layouts/partials/*&lt;PARTIALNAME&gt;.html
 
-jobs:
-  build:
+This allows a theme’s end user to copy a partial’s contents into a file of the same name for further customization.
+</code></pre><p>根据上述文档，我们可以复制并修改主题中的 Partial Templates 来达到自定义的效果，并且可以不改动主题原有的模板文件。</p>
+<p>以下是具体的操作步骤：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 修改 config.toml </span>
+<span class="c1"># 使用变量控制自定义部分</span>
+$ vi config.toml
+.....  <span class="c1"># 新增变量</span>
+<span class="o">[</span>params<span class="o">]</span>
+<span class="nv">custom_js</span> <span class="o">=</span> <span class="s2">&#34;js/custom_live2d.js&#34;</span>  
+.....
 
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8]
 
-    steps:
-      - uses: actions/checkout@v2
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install flake8 pytest
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-      - name: Lint with flake8
-        run: |
-          # stop the build if there are Python syntax errors or undefined names
-          flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
-          # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
-          flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-      - name: Test with pytest
-        run: |
-          pytest
-</code></pre><p>可以看到，这个 workflow 比较简单，只定义了一个 job 。</p>
-<p>在 jobs 被定义之前的 on 是 workflow 的关键字，用来定义这个 workflow 的运行触发条件。对于这个文件来说，在分支 master 上的 push 或 pull 动作都会激活这个 workflow 。除了 push 和 pull 两种触发方式，还可以使用 crontab 定时调度触发。</p>
-<p>在 jobs 定义 step 之前，还有运行环境的相关定义。 runs-on 关键字用来定义 workflow 的主机工作环境，一般的工作环境有 Linux ， MacOS 和 Windows ，这里使用的是 ubuntu 最新版本。 matrix 是构建矩阵，常用于定义 jobs 运行在多个不同版本的工作环境，这里定义了不同的 python 解释器版本，包括了3.5，3.6，3.7，3.8，所以这个 workflow 会在不同的解释器版本下都运行一次。</p>
-<p>主要部分 steps 列表定义了5个成员，在每个成员中， name 用来定义该 action 的名称， run 用来定义该 action 的具体内容， with 用来设置参数和变量， uses 用来调用社区公共 action ，它们是可以灵活组合的。</p>
-<p>这个 workflow 的具体 step 完成了以下工作：</p>
-<ol>
-<li>调用公共 action checkout@v2 ，我们可以在公共模板看到这个 action 的大量使用，它的工作内容是把 workflow 所在的仓库代码拉取到当前 runs-on 的工作环境中。</li>
-<li>调用公共 action setup-python@v2 ，用来设置 python 的工作环境。</li>
-<li>自定义 action ，升级 pip ，并且安装测试所需要的模块和代码仓库的依赖。</li>
-<li>自定义 action ，使用 flake8 模块来检查代码语法和编写规范。</li>
-<li>自定义 action ，使用 pytest 模块来进行单元测试。</li>
-</ol>
-<p>除了 python 之外，社区还有对各类开发语言的 workflow 支持，可以根据自己的需要选用。</p>
-<h3 id="hexo自动构建部署实例">Hexo自动构建部署实例：</h3>
-<p>在很多情况下需要使用自定义 workflow ，以下是我使用过的工作流程，略微比 python 自动测试的 workflow 复杂，用来自动构建并部署静态博客。</p>
-<pre><code>name: deploy blog
-on:
-  push:
-    branches:
-      - master
-jobs:
-  build:
-    name: Build and deploy blog
-    env:
-      MY_SECRET   : ${{secrets.commit_secret}}
-      USER_NAME   : username
-      USER_EMAIL  : username@mail.com
-      PUBLISH_DIR : ./public
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node-version: [10.x]
+<span class="c1"># 复制原有主题文件到高查找等级的目录中</span>
+$ cp themes/&lt;THEME&gt;/layouts/partials/script.html layouts/partials/script.html
 
-    steps:
-      - uses: actions/checkout@v1
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
-        with:
-          node-version: ${{ matrix.node-version }}
-      - name: generate key and identify host 
-        run: |
-          mkdir ~/.ssh/
-          echo &quot;$MY_SECRET&quot; | tr -d '\r'  &gt; ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
-          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts
-      - name: install package and build
-        run: |
-          npm install
-          npm run build
-      - name: commit and push to remote repository
-        run: |
-          cd $PUBLISH_DIR
-          git init
-          git config --local user.name $USER_NAME
-          git config --local user.email $USER_EMAIL
-          git remote add origin your_remote_repository
-          git add --all
-          message=$(date '+%Y-%m-%d %H:%M:%S')
-          git commit -m &quot;$message UTC&quot;
-          git push -f origin master 
-          echo deploy complete.
-</code></pre><p>workflow 使用 env 关键字在 job 中定义环境变量，在这个文件中，除了明文的环境变量，还使用了 Github 仓库中的 Actions secrets 来设置环境变量。</p>
-<p>Actions secrets 是在每个 Github 仓库都可以进行设置，用来存放敏感信息的键值对。在代码仓库的 Settings/Secrets 中添加新的键值对之后，就可以在 workflow 文件中使用<code>${{secrets.Name}}</code>进行引用。</p>
-<p>Actions secrets 在 workflow 工作过程中是保密的，可以在 workflow 运行日志中观察到这些值由<code>*</code>号所保护。</p>
-<p>这个 workflow 的具体 step 完成了以下工作：</p>
-<ol>
-<li>调用公共 action checkout@v1 ，拉取仓库代码到当前 runs-on 的工作环境中。</li>
-<li>调用公共 action setup-node@v1 ，用来设置 nodejs 的工作环境。</li>
-<li>自定义 action ，从 Actions secrets 读取密钥内容写入到文件中，然后认证 GitHub 远程主机。这一步 action 是为了实现免密推送，具体的实现方法可以参考之前的<a href="https://yuweizzz.github.io/post/authenticating_to_github/">文章</a>。为了使这一步 action 执行成功，需要在 Github 账户上传公钥文件，并且把对应的私钥文件添加到仓库的 Settings/Secrets 中。</li>
-<li>自定义 action ，安装 nodejs 的依赖包并进行构建，生成静态文件。</li>
-<li>自定义 action ，将代码仓库关联到 GitHub 上的运程仓库，做好配置之后 commit 并且 push 代码仓库。</li>
-</ol>
-<p>因为在最后一步的 action 中关联的远程仓库设置了 GitHub Pages 服务，所以在 push 之后，应用也就部署完成了。可以看到，整个过程其实是集合了我们平时编译部署需要执行的命令，模拟了一次完整的部署过程。这个 workflow 的最后一步处理还不是很完美，会把原有的 commit 信息破坏，改进后的版本可以参考这个 blog 源代码仓库的 <a href="https://github.com/yuweizzz/Blog/blob/main/.github/workflows/main.yml">workflow</a> 。</p>
-<h3 id="总结">总结</h3>
-<p>GitHub Actions 服务可以很方便实现 CI 和 CD 的工作流程。</p>
-<p>Github 社区提供了大量的 workflow 模板，在我个人的角度看，它们大部分时候不适合直接在自己项目中使用，但对我们编写自己的工作流程是非常有用的，比较好的办法是直接引用社区模板，再进行适配修改。</p>
-<p>workflow 在使用过程中免不了出错和异常，如果其中一个环节出现错误，整个执行过程就会被中断，这时可以通过 Actions 中的执行日志进行排查。</p>
-<p>这篇文章涉及到的工作流程比较简单，有很多 workflow 关键词没有被使用，更多信息可以参考 GitHub Actions 的<a href="https://docs.github.com/en/actions">官方文档</a>。</p></article>
+
+<span class="c1"># 修改 layouts/partials/script.html</span>
+$ vi layouts/partials/script.html
+.....  <span class="c1"># 直接将下列部分添加到script.html中</span>
+<span class="o">{{</span> <span class="k">if</span> .Site.Params.custom_js -<span class="o">}}</span>
+&lt;script <span class="nv">type</span><span class="o">=</span><span class="s2">&#34;text/javascript&#34;</span> <span class="nv">src</span><span class="o">=</span><span class="s2">&#34;{{ </span>$<span class="s2">.Site.Params.custom_js | absURL }}&#34;</span>&gt;&lt;/script&gt;
+<span class="o">{{</span>- end <span class="o">}}</span>
+.....
+
+
+<span class="c1"># 将完成之后的 Javascript 文件放到 static/js 中即可</span>
+<span class="c1"># 后续生成站点就会以新模板工作</span>
+</code></pre></div><p>关于 Partial Templates 修改的部分，可以选择直接写入 Javascript 引用标签，这里使用带变量控制的语法块是为了后续的维护方便。模板语法和 python 的 jinja2 非常相似，有过使用经验应该很容易理解。</p>
+<p>到这里 Hugo 需要改动的地方就完成了，接下来需要做的是将 Live2D 模型资源和对应的 Javascript 文件正确引用。</p>
+<h2 id="live2d资源的应用">Live2D资源的应用</h2>
+<p>在网络上已经有很多开箱即用的相关应用了，但是它们不契合我的喜好，于是我在已有资源的基础上修改，改进为我喜欢的效果。</p>
+<p>首先需要了解的是现有的模型资源分类，现有的 Live2D 模型资源有 Cubism 2 ， Cubism 4 和 Cubism 3 三个版本，其中 3 和 4 之间是互相兼容，所以基本上可以认为只有两个版本。 2 和 3 之间还是有很大区别的，在个人项目中我只使用到了 Cubism 3 。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Cubism 3 Model 基本结构：</span>
+.
+├── Name.moc3
+├── Name.model3.json  <span class="c1"># 最重要的入口文件</span>
+├── Name.physics3.json
+├── motions
+│   ├── Action1.motion3.json
+│   ├── Action2.motion3.json
+│   └── Action3.motion3.json
+└── textures
+    ├── texture_00.png
+    ├── texture_01.png
+    └── texture_02.png
+</code></pre></div><p>模型文件大都是 json 格式，其中 model3.json 是最为重要的入口文件，很多模型的行为都是由它定义的，后续也需要修改这个文件来实现一些自定义需求。</p>
+<p>现在我们拥有了模型，如果要在网页上实现模型的应用，还需要对应模型版本的 framework 的支持。在这一块我们只能使用 Live2D 出品公司原有的框架，或者使用由大神整理过的资源，我直接使用了 <a href="https://github.com/guansss/pixi-live2d-display">pixi-live2d-display</a> 插件，在这个插件中， pixijs 是整个项目的重要部分，它是一个强大的前端 2D 动画渲染引擎，和 Cubism framework 很好地结合在一起，所以我们不必去了解底层的 api ，可以直接使用这个插件为我们提供的 api ，这也是我选择这个插件的原因。</p>
+<p>在我的个人项目中，主要使用了原生 pixijs 的 api 以及 pixi-live2d-display 中提供的 api ，通过数据绑定和原生 api 来构建主体功能，并且对模型资源进行了部分修改，使得运行时的模型支持交互动作，主要是在 model3.json 文件中修改 motion 相关的部分。有兴趣可以参考<a href="https://github.com/yuweizzz/CustomLive2D">源码</a>。</p>
+<p>最后一步是将整个项目通过 webpack 打包为单个 Javascript 文件，并将打包后的 Javascript 文件和 Live2D 模型资源安置到 Hugo 的 static 目录中就大功告成了。</p>
+<h2 id="结语">结语</h2>
+<p>总结来说，自定义站点这部分比较简单，在 Live2D 应用花费了比较多的时间，因为我是个前端新手，对 Javascript 的应用还只停留于通过简单的 DOM 操作和基础函数调用。但是经过这个项目，让我感受到了 Javascript 的迅速发展，它对于有后端经验的人还是比较友好的。</p>
+<p>在实际的使用过程，网络是重要的因素，如果经常会出现模型加载异常，可以考虑使用 CDN 资源。</p></article>
               </div>
             </div>
           </div>
