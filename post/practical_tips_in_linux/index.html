@@ -153,9 +153,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 11 Jul 2021 15:17:45 &#43;0000"
+                  Modified <relative-time datetime="Mon, 26 Jul 2021 14:08:55 &#43;0000"
                     class="no-wrap">
-                    Sun, 11 Jul 2021 15:17:45 &#43;0000</relative-time>
+                    Mon, 26 Jul 2021 14:08:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -173,7 +173,7 @@
               <div class="file-header d-flex flex-md-items-center flex-items-start">
                 <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
                   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    1891 Words
+                    2488 Words
                     
 
                   </div>
@@ -257,6 +257,40 @@ tar -xvf output.tar -C /mydir
 <span class="c1"># 指定的压缩格式解压文件</span>
 tar -xvJf output.tar.xz -C /mydir
 <span class="c1"># 可以指定对应的压缩格式</span>
+</code></pre></div><h2 id="硬盘分区和格式化">硬盘分区和格式化</h2>
+<p>硬盘需要进行分区和格式化之后才能使用，现阶段主流的硬盘分区方式是 GPT ，小容量的硬盘和系统盘还经常会使用 msdos 。常用的分区工具有 parted ， fdisk ， gdisk 这几个，文件系统格式化一般使用 mkfs 命令。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># fdisk 只能支持 msdos 分区</span>
+<span class="c1"># gdisk 在 fdisk 的基础上扩展 gpt 的功能</span>
+<span class="c1"># 推荐使用 parted ，它拥有更全面的功能</span>
+
+<span class="c1"># 查看已有分区信息</span>
+parted /dev/sda print     
+
+<span class="c1"># 以下命令具有一定危险，需要注意数据安全</span>
+<span class="c1"># 设置分区表格式</span>
+parted /dev/sda mklabel <span class="o">[</span> gpt <span class="p">|</span> msdos <span class="o">]</span>
+
+<span class="c1"># 新增分区</span>
+parted /dev/sda mkpart <span class="o">[</span> primary <span class="p">|</span> extended <span class="p">|</span> logical <span class="o">]</span> <span class="o">[</span> ext4 <span class="p">|</span> xfs <span class="o">]</span> start end
+<span class="c1"># gpt 一般只用到 primary 分区，msdos 需要额外用到 extended 和 logical 分区</span>
+<span class="c1"># 文件系统的标记一般可以不写</span>
+<span class="c1"># 分区范围是必填项</span>
+
+<span class="c1"># 删除某一分区， Number 代表分区编号</span>
+parted /dev/sda rm Number
+
+<span class="c1"># 格式化分区</span>
+mkfs.ext4 <span class="o">[</span>-b size<span class="o">]</span> <span class="o">[</span>-L label<span class="o">]</span> /dev/sda1
+mkfs.xfs <span class="o">[</span>-b size<span class="o">]</span> <span class="o">[</span>-L label<span class="o">]</span> /dev/sda1
+<span class="c1"># 两种最常用的文件系统，参数都是相近的</span>
+<span class="c1"># -b 用来设定最小区块大小，有1K，2K，4K</span>
+<span class="c1"># -L 用来设置文件系统标签，用于挂载文件系统</span>
+
+<span class="c1"># 速用脚本</span>
+parted /dev/sda -s mklabel gpt
+parted /dev/sda -s mkpart primary <span class="m">0</span> 100%
+<span class="c1"># -s 用来屏蔽 parted 的交互信息</span>
+mkfs.xfs /dev/sda1
 </code></pre></div><h2 id="curl的基本使用">curl的基本使用</h2>
 <p>curl 在 Linux 代替了浏览器的工作，经常用来调试接口。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 经典curl用例</span>
@@ -388,6 +422,23 @@ split<span class="o">(</span><span class="s2">&#34;A;B;C;D&#34;</span>,array,<sp
 <span class="k">do</span>
     <span class="nb">echo</span> <span class="nv">$A</span>,<span class="nv">$B</span>,<span class="nv">$C</span>
 <span class="k">done</span> &lt; file
+</code></pre></div><h2 id="使用yum下载rpm包">使用yum下载rpm包</h2>
+<p>有时候会有下载 rpm 包的需求，可以通过 yum 实现。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">yum install package --downloadonly --downloaddir<span class="o">=</span>/your/dir
+<span class="c1"># 可以只下载 rpm 包而不进行安装</span>
+<span class="c1"># 不指定下载目录，则下载后文件保存在 /var/cache/yum/ 下的子目录中</span>
+<span class="c1"># 如果 --downloadonly 运行失败，可能需要自行安装这个插件</span>
+</code></pre></div><h2 id="使用cpio打开rpm文件">使用cpio打开rpm文件</h2>
+<p>rpm 包可以视为一个特殊的归档文件，如果需要提取这个档案中的内容，一般通过 rpm2cpio 和 cpio 去实现。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 常用的实例命令</span>
+rpm2cpio package.rpm <span class="p">|</span> cpio -divm
+
+<span class="c1"># 以下是 cpio 比较重要的参数</span>
+<span class="c1"># -i/--extract 展开文件</span>
+<span class="c1"># -o/--create 生成文件</span>
+<span class="c1"># -v/--verbose 显示详细过程</span>
+<span class="c1"># -d/--make-directories 在需要时建立目录</span>
+<span class="c1"># -m/--preserve-modification-time 保留更改时间。</span>
 </code></pre></div></article>
               </div>
             </div>

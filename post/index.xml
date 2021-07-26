@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 05 Jul 2021 21:08:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 15 Jul 2021 21:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>♬</title>
+      <link>https://yuweizzz.github.io/post/my_music_collections/</link>
+      <pubDate>Thu, 15 Jul 2021 21:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/my_music_collections/</guid>
+      <description>&lt;p&gt;我的个人音乐收藏。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>在网页上添加Live2D看板娘</title>
       <link>https://yuweizzz.github.io/post/add_live2d_on_hugo_website/</link>
