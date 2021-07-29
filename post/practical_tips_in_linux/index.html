@@ -153,9 +153,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 26 Jul 2021 14:08:55 &#43;0000"
+                  Modified <relative-time datetime="Thu, 29 Jul 2021 14:57:24 &#43;0000"
                     class="no-wrap">
-                    Mon, 26 Jul 2021 14:08:55 &#43;0000</relative-time>
+                    Thu, 29 Jul 2021 14:57:24 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -173,7 +173,7 @@
               <div class="file-header d-flex flex-md-items-center flex-items-start">
                 <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
                   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    2488 Words
+                    2947 Words
                     
 
                   </div>
@@ -439,6 +439,37 @@ rpm2cpio package.rpm <span class="p">|</span> cpio -divm
 <span class="c1"># -v/--verbose 显示详细过程</span>
 <span class="c1"># -d/--make-directories 在需要时建立目录</span>
 <span class="c1"># -m/--preserve-modification-time 保留更改时间。</span>
+</code></pre></div><h2 id="更新文件到initramfs镜像中">更新文件到initramfs镜像中</h2>
+<p>在 Linux 系统中，我们一般可以在 <code>/boot</code> 目录中找到 initramfs 镜像文件，它们是引导系统的必要组件。如果需要使用到的系统命令没有编译到镜像中，可以使用 dracut 命令进行镜像更新。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 file 命令可以看到 CentOS 7.4 的 initramfs 镜像是由 gunzip 压缩的文件</span>
+<span class="c1"># initramfs-3.10.0-693.el7.x86_64.img: gzip compressed data, from Unix, </span>
+<span class="c1"># last modified: Sat Mar 16 15:51:25 2019, max compression</span>
+
+<span class="c1"># 以常规思路去处理这个文件</span>
+<span class="c1"># 首先需要更改命名后缀，否则 gunzip 无法识别</span>
+cp initramfs-3.10.0-693.el7.x86_64.img /tmp/initramfs-3.10.0-693.el7.x86_64.img.gz
+<span class="c1"># 使用 gunzip 解压</span>
+gunzip -d initramfs-3.10.0-693.el7.x86_64.img.gz
+<span class="c1"># 使用 file 命令可以看到解压后是 cpio 归档文件</span>
+<span class="c1"># initramfs-3.10.0-693.el7.x86_64.img: ASCII cpio archive (SVR4 with no CRC)</span>
+<span class="c1"># 进一步解包归档文件</span>
+cpio -divm &lt; initramfs-3.10.0-693.el7.x86_64.img
+<span class="c1"># 到这一步可以完全提取出镜像内的文件</span>
+
+<span class="c1"># 使用专用命令去查看镜像信息，比较推荐使用这种用法</span>
+lsinitrd /tmp/initramfs-3.10.0-693.el7.x86_64.img
+<span class="c1"># 可以看到基础的镜像信息和镜像内的具体文件信息</span>
+
+<span class="c1"># 更新系统命令文件到 initramfs 中</span>
+dracut -v -I <span class="s1">&#39;/usr/sbin/xfsdump /usr/sbin/xfsrestore&#39;</span> -f <span class="o">[</span>initramfs.img<span class="o">]</span>
+<span class="c1"># -v 显示详细过程</span>
+<span class="c1"># -I 需要添加到镜像中的文件列表，不同文件以空格隔开</span>
+<span class="c1"># -f 强制覆写原有镜像，这个选项一般放在最后或者镜像文件名之前，否则可能会报错</span>
+<span class="c1"># 这里可以省略镜像名称，会默认使用 /boot/initramfs-kernel_version.img</span>
+<span class="c1"># 有需要可以在命令最后加上镜像文件名</span>
+
+<span class="c1"># 这里添加了 xfs 文件系统的备份和还原命令，它们是需要额外安装的</span>
+<span class="c1"># 执行 dracut 完成后可以使用 lsinitrd 检查是否成功</span>
 </code></pre></div></article>
               </div>
             </div>
