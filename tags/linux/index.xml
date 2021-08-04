@@ -17,6 +17,15 @@
     </item>
     
     <item>
+      <title>由 BIOS 传统启动向 UEFI 启动迁移</title>
+      <link>https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/</link>
+      <pubDate>Sat, 03 Jul 2021 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/</guid>
+      <description>&lt;p&gt;将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>安装Linux图形界面</title>
       <link>https://yuweizzz.github.io/post/install_gui_in_linux/</link>
       <pubDate>Tue, 30 Mar 2021 21:00:00 +0000</pubDate>
