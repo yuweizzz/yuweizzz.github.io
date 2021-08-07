@@ -6,7 +6,16 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 15 Jul 2021 21:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 03 Aug 2021 22:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>前端项目开发速记</title>
+      <link>https://yuweizzz.github.io/post/tips_about_javascript_project/</link>
+      <pubDate>Tue, 03 Aug 2021 22:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/tips_about_javascript_project/</guid>
+      <description>&lt;p&gt;一些前端项目开发过程可能会使用的操作。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>♬</title>
       <link>https://yuweizzz.github.io/post/my_music_collections/</link>

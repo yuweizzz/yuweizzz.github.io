@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>由 BIOS 传统启动向 UEFI 启动迁移 - Wei&#39;s blog</title>
+    <title>前端项目开发速记 - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/github.png'>
     
@@ -18,18 +18,18 @@
 
     
     <meta name="description"
-  content="将 MBR&#43;BIOS 启动的硬盘转换为 GPT&#43;UEFI 启动。
+  content="一些前端项目开发过程可能会使用的操作。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/tips_about_javascript_project/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="由 BIOS 传统启动向 UEFI 启动迁移 - Wei&#39;s blog" />
+<meta name="twitter:title" content="前端项目开发速记 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="将 MBR&#43;BIOS 启动的硬盘转换为 GPT&#43;UEFI 启动。
+  content="一些前端项目开发过程可能会使用的操作。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
@@ -38,18 +38,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="由 BIOS 传统启动向 UEFI 启动迁移 - Wei&#39;s blog">
+<meta property="og:title" content="前端项目开发速记 - Wei&#39;s blog">
 <meta property="og:description"
-  content="将 MBR&#43;BIOS 启动的硬盘转换为 GPT&#43;UEFI 启动。
+  content="一些前端项目开发过程可能会使用的操作。
 " />
-<meta property="og:url" content="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/" />
-<meta property="og:site_name" content="由 BIOS 传统启动向 UEFI 启动迁移" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/tips_about_javascript_project/" />
+<meta property="og:site_name" content="前端项目开发速记" />
 <meta property="og:image"
   content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2021-07-03 15:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2021-08-03 22:00:00 &#43;0000 UTC" />
 
 
 
@@ -144,12 +144,12 @@
                   <span class="author">
                     <a href="https://yuweizzz.github.io/">Wei</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/">由 BIOS 传统启动向 UEFI 启动迁移</a></strong>
+                      href="https://yuweizzz.github.io/post/tips_about_javascript_project/">前端项目开发速记</a></strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sat, 03 Jul 2021 15:00:00 &#43;0000"
+                  Created <relative-time datetime="Tue, 03 Aug 2021 22:00:00 &#43;0000"
                     class="no-wrap">
-                    Sat, 03 Jul 2021 15:00:00 &#43;0000</relative-time>
+                    Tue, 03 Aug 2021 22:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -173,7 +173,7 @@
               <div class="file-header d-flex flex-md-items-center flex-items-start">
                 <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
                   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    2873 Words
+                    1383 Words
                     
 
                   </div>
@@ -189,13 +189,22 @@
                       Linux
                     </a>
                     
-                    <a class="muted-link mr-3" href="/tags/uefi">
+                    <a class="muted-link mr-3" href="/tags/npm">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      UEFI
+                      npm
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/node.js">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Node.js
                     </a>
                     
                     
@@ -205,7 +214,7 @@
 
 
               <div class="Box-body px-5 pb-5">
-                <article class="markdown-body entry-content container-lg"><p>将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动。</p>
+                <article class="markdown-body entry-content container-lg"><p>一些前端项目开发过程可能会使用的操作。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
                                        <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
                                   <span class="o">(</span>   <span class="o">)</span>
@@ -224,207 +233,158 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="前言">前言</h2>
-<p>现代设备中，采用 UEFI 启动的机器越来越多了，虽然在服务器中可以通过 CSM 来提供 Legacy BIOS 的支持，但是 UEFI 将会是未来使用的主流方式，所以有必要开始尝试使用 UEFI 启动。</p>
-<h2 id="将mbr转换为gpt">将MBR转换为GPT</h2>
-<p>和 UEFI 启动模式紧密配合的分区方式是 GPT ，原有的 MBR 分区方式存在一定的局限性。而 GPT 为了保持兼容，使用了 LBA 0 扇区作为 MBR 保护扇区，这也使得 MBR 分区方式迁移到 GPT 分区方式成为可能。</p>
-<p>将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动的第一步工作就是将 MBR 转换为 GPT 。</p>
-<p><strong>进行分区操作时，一定要小心谨慎，做好数据备份，对根分区的错误操作可能是无法挽救的。</strong></p>
-<pre><code># 首先观察根分区情况，这时可以使用 fdisk 或 parted
-# 这个硬盘来自我的虚拟机
+</code></pre></div><h2 id="搭建nodejs环境">搭建Node.js环境</h2>
+<p>Node.js 提供了二进制预编译的安装包，在<a href="https://nodejs.org/zh-cn/download/">官网</a>直接下载到本地即可解压使用。</p>
+<p>这里以 LTS 14.15.4 为例:</p>
+<pre><code># curl -o /usr/local/src/node-v14.15.4-linux-x64.tar.xz 
+    https://nodejs.org/download/release/v14.15.4/node-v14.15.4-linux-x64.tar.xz
+# tar -xvJf /usr/local/src/node-v14.15.4-linux-x64.tar.xz -C /usr/local/
+# echo 'export PATH=&quot;$PATH&quot;:/usr/local/node-v14.15.4-linux-x64/bin/' &gt;&gt; /etc/profile
+</code></pre><p>如果只有某个用户需要使用 Node.js，可以把 PATH 变量写入到对应用户的 bash_profile 或 bashrc 中，这样可以起到一样的效果并且不会影响其他用户的环境变量。</p>
+<h2 id="修改npm镜像地址">修改npm镜像地址</h2>
+<p>npm 是 Node.js 的依赖包管理工具，类似于 python 的 pip ， npm 在国内的网络环境会有下载速度慢的现象，可以将镜像地址修改为国内的镜像地址来解决这个问题。</p>
+<pre><code># 检查 npm 基本配置：
+# npm config list
+; cli configs
+metrics-registry = &quot;https://registry.npmjs.org/&quot;  # 默认的源镜像
+scope = &quot;&quot;
+user-agent = &quot;npm/6.14.10 node/v14.15.4 linux x64&quot;
 
-# fdisk /dev/sda
+; node bin location = /usr/local/node-v14.15.4-linux-x64/bin/node
+; cwd = /usr/local/node-v14.15.4-linux-x64
+; HOME = /root
+; &quot;npm config ls -l&quot; to show all defaults.
+
+# 修改为淘宝 npm 镜像以加快访问速度：
+# 只修改当前用户的配置，非全局修改会生成 $HOME/.npmrc 
+# npm config set registry http://registry.npm.taobao.org/
+# cat ~/.npmrc  # 只影响当前用户
+registry=http://registry.npm.taobao.org/
+
+# 使用 -g 修改全局配置，全局修改会生成 $PREFIX/etc/npmrc 
+# npm -g config set registry http://registry.npm.taobao.org/ 
+# cat /usr/local/node-v14.15.4-linux-x64/etc/npmrc  # 生成于 node 安装目录下的 etc 目录中
+registry=http://registry.npm.taobao.org/
+</code></pre><h2 id="初始化项目">初始化项目</h2>
+<p>下面简单记录了初始化前端项目的过程，可以提供后续参考。</p>
+<p>生成 package.json 是一个项目的开始，无论使用的依赖包管理工具是 npm 或是 yarn 。我选用了 npm ，实际可以按照个人喜好来选择。</p>
+<pre><code># mkdir myproject
+# cd myproject
+# npm init  # 交互式生成 package.json
+This utility will walk you through creating a package.json file.
+It only covers the most common items, and tries to guess sensible defaults.
+
+See `npm help init` for definitive documentation on these fields
+and exactly what they do.
+
+Use `npm install &lt;pkg&gt;` afterwards to install a package and
+save it as a dependency in the package.json file.
+
+Press ^C at any time to quit.
+package name: (myproject) 
+version: (1.0.0) 
+description: my project
+entry point: (index.js) src/index.js
+test command: node -v; npm -v;  # 这里是为了测试，实际使用时可以按需修改
+git repository: 
+keywords: 
+author: me
+license: (ISC) 
+About to write to /tmp/myproject/package.json:
+
+{
+  &quot;name&quot;: &quot;myproject&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;my project&quot;,
+  &quot;main&quot;: &quot;src/index.js&quot;,  # 通常会使用 src 来存放项目代码，实际使用时可以按需修改
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;node -v; npm -v;&quot;
+  },
+  &quot;author&quot;: &quot;me&quot;,
+  &quot;license&quot;: &quot;ISC&quot;
+}
+
+
+Is this OK? (yes) yes
+</code></pre><p>生成 package.json 后，我们可以按照需要安装一些项目模块和开发模块工具。</p>
+<pre><code># 安装项目需要的模块
+# npm install &lt;dependency&gt; 
+# 使用 -D 安装项目需要的开发模块工具
+# npm install -D webpack  # 打包工具
+# npm install -D webpack-cli
+# npm install -D eslint  # 语法检查工具
+
+# 检查配置文件，可以看到新的依赖项已经被安装
+# cat package.json 
+{
+  &quot;name&quot;: &quot;myproject&quot;,
+  &quot;version&quot;: &quot;1.0.0&quot;,
+  &quot;description&quot;: &quot;my project&quot;,
+  &quot;main&quot;: &quot;index.js&quot;,
+  &quot;scripts&quot;: {
+    &quot;test&quot;: &quot;node -v; npm -v;&quot;
+  },
+  &quot;author&quot;: &quot;me&quot;,
+  &quot;license&quot;: &quot;ISC&quot;,
+  &quot;devDependencies&quot;: {
+    &quot;webpack&quot;: &quot;^5.48.0&quot;,
+    &quot;eslint&quot;: &quot;^7.32.0&quot;,
+    &quot;webpack-cli&quot;: &quot;^4.7.2&quot;
+  }
+}
+
+# 安装完成后，可以在 node_modules 中找到对应模块目录
+# 可直接执行脚本还会产生符号链接提供给项目使用，如下例子：
+./node_modules/.bin/webpack-cli -&gt; ../webpack-cli/bin/cli.js
+</code></pre><p>虽然可以通过指明路径调用一些可用的脚本和命令，但我们一般把这些常用的命令写入到 package.json 的 scripts 中去，方便后续使用。</p>
+<pre><code># package.json 中 scripts 的基本使用：
+# scripts 通常使用 build ， lint ， run 等常用命名来配置对应的一系列命令
+# npm run 可以执行这些配置好的命令
+
+# 测试之前已经配置的 scripts test ：
+# npm run test
+
+&gt; myproject@1.0.0 test
+&gt; node -v; npm -v
+
+v14.15.4
+7.20.3
+
+# 后续使用会配置一些新的 scripts
+</code></pre><p>下面是一些常用的开发模块，只用到了比较简单的场景，更详细的配置需要参考官方文档和其他优秀项目的用法。</p>
+<p>使用 webpack 作为打包工具。</p>
+<pre><code># 配置 webpack ：
+# 手工生成 webpack.config.js ，文件位于项目根目录
+# cat webpack.config.js
+// start
+const webpack = require('webpack');
+const path = require('path');
+
+const config = {
+  entry: './src/index.js',  // 实际使用按需修改
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'  // output 为打包输出目标
+  }
+};
+
+module.exports = config;
+// end
+# 生成 webpack.config.js 后配置 webpack 打包命令到 npm scripts 
+# npm set-script &quot;build&quot; &quot;webpack --mode production --config webpack.config.js&quot;
+# 添加完成后可以直接调用 npm run build 执行打包
+</code></pre><p>使用 eslint 作为语法检查工具。</p>
+<pre><code># 配置 eslint ：
+# 直接调用可执行脚本进行语法相关的配置初始化
+# ./node_modules/.bin/eslint --init
 ...
-Command (m for help): p
-
-Disk /dev/sda: 10.7 GB, 10737418240 bytes, 20971520 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
-Disk label type: dos
-Disk identifier: 0x0004dcb6
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sda1   *        2048     1026047      512000   83  Linux
-/dev/sda2         1026048     3123199     1048576   83  Linux
-/dev/sda3         3123200    20971519     8924160   83  Linux
-
-# parted -l
-Model: VMware, VMware Virtual S (scsi)
-Disk /dev/sda: 10.7GB
-Sector size (logical/physical): 512B/512B
-Partition Table: msdos
-Disk Flags: 
-
-Number  Start   End     Size    Type     File system     Flags
- 1      1049kB  525MB   524MB   primary  xfs             boot
- 2      525MB   1599MB  1074MB  primary  linux-swap(v1)
- 3      1599MB  10.7GB  9138MB  primary  xfs
-</code></pre><p>如果你的系统盘如上面展示的一样，最后一个分区用尽了所有剩余的硬盘扇区，这种情况下不建议进行分区方式的转换，因为根据 GPT 分区格式的定义， GPT 比 MBR 使用到了更多的硬盘起始扇区存放分区信息 (Primary GPT) ，而且还占用了硬盘末尾的部分扇区作为分区信息的备份 (Secondary GPT) 。</p>
-<p>虽然很多分区工具在操作 msdos 硬盘时会保留一些起始扇区，默认从 1 MB 开始分区，以便后续兼容 GPT 格式，但一般不会对末尾扇区做保留。所以在转换 GPT 时，处于硬盘头部的分区通常可以无损转换，而处于硬盘尾部的分区会遭遇文件系统受损。</p>
-<pre><code># 尝试对这个无法无损转换的硬盘进行操作
-# gdisk /dev/sda
-GPT fdisk (gdisk) version 0.8.10
-
-Partition table scan:
-  MBR: MBR only
-  BSD: not present
-  APM: not present
-  GPT: not present
-
-
-***************************************************************
-Found invalid GPT and valid MBR; converting MBR to GPT format
-in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
-typing 'q' if you don't want to convert your MBR partitions
-to GPT format!
-***************************************************************
-
-
-Warning! Secondary partition table overlaps the last partition by
-33 blocks!
-You will need to delete this partition or resize it in another utility.
-
-# 这里已经给出分区告警：检测到无效的 GPT 和有效的 MBR ，
-# 分区工具将分区表自动转换为 GPT 格式，并且最后一个分区需要重新划分，
-# 在退出分区工具时可以按 q 来取消这次转换
-
-# 为了文件系统安全，记得通过按下 q 来退出。
-</code></pre><p>虽然在我的虚拟机硬盘上无法直接实现转换，但是如果你的系统盘没有用尽所有的空间，或者最后一个分区用作交换分区时，分区方式就可以实现完美转换。</p>
-<pre><code># 对可以无损转换的硬盘进行操作，原有分区信息大概如下
-# 这是一块 msdos 分区的硬盘，未用尽所有扇区
-# 这里为了实验删除了 swap 分区，实际上这一步可以省去，直接建立新分区和直接转换是没问题的
+# 整个过程按照提示进行选择即可，一般会产生依赖安装，完成后会自动生成文件
+Successfully created .eslintrc.json file in /tmp/myproject
 ...
-Number  Start (sector)    End (sector)  Size       Code  Name
-   1            2048         4196351   2.0 GiB     8300  Linux filesystem
-   2         4196352       903086079   428.6 GiB   8300  Linux filesystem
-   3       904110080       905134079   500.0 MiB   8200  Linux swap
-...
-
-# 直接通过 gdisk 进行操作
-# gdisk /dev/sda
-GPT fdisk (gdisk) version 0.8.10
-
-Partition table scan:
-  MBR: MBR only
-  BSD: not present
-  APM: not present
-  GPT: not present
-
-
-***************************************************************
-Found invalid GPT and valid MBR; converting MBR to GPT format
-in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
-typing 'q' if you don't want to convert your MBR partitions
-to GPT format!
-***************************************************************
-
-
-Command (? for help): d
-Partition number (1-3): 3
-
-Command (? for help): n
-Partition number (3-128, default 3): 3
-First sector (34-976773168, default = 904110080) or {+-}size{KMGTP}: 34
-Last sector (34-2047, default = 2047) or {+-}size{KMGTP}: 
-Current type is 'Linux filesystem'
-Hex code or GUID (L to show codes, Enter = 8300): ef02
-Changed type of partition to 'BIOS boot partition'
-
-Command (? for help): n
-Partition number (4-128, default 4): 4
-First sector (904110080-976773168, default = 904110080) or {+-}size{KMGTP}: 
-Last sector (904110080-976773168, default = 976773168) or {+-}size{KMGTP}: +500M
-Current type is 'Linux filesystem'
-Hex code or GUID (L to show codes, Enter = 8300): ef00
-Changed type of partition to 'EFI System'
-
-Command (? for help): w
-
-Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
-PARTITIONS!!
-
-Do you want to proceed? (Y/N): y
-OK; writing new GUID partition table (GPT) to /dev/sda.
-Warning: The kernel is still using the old partition table.
-The new table will be used at the next reboot.
-The operation has completed successfully.
-
-# 执行 partprobe 可以得到新的分区信息如下：
-...
-Number  Start (sector)    End (sector)  Size       Code  Name
-   1            2048         4196351   2.0 GiB     8300  Linux filesystem
-   2         4196352       903086079   428.6 GiB   8300  Linux filesystem
-   3              34            2047   1007.0 KiB  EF02  BIOS boot partition
-   4       904110080       905134079   500.0 MiB   EF00  EFI System
-...
-# 这里没有恢复 swap 分区，实际操作时可以按需求来恢复。
-</code></pre><p>相比原有的三个分区，只需要新增 BIOS boot partition 和 EFI System 两个新分区即可，它们会在后续派上用场。</p>
-<h2 id="挂载-esp">挂载 ESP</h2>
-<p>接下来需要挂载 ESP ，也就是刚才新增的 EFI System 分区，它的全称是 EFI System Partition ，是预留给 UEFI 启动存放引导文件的分区。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 格式化 ESP ，注意它的文件系统是 FAT 格式</span>
-mkfs.vfat /dev/sda4
-<span class="c1"># 如果命令不存在，安装新的软件包后重试</span>
-yum install dosfstools
-
-<span class="c1"># /boot 分区已经预留了 efi 目录以供 UEFI 启动分区挂载</span>
-<span class="c1"># 但我们现在使用的是 BIOS 启动，这个目录应该为空且没有挂载</span>
-mount /dev/sda4 /boot/efi
-<span class="c1"># 为了后续使用，这一步完成后应该手动更新到 fstab 中</span>
-</code></pre></div><h2 id="重新安装bootloader">重新安装BootLoader</h2>
-<p>由于我们转换了分区方式，原有的 BootLoader 也需要重新安装，现代 Liunx 系统基本都使用 grub2 作为 BootLoader 。</p>
-<p>grub2 在安装时有两个重要镜像 boot.img 和 core.img ，它们协作完成系统的引导工作，其中 boot.img 会安装在 MBR 分区硬盘的第一个扇区中，它主要负责把程序执行权转交给 core.img 。</p>
-<p>而 core.img 包含了基本功能和必要的模块，承担了引导系统内核的核心工作，一般会安装 MBR 分区硬盘的第一个扇区和第一个分区之间的空隙，这个位置通常称为 MBR gap ，这部分信息可以在 grub2 的<a href="https://www.gnu.org/software/grub/manual/grub/grub.html#BIOS-installation">官方文档</a>找到。</p>
-<p>由于我们将 MBR 转换为 GPT 格式，原有的 MBR gap 的位置会被 GPT 头所占据，按照 grub2 官方文档对 GPT 分区格式的使用指引，我们需要新的分区来替代 MBR gap ，这就是之前在分区时额外划分 BIOS Boot Partition 的原因。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 1.以 UEFI 引导为目标重装 grub2 ，需要提前挂载 ESP 分区</span>
-grub2-install --target<span class="o">=</span>x86_64-efi --efi-directory<span class="o">=</span>/boot/efi /dev/sda
-<span class="c1"># 此时应该可以在 ESP 分区， /boot/efi 子目录下找到 grubx64.efi 文件</span>
-<span class="c1"># 如果执行有类似模块信息丢失的报错，安装新的软件包后重试</span>
-yum install grub2-efi-x64-modules
-
-<span class="c1"># 2.生成 grub.cfg</span>
-grub2-mkconfig -o /boot/grub2/grub.cfg
-<span class="c1"># 如果对比观察新生成的 grub.cfg 和原有的 grub.cfg ，</span>
-<span class="c1"># 可以发现主要区别在于处理 MBR 的模块已经转换为处理 GPT 的模块。</span>
-
-<span class="c1"># 3.值得注意的是，我们目前的系统并不处在 UEFI 启动模式，系统下没有 UEFI 变量</span>
-<span class="c1"># 所以 grub2-mkconfig 还不能完全生成正确结果，需要手动修改一次</span>
-sed -i <span class="s1">&#39;s/linux16/linuxefi/g&#39;</span> /boot/grub2/grub.cfg
-sed -i <span class="s1">&#39;s/initrd16/initrdefi/g&#39;</span> /boot/grub2/grub.cfg
-<span class="c1"># 如果没有对 grub.cfg 进行修改，系统仍然可以从 BIOS 模式启动，但无法从 UEFI 模式启动</span>
-</code></pre></div><p>到这里系统下的工作基本完成，下一步需要重启机器进入 BIOS setup 来修改启动模式。</p>
-<h2 id="修改启动模式和uefi启动项">修改启动模式和UEFI启动项</h2>
-<p>在机器重启自检过程中，根据提示按下按键就能进入 BIOS setup ，这个按键一般会是 Del 或者 F2 。</p>
-<p>进入到 BIOS setup ，常规主板会在 Boot Mode 选项设置启动模式，在服务器平台这个设置可能在 CSM 选项中，我们只需要将 Legacy BIOS 修改为 UEFI ，然后保存退出即可。</p>
-<p>第一次 UEFI 启动可能需要手动从 Boot Manager 引导，通过 Boot from File ，进入 ESP 选择对应的 efi 引导文件 grubx64.efi ，选择 efi 文件之后的界面会是熟悉的 grub2 内核选择界面，我们就可以正常进入系统了。</p>
-<p>为了后续的使用方便，进入系统后我们还要修改 UEFI 启动项。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 efibootmgr</span>
-yum install efibootmgr
-
-<span class="c1"># 查看系统启动项</span>
-efibootmgr <span class="o">[</span>-v<span class="o">]</span>
-<span class="c1"># -v 可以看到更详细的信息</span>
-
-<span class="c1"># 禁用一些无用的启动项</span>
-efibootmgr -B -b <span class="o">[</span>number<span class="o">]</span>
-<span class="c1"># 启用需要的启动项目</span>
-efibootmgr -a -b <span class="o">[</span>number<span class="o">]</span>
-<span class="c1"># 修改启动顺序</span>
-efibootmgr -o <span class="o">[</span>number,number,number...<span class="o">]</span>
-
-<span class="c1"># 将系统添加到独立的启动项</span>
-efibootmgr -c -d /dev/sda -p <span class="m">4</span> -L Grub2 -l /EFI/centos/grubx64.efi
-<span class="c1"># -c | --create  create new variable bootnum and add to bootorder</span>
-<span class="c1"># -d | --disk disk  (defaults to /dev/sda) containing loader</span>
-<span class="c1"># -l | --loader name  (defaults to &#34;\EFI\centos\grub.efi&#34;)</span>
-<span class="c1"># -L | --label label  Boot manager display label (defaults to &#34;Linux&#34;)</span>
-<span class="c1"># -p | --part part  partition containing loader (defaults to 1 on partitioned devices)</span>
-<span class="c1"># 大概的用法如上，比较值得注意的是 -L 选项，使用 \ 会有异常，无法指向正确的路径</span>
-<span class="c1"># 添加选项后最好要使用 efibootmgr -o 检查引导文件路径是否正确</span>
-</code></pre></div><p>到这里我们的系统已经完成由 MBR+BIOS 向 GPT+UEFI 的迁移工作。</p>
-<h2 id="总结">总结</h2>
-<p>转换启动模式直接应用于生产环境的场景可能比较少，即使我们修改了启动模式可能也没有带来特别大的收益，不过这个过程可以让我们比较详细地了解 UEFI 和传统的 BIOS 启动模式的不同之处，扩展一下系统引导的相关知识，并且未来 UEFI 的使用场景可能会越来越多，提前接触也是好事。</p>
-<p>这次实验还引出一个比较重要的问题：对于系统盘的分区划分，我个人觉得应该考虑把根分区安排在中间， swap 分区放在最后，这样分区的好处是遇到根分区扩容的场景或者类似于这次分区格式转换的场景会比较方便操作。</p></article>
+# 配置 eslint 检查命令到 npm scripts
+# npm set-script &quot;lint&quot; &quot;eslint src/&quot;
+# 添加后可以直接调用 npm run lint 执行语法检查
+</code></pre><h3 id="待后续更新-">待后续更新 &hellip;</h3></article>
               </div>
             </div>
           </div>
