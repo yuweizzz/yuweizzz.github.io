@@ -6,7 +6,16 @@
     <description>Recent content in Git on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 20 Jul 2020 23:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 23 Jul 2020 22:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Git使用速记</title>
+      <link>https://yuweizzz.github.io/post/tips_about_git/</link>
+      <pubDate>Thu, 23 Jul 2020 22:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/tips_about_git/</guid>
+      <description>&lt;p&gt;一些 Git 的常用的命令速记。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>配置GitHub SSH Key</title>
       <link>https://yuweizzz.github.io/post/authenticating_to_github/</link>

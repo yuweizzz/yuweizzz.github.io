@@ -126,6 +126,8 @@
   </header>
 </div>
   
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
 <div>
   <main>
     <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
@@ -153,9 +155,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 07 Aug 2021 17:05:53 &#43;0000"
+                  Modified <relative-time datetime="Sun, 15 Aug 2021 14:20:36 &#43;0000"
                     class="no-wrap">
-                    Sat, 07 Aug 2021 17:05:53 &#43;0000</relative-time>
+                    Sun, 15 Aug 2021 14:20:36 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -170,10 +172,16 @@
         <div>
           <div class="js-gist-file-update-container js-task-list-container file-box">
             <div id="file-pytest" class="file my-2">
-              <div class="file-header d-flex flex-md-items-center flex-items-start">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header">
                 <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
                   <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
-                    2504 Words
+                    
+                    <summary id="toc-toggle" class="btn btn-octicon m-0 mr-2 p-2" aria-haspopup="menu" aria-label="Table of Contents" role="button">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                          2495 Words
                     
 
                   </div>
@@ -224,7 +232,7 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="持续集成和持续部署">持续集成和持续部署</h2>
+</code></pre></div><h2 id="前言">前言</h2>
 <p>使用 GitHub Actions 之前，我们需要了解持续集成和持续部署的概念。</p>
 <p>持续集成 (Continuous integration, CI) 和持续部署 (Continuous deployment, CD) 是随着 DevOps 的兴起而出现的开发工作流程，使用 CI 和 CD 可以省去重复工作，提高工作效率。</p>
 <p>CI 指的是频繁地把代码更新提交到主干中，为了实现这一过程，代码的提交需要通过测试才行，而很多时候代码的构建和测试是重复的步骤，所以我们把构建环节和测试环节自动化，省去每次手动操作的麻烦。</p>
@@ -256,7 +264,7 @@
 </li>
 </ul>
 <p>YAML 语法比较简单，这里会跳过相关介绍，直接通过实例来学习 workflow 编写。</p>
-<h3 id="python自动测试实例">python自动测试实例：</h3>
+<h2 id="python自动测试实例">python自动测试实例</h2>
 <p>以下是 GitHub 社区提供的基于 python 环境的 CI 工作流程。</p>
 <pre><code>name: Python package
 
@@ -307,7 +315,7 @@ jobs:
 <li>自定义 action ，使用 pytest 模块来进行单元测试。</li>
 </ol>
 <p>除了 python 之外，社区还有对各类开发语言的 workflow 支持，可以根据自己的需要选用。</p>
-<h3 id="hexo自动构建部署实例">Hexo自动构建部署实例：</h3>
+<h2 id="hexo自动构建部署实例">Hexo自动构建部署实例</h2>
 <p>在很多情况下需要使用自定义 workflow ，以下是我使用过的工作流程，略微比 python 自动测试的 workflow 复杂，用来自动构建并部署静态博客。</p>
 <pre><code>name: deploy blog
 on:
@@ -367,7 +375,7 @@ jobs:
 <li>自定义 action ，将代码仓库关联到 GitHub 上的运程仓库，做好配置之后 commit 并且 push 代码仓库。</li>
 </ol>
 <p>因为在最后一步的 action 中关联的远程仓库设置了 GitHub Pages 服务，所以在 push 之后，应用也就部署完成了。可以看到，整个过程其实是集合了我们平时编译部署需要执行的命令，模拟了一次完整的部署过程。这个 workflow 的最后一步处理还不是很完美，会把原有的 commit 信息破坏，改进后的版本可以参考这个 blog 源代码仓库的 <a href="https://github.com/yuweizzz/Blog/blob/main/.github/workflows/main.yml">workflow</a> 。</p>
-<h3 id="总结">总结</h3>
+<h2 id="总结">总结</h2>
 <p>GitHub Actions 服务可以很方便实现 CI 和 CD 的工作流程。</p>
 <p>Github 社区提供了大量的 workflow 模板，在我个人的角度看，它们大部分时候不适合直接在自己项目中使用，但对我们编写自己的工作流程是非常有用的，比较好的办法是直接引用社区模板，再进行适配修改。</p>
 <p>workflow 在使用过程中免不了出错和异常，如果其中一个环节出现错误，整个执行过程就会被中断，这时可以通过 Actions 中的执行日志进行排查。</p>
@@ -380,6 +388,70 @@ jobs:
     </div>
   </main>
 </div>
+<script>
+ 
+ 
+ 
+ window.onload = function () {
+   const header = document.getElementById('post-header');
+   const headerHeight = header.offsetHeight;
+   
+   document.documentElement.style.scrollPaddingTop = headerHeight + 10 + "px";
+ }
+
+ const tocToggleButton = document.getElementById("toc-toggle");
+
+ const tippyInstance = tippy('#toc-toggle', {
+  trigger: 'click',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#快速使用github-actions\u0022\u003e快速使用GitHub Actions\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#编写workflow文件\u0022\u003e编写workflow文件\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#python自动测试实例\u0022\u003epython自动测试实例\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#hexo自动构建部署实例\u0022\u003eHexo自动构建部署实例\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#总结\u0022\u003e总结\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  allowHTML: true,
+  placement: 'bottom-start',
+  interactive: true,
+  arrow: false,
+  maxWidth: "none",
+  onHide: function () { tocToggleButton.classList.remove("hover"); },
+  onShow: function () { tocToggleButton.classList.add("hover"); },
+  onShown: function () {
+    selectTableOfContentsOption();
+
+    if (window.hasSetupTableOfContentsListeners) {
+      return;
+    }
+
+    const tableOfContents = document.getElementById("table-of-contents");
+    tableOfContents.addEventListener('click', function () {
+      
+      tippyInstance[0].hide();
+    });
+
+    window.hasSetupTableOfContentsListeners = true;
+  }
+ });
+
+ function selectTableOfContentsOption () {
+   const optionSelectedClass = 'table-of-contents-option-selected';
+
+   const tableOfContentsOptions = document.querySelectorAll("#table-of-contents > nav > ul li");
+
+   for (const option of tableOfContentsOptions) {
+     
+
+     const [child] = option.children;
+     if (child.tagName.toLowerCase() !== 'a') {
+       continue;
+     }
+
+     if (window.location.href === child.href) {
+       child.classList.add(optionSelectedClass);
+     } else {
+       child.classList.remove(optionSelectedClass);
+     }
+   }
+ }
+
+ window.onhashchange = selectTableOfContentsOption;
+</script>
+
 
   <div class="footer container-xl width-full p-responsive">
   <div

@@ -17,7 +17,16 @@
     </item>
     
     <item>
-      <title>♬</title>
+      <title>常用 Linux 命令和 Shell 技巧记录</title>
+      <link>https://yuweizzz.github.io/post/practical_tips_in_linux/</link>
+      <pubDate>Fri, 23 Jul 2021 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/practical_tips_in_linux/</guid>
+      <description>&lt;p&gt;这篇文档用以记录一些 Linux 下常用命令和一些实用的 Shell 技巧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>🎹</title>
       <link>https://yuweizzz.github.io/post/my_music_collections/</link>
       <pubDate>Thu, 15 Jul 2021 21:00:00 +0000</pubDate>
       
@@ -32,15 +41,6 @@
       
       <guid>https://yuweizzz.github.io/post/add_live2d_on_hugo_website/</guid>
       <description>&lt;p&gt;在 Hugo 静态网站添加 Live2D 看板娘。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>常用 Linux 命令和 Shell 技巧记录</title>
-      <link>https://yuweizzz.github.io/post/practical_tips_in_linux/</link>
-      <pubDate>Sat, 03 Jul 2021 15:00:00 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/post/practical_tips_in_linux/</guid>
-      <description>&lt;p&gt;这篇文档用以记录一些 Linux 下常用命令和一些实用的 Shell 技巧。&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -68,6 +68,15 @@
       
       <guid>https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/</guid>
       <description>&lt;p&gt;通过 GitHub Actions 实现持续集成和持续部署。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Git使用速记</title>
+      <link>https://yuweizzz.github.io/post/tips_about_git/</link>
+      <pubDate>Thu, 23 Jul 2020 22:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/tips_about_git/</guid>
+      <description>&lt;p&gt;一些 Git 的常用的命令速记。&lt;/p&gt;</description>
     </item>
     
     <item>

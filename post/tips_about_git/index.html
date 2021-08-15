@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>配置GitHub SSH Key - Wei&#39;s blog</title>
+    <title>Git使用速记 - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/github.png'>
     
@@ -18,18 +18,18 @@
 
     
     <meta name="description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="一些 Git 的常用的命令速记。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://yuweizzz.github.io/post/authenticating_to_github/" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/tips_about_git/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="配置GitHub SSH Key - Wei&#39;s blog" />
+<meta name="twitter:title" content="Git使用速记 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="一些 Git 的常用的命令速记。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
@@ -38,18 +38,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="配置GitHub SSH Key - Wei&#39;s blog">
+<meta property="og:title" content="Git使用速记 - Wei&#39;s blog">
 <meta property="og:description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="一些 Git 的常用的命令速记。
 " />
-<meta property="og:url" content="https://yuweizzz.github.io/post/authenticating_to_github/" />
-<meta property="og:site_name" content="配置GitHub SSH Key" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/tips_about_git/" />
+<meta property="og:site_name" content="Git使用速记" />
 <meta property="og:image"
   content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2020-07-20 23:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2020-07-23 22:00:00 &#43;0000 UTC" />
 
 
 
@@ -146,12 +146,12 @@
                   <span class="author">
                     <a href="https://yuweizzz.github.io/">Wei</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://yuweizzz.github.io/post/authenticating_to_github/">配置GitHub SSH Key</a></strong>
+                      href="https://yuweizzz.github.io/post/tips_about_git/">Git使用速记</a></strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Mon, 20 Jul 2020 23:00:00 &#43;0000"
+                  Created <relative-time datetime="Thu, 23 Jul 2020 22:00:00 &#43;0000"
                     class="no-wrap">
-                    Mon, 20 Jul 2020 23:00:00 &#43;0000</relative-time>
+                    Thu, 23 Jul 2020 22:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -181,30 +181,12 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          869 Words
+                          3045 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
-                    
-                    <a class="muted-link mr-3" href="/tags/github">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      GitHub
-                    </a>
-                    
-                    <a class="muted-link mr-3" href="/tags/ssh">
-                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
-                        <path fill-rule="evenodd"
-                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
-                        </path>
-                      </svg>
-                      SSH
-                    </a>
                     
                     <a class="muted-link mr-3" href="/tags/git">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
@@ -222,7 +204,7 @@
 
 
               <div class="Box-body px-5 pb-5">
-                <article class="markdown-body entry-content container-lg"><p>通过配置 Github SSH Key 实现 GitHub 免密推送。</p>
+                <article class="markdown-body entry-content container-lg"><p>一些 Git 的常用的命令速记。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
                                        <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
                                   <span class="o">(</span>   <span class="o">)</span>
@@ -242,37 +224,177 @@
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
 </code></pre></div><h2 id="前言">前言</h2>
-<p>我们通过本地 Git 来远程管理 GitHub 上的仓库，在每次推送都需要输入账户和密码，可以通过配置 GitHub 公钥，省去重复输入账户密码的麻烦。</p>
-<h2 id="创建秘钥对">创建秘钥对</h2>
-<p>GitHub 的推送和 SSH 的登陆原理非常相似，通常是本地使用私钥，GitHub 端保存公钥信息，我们使用 Git 推送时，以私钥加密的信息可以被对应的公钥解析，通信就能够建立了。</p>
-<p>我们需要在本地先生成一个新的秘钥对。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span>
-<span class="c1"># -t 代表秘钥对的加密算法，rsa是最常见的非对称加密算法</span>
-<span class="c1"># -C 可以指定公钥的文本信息，这一步是GitHub要求的</span>
-</code></pre></div><p>上述的命令会产生一个交互对话，按照对话提示输入对应信息即可。</p>
-<p>在交互式生成模式下，会提示我们指定生成秘钥对的文件名和路径，通常在 Linux 环境下，保持默认则为 /home/user/.ssh/id_rsa ，user 为当前使用的用户。</p>
-<p>此外，在交互式生成模式下，还会提示使用 passphrase 再度加密，这个功能一般不使用，否则每次使用密钥都需要再次输入 passphrase 。</p>
-<p>所以，我比较推荐使用非交互式的命令生成秘钥对。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span> -P <span class="s2">&#34;&#34;</span> -f ~/.ssh/id_rsa
-<span class="c1"># 非交互生成的参考命令</span>
-<span class="c1"># -P passphrase为空</span>
-<span class="c1"># -f 指定路径名称</span>
-</code></pre></div><p>执行完命令后，我们可以得到 id_rsa 和 id_rsa.pub 两个文件，其中 id_rsa 是私钥，id_rsa.pub 是公钥。</p>
-<h2 id="在github账户中添加公钥">在GitHub账户中添加公钥</h2>
-<p>我们需要把公钥信息上传到自己的 GitHub 账户。</p>
-<p>打开自己的<a href="https://github.com/settings/keys"> GitHub 账户 </a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的喜好命名，然后 Add SSH Key ，完成公钥添加。</p>
-<h2 id="测试公钥">测试公钥</h2>
-<p>完成云端公钥信息的添加后，我们可以在本地测试公钥是否正确设置。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh git@github.com
-<span class="c1"># 使用生成秘钥的账户测试</span>
-</code></pre></div><p>在第一次使用免密登录时会需要我们确认 GitHub 的主机信息，输入 yes 即可。</p>
-<p>如果一切正常，会返回下面的信息：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># ssh git@github.com</span>
-PTY allocation request failed on channel <span class="m">0</span>
-Hi yuweizzz! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
-Connection to github.com closed.
-</code></pre></div><p>其实从这部分可以得出 Github 推送仓库是基于 OpenSSH 来实现的。</p>
-<p>更多信息可以参考 GitHub 的<a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">官方文档</a>。</p></article>
+<p>使用 Git 可以有条理地管理代码，尤其是在大型项目和团队开发的场合，熟练使用 Git 是开发人员的基本功。</p>
+<p>想要熟练使用 Git 的最好办法是了解 Git 的基本原理和实践。</p>
+<h2 id="快速了解git术语">快速了解Git术语</h2>
+<p>首先了解几个基本概念：</p>
+<ul>
+<li>仓库 (repository) ：仓库是一个被 Git 管控的目录。</li>
+<li>分支 (branch) ：每个仓库一般有一个默认分支 master/main ，并且可以拥有多个分支。</li>
+<li>提交 (commit) ：可以视为整个代码仓库的不同版本，提交会推进仓库的版本更新。</li>
+</ul>
+<h2 id="创建并配置本地仓库">创建并配置本地仓库</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> repository
+$ git init
+</code></pre></div><p>这样 repository 目录就是一个 Git 本地仓库，后续用来添加项目代码文件。</p>
+<p>初始化仓库后，仓库会带有一些默认的配置，我们可以根据需要去查询或者修改。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># config -l用来查看仓库属性</span>
+<span class="c1"># 如果要使用 github 的远程仓库，至少应该为仓库配置用户名和邮箱</span>
+<span class="c1"># --global 和 --local 可以用来设定属性是 git 全局属性还是单一仓库属性</span>
+$ git config -l 
+$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.name <span class="s2">&#34;your name&#34;</span> 
+$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.email <span class="s2">&#34;your@email.com&#34;</span> 
+</code></pre></div><h2 id="转换仓库中文件的状态">转换仓库中文件的状态</h2>
+<p>下面是一个 Git 仓库实例，基本覆盖了文件状态之间的转换：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git status
+<span class="c1"># On branch master</span>
+<span class="c1"># Changes to be committed:</span>
+<span class="c1">#   (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)</span>
+<span class="c1">#</span>
+<span class="c1">#   modified:   fileA</span>
+<span class="c1">#</span>
+<span class="c1"># Changes not staged for commit:</span>
+<span class="c1">#   (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)</span>
+<span class="c1">#   (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)</span>
+<span class="c1">#   (commit or discard the untracked or modified content in submodules)</span>
+<span class="c1">#</span>
+<span class="c1">#   modified:   fileB</span>
+<span class="c1">#</span>
+<span class="c1"># Untracked files:</span>
+<span class="c1">#   (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)</span>
+<span class="c1">#</span>
+<span class="c1">#   fileC</span>
+
+</code></pre></div><p>这里引入了 Git 仓库<strong>工作区</strong>和<strong>暂存区</strong>的概念：</p>
+<ul>
+<li>
+<p>上面的仓库包含了多种文件，FileA ，FileB ，FileC 处于同一个工作区，工作区 (workspace) 可以简单认为是仓库所在目录，其中存放了各种不同状态的文件。</p>
+</li>
+<li>
+<p>暂存区 (index) 是一个抽象概念，它的信息会保存在实际文件 (.git/index) 中，我们修改过的文件，就可以暂存 (staged) 到暂存区中，也是 Changes to be committed 这一部分，它的下一步操作通常会是提交 (commit) 。</p>
+</li>
+</ul>
+<p>下面进入实例的分析：</p>
+<ul>
+<li>Changes to be committed 列出的是已经被暂存的 FileA ，它已经由 not staged 转换为 staged 。下一步它可以提交到分支中，或者使用 reset 重置掉这次 modified 。</li>
+<li>Changes not staged for commit 列出的是在工作区中被修改过，但是尚未被 staged 的 FileB 。下一步它可以使用 add 更新到暂存区，或者使用 checkout 丢弃本次修改，恢复到上次 add 的暂存区版本或 commit 保存的版本，恢复的版本由最近的一次的修改情况决定。</li>
+<li>Untracked 的 FileC 目前是不受 Git 管制的，但是可以通过 add 转换状态。</li>
+</ul>
+<p>以下是实际命令的使用过程：</p>
+<h3 id="添加和删除文件">添加和删除文件</h3>
+<p>添加文件和暂存文件都使用了 add 命令，删除文件使用 rm 命令。</p>
+<p>通过删除文件，我们可以把文件排除出工作区 (untracked) ，如果是某些特定种类的文件需要排除，推荐使用 .gitignore 。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git add &lt;file&gt;
+<span class="c1"># add 用于 tracked 和 staged</span>
+
+$ git rm <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>--cached<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> &lt;file&gt;
+<span class="c1"># rm 用来移除文件</span>
+<span class="c1"># rm 带 -f 选项会删除工作区和暂存区文件，即本地文件也会被删除</span>
+<span class="c1"># rm 带 --cached 选项会删除暂存区文件，工作区文件不会被改变</span>
+<span class="c1"># -- 选项用来把操作限制在当前分支</span>
+</code></pre></div><h3 id="文件的重置">文件的重置</h3>
+<p>需要丢弃不想要的修改，可以使用 reset 命令或者 checkout 命令。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git reset HEAD &lt;file&gt;
+<span class="c1"># reset 指令涉及 git 的实现原理，HEAD 是指向当前分支最新 commit 的指针</span>
+<span class="c1"># 这里只能用于回退暂存区文件，后面会有涉及这一步的解释</span>
+
+$ git checkout -- &lt;file&gt;
+<span class="c1"># checkout 其实是用于分支的命令，-- 用来把操作限制在当前分支</span>
+<span class="c1"># 这里用于将文件恢复到上次 add 的暂存区版本或 commit 保存的版本</span>
+<span class="c1"># 这个命令会改变实际文件，有一定风险</span>
+</code></pre></div><h2 id="提交到新版本">提交到新版本</h2>
+<p>文件修改，重置，暂存一系列操作，都是为了将代码修改到我们认可的程度，然后 commit 到分支中，产生新的版本库，一次或多次的 commit 可以视为一个新的版本库。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git commit -m &lt;msg&gt;
+<span class="c1"># 提交暂存区的文件到版本库， -m 为提交的说明信息</span>
+
+$ git commit --amend <span class="o">[</span>&lt;msg&gt;<span class="o">]</span>
+<span class="c1"># 修改上次 commit ，可以添加提交暂存区文件并修改上次 commit 说明信息</span>
+</code></pre></div><p>这样所有 staged 的文件就会被提交到一个新的版本库中了。我们还会得到一个 commit id ，这是非常重要的依据，后续版本库的管理都是基于 commit id 来实现的。</p>
+<p>带 &ndash;amend 的 commit 指令可以在一次提交后，追加位于暂存区的文件变动。使用这个命令后只会有一个提交，本次带 &ndash;amend 的提交将代替上一次提交的结果。如果暂存区是干净的，可以使用这个命令修改上次 commit 的说明信息。</p>
+<h2 id="对commit进行检查">对commit进行检查</h2>
+<p>在经过一定的开发时间后，仓库必然会产生很多 commit ，可以使用 log 和 diff 进行检查。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git log
+<span class="c1"># 查看 commit 历史记录，可以看到简要的提交信息</span>
+
+$ git show &lt;object&gt;
+<span class="c1"># 用来查看 commit 的具体变动，默认为最近一次 commit 的详细信息</span>
+<span class="c1"># 可以通过指定 commit id 来查看不同 commit </span>
+
+$ git reflog
+<span class="c1"># 类似于 bash history，它会输出 commit 操作的历史记录，可以作为版本回退和误操作恢复的依据</span>
+
+$ git diff &lt;commit&gt; &lt;commit&gt; <span class="o">[</span>--<span class="o">]</span> <span class="o">[</span>&lt;path&gt;...<span class="o">]</span>
+<span class="c1"># 用来查看不同 commit 之间的所有文件的变动，可以指定单个文件</span>
+
+$ git diff --cached <span class="o">[</span>&lt;commit&gt;<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> <span class="o">[</span>&lt;path&gt;...<span class="o">]</span>
+<span class="c1"># 除了用于 commit 外，还可以用来查看暂存区和工作区的文件变动</span>
+</code></pre></div><h2 id="回退commit">回退commit</h2>
+<p>如果需要撤消 commit ，恢复原有的代码版本，需要用到 reset 指令。</p>
+<p>在 reset 命令中，我们经常会看到 HEAD 的使用，它用来指向当前分支的最新 commit ，所以最新 commit 的上一个版本使用 HEAD^ 表示，上上一个版本使用 HEAD^^ 表示，这是一种便捷写法，使用对应 commit id 也是一样的效果。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># reset 的使用参数</span>
+$ git reset <span class="o">[</span>--mixed <span class="p">|</span> --soft <span class="p">|</span> --hard <span class="p">|</span> --merge <span class="p">|</span> --keep<span class="o">]</span> <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>&lt;commit&gt;<span class="o">]</span>
+<span class="c1"># --mixed               reset HEAD and index</span>
+<span class="c1"># --soft                reset only HEAD</span>
+<span class="c1"># --hard                reset HEAD, index and working tree</span>
+<span class="c1"># --merge               reset HEAD, index and working tree</span>
+<span class="c1"># --keep                reset HEAD but keep local changes</span>
+<span class="c1"># -q, --quiet           be quiet, only report errors</span>
+</code></pre></div><p>可以看到 reset 有五种工作模式，但我在使用的时候一般只用到 mixed ， soft 和 hard 三种：</p>
+<ul>
+<li>mixed ：默认的工作模式，这个模式会影响 commit 和暂存区保存的文件变动。</li>
+<li>soft ：这个模式的影响对象是 commit ，所以实际效果看起來就只有 commit 的消失，也就是 HEAD 指向了更旧的 commit 。 commit 回退后，文件变化会存放在暂存区。</li>
+<li>hard ：这个模式下， commit ，工作区，暂存区的文件变动都会丢失。</li>
+</ul>
+<p>在前面的实例中 <code>git reset HEAD &lt;file&gt;</code> 就是 mixed 模式的应用，它用来回退 staged 文件到 not staged 的状态。因为指定了 HEAD ，所以文件变化还是留存在工作区，暂存区被清空， commit 无变化。</p>
+<p>soft 模式是最安全的，它不会影响实际文件，而 hard 模式是最为危险，在没有确定你需要丢弃你新写的代码，最好不要使用。</p>
+<p>此外还有一个值得注意的地方， reset 命令可以应用于单个文件，但仅限于 mixed 模式， hard 模式和 soft 模式均无法对单文件作用。</p>
+<h2 id="分支管理">分支管理</h2>
+<p>简单项目可能没有使用到多分支，但如果是大型项目和团队开发项目，一般都会有多分支，多分支的好处在于开发过程中，各分支之间互不干扰，代码维护起来方便简单。</p>
+<p>分支创建，分支删除和分支合并是分支管理比较常用的操作，其中分支合并应该是多分支场景最重要的操作，当不同分支上的开发进行到一定程度时，可以将所涉及的文件变化都合并到同个分支中，然后这个分支就拥有了最新版本的文件。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># git branch 会列出当前已有分支，并以 * 标识目前所在的分支</span>
+$ git branch
+* master
+  branchA
+  branchB
+
+<span class="c1"># 创建一个新的分支。</span>
+$ git branch &lt;branch name&gt;
+
+<span class="c1"># 创建和切换到目的分支。</span>
+$ git checkout -b &lt;branch name&gt;
+<span class="c1"># -b 切换到目的分支，如果目的分支不存在，则会创建它后再执行切换</span>
+
+<span class="c1"># 删除一个分支</span>
+$ git branch <span class="o">[</span> -d <span class="p">|</span> -D <span class="o">]</span> &lt;branch name&gt;
+<span class="c1"># -d 删除分支时还会检查分支是否已经合并，如果未合并，那么删除不会执行</span>
+<span class="c1"># -D 和 -d 的区别在于不检查分支的合并情况，直接执行删除</span>
+
+<span class="c1"># 合并分支</span>
+<span class="c1"># 需要先切换到旧的分支中</span>
+$ git checkout &lt;old branch name&gt;
+<span class="c1"># 然后将新改动的分支合并到旧的分支中</span>
+$ git merge &lt;new branch name&gt;
+<span class="c1"># 最理想的情况是 Fast-forward ，如果不同分支中的改动有冲突，则需要手动解决后才能合并</span>
+</code></pre></div><h2 id="工作区改动入栈暂存">工作区改动入栈暂存</h2>
+<p>如果我们需要临时切换到其他分支，而不想对现有工作区进行暂存和提交，希望它保持原状，可以使用 stash 来将工作区入栈保存。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git stash
+<span class="c1"># 保存暂存区和工作区的文件改动</span>
+
+$ git stash list
+<span class="c1"># 显示入栈暂存的情况</span>
+
+$ git stash pop
+<span class="c1"># 恢复已入栈的文件改动到工作区，默认会把工作区和暂存区的改动都恢复到工作区</span>
+$ git stash pop --index 
+<span class="c1"># 在默认的基础上，除了工作区的文件改动，还会将原来暂存区的改动恢复到暂存区</span>
+
+$ git stash drop <span class="o">[</span>&lt;stash&gt;<span class="o">]</span>
+<span class="c1"># 删除一个已入栈的工作区变动，如果不指定具体的 stash ，则默认删除最新入栈的 stash 。</span>
+
+$ git stash clear
+<span class="c1"># 删除所有已入栈的工作区变动</span>
+</code></pre></div><h2 id="结语">结语</h2>
+<p>这篇笔记基本覆盖了本地使用 Git 时的可能会使用的命令，它们的复杂度并不高，我们只需要记忆这些实际应用中使用率比较高的命令，更复杂的命令可以在需要时再查阅。</p></article>
               </div>
             </div>
           </div>
@@ -296,7 +418,7 @@ Connection to github.com closed.
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建秘钥对\u0022\u003e创建秘钥对\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#在github账户中添加公钥\u0022\u003e在GitHub账户中添加公钥\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#测试公钥\u0022\u003e测试公钥\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#快速了解git术语\u0022\u003e快速了解Git术语\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建并配置本地仓库\u0022\u003e创建并配置本地仓库\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#转换仓库中文件的状态\u0022\u003e转换仓库中文件的状态\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#添加和删除文件\u0022\u003e添加和删除文件\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#文件的重置\u0022\u003e文件的重置\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#提交到新版本\u0022\u003e提交到新版本\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#对commit进行检查\u0022\u003e对commit进行检查\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#回退commit\u0022\u003e回退commit\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#分支管理\u0022\u003e分支管理\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#工作区改动入栈暂存\u0022\u003e工作区改动入栈暂存\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#结语\u0022\u003e结语\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,
