@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>HDD on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/hdd/</link>
+    <description>Recent content in HDD on Wei&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 09 Oct 2021 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/hdd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>硬盘知识杂记</title>
+      <link>https://yuweizzz.github.io/post/tips_about_hdd/</link>
+      <pubDate>Sat, 09 Oct 2021 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/tips_about_hdd/</guid>
+      <description>&lt;p&gt;记载一些硬盘相关的知识。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

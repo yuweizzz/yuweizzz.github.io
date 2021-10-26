@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 03 Aug 2021 22:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 09 Oct 2021 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>硬盘知识杂记</title>
+      <link>https://yuweizzz.github.io/post/tips_about_hdd/</link>
+      <pubDate>Sat, 09 Oct 2021 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/tips_about_hdd/</guid>
+      <description>&lt;p&gt;记载一些硬盘相关的知识。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>前端项目开发速记</title>
       <link>https://yuweizzz.github.io/post/tips_about_javascript_project/</link>
@@ -17,7 +26,7 @@
     </item>
     
     <item>
-      <title>常用 Linux 命令和 Shell 技巧记录</title>
+      <title>常用 Linux 命令和 Shell 技巧速记</title>
       <link>https://yuweizzz.github.io/post/practical_tips_in_linux/</link>
       <pubDate>Fri, 23 Jul 2021 15:00:00 +0000</pubDate>
       
