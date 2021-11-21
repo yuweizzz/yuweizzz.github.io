@@ -155,9 +155,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 21 Nov 2021 13:41:28 &#43;0000"
+                  Modified <relative-time datetime="Sun, 21 Nov 2021 13:45:35 &#43;0000"
                     class="no-wrap">
-                    Sun, 21 Nov 2021 13:41:28 &#43;0000</relative-time>
+                    Sun, 21 Nov 2021 13:45:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -278,7 +278,7 @@
 <p>物理扇区是硬盘原生支持的扇区大小，由硬盘厂商决定，逻辑扇区是操作系统的最小存储扇区大小。虽然不同操作系统有不同大小的逻辑扇区，但最常见的大小就是 512B ，即便不是 512B ，它们一般都是 512B 的整数倍。</p>
 <p>4K 是最经典的高级格式化硬盘的物理扇区大小，这类 4K 模拟 512B 的硬盘标记为 512e (512 emulation)，如果 4K 硬盘不支持模拟小扇区的读写行为，标记为 4Kn (4K native)。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 这是虚机上运行的虚拟系统盘</span>
-<span class="c1"># parted -l</span>
+$ parted -l
 Model: VMware, VMware Virtual S <span class="o">(</span>scsi<span class="o">)</span>
 Disk /dev/sda: 10.7GB
 Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B  <span class="c1"># 虚拟硬盘都是模拟的，模拟的设备一般都是原生的 512B 扇区大小</span>
@@ -291,7 +291,7 @@ Number  Start   End     Size    Type     File system     Flags
  <span class="m">3</span>      1599MB  10.7GB  9138MB  primary  xfs
 
 <span class="c1"># 这是实机上运行的一块硬盘，它就是 512e 的硬盘</span>
-<span class="c1"># parted -l </span>
+$ parted -l 
 Model: ATA ST500LT012-9WS14 <span class="o">(</span>scsi<span class="o">)</span>
 Disk /dev/sdb: 500GB
 Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/4096B  <span class="c1"># 硬盘的物理扇区大小为 4096B ，逻辑扇区大小为 512B ，这是 512e 的 AF 硬盘</span>
@@ -323,7 +323,7 @@ $ parted /dev/sda align-check opt <span class="m">1</span>
 <p>MBR 分区方式是比较经典的分区方式，这种分区格式流行的时候，硬盘扇区大小为 512B 来设计的，它只用到了硬盘的第一个扇区，这个扇区会保存系统引导代码和分区表，但实际分区表的大小只有 64B ，大部分容量由引导代码所占据，可以达到 446B ，扇区最后的 2 个字节作为标志位，有效的标志为 0xAA55 ，如果破坏掉这两个字节，整个 MBR 分区会失效，硬盘分区无法正常识别，从而导致系统启动异常。</p>
 <p>由于存储空间有限， MBR 分区只能有四个 primary 分区或者三个 primary 分区加一个包含 N 个 logical 分区的 extended 分区，理论上 logical 分区没有上限。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 同样是前面的两个 MBR 分区格式的硬盘</span>
-<span class="c1"># parted -l</span>
+$ parted -l
 Model: VMware, VMware Virtual S <span class="o">(</span>scsi<span class="o">)</span>
 Disk /dev/sda: 10.7GB
 Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
@@ -336,7 +336,7 @@ Number  Start   End     Size    Type     File system     Flags
  <span class="m">3</span>      1599MB  10.7GB  9138MB  primary  xfs
 <span class="c1"># 这个硬盘由三个 primary 分区组成</span>
 
-<span class="c1"># parted -l </span>
+$ parted -l 
 Model: ATA ST500LT012-9WS14 <span class="o">(</span>scsi<span class="o">)</span>
 Disk /dev/sdb: 500GB
 Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/4096B
@@ -356,7 +356,7 @@ Number  Start   End     Size    Type      File system  Flags
 <p>在 GPT 分区方式出现前，硬盘扇区的寻址方式已经由传统的 CHS 寻址方式向 LBA 寻址方式演进， LBA 是兼容 CHS 的寻址方式，对比原有的方式更加先进。对于系统层面来说，不需要关心硬盘的寻址方式是使用 CHS 还是 LBA ，兼容转换的工作都由硬盘完成。</p>
 <p>GPT 使用 LBA 获取的区块来存储分区信息，其中 LBA 0 作为对传统 MBR 分区格式的兼容， LBA 1 用来保存 GPT 头， LBA 2 到 LBA 33 用来保存 GPT 分区信息，并且 LBA 1 到 LBA 33 的内容会被镜像保存在整块硬盘最后的扇区中，作为 GPT 的备份分区信息。所以 GPT 分区方式一共会占据硬盘开头的 34 个 LBA 区块和最后的 33 个 LBA 区块。</p>
 <p>除了占据的空间大小和 MBR 不同， GPT 没有 logical 分区和 extended 分区，所有分区都是相同级别，并且理论上没有数量限制。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># parted -l</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ parted -l
 Model: VMware, VMware Virtual S <span class="o">(</span>scsi<span class="o">)</span>
 Disk /dev/sdb: 12.9GB
 Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
