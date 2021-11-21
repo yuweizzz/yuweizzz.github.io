@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>前端项目开发速记 - Wei&#39;s blog</title>
+    <title>前端项目开发笔记 - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/github.png'>
     
@@ -18,7 +18,7 @@
 
     
     <meta name="description"
-  content="一些前端项目开发过程可能会使用的操作。
+  content="这篇笔记用来记录一些前端项目开发过程中的常用操作。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
@@ -27,9 +27,9 @@
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="前端项目开发速记 - Wei&#39;s blog" />
+<meta name="twitter:title" content="前端项目开发笔记 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="一些前端项目开发过程可能会使用的操作。
+  content="这篇笔记用来记录一些前端项目开发过程中的常用操作。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io" />
 <meta name="twitter:creator" content="" />
@@ -38,12 +38,12 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="前端项目开发速记 - Wei&#39;s blog">
+<meta property="og:title" content="前端项目开发笔记 - Wei&#39;s blog">
 <meta property="og:description"
-  content="一些前端项目开发过程可能会使用的操作。
+  content="这篇笔记用来记录一些前端项目开发过程中的常用操作。
 " />
 <meta property="og:url" content="https://yuweizzz.github.io/post/tips_about_javascript_project/" />
-<meta property="og:site_name" content="前端项目开发速记" />
+<meta property="og:site_name" content="前端项目开发笔记" />
 <meta property="og:image"
   content="https://yuweizzz.github.io">
 <meta property="og:image:width" content="2048">
@@ -146,7 +146,7 @@
                   <span class="author">
                     <a href="https://yuweizzz.github.io">Wei</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://yuweizzz.github.io/post/tips_about_javascript_project/">前端项目开发速记</a></strong>
+                      href="https://yuweizzz.github.io/post/tips_about_javascript_project/">前端项目开发笔记</a></strong>
                 </h1>
                 <div class="note m-0">
                   Created <relative-time datetime="Tue, 03 Aug 2021 22:00:00 &#43;0000"
@@ -155,9 +155,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 26 Oct 2021 15:37:47 &#43;0000"
+                  Modified <relative-time datetime="Sun, 21 Nov 2021 13:41:28 &#43;0000"
                     class="no-wrap">
-                    Tue, 26 Oct 2021 15:37:47 &#43;0000</relative-time>
+                    Sun, 21 Nov 2021 13:41:28 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -181,7 +181,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          1383 Words
+                          1389 Words
                     
 
                   </div>
@@ -222,7 +222,7 @@
 
 
               <div class="Box-body px-5 pb-5">
-                <article class="markdown-body entry-content container-lg"><p>一些前端项目开发过程可能会使用的操作。</p>
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些前端项目开发过程中的常用操作。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
                                        <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
                                   <span class="o">(</span>   <span class="o">)</span>
@@ -244,155 +244,155 @@
 </code></pre></div><h2 id="搭建nodejs环境">搭建Node.js环境</h2>
 <p>Node.js 提供了二进制预编译的安装包，在<a href="https://nodejs.org/zh-cn/download/">官网</a>直接下载到本地即可解压使用。</p>
 <p>这里以 LTS 14.15.4 为例:</p>
-<pre><code># curl -o /usr/local/src/node-v14.15.4-linux-x64.tar.xz 
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -o /usr/local/src/node-v14.15.4-linux-x64.tar.xz 
     https://nodejs.org/download/release/v14.15.4/node-v14.15.4-linux-x64.tar.xz
-# tar -xvJf /usr/local/src/node-v14.15.4-linux-x64.tar.xz -C /usr/local/
-# echo 'export PATH=&quot;$PATH&quot;:/usr/local/node-v14.15.4-linux-x64/bin/' &gt;&gt; /etc/profile
-</code></pre><p>如果只有某个用户需要使用 Node.js，可以把 PATH 变量写入到对应用户的 bash_profile 或 bashrc 中，这样可以起到一样的效果并且不会影响其他用户的环境变量。</p>
+$ tar -xvJf /usr/local/src/node-v14.15.4-linux-x64.tar.xz -C /usr/local/
+$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&#34;$PATH&#34;:/usr/local/node-v14.15.4-linux-x64/bin/&#39;</span> &gt;&gt; /etc/profile
+</code></pre></div><p>如果只有某个用户需要使用 Node.js，可以把 PATH 变量写入到对应用户的 bash_profile 或 bashrc 中，这样可以起到一样的效果并且不会影响其他用户的环境变量。</p>
 <h2 id="修改npm镜像地址">修改npm镜像地址</h2>
 <p>npm 是 Node.js 的依赖包管理工具，类似于 python 的 pip ， npm 在国内的网络环境会有下载速度慢的现象，可以将镜像地址修改为国内的镜像地址来解决这个问题。</p>
-<pre><code># 检查 npm 基本配置：
-# npm config list
-; cli configs
-metrics-registry = &quot;https://registry.npmjs.org/&quot;  # 默认的源镜像
-scope = &quot;&quot;
-user-agent = &quot;npm/6.14.10 node/v14.15.4 linux x64&quot;
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 检查 npm 基本配置：</span>
+$ npm config list
+<span class="p">;</span> cli configs
+metrics-registry <span class="o">=</span> <span class="s2">&#34;https://registry.npmjs.org/&#34;</span>  <span class="c1"># 默认的源镜像</span>
+<span class="nv">scope</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+user-agent <span class="o">=</span> <span class="s2">&#34;npm/6.14.10 node/v14.15.4 linux x64&#34;</span>
 
-; node bin location = /usr/local/node-v14.15.4-linux-x64/bin/node
-; cwd = /usr/local/node-v14.15.4-linux-x64
-; HOME = /root
-; &quot;npm config ls -l&quot; to show all defaults.
+<span class="p">;</span> node bin <span class="nv">location</span> <span class="o">=</span> /usr/local/node-v14.15.4-linux-x64/bin/node
+<span class="p">;</span> <span class="nv">cwd</span> <span class="o">=</span> /usr/local/node-v14.15.4-linux-x64
+<span class="p">;</span> <span class="nv">HOME</span> <span class="o">=</span> /root
+<span class="p">;</span> <span class="s2">&#34;npm config ls -l&#34;</span> to show all defaults.
 
-# 修改为淘宝 npm 镜像以加快访问速度：
-# 只修改当前用户的配置，非全局修改会生成 $HOME/.npmrc 
-# npm config set registry http://registry.npm.taobao.org/
-# cat ~/.npmrc  # 只影响当前用户
-registry=http://registry.npm.taobao.org/
+<span class="c1"># 修改为淘宝 npm 镜像以加快访问速度：</span>
+<span class="c1"># 只修改当前用户的配置，非全局修改会生成 $HOME/.npmrc </span>
+$ npm config <span class="nb">set</span> registry http://registry.npm.taobao.org/
+$ cat ~/.npmrc  <span class="c1"># 只影响当前用户</span>
+<span class="nv">registry</span><span class="o">=</span>http://registry.npm.taobao.org/
 
-# 使用 -g 修改全局配置，全局修改会生成 $PREFIX/etc/npmrc 
-# npm -g config set registry http://registry.npm.taobao.org/ 
-# cat /usr/local/node-v14.15.4-linux-x64/etc/npmrc  # 生成于 node 安装目录下的 etc 目录中
-registry=http://registry.npm.taobao.org/
-</code></pre><h2 id="初始化项目">初始化项目</h2>
+<span class="c1"># 使用 -g 修改全局配置，全局修改会生成 $PREFIX/etc/npmrc </span>
+$ npm -g config <span class="nb">set</span> registry http://registry.npm.taobao.org/ 
+$ cat /usr/local/node-v14.15.4-linux-x64/etc/npmrc  <span class="c1"># 生成于 node 安装目录下的 etc 目录中</span>
+<span class="nv">registry</span><span class="o">=</span>http://registry.npm.taobao.org/
+</code></pre></div><h2 id="初始化项目">初始化项目</h2>
 <p>下面简单记录了初始化前端项目的过程，可以提供后续参考。</p>
 <p>生成 package.json 是一个项目的开始，无论使用的依赖包管理工具是 npm 或是 yarn 。我选用了 npm ，实际可以按照个人喜好来选择。</p>
-<pre><code># mkdir myproject
-# cd myproject
-# npm init  # 交互式生成 package.json
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir myproject
+$ <span class="nb">cd</span> myproject
+$ npm init  <span class="c1"># 交互式生成 package.json</span>
 This utility will walk you through creating a package.json file.
 It only covers the most common items, and tries to guess sensible defaults.
 
-See `npm help init` for definitive documentation on these fields
-and exactly what they do.
+See <span class="sb">`</span>npm <span class="nb">help</span> init<span class="sb">`</span> <span class="k">for</span> definitive documentation on these fields
+and exactly what they <span class="k">do</span>.
 
-Use `npm install &lt;pkg&gt;` afterwards to install a package and
+Use <span class="sb">`</span>npm install &lt;pkg&gt;<span class="sb">`</span> afterwards to install a package and
 save it as a dependency in the package.json file.
 
-Press ^C at any time to quit.
-package name: (myproject) 
-version: (1.0.0) 
+Press ^C at any <span class="nb">time</span> to quit.
+package name: <span class="o">(</span>myproject<span class="o">)</span> 
+version: <span class="o">(</span>1.0.0<span class="o">)</span> 
 description: my project
-entry point: (index.js) src/index.js
-test command: node -v; npm -v;  # 这里是为了测试，实际使用时可以按需修改
+entry point: <span class="o">(</span>index.js<span class="o">)</span> src/index.js
+<span class="nb">test</span> command: node -v<span class="p">;</span> npm -v<span class="p">;</span>  <span class="c1"># 这里是为了测试，实际使用时可以按需修改</span>
 git repository: 
 keywords: 
 author: me
-license: (ISC) 
+license: <span class="o">(</span>ISC<span class="o">)</span> 
 About to write to /tmp/myproject/package.json:
 
-{
-  &quot;name&quot;: &quot;myproject&quot;,
-  &quot;version&quot;: &quot;1.0.0&quot;,
-  &quot;description&quot;: &quot;my project&quot;,
-  &quot;main&quot;: &quot;src/index.js&quot;,  # 通常会使用 src 来存放项目代码，实际使用时可以按需修改
-  &quot;scripts&quot;: {
-    &quot;test&quot;: &quot;node -v; npm -v;&quot;
-  },
-  &quot;author&quot;: &quot;me&quot;,
-  &quot;license&quot;: &quot;ISC&quot;
-}
+<span class="o">{</span>
+  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;myproject&#34;</span>,
+  <span class="s2">&#34;version&#34;</span>: <span class="s2">&#34;1.0.0&#34;</span>,
+  <span class="s2">&#34;description&#34;</span>: <span class="s2">&#34;my project&#34;</span>,
+  <span class="s2">&#34;main&#34;</span>: <span class="s2">&#34;src/index.js&#34;</span>,  <span class="c1"># 通常会使用 src 来存放项目代码，实际使用时可以按需修改</span>
+  <span class="s2">&#34;scripts&#34;</span>: <span class="o">{</span>
+    <span class="s2">&#34;test&#34;</span>: <span class="s2">&#34;node -v; npm -v;&#34;</span>
+  <span class="o">}</span>,
+  <span class="s2">&#34;author&#34;</span>: <span class="s2">&#34;me&#34;</span>,
+  <span class="s2">&#34;license&#34;</span>: <span class="s2">&#34;ISC&#34;</span>
+<span class="o">}</span>
 
 
-Is this OK? (yes) yes
-</code></pre><p>生成 package.json 后，我们可以按照需要安装一些项目模块和开发模块工具。</p>
-<pre><code># 安装项目需要的模块
-# npm install &lt;dependency&gt; 
-# 使用 -D 安装项目需要的开发模块工具
-# npm install -D webpack  # 打包工具
-# npm install -D webpack-cli
-# npm install -D eslint  # 语法检查工具
+Is this OK? <span class="o">(</span>yes<span class="o">)</span> yes
+</code></pre></div><p>生成 package.json 后，我们可以按照需要安装一些项目模块和开发模块工具。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装项目需要的模块</span>
+$ npm install &lt;dependency&gt; 
+<span class="c1"># 使用 -D 安装项目需要的开发模块工具</span>
+$ npm install -D webpack  <span class="c1"># 打包工具</span>
+$ npm install -D webpack-cli
+$ npm install -D eslint  <span class="c1"># 语法检查工具</span>
 
-# 检查配置文件，可以看到新的依赖项已经被安装
-# cat package.json 
-{
-  &quot;name&quot;: &quot;myproject&quot;,
-  &quot;version&quot;: &quot;1.0.0&quot;,
-  &quot;description&quot;: &quot;my project&quot;,
-  &quot;main&quot;: &quot;index.js&quot;,
-  &quot;scripts&quot;: {
-    &quot;test&quot;: &quot;node -v; npm -v;&quot;
-  },
-  &quot;author&quot;: &quot;me&quot;,
-  &quot;license&quot;: &quot;ISC&quot;,
-  &quot;devDependencies&quot;: {
-    &quot;webpack&quot;: &quot;^5.48.0&quot;,
-    &quot;eslint&quot;: &quot;^7.32.0&quot;,
-    &quot;webpack-cli&quot;: &quot;^4.7.2&quot;
-  }
-}
+<span class="c1"># 检查配置文件，可以看到新的依赖项已经被安装</span>
+$ cat package.json 
+<span class="o">{</span>
+  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;myproject&#34;</span>,
+  <span class="s2">&#34;version&#34;</span>: <span class="s2">&#34;1.0.0&#34;</span>,
+  <span class="s2">&#34;description&#34;</span>: <span class="s2">&#34;my project&#34;</span>,
+  <span class="s2">&#34;main&#34;</span>: <span class="s2">&#34;index.js&#34;</span>,
+  <span class="s2">&#34;scripts&#34;</span>: <span class="o">{</span>
+    <span class="s2">&#34;test&#34;</span>: <span class="s2">&#34;node -v; npm -v;&#34;</span>
+  <span class="o">}</span>,
+  <span class="s2">&#34;author&#34;</span>: <span class="s2">&#34;me&#34;</span>,
+  <span class="s2">&#34;license&#34;</span>: <span class="s2">&#34;ISC&#34;</span>,
+  <span class="s2">&#34;devDependencies&#34;</span>: <span class="o">{</span>
+    <span class="s2">&#34;webpack&#34;</span>: <span class="s2">&#34;^5.48.0&#34;</span>,
+    <span class="s2">&#34;eslint&#34;</span>: <span class="s2">&#34;^7.32.0&#34;</span>,
+    <span class="s2">&#34;webpack-cli&#34;</span>: <span class="s2">&#34;^4.7.2&#34;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
 
-# 安装完成后，可以在 node_modules 中找到对应模块目录
-# 可直接执行脚本还会产生符号链接提供给项目使用，如下例子：
+<span class="c1"># 安装完成后，可以在 node_modules 中找到对应模块目录</span>
+<span class="c1"># 可直接执行脚本还会产生符号链接提供给项目使用，如下例子：</span>
 ./node_modules/.bin/webpack-cli -&gt; ../webpack-cli/bin/cli.js
-</code></pre><p>虽然可以通过指明路径调用一些可用的脚本和命令，但我们一般把这些常用的命令写入到 package.json 的 scripts 中去，方便后续使用。</p>
-<pre><code># package.json 中 scripts 的基本使用：
-# scripts 通常使用 build ， lint ， run 等常用命名来配置对应的一系列命令
-# npm run 可以执行这些配置好的命令
+</code></pre></div><p>虽然可以通过指明路径调用一些可用的脚本和命令，但我们一般把这些常用的命令写入到 package.json 的 scripts 中去，方便后续使用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># package.json 中 scripts 的基本使用：</span>
+<span class="c1"># scripts 通常使用 build ， lint ， run 等常用命名来配置对应的一系列命令</span>
+<span class="c1"># npm run 可以执行这些配置好的命令</span>
 
-# 测试之前已经配置的 scripts test ：
-# npm run test
+<span class="c1"># 测试之前已经配置的 scripts test ：</span>
+$ npm run <span class="nb">test</span>
 
-&gt; myproject@1.0.0 test
-&gt; node -v; npm -v
+&gt; myproject@1.0.0 <span class="nb">test</span>
+&gt; node -v<span class="p">;</span> npm -v
 
 v14.15.4
 7.20.3
 
-# 后续使用会配置一些新的 scripts
-</code></pre><p>下面是一些常用的开发模块，只用到了比较简单的场景，更详细的配置需要参考官方文档和其他优秀项目的用法。</p>
+<span class="c1"># 后续使用会配置一些新的 scripts</span>
+</code></pre></div><p>下面是一些常用的开发模块，只用到了比较简单的场景，更详细的配置需要参考官方文档和其他优秀项目的用法。</p>
 <p>使用 webpack 作为打包工具。</p>
-<pre><code># 配置 webpack ：
-# 手工生成 webpack.config.js ，文件位于项目根目录
-# cat webpack.config.js
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 配置 webpack ：</span>
+<span class="c1"># 手工生成 webpack.config.js ，文件位于项目根目录</span>
+$ cat webpack.config.js
 // start
-const webpack = require('webpack');
-const path = require('path');
+const <span class="nv">webpack</span> <span class="o">=</span> require<span class="o">(</span><span class="s1">&#39;webpack&#39;</span><span class="o">)</span><span class="p">;</span>
+const <span class="nv">path</span> <span class="o">=</span> require<span class="o">(</span><span class="s1">&#39;path&#39;</span><span class="o">)</span><span class="p">;</span>
 
-const config = {
-  entry: './src/index.js',  // 实际使用按需修改
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'  // output 为打包输出目标
-  }
-};
+const <span class="nv">config</span> <span class="o">=</span> <span class="o">{</span>
+  entry: <span class="s1">&#39;./src/index.js&#39;</span>,  // 实际使用按需修改
+  output: <span class="o">{</span>
+    path: path.resolve<span class="o">(</span>__dirname, <span class="s1">&#39;dist&#39;</span><span class="o">)</span>,
+    filename: <span class="s1">&#39;bundle.js&#39;</span>  // output 为打包输出目标
+  <span class="o">}</span>
+<span class="o">}</span><span class="p">;</span>
 
-module.exports = config;
+module.exports <span class="o">=</span> config<span class="p">;</span>
 // end
-# 生成 webpack.config.js 后配置 webpack 打包命令到 npm scripts 
-# npm set-script &quot;build&quot; &quot;webpack --mode production --config webpack.config.js&quot;
-# 添加完成后可以直接调用 npm run build 执行打包
-</code></pre><p>使用 eslint 作为语法检查工具。</p>
-<pre><code># 配置 eslint ：
-# 直接调用可执行脚本进行语法相关的配置初始化
-# ./node_modules/.bin/eslint --init
+<span class="c1"># 生成 webpack.config.js 后配置 webpack 打包命令到 npm scripts </span>
+$ npm set-script <span class="s2">&#34;build&#34;</span> <span class="s2">&#34;webpack --mode production --config webpack.config.js&#34;</span>
+<span class="c1"># 添加完成后可以直接调用 npm run build 执行打包</span>
+</code></pre></div><p>使用 eslint 作为语法检查工具。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 配置 eslint ：</span>
+<span class="c1"># 直接调用可执行脚本进行语法相关的配置初始化</span>
+$ ./node_modules/.bin/eslint --init
 ...
-# 整个过程按照提示进行选择即可，一般会产生依赖安装，完成后会自动生成文件
+<span class="c1"># 整个过程按照提示进行选择即可，一般会产生依赖安装，完成后会自动生成文件</span>
 Successfully created .eslintrc.json file in /tmp/myproject
 ...
-# 配置 eslint 检查命令到 npm scripts
-# npm set-script &quot;lint&quot; &quot;eslint src/&quot;
-# 添加后可以直接调用 npm run lint 执行语法检查
-</code></pre><h3 id="待后续更新-">待后续更新 &hellip;</h3></article>
+<span class="c1"># 配置 eslint 检查命令到 npm scripts</span>
+$ npm set-script <span class="s2">&#34;lint&#34;</span> <span class="s2">&#34;eslint src/&#34;</span>
+<span class="c1"># 添加后可以直接调用 npm run lint 执行语法检查</span>
+</code></pre></div><h3 id="待后续更新-">待后续更新 &hellip;</h3></article>
               </div>
             </div>
           </div>

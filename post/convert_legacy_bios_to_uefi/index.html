@@ -155,9 +155,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 26 Oct 2021 15:37:47 &#43;0000"
+                  Modified <relative-time datetime="Sun, 21 Nov 2021 13:41:28 &#43;0000"
                     class="no-wrap">
-                    Tue, 26 Oct 2021 15:37:47 &#43;0000</relative-time>
+                    Sun, 21 Nov 2021 13:41:28 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -181,7 +181,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          2873 Words
+                          2887 Words
                     
 
                   </div>
@@ -238,41 +238,41 @@
 <p>和 UEFI 启动模式紧密配合的分区方式是 GPT ，原有的 MBR 分区方式存在一定的局限性。而 GPT 为了保持兼容，使用了 LBA 0 扇区作为 MBR 保护扇区，这也使得 MBR 分区方式迁移到 GPT 分区方式成为可能。</p>
 <p>将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动的第一步工作就是将 MBR 转换为 GPT 。</p>
 <p><strong>进行分区操作时，一定要小心谨慎，做好数据备份，对根分区的错误操作可能是无法挽救的。</strong></p>
-<pre><code># 首先观察根分区情况，这时可以使用 fdisk 或 parted
-# 这个硬盘来自我的虚拟机
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 首先观察根分区情况，这时可以使用 fdisk 或 parted</span>
+<span class="c1"># 这个硬盘来自我的虚拟机</span>
 
-# fdisk /dev/sda
+$ fdisk /dev/sda
 ...
-Command (m for help): p
+Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
 
-Disk /dev/sda: 10.7 GB, 10737418240 bytes, 20971520 sectors
-Units = sectors of 1 * 512 = 512 bytes
-Sector size (logical/physical): 512 bytes / 512 bytes
-I/O size (minimum/optimal): 512 bytes / 512 bytes
+Disk /dev/sda: 10.7 GB, <span class="m">10737418240</span> bytes, <span class="m">20971520</span> sectors
+<span class="nv">Units</span> <span class="o">=</span> sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
 Disk label type: dos
 Disk identifier: 0x0004dcb6
 
    Device Boot      Start         End      Blocks   Id  System
-/dev/sda1   *        2048     1026047      512000   83  Linux
-/dev/sda2         1026048     3123199     1048576   83  Linux
-/dev/sda3         3123200    20971519     8924160   83  Linux
+/dev/sda1   *        <span class="m">2048</span>     <span class="m">1026047</span>      <span class="m">512000</span>   <span class="m">83</span>  Linux
+/dev/sda2         <span class="m">1026048</span>     <span class="m">3123199</span>     <span class="m">1048576</span>   <span class="m">83</span>  Linux
+/dev/sda3         <span class="m">3123200</span>    <span class="m">20971519</span>     <span class="m">8924160</span>   <span class="m">83</span>  Linux
 
-# parted -l
-Model: VMware, VMware Virtual S (scsi)
+$ parted -l
+Model: VMware, VMware Virtual S <span class="o">(</span>scsi<span class="o">)</span>
 Disk /dev/sda: 10.7GB
-Sector size (logical/physical): 512B/512B
+Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
 Partition Table: msdos
 Disk Flags: 
 
 Number  Start   End     Size    Type     File system     Flags
- 1      1049kB  525MB   524MB   primary  xfs             boot
- 2      525MB   1599MB  1074MB  primary  linux-swap(v1)
- 3      1599MB  10.7GB  9138MB  primary  xfs
-</code></pre><p>如果你的系统盘如上面展示的一样，最后一个分区用尽了所有剩余的硬盘扇区，这种情况下不建议进行分区方式的转换，因为根据 GPT 分区格式的定义， GPT 比 MBR 使用到了更多的硬盘起始扇区存放分区信息 (Primary GPT) ，而且还占用了硬盘末尾的部分扇区作为分区信息的备份 (Secondary GPT) 。</p>
+ <span class="m">1</span>      1049kB  525MB   524MB   primary  xfs             boot
+ <span class="m">2</span>      525MB   1599MB  1074MB  primary  linux-swap<span class="o">(</span>v1<span class="o">)</span>
+ <span class="m">3</span>      1599MB  10.7GB  9138MB  primary  xfs
+</code></pre></div><p>如果你的系统盘如上面展示的一样，最后一个分区用尽了所有剩余的硬盘扇区，这种情况下不建议进行分区方式的转换，因为根据 GPT 分区格式的定义， GPT 比 MBR 使用到了更多的硬盘起始扇区存放分区信息 (Primary GPT) ，而且还占用了硬盘末尾的部分扇区作为分区信息的备份 (Secondary GPT) 。</p>
 <p>虽然很多分区工具在操作 msdos 硬盘时会保留一些起始扇区，默认从 1 MB 开始分区，以便后续兼容 GPT 格式，但一般不会对末尾扇区做保留。所以在转换 GPT 时，处于硬盘头部的分区通常可以无损转换，而处于硬盘尾部的分区会遭遇文件系统受损。</p>
-<pre><code># 尝试对这个无法无损转换的硬盘进行操作
-# gdisk /dev/sda
-GPT fdisk (gdisk) version 0.8.10
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 尝试对这个无法无损转换的硬盘进行操作</span>
+$ gdisk /dev/sda
+GPT fdisk <span class="o">(</span>gdisk<span class="o">)</span> version 0.8.10
 
 Partition table scan:
   MBR: MBR only
@@ -282,23 +282,23 @@ Partition table scan:
 
 
 ***************************************************************
-Found invalid GPT and valid MBR; converting MBR to GPT format
+Found invalid GPT and valid MBR<span class="p">;</span> converting MBR to GPT format
 in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
-typing 'q' if you don't want to convert your MBR partitions
+typing <span class="s1">&#39;q&#39;</span> <span class="k">if</span> you don<span class="err">&#39;</span>t want to convert your MBR partitions
 to GPT format!
 ***************************************************************
 
 
 Warning! Secondary partition table overlaps the last partition by
-33 blocks!
+<span class="m">33</span> blocks!
 You will need to delete this partition or resize it in another utility.
 
-# 这里已经给出分区告警：检测到无效的 GPT 和有效的 MBR ，
-# 分区工具将分区表自动转换为 GPT 格式，并且最后一个分区需要重新划分，
-# 在退出分区工具时可以按 q 来取消这次转换
+<span class="c1"># 这里已经给出分区告警：检测到无效的 GPT 和有效的 MBR ，</span>
+<span class="c1"># 分区工具将分区表自动转换为 GPT 格式，并且最后一个分区需要重新划分，</span>
+<span class="c1"># 在退出分区工具时可以按 q 来取消这次转换</span>
 
-# 为了文件系统安全，记得通过按下 q 来退出。
-</code></pre><p>虽然在我的虚拟机硬盘上无法直接实现转换，但是如果你的系统盘没有用尽所有的空间，或者最后一个分区用作交换分区时，分区方式就可以实现完美转换。</p>
+<span class="c1"># 为了文件系统安全，记得通过按下 q 来退出。</span>
+</code></pre></div><p>虽然在我的虚拟机硬盘上无法直接实现转换，但是如果你的系统盘没有用尽所有的空间，或者最后一个分区用作交换分区时，分区方式就可以实现完美转换。</p>
 <pre><code># 对可以无损转换的硬盘进行操作，原有分区信息大概如下
 # 这是一块 msdos 分区的硬盘，未用尽所有扇区
 # 这里为了实验删除了 swap 分区，实际上这一步可以省去，直接建立新分区和直接转换是没问题的
@@ -310,7 +310,7 @@ Number  Start (sector)    End (sector)  Size       Code  Name
 ...
 
 # 直接通过 gdisk 进行操作
-# gdisk /dev/sda
+$ gdisk /dev/sda
 GPT fdisk (gdisk) version 0.8.10
 
 Partition table scan:
@@ -371,13 +371,13 @@ Number  Start (sector)    End (sector)  Size       Code  Name
 <h2 id="挂载-esp">挂载 ESP</h2>
 <p>接下来需要挂载 ESP ，也就是刚才新增的 EFI System 分区，它的全称是 EFI System Partition ，是预留给 UEFI 启动存放引导文件的分区。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 格式化 ESP ，注意它的文件系统是 FAT 格式</span>
-mkfs.vfat /dev/sda4
+$ mkfs.vfat /dev/sda4
 <span class="c1"># 如果命令不存在，安装新的软件包后重试</span>
-yum install dosfstools
+$ yum install dosfstools
 
 <span class="c1"># /boot 分区已经预留了 efi 目录以供 UEFI 启动分区挂载</span>
 <span class="c1"># 但我们现在使用的是 BIOS 启动，这个目录应该为空且没有挂载</span>
-mount /dev/sda4 /boot/efi
+$ mount /dev/sda4 /boot/efi
 <span class="c1"># 为了后续使用，这一步完成后应该手动更新到 fstab 中</span>
 </code></pre></div><h2 id="重新安装bootloader">重新安装BootLoader</h2>
 <p>由于我们转换了分区方式，原有的 BootLoader 也需要重新安装，现代 Liunx 系统基本都使用 grub2 作为 BootLoader 。</p>
@@ -385,20 +385,20 @@ mount /dev/sda4 /boot/efi
 <p>而 core.img 包含了基本功能和必要的模块，承担了引导系统内核的核心工作，一般会安装 MBR 分区硬盘的第一个扇区和第一个分区之间的空隙，这个位置通常称为 MBR gap ，这部分信息可以在 grub2 的<a href="https://www.gnu.org/software/grub/manual/grub/grub.html#BIOS-installation">官方文档</a>找到。</p>
 <p>由于我们将 MBR 转换为 GPT 格式，原有的 MBR gap 的位置会被 GPT 头所占据，按照 grub2 官方文档对 GPT 分区格式的使用指引，我们需要新的分区来替代 MBR gap ，这就是之前在分区时额外划分 BIOS Boot Partition 的原因。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 1.以 UEFI 引导为目标重装 grub2 ，需要提前挂载 ESP 分区</span>
-grub2-install --target<span class="o">=</span>x86_64-efi --efi-directory<span class="o">=</span>/boot/efi /dev/sda
+$ grub2-install --target<span class="o">=</span>x86_64-efi --efi-directory<span class="o">=</span>/boot/efi /dev/sda
 <span class="c1"># 此时应该可以在 ESP 分区， /boot/efi 子目录下找到 grubx64.efi 文件</span>
 <span class="c1"># 如果执行有类似模块信息丢失的报错，安装新的软件包后重试</span>
-yum install grub2-efi-x64-modules
+$ yum install grub2-efi-x64-modules
 
 <span class="c1"># 2.生成 grub.cfg</span>
-grub2-mkconfig -o /boot/grub2/grub.cfg
+$ grub2-mkconfig -o /boot/grub2/grub.cfg
 <span class="c1"># 如果对比观察新生成的 grub.cfg 和原有的 grub.cfg ，</span>
 <span class="c1"># 可以发现主要区别在于处理 MBR 的模块已经转换为处理 GPT 的模块。</span>
 
 <span class="c1"># 3.值得注意的是，我们目前的系统并不处在 UEFI 启动模式，系统下没有 UEFI 变量</span>
 <span class="c1"># 所以 grub2-mkconfig 还不能完全生成正确结果，需要手动修改一次</span>
-sed -i <span class="s1">&#39;s/linux16/linuxefi/g&#39;</span> /boot/grub2/grub.cfg
-sed -i <span class="s1">&#39;s/initrd16/initrdefi/g&#39;</span> /boot/grub2/grub.cfg
+$ sed -i <span class="s1">&#39;s/linux16/linuxefi/g&#39;</span> /boot/grub2/grub.cfg
+$ sed -i <span class="s1">&#39;s/initrd16/initrdefi/g&#39;</span> /boot/grub2/grub.cfg
 <span class="c1"># 如果没有对 grub.cfg 进行修改，系统仍然可以从 BIOS 模式启动，但无法从 UEFI 模式启动</span>
 </code></pre></div><p>到这里系统下的工作基本完成，下一步需要重启机器进入 BIOS setup 来修改启动模式。</p>
 <h2 id="修改启动模式和uefi启动项">修改启动模式和UEFI启动项</h2>
@@ -407,21 +407,21 @@ sed -i <span class="s1">&#39;s/initrd16/initrdefi/g&#39;</span> /boot/grub2/grub
 <p>第一次 UEFI 启动可能需要手动从 Boot Manager 引导，通过 Boot from File ，进入 ESP 选择对应的 efi 引导文件 grubx64.efi ，选择 efi 文件之后的界面会是熟悉的 grub2 内核选择界面，我们就可以正常进入系统了。</p>
 <p>为了后续的使用方便，进入系统后我们还要修改 UEFI 启动项。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 efibootmgr</span>
-yum install efibootmgr
+$ yum install efibootmgr
 
 <span class="c1"># 查看系统启动项</span>
-efibootmgr <span class="o">[</span>-v<span class="o">]</span>
+$ efibootmgr <span class="o">[</span>-v<span class="o">]</span>
 <span class="c1"># -v 可以看到更详细的信息</span>
 
 <span class="c1"># 禁用一些无用的启动项</span>
-efibootmgr -B -b <span class="o">[</span>number<span class="o">]</span>
+$ efibootmgr -B -b <span class="o">[</span>number<span class="o">]</span>
 <span class="c1"># 启用需要的启动项目</span>
-efibootmgr -a -b <span class="o">[</span>number<span class="o">]</span>
+$ efibootmgr -a -b <span class="o">[</span>number<span class="o">]</span>
 <span class="c1"># 修改启动顺序</span>
-efibootmgr -o <span class="o">[</span>number,number,number...<span class="o">]</span>
+$ efibootmgr -o <span class="o">[</span>number,number,number...<span class="o">]</span>
 
 <span class="c1"># 将系统添加到独立的启动项</span>
-efibootmgr -c -d /dev/sda -p <span class="m">4</span> -L Grub2 -l /EFI/centos/grubx64.efi
+$ efibootmgr -c -d /dev/sda -p <span class="m">4</span> -L Grub2 -l /EFI/centos/grubx64.efi
 <span class="c1"># -c | --create  create new variable bootnum and add to bootorder</span>
 <span class="c1"># -d | --disk disk  (defaults to /dev/sda) containing loader</span>
 <span class="c1"># -l | --loader name  (defaults to &#34;\EFI\centos\grub.efi&#34;)</span>

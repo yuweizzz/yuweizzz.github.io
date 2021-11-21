@@ -8,12 +8,12 @@
     <language>zh-cn</language>
     <lastBuildDate>Tue, 03 Aug 2021 22:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/node.js/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>前端项目开发速记</title>
+      <title>前端项目开发笔记</title>
       <link>https://yuweizzz.github.io/post/tips_about_javascript_project/</link>
       <pubDate>Tue, 03 Aug 2021 22:00:00 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/post/tips_about_javascript_project/</guid>
-      <description>&lt;p&gt;一些前端项目开发过程可能会使用的操作。&lt;/p&gt;</description>
+      <description>&lt;p&gt;这篇笔记用来记录一些前端项目开发过程中的常用操作。&lt;/p&gt;</description>
     </item>
     
   </channel>
