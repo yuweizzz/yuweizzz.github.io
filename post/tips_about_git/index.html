@@ -155,9 +155,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Nov 2021 15:22:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 23 Nov 2021 15:53:41 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Nov 2021 15:22:50 &#43;0000</relative-time>
+                    Tue, 23 Nov 2021 15:53:41 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -181,7 +181,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          3050 Words
+                          3184 Words
                     
 
                   </div>
@@ -348,7 +348,12 @@ $ git reset <span class="o">[</span>--mixed <span class="p">|</span> --soft <spa
 <p>在前面的实例中 <code>git reset HEAD &lt;file&gt;</code> 就是 mixed 模式的应用，它用来回退 staged 文件到 not staged 的状态。因为指定了 HEAD ，所以文件变化还是留存在工作区，暂存区被清空， commit 无变化。</p>
 <p>soft 模式是最安全的，它不会影响实际文件，而 hard 模式是最为危险，在没有确定你需要丢弃你新写的代码，最好不要使用。</p>
 <p>此外还有一个值得注意的地方， reset 命令可以应用于单个文件，但仅限于 mixed 模式， hard 模式和 soft 模式均无法对单文件作用。</p>
-<h2 id="分支管理">分支管理</h2>
+<p>如果需要撤销 commit ，但不具体恢复到某个原有的代码版本，需要用到 revert 指令。</p>
+<p>revert 的使用方法类似于 reset ，但它不会改变 commit 的历史记录，而是在最新 commit 的基础上，将所指定 commit 的文件变动还原，并将这个过程提交为一个新的 commit 。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># revert 的使用参数</span>
+$ git revert &lt;commit&gt;
+<span class="c1"># 执行后将会产生新的 commit 的提交，默认将以 revert 信息作为 commit 信息</span>
+</code></pre></div><h2 id="分支管理">分支管理</h2>
 <p>简单项目可能没有使用到多分支，但如果是大型项目和团队开发项目，一般都会有多分支，多分支的好处在于开发过程中，各分支之间互不干扰，代码维护起来方便简单。</p>
 <p>分支创建，分支删除和分支合并是分支管理比较常用的操作，其中分支合并应该是多分支场景最重要的操作，当不同分支上的开发进行到一定程度时，可以将所涉及的文件变化都合并到同个分支中，然后这个分支就拥有了最新版本的文件。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># git branch 会列出当前已有分支，并以 * 标识目前所在的分支</span>

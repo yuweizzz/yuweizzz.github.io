@@ -80,6 +80,15 @@
     </item>
     
     <item>
+      <title>Git 命令进阶使用笔记</title>
+      <link>https://yuweizzz.github.io/post/more_tips_about_git/</link>
+      <pubDate>Thu, 13 Aug 2020 22:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/more_tips_about_git/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些 Git 命令的进阶使用和部分原理知识。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>常用 Git 命令笔记</title>
       <link>https://yuweizzz.github.io/post/tips_about_git/</link>
       <pubDate>Thu, 23 Jul 2020 22:00:00 +0000</pubDate>
