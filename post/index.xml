@@ -71,6 +71,15 @@
     </item>
     
     <item>
+      <title>Nginx 使用笔记</title>
+      <link>https://yuweizzz.github.io/post/knowledge_about_nginx/</link>
+      <pubDate>Sun, 30 May 2021 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/knowledge_about_nginx/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录 Nginx 的编译安装和基本使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>安装 Linux 图形界面</title>
       <link>https://yuweizzz.github.io/post/install_gui_in_linux/</link>
       <pubDate>Tue, 30 Mar 2021 21:00:00 +0000</pubDate>

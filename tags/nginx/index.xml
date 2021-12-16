@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Nginx on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/nginx/</link>
+    <description>Recent content in Nginx on Wei&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 30 May 2021 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/nginx/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Nginx 使用笔记</title>
+      <link>https://yuweizzz.github.io/post/knowledge_about_nginx/</link>
+      <pubDate>Sun, 30 May 2021 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/knowledge_about_nginx/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录 Nginx 的编译安装和基本使用。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
