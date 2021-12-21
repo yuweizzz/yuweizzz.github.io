@@ -155,9 +155,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Thu, 16 Dec 2021 13:51:21 &#43;0000"
+                  Modified <relative-time datetime="Tue, 21 Dec 2021 15:29:02 &#43;0000"
                     class="no-wrap">
-                    Thu, 16 Dec 2021 13:51:21 &#43;0000</relative-time>
+                    Tue, 21 Dec 2021 15:29:02 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -181,7 +181,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          2996 Words
+                          3788 Words
                     
 
                   </div>
@@ -308,10 +308,11 @@ $ curl -X POST -d <span class="s1">&#39;{&#34;key&#34;:&#34;value&#34;}&#39;</sp
 <span class="c1"># -H header，定义HTTP请求头</span>
 
 <span class="c1"># 这里列举其他常用的参数</span>
-<span class="c1"># -b 用来设置cookie，常以 -b &#39;key1=value1;key2=value2&#39; 的形式出现</span>
-<span class="c1"># -k 用来跳过SSL验证，用于请求https协议</span>
+<span class="c1"># -b 用来设置 cookie ，常以 -b &#39;key1=value1;key2=value2&#39; 的形式出现</span>
+<span class="c1"># -k 用来请求 https 协议时跳过证书认证</span>
 <span class="c1"># -i 用来额外输出请求的响应头，响应体正常输出</span>
 <span class="c1"># -I 使用这个参数后只输出请求的响应头，响应体不再输出</span>
+<span class="c1"># -x 用来设置代理服务器，用法为 -x/--proxy 127.0.0.1:8080</span>
 </code></pre></div><h2 id="使用sed快速去除无用字符">使用sed快速去除无用字符</h2>
 <p>sed 可以很简单快速去除空白行，首尾空白字符，注释行。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 删除空白行</span>
@@ -339,8 +340,8 @@ $ sed <span class="s1">&#39;/^#/d&#39;</span>
 </span><span class="cp"></span><span class="c1"># 使用之前需要先声明数组</span>
 <span class="nb">declare</span> -a array
 <span class="nb">declare</span> -A Array
-<span class="c1"># -a 声明的数组是普通的一维数组，index只能是0,1,2,...</span>
-<span class="c1"># -A 声明的数组是关联数组，类似于python的字典，index可以自由定义</span>
+<span class="c1"># -a 声明的数组是普通的一维数组， index 只能是0,1,2,...</span>
+<span class="c1"># -A 声明的数组是关联数组，类似于 python 的字典， index 可以自由定义</span>
 <span class="c1"># 推荐使用 -A ，因为关联数组的兼容性比较好，它可以模拟普通数组，</span>
 <span class="c1"># 而普通数组无法实现关联数组的特性</span>
 
@@ -348,26 +349,26 @@ $ sed <span class="s1">&#39;/^#/d&#39;</span>
 <span class="nv">array</span><span class="o">=(</span><span class="m">1</span> <span class="m">2</span> <span class="m">3</span> 4<span class="o">)</span>
 <span class="nv">Array</span><span class="o">=([</span>A<span class="o">]=</span><span class="m">1</span> <span class="o">[</span>B<span class="o">]=</span><span class="m">2</span> <span class="o">[</span>C<span class="o">]=</span><span class="m">3</span> <span class="o">[</span>D<span class="o">]=</span>4<span class="o">)</span>
 
-<span class="c1"># 或者直接定义index和value</span>
+<span class="c1"># 或者直接定义 index 和 value</span>
 Array<span class="o">[</span><span class="s2">&#34;index&#34;</span><span class="o">]=</span>vaule
 
-<span class="c1"># 遍历index</span>
+<span class="c1"># 遍历 index</span>
 <span class="c1"># 使用 * 和 @ 均可</span>
 <span class="k">for</span> i in <span class="si">${</span><span class="p">!array[*]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span><span class="p">;</span>
 <span class="k">for</span> i in <span class="si">${</span><span class="p">!array[@]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span><span class="p">;</span>
 
-<span class="c1"># 遍历value，和index类似</span>
+<span class="c1"># 遍历 value ，和 index 类似</span>
 <span class="k">for</span> i in <span class="si">${</span><span class="nv">array</span><span class="p">[*]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span><span class="p">;</span>
 <span class="k">for</span> i in <span class="si">${</span><span class="nv">array</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span> <span class="k">do</span> <span class="nb">echo</span> <span class="nv">$i</span><span class="p">;</span> <span class="k">done</span><span class="p">;</span>
 
 <span class="c1"># 获取数组的元素个数</span>
 <span class="nb">echo</span> <span class="si">${#</span><span class="nv">array</span><span class="p">[*]</span><span class="si">}</span><span class="p">;</span>
 <span class="nb">echo</span> <span class="si">${#</span><span class="nv">array</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span>
-<span class="c1"># 如果指定了确切的index，将会获取对应value的长度</span>
+<span class="c1"># 如果指定了确切的 index ，将会获取对应 value 的长度</span>
 <span class="nb">echo</span> <span class="si">${#</span><span class="nv">array</span><span class="p">[</span><span class="s2">&#34;index&#34;</span><span class="p">]</span><span class="si">}</span><span class="p">;</span>
 </code></pre></div><h2 id="awk内置函数split">awk内置函数split()</h2>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
-</span><span class="cp"></span><span class="c1"># awk内置函数split()的用法：</span>
+</span><span class="cp"></span><span class="c1"># awk 内置函数 split() 的用法：</span>
 
 <span class="c1"># awk: split(string_to_split,array,IFS)</span>
 <span class="c1"># 第一个参数是想要进行分割的字符串</span>
@@ -377,10 +378,10 @@ Array<span class="o">[</span><span class="s2">&#34;index&#34;</span><span class=
 <span class="c1"># 实例</span>
 split<span class="o">(</span><span class="s2">&#34;A;B;C;D&#34;</span>,array,<span class="s1">&#39;;&#39;</span><span class="o">)</span>
 <span class="c1"># 执行完成后，array=[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;]</span>
-<span class="c1"># 值得注意的是array是awk的内部变量</span>
+<span class="c1"># 值得注意的是 array 是 awk 的内部变量</span>
 </code></pre></div><h2 id="awk导入外部数据">awk导入外部数据</h2>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
-</span><span class="cp"></span><span class="c1"># awk可以导入外部数据，通常会用来导入shell变量进行进一步处理</span>
+</span><span class="cp"></span><span class="c1"># awk 可以导入外部数据，通常会用来导入 shell 变量进行进一步处理</span>
 <span class="c1"># 灵活利用导入可以实现多样的数据处理</span>
 
 <span class="c1"># 导入字符串并生成关联数组：</span>
@@ -397,14 +398,14 @@ split<span class="o">(</span><span class="s2">&#34;A;B;C;D&#34;</span>,array,<sp
 </span><span class="s1">    }
 </span><span class="s1">}&#39;</span>
 
-<span class="c1"># -v 可以导入外部数据为awk内部变量</span>
-<span class="c1"># 这个例子将字符串&#39;1#A#2#B#3#C&#39;转换为字典([1]=A [2]=B [3]=C)</span>
+<span class="c1"># -v 可以导入外部数据为 awk 内部变量</span>
+<span class="c1"># 这个例子将字符串 &#39;1#A#2#B#3#C&#39; 转换为字典 ([1]=A [2]=B [3]=C)</span>
 </code></pre></div><h2 id="简单的循环用例">简单的循环用例</h2>
 <p>在 Linux 中经常需要批量执行命令，需要一些限制避免占用大量资源，下面提供一些简单的循环用例。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
 </span><span class="cp"></span><span class="c1"># 限制同一时间内循环的进程数量</span>
 
-<span class="c1"># 总运行次数，数据源存放在file中</span>
+<span class="c1"># 总运行次数，数据源存放在 file 中</span>
 <span class="nv">number</span><span class="o">=</span><span class="k">$(</span>cat file <span class="p">|</span> wc -l<span class="k">)</span> 
 <span class="c1"># 单次并发进程数量控制</span>
 <span class="nv">size</span><span class="o">=</span><span class="m">20</span>
@@ -417,7 +418,7 @@ split<span class="o">(</span><span class="s2">&#34;A;B;C;D&#34;</span>,array,<sp
     <span class="k">for</span> i in <span class="k">$(</span>sed -n <span class="s2">&#34;</span><span class="nv">$begin</span><span class="s2">&#34;</span>,<span class="s2">&#34;</span><span class="nv">$end</span><span class="s2">&#34;</span>p file<span class="k">)</span>
     <span class="k">do</span>
     <span class="o">{</span>
-        <span class="c1"># 主循环体，数据取自于file</span>
+        <span class="c1"># 主循环体，数据取自于 file</span>
     <span class="o">}</span><span class="p">&amp;</span>
     <span class="k">done</span> 
 
@@ -435,13 +436,104 @@ split<span class="o">(</span><span class="s2">&#34;A;B;C;D&#34;</span>,array,<sp
 <span class="k">do</span>
     <span class="nb">echo</span> <span class="nv">$A</span>,<span class="nv">$B</span>,<span class="nv">$C</span>
 <span class="k">done</span> &lt; file
+</code></pre></div><h2 id="使用rpm进行软件包操作">使用rpm进行软件包操作</h2>
+<p>rpm 是红帽软件包工具，是红帽系发行版使用的基本软件管理工具。除了安装卸载软件，它可以提供一些额外的功能。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 直接安装已有的 rpm 包</span>
+$ rpm -ivh package.rpm  
+<span class="c1"># -i 用来表示安装</span>
+<span class="c1"># -v 用来显示详细信息</span>
+<span class="c1"># -h 用来显示安装进度</span>
+
+<span class="c1"># 卸载已有软件</span>
+$ rpm -evh package
+<span class="c1"># -e 用来表示卸载</span>
+
+<span class="c1"># 升级已有软件</span>
+$ rpm -Uvh package.rpm
+<span class="c1"># -U 用来表示升级软件，这个选项会保留原有配置文件</span>
+
+<span class="c1"># 查询软件是否安装</span>
+$ rpm -qa <span class="p">|</span> grep package
+<span class="c1"># 这是我个人常用的查询方法，用来查询所有已经安装的软件然后再抓取需要的信息</span>
+
+<span class="c1"># 查看软件安装的路径和文件位置</span>
+$ rpm -ql package.rpm
+
+<span class="c1"># 查询目标文件是由哪个软件所安装</span>
+$ rpm -qf filename
 </code></pre></div><h2 id="使用yum下载rpm包">使用yum下载rpm包</h2>
 <p>有时候会有下载 rpm 包的需求，可以通过 yum 实现。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ yum install package --downloadonly --downloaddir<span class="o">=</span>/your/dir
 <span class="c1"># 可以只下载 rpm 包而不进行安装</span>
 <span class="c1"># 不指定下载目录，则下载后文件保存在 /var/cache/yum/ 下的子目录中</span>
 <span class="c1"># 如果 --downloadonly 运行失败，可能需要自行安装这个插件</span>
-</code></pre></div><h2 id="使用cpio打开rpm文件">使用cpio打开rpm文件</h2>
+</code></pre></div><h2 id="配置yum源">配置yum源</h2>
+<p>yum 是 Fedora 和 RedHat 以及 SUSE 中使用的软件包管理器，它的使用比直接使用 rpm 更加方便简单。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># yum 的全局配置</span>
+$ cat /etc/yum.conf 
+<span class="o">[</span>main<span class="o">]</span>
+<span class="nv">cachedir</span><span class="o">=</span>/var/cache/yum/<span class="nv">$basearch</span>/<span class="nv">$releasever</span>  <span class="c1"># 指定缓存软件包和依赖信息的目录</span>
+<span class="nv">keepcache</span><span class="o">=</span><span class="m">0</span>  <span class="c1"># 指定缓存是否会在使用后保留</span>
+<span class="nv">debuglevel</span><span class="o">=</span><span class="m">2</span>  <span class="c1"># 指定日志信息的详细级别</span>
+<span class="nv">logfile</span><span class="o">=</span>/var/log/yum.log  <span class="c1"># 指定生成日志的位置</span>
+<span class="nv">exactarch</span><span class="o">=</span><span class="m">1</span>  <span class="c1"># 指定是否使用单一架构的软件包</span>
+<span class="nv">obsoletes</span><span class="o">=</span><span class="m">1</span>  <span class="c1"># 指定是否允许更新比较陈旧的软件包</span>
+<span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>  <span class="c1"># 指定进行安装包签名检查</span>
+<span class="nv">plugins</span><span class="o">=</span><span class="m">1</span>  <span class="c1"># 指定是否可以使用插件</span>
+<span class="nv">installonly_limit</span><span class="o">=</span><span class="m">5</span>  <span class="c1"># 指定允许保存的内核软件包数量</span>
+<span class="nv">bugtracker_url</span><span class="o">=</span>http://bugs.centos.org/set_project.php?project_id<span class="o">=</span>23<span class="p">&amp;</span><span class="nv">ref</span><span class="o">=</span>http://bugs.centos.org/bug_report_page.php?category<span class="o">=</span>yum
+<span class="nv">distroverpkg</span><span class="o">=</span>centos-release  <span class="c1">#指定用来获取系统的发行版信息的软件</span>
+</code></pre></div><p>全局配置基本上不用做修改，更多情况下只需要自行添加需要的镜像源。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 参考具体的镜像源配置</span>
+$ <span class="nb">cd</span> /etc/yum.repos.d
+$ cat CentOS-Base.repo 
+<span class="o">[</span>base<span class="o">]</span>
+<span class="nv">name</span><span class="o">=</span>CentOS-<span class="nv">$releasever</span> - Base
+<span class="nv">mirrorlist</span><span class="o">=</span>http://mirrorlist.centos.org/?release<span class="o">=</span><span class="nv">$releasever</span><span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span><span class="p">&amp;</span><span class="nv">repo</span><span class="o">=</span>os<span class="p">&amp;</span><span class="nv">infra</span><span class="o">=</span><span class="nv">$infra</span>
+<span class="c1">#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/</span>
+<span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+<span class="c1">#rerpmleased updates </span>
+<span class="o">[</span>updates<span class="o">]</span>
+<span class="nv">name</span><span class="o">=</span>CentOS-<span class="nv">$releasever</span> - Updates
+<span class="nv">mirrorlist</span><span class="o">=</span>http://mirrorlist.centos.org/?release<span class="o">=</span><span class="nv">$releasever</span><span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span><span class="p">&amp;</span><span class="nv">repo</span><span class="o">=</span>updates<span class="p">&amp;</span><span class="nv">infra</span><span class="o">=</span><span class="nv">$infra</span>
+<span class="c1">#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/</span>
+<span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+<span class="c1">#additional packages that may be useful</span>
+<span class="o">[</span>extras<span class="o">]</span>
+<span class="nv">name</span><span class="o">=</span>CentOS-<span class="nv">$releasever</span> - Extras
+<span class="nv">mirrorlist</span><span class="o">=</span>http://mirrorlist.centos.org/?release<span class="o">=</span><span class="nv">$releasever</span><span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span><span class="p">&amp;</span><span class="nv">repo</span><span class="o">=</span>extras<span class="p">&amp;</span><span class="nv">infra</span><span class="o">=</span><span class="nv">$infra</span>
+<span class="c1">#baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/</span>
+<span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
+<span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+</code></pre></div><p>在 /etc/yum.repos.d 目录中以 repo 结尾的文件会被识别为镜像源的配置文件，一个镜像源配置文件内可以配置多个 Repository ，每个 Repository 的唯一标识用 [xxxx] 表示，它们的具体内容如下：</p>
+<ul>
+<li>
+<p>name 是对 Repository 的描述。</p>
+</li>
+<li>
+<p>enable 规定对应 Repository 是否启用，可以使用这个选项屏蔽 Repository 。</p>
+</li>
+<li>
+<p>mirrorlist 和 baseurl 规定了 Repository 的地址。</p>
+<ul>
+<li>baseurl 是指向 Repository 的 repodata 目录的地址，里面存放了软件包和他们的依赖关系。它可以指向本地和云端，本地一般以 file:// 来指定，云端可以使用 http，ftp 等工具。</li>
+<li>mirrorlist 是 baseurl 的一种集合形式，可以说 mirrorlist 指向的是一系列的 baseurl ，配合 fastestmirror 插件能找到响应速度最快的 Repository 。</li>
+</ul>
+</li>
+<li>
+<p>gpgcheck 和 gpgkey 是对软件包的签名检查的相关选项。</p>
+<ul>
+<li>gpgcheck 规定是否进行签名检查。</li>
+<li>gpgkey 指定了签名检查的合法签名数据源。</li>
+</ul>
+</li>
+</ul>
+<p>现有国内网络环境下，原始镜像速度很慢，可以使用公开的国内镜像源，它们大部分提供了相关的配置方法，如果是自建的镜像源，那么至少需要自行配置 name 和 baseurl 才能正常使用。</p>
+<h2 id="使用cpio打开rpm文件">使用cpio打开rpm文件</h2>
 <p>rpm 包可以视为一个特殊的归档文件，如果需要提取这个档案中的内容，一般通过 rpm2cpio 和 cpio 去实现。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 常用的实例命令</span>
 $ rpm2cpio package.rpm <span class="p">|</span> cpio -divm
@@ -507,7 +599,7 @@ $ dracut -v -I <span class="s1">&#39;/usr/sbin/xfsdump /usr/sbin/xfsrestore&#39;
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#linux的归档和压缩命令\u0022\u003eLinux的归档和压缩命令\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#硬盘分区和格式化\u0022\u003e硬盘分区和格式化\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#curl的基本使用\u0022\u003ecurl的基本使用\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用sed快速去除无用字符\u0022\u003e使用sed快速去除无用字符\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#在shell中使用数组\u0022\u003e在shell中使用数组\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#awk内置函数split\u0022\u003eawk内置函数split()\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#awk导入外部数据\u0022\u003eawk导入外部数据\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#简单的循环用例\u0022\u003e简单的循环用例\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用yum下载rpm包\u0022\u003e使用yum下载rpm包\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用cpio打开rpm文件\u0022\u003e使用cpio打开rpm文件\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#更新文件到initramfs镜像中\u0022\u003e更新文件到initramfs镜像中\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#linux的归档和压缩命令\u0022\u003eLinux的归档和压缩命令\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#硬盘分区和格式化\u0022\u003e硬盘分区和格式化\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#curl的基本使用\u0022\u003ecurl的基本使用\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用sed快速去除无用字符\u0022\u003e使用sed快速去除无用字符\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#在shell中使用数组\u0022\u003e在shell中使用数组\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#awk内置函数split\u0022\u003eawk内置函数split()\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#awk导入外部数据\u0022\u003eawk导入外部数据\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#简单的循环用例\u0022\u003e简单的循环用例\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用rpm进行软件包操作\u0022\u003e使用rpm进行软件包操作\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用yum下载rpm包\u0022\u003e使用yum下载rpm包\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#配置yum源\u0022\u003e配置yum源\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用cpio打开rpm文件\u0022\u003e使用cpio打开rpm文件\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#更新文件到initramfs镜像中\u0022\u003e更新文件到initramfs镜像中\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,
