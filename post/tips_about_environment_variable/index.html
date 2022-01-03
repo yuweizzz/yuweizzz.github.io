@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://yuweizzz.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
+    <title>配置 Linux 环境变量 - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="这篇笔记用来记录配置 Linux 环境变量的相关知识。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/tips_about_environment_variable/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="配置 Linux 环境变量 - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="这篇笔记用来记录配置 Linux 环境变量的相关知识。
+" />
+<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://yuweizzz.github.io">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="配置 Linux 环境变量 - Wei&#39;s blog">
+<meta property="og:description"
+  content="这篇笔记用来记录配置 Linux 环境变量的相关知识。
+" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/tips_about_environment_variable/" />
+<meta property="og:site_name" content="配置 Linux 环境变量" />
+<meta property="og:image"
+  content="https://yuweizzz.github.io">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2020-03-29 20:41:45 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://yuweizzz.github.io">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://yuweizzz.github.io">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                  <img class=" avatar-user"
+                    src="https://yuweizzz.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://yuweizzz.github.io">Wei</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://yuweizzz.github.io/post/tips_about_environment_variable/">配置 Linux 环境变量</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Sun, 29 Mar 2020 20:41:45 &#43;0000"
+                    class="no-wrap">
+                    Sun, 29 Mar 2020 20:41:45 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Mon, 03 Jan 2022 10:02:27 &#43;0000"
+                    class="no-wrap">
+                    Mon, 03 Jan 2022 10:02:27 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" class="btn btn-octicon m-0 mr-2 p-2" aria-haspopup="menu" aria-label="Table of Contents" role="button">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                          2737 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/linux">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Linux
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/environment-variable">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Environment Variable
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5">
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录配置 Linux 环境变量的相关知识。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
+                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+                                  <span class="o">(</span>   <span class="o">)</span>
+                              <span class="o">(</span>@@@@<span class="o">)</span>
+                           <span class="o">(</span>    <span class="o">)</span>
+
+                         <span class="o">(</span>@@@<span class="o">)</span>
+                       <span class="o">====</span>        ________                ___________
+                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+
+</code></pre></div><h2 id="背景">背景</h2>
+<p>最近经常需要自行编译安装一些开源软件，它们有着各自的运行方式，经常需要定义一些环境变量，那么在何处定义这些变量成了需要探究的问题。</p>
+<h2 id="设置即时生效的环境变量">设置即时生效的环境变量</h2>
+<p>我们可以从最常用的环境变量 <code>PATH</code> 开始，它是寻找解释器或者命令的默认路径，以 <code>:</code> 分割不同路径的形式出现。在这个变量定义的路径中，可执行文件可以被快速搜索并直接执行，而且路径的顺序是有意义的，越靠前的搜索优先级越高。经常可以在一些软件的使用文档中看到 <code>export PATH=/path/to/bin:$PATH</code> 的类似用法。</p>
+<p>除了 <code>export</code> 之外，还有 <code>source</code> 也可以用来设置一些环境变量， python 的虚拟环境 venv 就用到了 <code>source</code> 来设置一些环境变量，实际上 <code>export</code> 和 <code>source</code> 都是 bash 的内置命令。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以下出自 bash 的相关文档</span>
+$ man bash
+...
+SHELL BUILTIN COMMANDS
+...
+       <span class="nb">export</span> <span class="o">[</span>-fn<span class="o">]</span> <span class="o">[</span>name<span class="o">[=</span>word<span class="o">]]</span> ...
+       <span class="nb">export</span> -p
+              The supplied names are marked <span class="k">for</span> automatic <span class="nb">export</span> to the environment of subsequently executed commands.
+              If the -f option is given, the names refer to functions.If no names are given, or <span class="k">if</span> the -p option is
+              supplied, a list of all names that are exported in this shell is printed.  The -n option causes the <span class="nb">export</span>
+              property to be removed from each name.  If a variable name is followed <span class="nv">by</span> <span class="o">=</span>word, the value of the variable 
+              is <span class="nb">set</span> to word.  <span class="nb">export</span> returns an <span class="nb">exit</span> status of <span class="m">0</span> unless an invalid option is encountered, one of the 
+              names is not a valid shell variable name, or -f is supplied with a name that is not a <span class="k">function</span>.
+...
+        .  filename <span class="o">[</span>arguments<span class="o">]</span>
+       <span class="nb">source</span> filename <span class="o">[</span>arguments<span class="o">]</span>
+              Read and execute commands from filename in the current shell environment and <span class="k">return</span> the <span class="nb">exit</span> status of 
+              the last <span class="nb">command</span> executed from filename.  If filename does not  contain a slash, file names in PATH are 
+              used to find the directory containing filename.  The file searched <span class="k">for</span> in PATH need not be executable.
+              When bash is not in posix mode, the current directory is searched <span class="k">if</span> no file is found in PATH.  If the 
+              sourcepath option to the <span class="nb">shopt</span> <span class="nb">builtin</span> <span class="nb">command</span> is turned off, the  PATH is not searched.If any arguments 
+              are  supplied, they become the positional parameters when filename is executed.  Otherwise the positional 
+              parameters are unchanged.The <span class="k">return</span> status is the status of the last <span class="nb">command</span> exited within the script 
+              <span class="o">(</span><span class="m">0</span> <span class="k">if</span> no commands are executed<span class="o">)</span>, and <span class="nb">false</span> <span class="k">if</span> filename is not found or cannot be read.
+...
+</code></pre></div><p>从文档可以看到， <code>export</code> 被明确定位用来快速设置环境变量。而 <code>source</code> 则要特殊一些，可以看到它是对文件级进行操作的，实际上它并不明确涉及任何变量改动。但是它们有一个相同点在于它们的生效范围都是当前 shell 。所以当你使用了 <code>export</code> 设置了一些变量，或者使用 <code>source</code> 执行了某个文件，那么它们涉及的变量改动就影响了当前 shell ，起到了改变环境变量的效果。</p>
+<h2 id="设置可持久化的环境变量">设置可持久化的环境变量</h2>
+<p>由于前面所述的方法只对当前 shell 生效，那么持久方案也值得我们额外关注。</p>
+<p>这里只讨论 Linux 环境下的 bash ，其他类型的 shell 和 bash 可能略有差别，但它们的机制应该是相近的。</p>
+<h3 id="shell的属性">shell的属性</h3>
+<p>bash 的机制比表面看上去的复杂得多，它隐藏了很多的属性设置。可以根据我们比较关系的属性，来简单划分 shell 的种类。</p>
+<p>影响环境变量的属性有比较关键的两个，分别是登录相关的属性和交互相关的属性。</p>
+<p>根据登录相关的属性分为登录式 login shell 和非登录式 non-login shell ，根据交互相关的属性分为交互式 interactive shell 和非交互式 non-interactive shell ，将两种属性组合起来可以将 shell 分为四个种类。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以下结果由直接登录系统后的 shell 中执行得出</span>
+
+<span class="c1"># 是否为登录式 shell</span>
+$ <span class="nb">shopt</span> <span class="p">|</span> grep login
+login_shell          on
+
+<span class="c1"># 是否为交互式 shell</span>
+$ <span class="nb">echo</span> <span class="nv">$-</span>
+himBH
+
+<span class="c1"># 以脚本文件执行检查</span>
+$ cat test.sh
+<span class="nb">shopt</span> <span class="p">|</span> grep login
+<span class="nb">echo</span> <span class="nv">$-</span>
+$ bash test.sh
+login_shell          off
+hB
+</code></pre></div><p>关于登录属性的判断比较直观，关于交互属性则需要通过特殊变量去获取， <code>-</code> 变量可以获取 shell 的部分设置选项，每个字母代表一种属性，其中 <code>i</code> 正是关于交互属性的字段。 在 <code>-</code> 变量包含的各字段意义如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ man bash
+...
+OPTIONS
+       -l        Make bash act as <span class="k">if</span> it had been invoked as a login shell <span class="o">(</span>see INVOCATION below<span class="o">)</span>.
+                 <span class="c1"># 以登录模式启动 shell</span>
+       -i        If the -i option is present, the shell is interactive.
+                 <span class="c1"># 以交互模式启动 shell</span>
+...
+SHELL BUILTIN COMMANDS
+       <span class="nb">set</span> <span class="o">[</span>--abefhkmnptuvxBCEHPT<span class="o">]</span> <span class="o">[</span>-o option-name<span class="o">]</span> <span class="o">[</span>arg ...<span class="o">]</span>
+       <span class="nb">set</span> <span class="o">[</span>+abefhkmnptuvxBCEHPT<span class="o">]</span> <span class="o">[</span>+o option-name<span class="o">]</span> <span class="o">[</span>arg ...<span class="o">]</span>
+              Without options, the name and value of each shell variable are displayed in a format that can be reused 
+              as input <span class="k">for</span> setting or resetting the currently-set variables.Read-only variables cannot be reset.
+              In posix mode, only shell variables are listed.  The output is sorted according to the current locale.
+              When options are specified, they <span class="nb">set</span> or <span class="nb">unset</span> shell attributes.  Any arguments remaining after option 
+              processing are treated as values <span class="k">for</span> the positional  parameters and are assigned,
+              in order, to <span class="nv">$1</span>, <span class="nv">$2</span>, ...  <span class="nv">$n</span>.  Options, <span class="k">if</span> specified, have the following meanings:
+...
+              -h      Remember the location of commands as they are looked up <span class="k">for</span> execution.
+                      This is enabled by default.
+                      <span class="c1"># 缓存执行过的二进制命令的路径，以便下次调用省去搜索时间</span>
+              -B      The shell performs brace expansion <span class="o">(</span>see Brace Expansion above<span class="o">)</span>.  This is on by default.
+                      <span class="c1"># 允许使用 shell 的花括号扩展</span>
+              -m      Monitor mode.  Job control is enabled.  This option is on by default <span class="k">for</span> interactive shells on 
+                      systems that support it <span class="o">(</span>see JOB CONTROL above<span class="o">)</span>.  Back‐ground processes run in a separate process
+                      group and a line containing their <span class="nb">exit</span> status is printed upon their completion.
+                      <span class="c1"># 允许作业控制和后台运行</span>
+              -H      Enable !  style <span class="nb">history</span> substitution.  This option is on by default when the shell is interactive.
+                      <span class="c1"># 允许快速索引存在历史记录中的命令</span>
+...
+</code></pre></div><h3 id="profile和rc">profile和rc</h3>
+<p>bash 使用了 profile 和 rc 来完成一些 bash 环境的设置工作，环境变量的设置会在这一步完成。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以下出自 bash 的相关文档</span>
+$ man bash
+...
+FILES
+       /etc/profile
+              The systemwide initialization file, executed <span class="k">for</span> login shells
+       /etc/bash.bash_logout
+              The systemwide login shell cleanup file, executed when a login shell exits
+       ~/.bash_profile
+              The personal initialization file, executed <span class="k">for</span> login shells
+       ~/.bashrc
+              The individual per-interactive-shell startup file
+       ~/.bash_logout
+              The individual login shell cleanup file, executed when a login shell exits
+       ~/.inputrc
+              Individual readline initialization file
+...
+INVOCATION
+...
+       When bash is invoked as an interactive login shell, or as a non-interactive  shell  with  the
+       --login option, it first reads and executes commands from the file /etc/profile, <span class="k">if</span> that file
+       exists.  After reading that file, it looks <span class="k">for</span> ~/.bash_profile,  ~/.bash_login,  and  ~/.pro‐
+       file,  in  that  order, and reads and executes commands from the first one that exists and is
+       readable.  The --noprofile option may be used when the  shell  is  started  to  inhibit  this
+       behavior.
+
+       When  a login shell exits, bash reads and executes commands from the files ~/.bash_logout and
+       /etc/bash.bash_logout, <span class="k">if</span> the files exists.
+
+       When an interactive shell that is not a login shell is started, bash reads and executes  com‐
+       mands from ~/.bashrc, <span class="k">if</span> that file exists.  This may be inhibited by using the --norc option.
+       The --rcfile file option will force bash to <span class="nb">read</span> and execute commands from  file  instead  of
+       ~/.bashrc.
+
+       When  bash is started non-interactively, to run a shell script, <span class="k">for</span> example, it looks <span class="k">for</span> the
+       variable BASH_ENV in the environment, expands its value <span class="k">if</span> it appears  there,  and  uses  the
+       expanded  value  as the name of a file to <span class="nb">read</span> and execute.  Bash behaves as <span class="k">if</span> the following
+       <span class="nb">command</span> were executed:
+              <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$BASH_ENV</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> . <span class="s2">&#34;</span><span class="nv">$BASH_ENV</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">fi</span>
+       but the value of the PATH variable is not used to search <span class="k">for</span> the file name.
+...
+</code></pre></div><p>加载 profile 和 rc 是由 shell 属性决定的，从 bash 文档可以得出，登录式 shell 启动时会加载 profile 系列文件，非登陆交互式 shell 启动时会加载 rc 系列文件。</p>
+<p>根据上述文档，只要是登录式 shell ，不论是否带有交互属性，它的显式预加载链为 <code>/etc/profile --&gt; ~/.bash_profile</code> ，可以通过 <code>bash -i -l -x</code> 进行验证，读取整体链条文件可以知道完整的预加载链为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">/etc/profile    --&gt;    ~/.bash_profile
+      <span class="p">|</span>                       <span class="p">|</span>
+      V                       V
+/etc/profile.d/*.sh       ~/.bashrc
+                              <span class="p">|</span>
+                              V
+                         /etc/bashrc
+                              <span class="p">|</span>  is non-login shell  <span class="c1"># 当前是 login shell ，这一步实际中不执行</span>
+                              V
+                      /etc/profile.d/*.sh
+</code></pre></div><p>如果是非登陆交互式 shell ，它的显式预加载链为 <code>~/.bashrc</code> 。通过 <code>bash -i -x</code> 或者 <code>bash -x</code> 进行验证，效果是一致的，完整的预加载链为：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">~/.bashrc
+     <span class="p">|</span>
+     V
+/etc/bashrc
+     <span class="p">|</span>  is non-login shell
+     V
+/etc/profile.d/*.sh
+</code></pre></div><p>现在只剩最后一种 shell ，非登录式非交互式 shell 听上去不可思议，但它确实是存在的，其实在前面运行 shell 的属性检查脚本 <code>bash test.sh</code> 的那个 shell 就是非登录式非交互式 shell ，它并不会加载任何 profile 或者 rc ，但它会从父进程继承环境变量，并且执行完文件中的命令这个 shell 就消亡了。</p>
+<h2 id="选择合理的设置文件">选择合理的设置文件</h2>
+<p>综合上面来看，我们可以在两个地方设置持久的环境变量，那就是 <code>/etc/profile.d/*.sh</code> 和 <code>~/.bashrc</code> 。</p>
+<p>将变量写在 <code>/etc/profile.d/*.sh</code> 是 bash 本身推荐的做法，但是如果仔细阅读过 <code>/etc/bashrc</code> 和 <code>/etc/profile</code> 的代码你会知道，它们对 <code>/etc/profile.d/*.sh</code> 的处理是一致的，只有对应的用户拥有 <code>/etc/profile.d/</code> 中的文件可读权限，那么这个脚本才会被执行。如果有时候自行写入了 <code>/etc/profile.d/</code> 中的文件却无法正常加载变量，很可能就是权限导致的问题。</p>
+<p>将变量写在常用用户的 <code>~/.bashrc</code> 我个人认为是更好的办法，它的好处在于方便隔离，各个用户之间不会互相影响。</p>
+<p>实际使用需要基于实际场景来设置，如果是公共性质比较强的环境变量，写在 <code>/etc/profile.d/*.sh</code> 中更方便，如果是一些个人环境和调试使用的环境变量，写在 <code>~/.bashrc</code> 更好。</p>
+<h2 id="题外话">题外话</h2>
+<p>由于本文涉及了 <code>source</code> ，为了更好理解，这里记录了一些常用的脚本执行方式，隐藏在它们背后的实际调用方式如下：</p>
+<ul>
+<li><code>./xx.sh</code> 要求文件有执行权限，它直接执行了文件，实际上生成新的非登录非交互式 shell 去执行文件内容，执行后 shell 消亡。</li>
+<li><code>source xx.sh</code> 没有文件权限要求，它会在当前 shell 执行并返回执行结果。</li>
+<li><code>. xx.sh</code> 执行方式等同于 <code>source xx.sh</code> 。</li>
+<li><code>. ./xx.sh</code> 执行方式等同于 <code>source xx.sh</code> ，加上 <code>./</code> 是为了指明文件路径。</li>
+<li><code>bash xx.sh</code> 没有文件权限要求，执行方式等同于 <code>./xx.sh</code> 。</li>
+<li><code>bash ./xx.sh</code> 执行方式等同于 <code>./xx.sh</code> ，加上 <code>./</code> 是为了指明文件路径。</li>
+</ul></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+ 
+ 
+ 
+ window.onload = function () {
+   const header = document.getElementById('post-header');
+   const headerHeight = header.offsetHeight;
+   
+   document.documentElement.style.scrollPaddingTop = headerHeight + 10 + "px";
+ }
+
+ const tocToggleButton = document.getElementById("toc-toggle");
+
+ const tippyInstance = tippy('#toc-toggle', {
+  trigger: 'click',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#背景\u0022\u003e背景\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#设置即时生效的环境变量\u0022\u003e设置即时生效的环境变量\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#设置可持久化的环境变量\u0022\u003e设置可持久化的环境变量\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#shell的属性\u0022\u003eshell的属性\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#profile和rc\u0022\u003eprofile和rc\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#选择合理的设置文件\u0022\u003e选择合理的设置文件\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#题外话\u0022\u003e题外话\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  allowHTML: true,
+  placement: 'bottom-start',
+  interactive: true,
+  arrow: false,
+  maxWidth: "none",
+  onHide: function () { tocToggleButton.classList.remove("hover"); },
+  onShow: function () { tocToggleButton.classList.add("hover"); },
+  onShown: function () {
+    selectTableOfContentsOption();
+
+    if (window.hasSetupTableOfContentsListeners) {
+      return;
+    }
+
+    const tableOfContents = document.getElementById("table-of-contents");
+    tableOfContents.addEventListener('click', function () {
+      
+      tippyInstance[0].hide();
+    });
+
+    window.hasSetupTableOfContentsListeners = true;
+  }
+ });
+
+ function selectTableOfContentsOption () {
+   const optionSelectedClass = 'table-of-contents-option-selected';
+
+   const tableOfContentsOptions = document.querySelectorAll("#table-of-contents > nav > ul li");
+
+   for (const option of tableOfContentsOptions) {
+     
+
+     const [child] = option.children;
+     if (child.tagName.toLowerCase() !== 'a') {
+       continue;
+     }
+
+     if (window.location.href === child.href) {
+       child.classList.add(optionSelectedClass);
+     } else {
+       child.classList.remove(optionSelectedClass);
+     }
+   }
+ }
+
+ window.onhashchange = selectTableOfContentsOption;
+</script>
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+<script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
+
+
+</html>

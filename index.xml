@@ -6,7 +6,16 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 03 Dec 2021 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 24 Dec 2021 21:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>回顾 2021 年</title>
+      <link>https://yuweizzz.github.io/post/review_of_2021/</link>
+      <pubDate>Fri, 24 Dec 2021 21:44:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/review_of_2021/</guid>
+      <description>&lt;p&gt;2021 年总结和新年展望。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>集邮经历 ✉️</title>
       <link>https://yuweizzz.github.io/post/my_records_of_stamp_collecting/</link>
@@ -122,6 +131,15 @@
       
       <guid>https://yuweizzz.github.io/post/authenticating_to_github/</guid>
       <description>&lt;p&gt;通过配置 Github SSH Key 实现 GitHub 免密推送。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>配置 Linux 环境变量</title>
+      <link>https://yuweizzz.github.io/post/tips_about_environment_variable/</link>
+      <pubDate>Sun, 29 Mar 2020 20:41:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/tips_about_environment_variable/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录配置 Linux 环境变量的相关知识。&lt;/p&gt;</description>
     </item>
     
     <item>

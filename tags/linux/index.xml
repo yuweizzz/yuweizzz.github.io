@@ -43,5 +43,14 @@
       <description>&lt;p&gt;这篇笔记主要介绍如何为 CentOS 安装图形界面。&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>配置 Linux 环境变量</title>
+      <link>https://yuweizzz.github.io/post/tips_about_environment_variable/</link>
+      <pubDate>Sun, 29 Mar 2020 20:41:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/tips_about_environment_variable/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录配置 Linux 环境变量的相关知识。&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>
