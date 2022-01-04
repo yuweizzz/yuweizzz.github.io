@@ -155,9 +155,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 03 Jan 2022 10:18:47 &#43;0000"
+                  Modified <relative-time datetime="Tue, 04 Jan 2022 15:10:43 &#43;0000"
                     class="no-wrap">
-                    Mon, 03 Jan 2022 10:18:47 &#43;0000</relative-time>
+                    Tue, 04 Jan 2022 15:10:43 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -181,7 +181,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          3788 Words
+                          4292 Words
                     
 
                   </div>
@@ -301,7 +301,7 @@ $ parted /dev/sda -s mkpart primary 0% 100%  <span class="c1"># 这里的 primar
 $ mkfs.xfs /dev/sda1
 </code></pre></div><h2 id="curl的基本使用">curl的基本使用</h2>
 <p>curl 在 Linux 代替了浏览器的工作，经常用来调试接口。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 经典curl用例</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 经典 curl 用例</span>
 $ curl -X POST -d <span class="s1">&#39;{&#34;key&#34;:&#34;value&#34;}&#39;</span> -H <span class="s1">&#39;Content-Type: application/json&#39;</span> http://....
 <span class="c1"># -X HTTP请求方法，通常有GET,POST,PUT,DELETE</span>
 <span class="c1"># -d body，常用于POST方法的请求体</span>
@@ -313,7 +313,22 @@ $ curl -X POST -d <span class="s1">&#39;{&#34;key&#34;:&#34;value&#34;}&#39;</sp
 <span class="c1"># -i 用来额外输出请求的响应头，响应体正常输出</span>
 <span class="c1"># -I 使用这个参数后只输出请求的响应头，响应体不再输出</span>
 <span class="c1"># -x 用来设置代理服务器，用法为 -x/--proxy 127.0.0.1:8080</span>
-</code></pre></div><h2 id="使用sed快速去除无用字符">使用sed快速去除无用字符</h2>
+</code></pre></div><h2 id="curl结合bash变量使用">curl结合bash变量使用</h2>
+<p>curl 可以结合 bash 变量，实现更灵活的 url 请求。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 结合 bash 变量的简单实例</span>
+$ <span class="nv">keyA</span><span class="o">=</span>AAA
+$ <span class="nv">keyB</span><span class="o">=</span>BBB
+$ curl -X POST -H <span class="s1">&#39;Content-Type: application/json&#39;</span> -d <span class="s1">&#39;{&#34;keyA&#34;: &#34;&#39;</span><span class="s2">&#34;</span><span class="nv">$keyA</span><span class="s2">&#34;</span><span class="s1">&#39;&#34;,&#34;keyA&#34;: &#34;&#39;</span><span class="s2">&#34;</span><span class="nv">$keyB</span><span class="s2">&#34;</span><span class="s1">&#39;&#34;}&#39;</span> http://....
+</code></pre></div><p>可以看到，这个过程使用了大量的 <code>'</code> 和 <code>&quot;</code> ，可以将其细分为五块：</p>
+<ul>
+<li><code>'{&quot;keyA&quot;: &quot;'</code></li>
+<li><code>&quot;$keyA&quot;</code></li>
+<li><code>'&quot;,&quot;keyA&quot;: &quot;'</code></li>
+<li><code>&quot;$keyB&quot;</code></li>
+<li><code>'&quot;}'</code></li>
+</ul>
+<p>其中 <code>'</code> 包围的文本不会被 bash 转义，所以 <code>{}</code> 会以源文本的格式保留而不被转义。而变量总是以 <code>&quot;$keyA&quot;</code> 的形式出现，保证它被 bash 正确转义并获取变量内容。所以文本块就是 <code>'</code> 包围的部分和变量转义后的组合文本，注意 <code>&quot;$keyA&quot;</code> 和任意 <code>'</code> 包围的部分之间不能有空格，这样它们就会被认为是完整的 <code>-d</code> 选项的内容，发起请求时就不会报错了。</p>
+<h2 id="使用sed快速去除无用字符">使用sed快速去除无用字符</h2>
 <p>sed 可以很简单快速去除空白行，首尾空白字符，注释行。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 删除空白行</span>
 $ sed <span class="s1">&#39;/^$/d&#39;</span>
@@ -366,7 +381,35 @@ Array<span class="o">[</span><span class="s2">&#34;index&#34;</span><span class=
 <span class="nb">echo</span> <span class="si">${#</span><span class="nv">array</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span>
 <span class="c1"># 如果指定了确切的 index ，将会获取对应 value 的长度</span>
 <span class="nb">echo</span> <span class="si">${#</span><span class="nv">array</span><span class="p">[</span><span class="s2">&#34;index&#34;</span><span class="p">]</span><span class="si">}</span><span class="p">;</span>
-</code></pre></div><h2 id="awk内置函数split">awk内置函数split()</h2>
+</code></pre></div><h2 id="bash变量操作符">bash变量操作符</h2>
+<p>bash 变量支持操作符，可以基于原有值做一些快速变换。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nv">var</span><span class="o">=</span>file.name.sh
+<span class="c1"># 修改第一个匹配字符 . 为 _</span>
+$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">/./_</span><span class="si">}</span>
+file_name.sh
+
+<span class="c1"># 修改所有匹配字符 . 为 _</span>
+$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">//./_</span><span class="si">}</span>
+file_name_sh
+
+<span class="c1"># 将表达式从左到右进行匹配，删除匹配的部分，可以使用通配符</span>
+$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">#*.</span><span class="si">}</span>
+name.sh
+
+<span class="c1"># 从左到右进行匹配的贪婪模式</span>
+$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">##*.</span><span class="si">}</span>
+sh
+
+<span class="c1"># 将表达式从右到左进行匹配，删除匹配的部分，同样可以使用通配符</span>
+$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">%.*</span><span class="si">}</span>
+file.name
+
+<span class="c1"># 从右到左进行匹配的贪婪模式</span>
+$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">%%.*</span><span class="si">}</span>
+file
+</code></pre></div><p>使用时需要注意 <code>#</code> 和 <code>%</code> 必须是从左或从右的完整匹配，或者是方向一致的通配符匹配才能正确删除字符。</p>
+<p>关于这两个定义符的记忆，我建议直接看键盘， <code>#</code> 在 <code>$</code> 左边， <code>%</code> 在 <code>$</code> 右边，把它们指向 <code>$</code> 则暗合它们的开始匹配方向。</p>
+<h2 id="awk内置函数split">awk内置函数split()</h2>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
 </span><span class="cp"></span><span class="c1"># awk 内置函数 split() 的用法：</span>
 
@@ -599,7 +642,7 @@ $ dracut -v -I <span class="s1">&#39;/usr/sbin/xfsdump /usr/sbin/xfsrestore&#39;
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#linux的归档和压缩命令\u0022\u003eLinux的归档和压缩命令\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#硬盘分区和格式化\u0022\u003e硬盘分区和格式化\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#curl的基本使用\u0022\u003ecurl的基本使用\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用sed快速去除无用字符\u0022\u003e使用sed快速去除无用字符\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#在shell中使用数组\u0022\u003e在shell中使用数组\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#awk内置函数split\u0022\u003eawk内置函数split()\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#awk导入外部数据\u0022\u003eawk导入外部数据\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#简单的循环用例\u0022\u003e简单的循环用例\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用rpm进行软件包操作\u0022\u003e使用rpm进行软件包操作\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用yum下载rpm包\u0022\u003e使用yum下载rpm包\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#配置yum源\u0022\u003e配置yum源\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用cpio打开rpm文件\u0022\u003e使用cpio打开rpm文件\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#更新文件到initramfs镜像中\u0022\u003e更新文件到initramfs镜像中\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#linux的归档和压缩命令\u0022\u003eLinux的归档和压缩命令\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#硬盘分区和格式化\u0022\u003e硬盘分区和格式化\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#curl的基本使用\u0022\u003ecurl的基本使用\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#curl结合bash变量使用\u0022\u003ecurl结合bash变量使用\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用sed快速去除无用字符\u0022\u003e使用sed快速去除无用字符\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#在shell中使用数组\u0022\u003e在shell中使用数组\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#bash变量操作符\u0022\u003ebash变量操作符\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#awk内置函数split\u0022\u003eawk内置函数split()\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#awk导入外部数据\u0022\u003eawk导入外部数据\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#简单的循环用例\u0022\u003e简单的循环用例\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用rpm进行软件包操作\u0022\u003e使用rpm进行软件包操作\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用yum下载rpm包\u0022\u003e使用yum下载rpm包\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#配置yum源\u0022\u003e配置yum源\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用cpio打开rpm文件\u0022\u003e使用cpio打开rpm文件\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#更新文件到initramfs镜像中\u0022\u003e更新文件到initramfs镜像中\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,
