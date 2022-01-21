@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://yuweizzz.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
+    <title>Python 知识笔记 - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="这篇笔记用来记录一些 python 编程的相关知识。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/knowledge_about_python/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Python 知识笔记 - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="这篇笔记用来记录一些 python 编程的相关知识。
+" />
+<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://yuweizzz.github.io">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Python 知识笔记 - Wei&#39;s blog">
+<meta property="og:description"
+  content="这篇笔记用来记录一些 python 编程的相关知识。
+" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_python/" />
+<meta property="og:site_name" content="Python 知识笔记" />
+<meta property="og:image"
+  content="https://yuweizzz.github.io">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2022-01-04 22:22:45 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://yuweizzz.github.io">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://yuweizzz.github.io">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                  <img class=" avatar-user"
+                    src="https://yuweizzz.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://yuweizzz.github.io">Wei</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://yuweizzz.github.io/post/knowledge_about_python/">Python 知识笔记</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Tue, 04 Jan 2022 22:22:45 &#43;0000"
+                    class="no-wrap">
+                    Tue, 04 Jan 2022 22:22:45 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Fri, 21 Jan 2022 14:11:30 &#43;0000"
+                    class="no-wrap">
+                    Fri, 21 Jan 2022 14:11:30 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" class="btn btn-octicon m-0 mr-2 p-2" aria-haspopup="menu" aria-label="Table of Contents" role="button">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                          2038 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/python">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Python
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5">
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些 python 编程的相关知识。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
+                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+                                  <span class="o">(</span>   <span class="o">)</span>
+                              <span class="o">(</span>@@@@<span class="o">)</span>
+                           <span class="o">(</span>    <span class="o">)</span>
+
+                         <span class="o">(</span>@@@<span class="o">)</span>
+                       <span class="o">====</span>        ________                ___________
+                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+
+</code></pre></div><h2 id="创建python虚拟环境">创建python虚拟环境</h2>
+<p>在 python 项目中经常会因为依赖的版本不同而存在不兼容的问题，所以我们应该使用虚拟环境将不同项目的依赖隔离，否则混用的依赖可能会产生各种各样的运行问题。</p>
+<p>在 python2 中经常使用 virtualenv 作为虚拟环境管理库，在 python3 中可以直接使用标准库的自带虚拟环境管理库 venv 。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># python2 的 virtualenv 需要独立安装</span>
+$ pip install virtualenv
+
+<span class="c1"># 使用 python2 的 virtualenv 创建虚拟环境</span>
+$ virtualenv project
+
+<span class="c1"># 激活后可以获得独立的虚拟环境</span>
+$ <span class="nb">source</span> project/bin/activate
+<span class="o">(</span>project<span class="o">)</span> $ python --version
+Python 2.7.5
+<span class="o">(</span>project<span class="o">)</span> $ pip list
+Package    Version
+---------- -------
+pip        20.3.3
+setuptools 44.1.1
+wheel      0.36.2
+
+<span class="c1"># 退出虚拟环境</span>
+$ deactivate
+
+<span class="c1"># python3 的 venv 不需要额外安装</span>
+<span class="c1"># 实际使用和 virtualenv 没有特别大的区别</span>
+$ python3 -m venv project
+$ <span class="nb">source</span> project/bin/activate
+<span class="o">(</span>project<span class="o">)</span> $ python --version
+Python 3.6.8
+<span class="o">(</span>project<span class="o">)</span> $ pip list
+pip <span class="o">(</span>9.0.3<span class="o">)</span>
+setuptools <span class="o">(</span>39.2.0<span class="o">)</span>
+$ deactivate
+</code></pre></div><h2 id="依赖管理">依赖管理</h2>
+<p>创建虚拟环境后就可以直接安装需要的依赖，我的建议是除了虚拟环境管理库，其他依赖尽量不要在全局环境安装。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 更换镜像源</span>
+$ pip config <span class="nb">set</span> global.index-url https://mirrors.aliyun.com/pypi/simple/
+
+<span class="c1"># 安装全局依赖</span>
+$ pip install virtualenv
+
+<span class="c1"># 在虚拟环境中安装需要的包</span>
+<span class="o">(</span>project<span class="o">)</span> $ pip install &lt;package&gt;
+
+<span class="c1"># 将项目中的依赖导出</span>
+<span class="o">(</span>project<span class="o">)</span> $ pip freeze &gt; requirements.txt
+
+<span class="c1"># 导入已定义的依赖列表</span>
+<span class="o">(</span>project<span class="o">)</span> $ pip install -r requirements.txt
+</code></pre></div><h2 id="字符串格式化">字符串格式化</h2>
+<p>在 python 中对字符串格式化的操作比较频繁，这里做个备忘，记录一下相关的方法。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># format 在 python2 和 python3 中均可用</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;python&#34;</span>
+<span class="n">greet</span> <span class="o">=</span> <span class="s2">&#34;hi, this is {}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+
+<span class="c1"># f-string 表达式在 python 3.6 以上版本可用</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s2">&#34;python&#34;</span>
+<span class="n">greet</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&#34;hi, this is {name}&#34;</span>
+
+<span class="c1"># 可以对原有数据做格式化，主要通过 : 来定义输出格式</span>
+<span class="n">value</span> <span class="o">=</span> <span class="mi">16</span>
+<span class="c1"># 十进制数字转为十六进制字符串</span>
+<span class="n">value_format</span> <span class="o">=</span> <span class="s2">&#34;{:x}&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+<span class="n">value_format</span> <span class="o">=</span> <span class="n">f</span><span class="s2">&#34;{value:x}&#34;</span>
+</code></pre></div><p>这里介绍的方法返回值都是字符串，比较适合用在格式化输出或者日志记录中。</p>
+<h2 id="字典的常用方法">字典的常用方法</h2>
+<p>字典在各类编程语言中非常常见，这里记录一下 python 中字典的常用方法。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">Count</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;A&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&#34;B&#34;</span><span class="p">:</span> <span class="mi">20</span><span class="p">}</span>
+
+<span class="c1"># 删除一个原有的键值对</span>
+<span class="n">Count</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s2">&#34;A&#34;</span><span class="p">)</span>
+
+<span class="c1"># 增加一个新的键值对</span>
+<span class="n">Count</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s2">&#34;C&#34;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+
+<span class="c1"># 获取指定键的值，如果没有这个键则返回预设值</span>
+<span class="n">Count</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&#34;A&#34;</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># 遍历所有键值对</span>
+<span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">Count</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># items 返回值是元组</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">each</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">Count</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>  <span class="c1"># 直接在循环中拆分元组</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+</code></pre></div><h2 id="集合">集合</h2>
+<p>在 python 中集合使用的频率可能会比较低，但它在某些场合非常好用。</p>
+<p>集合最大的特点在于集合内的所有元素都是唯一的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="n">array</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">array</span><span class="p">))</span>
+<span class="c1"># print 将会输出 {1, 2, 3}</span>
+</code></pre></div><p>实际中，集合应该是通过 hash 来实现这个特性的。</p>
+<p>由于列表是可变的对象，如果你想将任意嵌套列表转化为集合就会得到 unhashable type 的报错，因为它无法计算出确定的 hash 值。相反地，常规的数字，字符串是 hashable 的，并且 python 的元组也是 hashable 的。</p>
+<p>我们可以利用集合元素的唯一性，来实现两部分数据的差异对比：</p>
+<ul>
+<li>首先提取两部分数据的关键值，它应该像数据库记录的主键，作为这部分数据的最大特征值。</li>
+<li>将它们分别转化为集合，并取得补集，或称为对称差集。</li>
+<li>对这个对称差集做遍历，将它们分类归属。</li>
+</ul>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 假设有以下两个数据集</span>
+<span class="n">Old</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;A&#34;</span><span class="p">:</span> <span class="mi">10</span><span class="p">,</span> <span class="s2">&#34;B&#34;</span><span class="p">:</span> <span class="mi">20</span><span class="p">,</span> <span class="s2">&#34;C&#34;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+<span class="n">New</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&#34;B&#34;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s2">&#34;C&#34;</span><span class="p">:</span> <span class="mi">30</span><span class="p">,</span> <span class="s2">&#34;D&#34;</span><span class="p">:</span> <span class="mi">40</span><span class="p">}</span>
+
+<span class="c1"># 拿到数据集的所有重要特征值组合为元组</span>
+<span class="n">Old_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&#34;A&#34;</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="p">(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="s2">&#34;C&#34;</span><span class="p">,</span> <span class="mi">30</span><span class="p">)]</span>
+<span class="n">New_tuples</span> <span class="o">=</span> <span class="p">[(</span><span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="p">(</span><span class="s2">&#34;C&#34;</span><span class="p">,</span> <span class="mi">30</span><span class="p">),</span> <span class="p">(</span><span class="s2">&#34;D&#34;</span><span class="p">,</span> <span class="mi">40</span><span class="p">)]</span>
+
+<span class="c1"># 集合化后取补集</span>
+<span class="n">Old_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">Old_tuples</span><span class="p">)</span>
+<span class="n">New_set</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">New_tuples</span><span class="p">)</span>
+<span class="n">Sysmmetric_Difference</span> <span class="o">=</span> <span class="n">Old_set</span> <span class="o">^</span> <span class="n">New_set</span>
+<span class="c1"># Sysmmetric_Difference: {(&#39;D&#39;, 40), (&#39;A&#39;, 10), (&#39;B&#39;, 100), (&#39;B&#39;, 20)}</span>
+
+<span class="c1"># 遍历数据</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Sysmmetric_Difference</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">Old_tuples</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Old Data: &#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">New_tuples</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;New Data: &#34;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+
+<span class="c1"># 实际输出：</span>
+<span class="c1"># New Data:  (&#39;D&#39;, 40)</span>
+<span class="c1"># Old Data:  (&#39;B&#39;, 20)</span>
+<span class="c1"># Old Data:  (&#39;A&#39;, 10)</span>
+<span class="c1"># New Data:  (&#39;B&#39;, 100)</span>
+
+<span class="c1"># 这里还不能完全确定部分数据，可以多做一次特征筛选</span>
+<span class="n">Indexs</span> <span class="o">=</span> <span class="p">[</span> <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">_</span> <span class="ow">in</span> <span class="n">Sysmmetric_Difference</span> <span class="p">]</span>
+<span class="c1"># Counter 可以统计列表的元素出现次数</span>
+<span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">Counter</span>
+<span class="n">Both</span> <span class="o">=</span> <span class="p">[</span> <span class="n">key</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="nb">dict</span><span class="p">(</span><span class="n">Counter</span><span class="p">(</span><span class="n">Indexs</span><span class="p">))</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="k">if</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="p">]</span>
+<span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">Sysmmetric_Difference</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Both</span> <span class="ow">and</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">Old_set</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Before Changed Data: &#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">Both</span> <span class="ow">and</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">New_set</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;After Changed Data: &#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">Old_set</span> <span class="ow">and</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">New_set</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;Old Data: &#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+    <span class="k">elif</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">in</span> <span class="n">New_set</span> <span class="ow">and</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">Old_set</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;New Data: &#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">))</span>
+
+<span class="c1"># 实际输出：</span>
+<span class="c1"># New Data:  (&#39;D&#39;, 40)</span>
+<span class="c1"># Before Changed Data:  (&#39;B&#39;, 20)</span>
+<span class="c1"># Old Data:  (&#39;A&#39;, 10)</span>
+<span class="c1"># After Changed Data:  (&#39;B&#39;, 100)</span>
+</code></pre></div><p>以上只是一个理想化的计算过程，实际中应该要结合目标场景来使用。</p>
+<h2 id="迭代器和生成器">迭代器和生成器</h2>
+<p>这是对使用 map 函数引发异常的探究。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+
+<span class="n">List</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span>
+<span class="n">Map</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">List</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Map</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">Map</span><span class="p">))</span>
+
+<span class="c1"># 在使用 python3 的情况下：</span>
+<span class="c1"># 第一次输出为 [2, 3, 4, 5, 6]</span>
+<span class="c1"># 第二次输出为 []</span>
+</code></pre></div><p>在 python 中，很多数据类型都是可迭代的，比如列表就是最经典的可迭代对象，可以使用 <code>isinstance(Object, Iterable)</code> 来判断对象是否是可迭代的， <code>Iterable</code> 需要从 <code>collections</code> 中导入。</p>
+<p>实际中，一个对象如果是可迭代的，那么它需要实现 <code>__iter__</code> 方法或者 <code>__getitem__</code> 方法。</p>
+<p>其中 <code>__getitem__</code> 方法常见于通过索引取值的数据类型，而 <code>__iter__</code> 是可迭代对象优先使用的方法，一般它会返回迭代器对象 iterator object 。</p>
+<p>迭代器对象的作用是遍历可迭代对象。它自身需要实现 <code>__iter__</code> 和 <code>__next__</code> 两种方法。</p>
+<p>其中 <code>__iter__</code> 还是用于返回迭代器对象，通常就是这个 iterator object 本身， <code>__next__</code> 则是迭代器对象用来获取下一元素的方法。</p>
+<p>在 python2 中， map 函数返回是一个列表，但在 python3 中， map 函数返回是一个 map 对象。虽然列表和 map 对象都是可迭代对象，但是实际中 map 对象是迭代器对象，所以在上面的测试用例中， map 对象经历两次迭代，第二次迭代时 <code>__next__</code> 已经无法继续获取下一个元素，取值为空。</p>
+<p>除了可迭代对象和迭代器，还会使用到生成器 generator object ，实际中它就是迭代器对象的子类。</p>
+<p>我们一般通过关键字 <code>yield</code> 定义生成器函数。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="k">def</span> <span class="nf">gen</span><span class="p">():</span>
+    <span class="k">yield</span> <span class="s2">&#34;step1&#34;</span>
+    <span class="k">yield</span> <span class="s2">&#34;step2&#34;</span>
+    <span class="k">yield</span> <span class="s2">&#34;step3&#34;</span>
+
+<span class="k">print</span><span class="p">([</span><span class="n">each</span> <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">gen</span><span class="p">()])</span>
+<span class="c1"># print 将会输出 [&#39;step1&#39;, &#39;step2&#39;, &#39;step3&#39;]</span>
+</code></pre></div><p>实际中常见的用法是在循环中使用关键字 <code>yield</code> ，变相实现写入多个 <code>yield</code> 的效果，这样生成器就可以多次产生返回值。</p>
+<p>在生成器函数中，当遍历语句执行到 <code>yield</code> 关键字时会产生返回值并结束本次步进，下一轮遍历则从 <code>yield</code> 关键字之后的语句开始执行，如果直接调用生成器函数会返回对应的生成器对象，这里的工作方式实际上就是 <code>__iter__</code> 和 <code>__next__</code> 的组合。</p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+ 
+ 
+ 
+ window.onload = function () {
+   const header = document.getElementById('post-header');
+   const headerHeight = header.offsetHeight;
+   
+   document.documentElement.style.scrollPaddingTop = headerHeight + 10 + "px";
+ }
+
+ const tocToggleButton = document.getElementById("toc-toggle");
+
+ const tippyInstance = tippy('#toc-toggle', {
+  trigger: 'click',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建python虚拟环境\u0022\u003e创建python虚拟环境\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#依赖管理\u0022\u003e依赖管理\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#字符串格式化\u0022\u003e字符串格式化\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#字典的常用方法\u0022\u003e字典的常用方法\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#集合\u0022\u003e集合\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#迭代器和生成器\u0022\u003e迭代器和生成器\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  allowHTML: true,
+  placement: 'bottom-start',
+  interactive: true,
+  arrow: false,
+  maxWidth: "none",
+  onHide: function () { tocToggleButton.classList.remove("hover"); },
+  onShow: function () { tocToggleButton.classList.add("hover"); },
+  onShown: function () {
+    selectTableOfContentsOption();
+
+    if (window.hasSetupTableOfContentsListeners) {
+      return;
+    }
+
+    const tableOfContents = document.getElementById("table-of-contents");
+    tableOfContents.addEventListener('click', function () {
+      
+      tippyInstance[0].hide();
+    });
+
+    window.hasSetupTableOfContentsListeners = true;
+  }
+ });
+
+ function selectTableOfContentsOption () {
+   const optionSelectedClass = 'table-of-contents-option-selected';
+
+   const tableOfContentsOptions = document.querySelectorAll("#table-of-contents > nav > ul li");
+
+   for (const option of tableOfContentsOptions) {
+     
+
+     const [child] = option.children;
+     if (child.tagName.toLowerCase() !== 'a') {
+       continue;
+     }
+
+     if (window.location.href === child.href) {
+       child.classList.add(optionSelectedClass);
+     } else {
+       child.classList.remove(optionSelectedClass);
+     }
+   }
+ }
+
+ window.onhashchange = selectTableOfContentsOption;
+</script>
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+<script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
+
+
+</html>
