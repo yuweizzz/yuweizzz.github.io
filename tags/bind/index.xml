@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>BIND on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/bind/</link>
+    <description>Recent content in BIND on Wei&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 22 Mar 2020 15:15:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/bind/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DNS 知识笔记</title>
+      <link>https://yuweizzz.github.io/post/knowledge_about_dns/</link>
+      <pubDate>Sun, 22 Mar 2020 15:15:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/knowledge_about_dns/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录 DNS 的相关知识。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
