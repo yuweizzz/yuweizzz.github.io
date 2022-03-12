@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          4491 Words
+                          4455 Words
                     
 
                   </div>
@@ -236,11 +236,11 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="安装nginx">安装Nginx</h2>
+</code></pre></div><h2 id="安装-nginx">安装 Nginx</h2>
 <p>Nginx 是应用广泛的服务器软件，在 Nginx 的官方文档中可以看到， Nginx 可以应用在多种场景，包括基本 HTTP 服务器，代理服务器，邮件代理服务器。由于支持的特性非常多，所以安装的时候需要考虑的地方也相应增多了。</p>
 <p>我们可以选择编译安装或者提供官网提供给对应发行版的软件包进行安装，使用软件包安装基本上只要解决软件源的问题就可以了，使用编译安装虽然比较麻烦，但是更适用于需要定制的软件特性的场景。</p>
 <p>需要的源码包或者软件包的安装方式都可以在 Nginx 的<a href="http://nginx.org/">官网</a>找到，在这里只介绍编译安装。</p>
-<h3 id="nginx源码包结构">Nginx源码包结构</h3>
+<h3 id="nginx-源码包结构">Nginx 源码包结构</h3>
 <p>在下载源码包并进行解压后，可以看到几个关键的文件和目录：</p>
 <ul>
 <li>configure : 配置编译环境的脚本文件，执行这个脚本后会生成 Makefile 文件。</li>
@@ -285,7 +285,7 @@ $ ./configure --prefix<span class="o">=</span>/opt -user<span class="o">=</span>
 $ make <span class="o">&amp;&amp;</span> make install
 <span class="c1"># 直接启动服务</span>
 $ /opt/nginx/sbin/nginx 
-</code></pre></div><h2 id="使用nginx">使用Nginx</h2>
+</code></pre></div><h2 id="使用-nginx">使用 Nginx</h2>
 <p>Nginx 通过 nginx.conf 文件来配置各项服务。</p>
 <h3 id="基本配置实例">基本配置实例</h3>
 <p>以下的例子是 Nginx 安装时提供的配置。</p>
@@ -318,7 +318,7 @@ http <span class="o">{</span>
 <p>单个 Nginx http 域可以配置多个 server ，这些 server 甚至可以使用相同的 listen 端口，但需要至少保持不同 server_name 。 server_name 用来配置域名， loaction 用来匹配 url ，它们共同组合定位资源。</p>
 <p>error_page 用来导向 http 响应错误的返回页面，如果它放在 server 域中，则所有的 location 都会受到它的影响。</p>
 <p>除了 HTTP 服务， Nginx 还支持邮件服务和传输层服务，可以在 conf 中配置 mail 域和 stream 域来定义相关服务细节，但这些服务需要额外编译对应的模块。</p>
-<h3 id="loaction实现资源匹配">loaction实现资源匹配</h3>
+<h3 id="loaction-实现资源匹配">loaction 实现资源匹配</h3>
 <p>location 通过 url 来匹配目标资源。</p>
 <p>具体的匹配方式有 prefix string 和 regular expression ，也就是前缀匹配和正则匹配，还有比较特殊的完整匹配，可以参考 location 的语法规则。</p>
 <blockquote>
@@ -362,7 +362,7 @@ http <span class="o">{</span>
 <blockquote>
 <p>对比 root 和 alias ， alias 的使用会更加灵活，它不会被匹配条件限定，可以自由地指定资源目录，而 root 已经在 url 匹配时隐式限定了固有的资源目录，所以推荐在 location 中使用 alias 。</p>
 </blockquote>
-<h3 id="rewrite实现重定向功能">rewrite实现重定向功能</h3>
+<h3 id="rewrite-实现重定向功能">rewrite 实现重定向功能</h3>
 <p>rewrite 模块提供了灵活的重定向功能。</p>
 <p>rewrite 模块提高了 rewrite 关键字， rewrite 只能放在 server ， location 或者自定义的 if 中，它的语法规则如下：</p>
 <blockquote>
@@ -390,7 +390,7 @@ http <span class="o">{</span>
 </blockquote>
 <p>try_files 用于 location 中，可以指定多个 file ，它按顺序检查文件是否存在，并使用第一个找到的文件进行请求处理。</p>
 <p>try_files 的一般写法是 <code>try_files urlA urlB urlC</code> ， urlA 将会直接在当前 location 的 root 或 alias 中寻找匹配资源，后续的 urlB 也是相似的做法，如果它们依次都无法找到资源，才会使用最后的 urlC 执行新一轮的 location 匹配，整个过程和 url 重写非常相似，可以看做是简化版本的 rewrite 。</p>
-<h3 id="proxy实现代理功能">proxy实现代理功能</h3>
+<h3 id="proxy-实现代理功能">proxy 实现代理功能</h3>
 <p>proxy 模块提供了代理功能，代理实际上就是对请求的转发。</p>
 <p>代理分为正向代理和反向代理，它们的工作本质是一样的，主要不同在于工作的场景，其中正向代理主要是面向用户提供代理服务，受保护的对象是用户，反向代理主要是面向服务端提供代理服务，受保护的对象是服务端。</p>
 <p>一个普通的 http 正向代理配置如下：</p>
@@ -410,7 +410,7 @@ http <span class="o">{</span>
     proxy_set_header  X-Forwarded-For  <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
 <span class="o">}</span>
 </code></pre></div><p>由于反向代理架构中，真正提供服务的是上游节点，所以代理服务器需要向真正提供服务的节点传递客户信息，要在请求转发时设置一些特殊的头部信息。</p>
-<h3 id="upstream实现负载均衡">upstream实现负载均衡</h3>
+<h3 id="upstream-实现负载均衡">upstream 实现负载均衡</h3>
 <p>upstream 提供负载均衡功能，一般配合 proxy 模块使用，可以将反向代理的目的地由一个节点扩展为一个带有负载均衡功能的上游集群。</p>
 <p>一个普通的 http 反向代理和负载均衡配置如下：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">upstream servers <span class="o">{</span>
@@ -496,7 +496,7 @@ upstream servers <span class="o">{</span>
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#安装nginx\u0022\u003e安装Nginx\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#nginx源码包结构\u0022\u003eNginx源码包结构\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#常用模块\u0022\u003e常用模块\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#编译安装\u0022\u003e编译安装\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用nginx\u0022\u003e使用Nginx\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#基本配置实例\u0022\u003e基本配置实例\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#loaction实现资源匹配\u0022\u003eloaction实现资源匹配\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#rewrite实现重定向功能\u0022\u003erewrite实现重定向功能\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#proxy实现代理功能\u0022\u003eproxy实现代理功能\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#upstream实现负载均衡\u0022\u003eupstream实现负载均衡\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#总结\u0022\u003e总结\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#安装-nginx\u0022\u003e安装 Nginx\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#nginx-源码包结构\u0022\u003eNginx 源码包结构\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#常用模块\u0022\u003e常用模块\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#编译安装\u0022\u003e编译安装\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用-nginx\u0022\u003e使用 Nginx\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#基本配置实例\u0022\u003e基本配置实例\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#loaction-实现资源匹配\u0022\u003eloaction 实现资源匹配\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#rewrite-实现重定向功能\u0022\u003erewrite 实现重定向功能\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#proxy-实现代理功能\u0022\u003eproxy 实现代理功能\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#upstream-实现负载均衡\u0022\u003eupstream 实现负载均衡\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#总结\u0022\u003e总结\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,

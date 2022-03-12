@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          869 Words
+                          864 Words
                     
 
                   </div>
@@ -271,7 +271,7 @@
 <span class="c1"># -P passphrase为空</span>
 <span class="c1"># -f 指定路径名称</span>
 </code></pre></div><p>执行完命令后，我们可以得到 id_rsa 和 id_rsa.pub 两个文件，其中 id_rsa 是私钥，id_rsa.pub 是公钥。</p>
-<h2 id="在github账户中添加公钥">在GitHub账户中添加公钥</h2>
+<h2 id="在-github-账户中添加公钥">在 GitHub 账户中添加公钥</h2>
 <p>我们需要把公钥信息上传到自己的 GitHub 账户。</p>
 <p>打开自己的<a href="https://github.com/settings/keys"> GitHub 账户 </a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的喜好命名，然后 Add SSH Key ，完成公钥添加。</p>
 <h2 id="测试公钥">测试公钥</h2>
@@ -309,7 +309,7 @@ Connection to github.com closed.
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建秘钥对\u0022\u003e创建秘钥对\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#在github账户中添加公钥\u0022\u003e在GitHub账户中添加公钥\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#测试公钥\u0022\u003e测试公钥\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建秘钥对\u0022\u003e创建秘钥对\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#在-github-账户中添加公钥\u0022\u003e在 GitHub 账户中添加公钥\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#测试公钥\u0022\u003e测试公钥\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,

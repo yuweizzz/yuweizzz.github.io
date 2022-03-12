@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          1389 Words
+                          1375 Words
                     
 
                   </div>
@@ -254,7 +254,7 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="搭建nodejs环境">搭建Node.js环境</h2>
+</code></pre></div><h2 id="搭建-nodejs-环境">搭建 Node.js 环境</h2>
 <p>Node.js 提供了二进制预编译的安装包，在<a href="https://nodejs.org/zh-cn/download/">官网</a>直接下载到本地即可解压使用。</p>
 <p>这里以 LTS 14.15.4 为例:</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -o /usr/local/src/node-v14.15.4-linux-x64.tar.xz 
@@ -262,7 +262,7 @@
 $ tar -xvJf /usr/local/src/node-v14.15.4-linux-x64.tar.xz -C /usr/local/
 $ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&#34;$PATH&#34;:/usr/local/node-v14.15.4-linux-x64/bin/&#39;</span> &gt;&gt; /etc/profile
 </code></pre></div><p>如果只有某个用户需要使用 Node.js，可以把 PATH 变量写入到对应用户的 bash_profile 或 bashrc 中，这样可以起到一样的效果并且不会影响其他用户的环境变量。</p>
-<h2 id="修改npm镜像地址">修改npm镜像地址</h2>
+<h2 id="修改-npm-镜像地址">修改 npm 镜像地址</h2>
 <p>npm 是 Node.js 的依赖包管理工具，类似于 python 的 pip ， npm 在国内的网络环境会有下载速度慢的现象，可以将镜像地址修改为国内的镜像地址来解决这个问题。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 检查 npm 基本配置：</span>
 $ npm config list
@@ -405,7 +405,7 @@ Successfully created .eslintrc.json file in /tmp/myproject
 <span class="c1"># 配置 eslint 检查命令到 npm scripts</span>
 $ npm set-script <span class="s2">&#34;lint&#34;</span> <span class="s2">&#34;eslint src/&#34;</span>
 <span class="c1"># 添加后可以直接调用 npm run lint 执行语法检查</span>
-</code></pre></div><h3 id="待后续更新-">待后续更新 &hellip;</h3></article>
+</code></pre></div></article>
               </div>
             </div>
           </div>
@@ -429,7 +429,7 @@ $ npm set-script <span class="s2">&#34;lint&#34;</span> <span class="s2">&#34;es
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#搭建nodejs环境\u0022\u003e搭建Node.js环境\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#修改npm镜像地址\u0022\u003e修改npm镜像地址\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#初始化项目\u0022\u003e初始化项目\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#待后续更新-\u0022\u003e待后续更新 \u0026hellip;\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#搭建-nodejs-环境\u0022\u003e搭建 Node.js 环境\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#修改-npm-镜像地址\u0022\u003e修改 npm 镜像地址\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#初始化项目\u0022\u003e初始化项目\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,

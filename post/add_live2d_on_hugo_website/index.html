@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          1577 Words
+                          1569 Words
                     
 
                   </div>
@@ -247,7 +247,7 @@
 
 </code></pre></div><h2 id="前言">前言</h2>
 <p>在没有建设自己的站点之前，见到别人站点上的 Live2D 看板娘觉得很有趣，所以在搭建了自己的站点后，也想要在自己的站点实现。</p>
-<h2 id="hugo站点自定义">Hugo站点自定义</h2>
+<h2 id="hugo-站点自定义">Hugo 站点自定义</h2>
 <p>实现网页添加 Live2D 看板娘需要先对站点进行适配改造。</p>
 <p>Jekyll ， Hexo 和 Hugo 这一类静态网站生成器的工作方式都是类似的，它们大都是以 Markdown 语法编写网页的主体，通过不同的模板组合来渲染静态页面，这种工作方式使得自定义非常方便，一般只需要修改或者添加模板就可以达到自定义的效果了。</p>
 <p>自定义过程中为了避免修改过多的模板，把需要进行的工作全部放在 Javascript 中是个不错的选择。本次自定义也遵循这样的做法，基本上只需要额外引用 Javascript 文件就可以了，在 Hugo 中，负责加载 Javascript 的部分一般存放在 Partial Templates 中。</p>
@@ -287,7 +287,7 @@ $ vi layouts/partials/script.html
 <span class="c1"># 后续生成站点就会以新模板工作</span>
 </code></pre></div><p>关于 Partial Templates 修改的部分，可以选择直接写入 Javascript 引用标签，这里使用带变量控制的语法块是为了后续的维护方便。模板语法和 python 的 jinja2 非常相似，有过使用经验应该很容易理解。</p>
 <p>到这里 Hugo 需要改动的地方就完成了，接下来需要做的是将 Live2D 模型资源和对应的 Javascript 文件正确引用。</p>
-<h2 id="live2d资源的应用">Live2D资源的应用</h2>
+<h2 id="live2d-资源的应用">Live2D 资源的应用</h2>
 <p>在网络上已经有很多开箱即用的相关应用了，但是它们不契合我的喜好，于是我在已有资源的基础上修改，改进为我喜欢的效果。</p>
 <p>首先需要了解的是现有的模型资源分类，现有的 Live2D 模型资源有 Cubism 2 ， Cubism 4 和 Cubism 3 三个版本，其中 3 和 4 之间是互相兼容，所以基本上可以认为只有两个版本。 2 和 3 之间还是有很大区别的，在个人项目中我只使用到了 Cubism 3 。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Cubism 3 Model 基本结构：</span>
@@ -333,7 +333,7 @@ $ vi layouts/partials/script.html
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#hugo站点自定义\u0022\u003eHugo站点自定义\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#live2d资源的应用\u0022\u003eLive2D资源的应用\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#结语\u0022\u003e结语\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#hugo-站点自定义\u0022\u003eHugo 站点自定义\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#live2d-资源的应用\u0022\u003eLive2D 资源的应用\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#结语\u0022\u003e结语\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,

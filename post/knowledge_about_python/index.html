@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          2858 Words
+                          2839 Words
                     
 
                   </div>
@@ -236,7 +236,7 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="创建python虚拟环境">创建python虚拟环境</h2>
+</code></pre></div><h2 id="创建-python-虚拟环境">创建 python 虚拟环境</h2>
 <p>在 python 项目中经常会因为依赖的版本不同而存在不兼容的问题，所以我们应该使用虚拟环境将不同项目的依赖隔离，否则混用的依赖可能会产生各种各样的运行问题。</p>
 <p>在 python2 中经常使用 virtualenv 作为虚拟环境管理库，在 python3 中可以直接使用标准库的自带虚拟环境管理库 venv 。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># python2 的 virtualenv 需要独立安装</span>
@@ -413,7 +413,7 @@ $ pip install virtualenv
 <span class="c1"># print 将会输出 [&#39;step1&#39;, &#39;step2&#39;, &#39;step3&#39;]</span>
 </code></pre></div><p>实际中常见的用法是在循环中使用关键字 <code>yield</code> ，变相实现写入多个 <code>yield</code> 的效果，这样生成器就可以多次产生返回值。</p>
 <p>在生成器函数中，当遍历语句执行到 <code>yield</code> 关键字时会产生返回值并结束本次步进，下一轮遍历则从 <code>yield</code> 关键字之后的语句开始执行，如果直接调用生成器函数会返回对应的生成器对象，这里的工作方式实际上就是 <code>__iter__</code> 和 <code>__next__</code> 的组合。</p>
-<h2 id="使用supervisor值守python进程">使用supervisor值守python进程</h2>
+<h2 id="使用-supervisor-值守-python-进程">使用 supervisor 值守 python 进程</h2>
 <p>使用 python 作为后台服务的时候，如果希望它可以起到类似于 systemd 具体服务的效果，可以使用 supervisor 。</p>
 <p>supervisor 是 python 编写的进程管理服务，使用 client/server 架构，可以方便监测进程状态，并提供值守功能，其中 server 是 supervisord ，它负责监听挂载的进程状态和客户端的请求信号， client 是 supervisorctl ，用于向服务端发送控制信号，使用 supervisor 的好处在于程序的启动变得简洁，并且自带值守功能，不用担心进程意外死亡导致的服务停摆。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 推荐使用 yum 安装 supervisor </span>
@@ -500,7 +500,7 @@ $ supervisorctl start theprogramname
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建python虚拟环境\u0022\u003e创建python虚拟环境\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#依赖管理\u0022\u003e依赖管理\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#字符串格式化\u0022\u003e字符串格式化\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#字典的常用方法\u0022\u003e字典的常用方法\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#集合\u0022\u003e集合\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#迭代器和生成器\u0022\u003e迭代器和生成器\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用supervisor值守python进程\u0022\u003e使用supervisor值守python进程\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建-python-虚拟环境\u0022\u003e创建 python 虚拟环境\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#依赖管理\u0022\u003e依赖管理\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#字符串格式化\u0022\u003e字符串格式化\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#字典的常用方法\u0022\u003e字典的常用方法\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#集合\u0022\u003e集合\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#迭代器和生成器\u0022\u003e迭代器和生成器\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用-supervisor-值守-python-进程\u0022\u003e使用 supervisor 值守 python 进程\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,

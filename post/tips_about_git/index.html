@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          3184 Words
+                          3172 Words
                     
 
                   </div>
@@ -239,7 +239,7 @@
 </code></pre></div><h2 id="前言">前言</h2>
 <p>使用 Git 可以有条理地管理代码，尤其是在大型项目和团队开发的场合，熟练使用 Git 是开发人员的基本功。</p>
 <p>想要熟练使用 Git 的最好办法是了解 Git 的基本原理和实践。</p>
-<h2 id="快速了解git术语">快速了解Git术语</h2>
+<h2 id="快速了解-git-术语">快速了解 Git 术语</h2>
 <p>首先了解几个基本概念：</p>
 <ul>
 <li>仓库 (repository) ：仓库是一个被 Git 管控的目录。</li>
@@ -324,7 +324,7 @@ $ git commit --amend <span class="o">[</span>&lt;msg&gt;<span class="o">]</span>
 <span class="c1"># 修改上次 commit ，可以添加提交暂存区文件并修改上次 commit 说明信息</span>
 </code></pre></div><p>这样所有 staged 的文件就会被提交到一个新的版本库中了。我们还会得到一个 commit id ，这是非常重要的依据，后续版本库的管理都是基于 commit id 来实现的。</p>
 <p>带 &ndash;amend 的 commit 指令可以在一次提交后，追加位于暂存区的文件变动。使用这个命令后只会有一个提交，本次带 &ndash;amend 的提交将代替上一次提交的结果。如果暂存区是干净的，可以使用这个命令修改上次 commit 的说明信息。</p>
-<h2 id="对commit进行检查">对commit进行检查</h2>
+<h2 id="对-commit-进行检查">对 commit 进行检查</h2>
 <p>在经过一定的开发时间后，仓库必然会产生很多 commit ，可以使用 log 和 diff 进行检查。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git log
 <span class="c1"># 查看 commit 历史记录，可以看到简要的提交信息</span>
@@ -341,7 +341,7 @@ $ git diff &lt;commit&gt; &lt;commit&gt; <span class="o">[</span>--<span class="
 
 $ git diff --cached <span class="o">[</span>&lt;commit&gt;<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> <span class="o">[</span>&lt;path&gt;...<span class="o">]</span>
 <span class="c1"># 除了用于 commit 外，还可以用来查看暂存区和工作区的文件变动</span>
-</code></pre></div><h2 id="回退commit">回退commit</h2>
+</code></pre></div><h2 id="回退-commit">回退 commit</h2>
 <p>如果需要撤消 commit ，恢复原有的代码版本，需要用到 reset 指令。</p>
 <p>在 reset 命令中，我们经常会看到 HEAD 的使用，它用来指向当前分支的最新 commit ，所以最新 commit 的上一个版本使用 HEAD^ 表示，上上一个版本使用 HEAD^^ 表示，这是一种便捷写法，使用对应 commit id 也是一样的效果。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># reset 的使用参数</span>
@@ -436,7 +436,7 @@ $ git stash clear
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#快速了解git术语\u0022\u003e快速了解Git术语\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建并配置本地仓库\u0022\u003e创建并配置本地仓库\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#转换仓库中文件的状态\u0022\u003e转换仓库中文件的状态\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#添加和删除文件\u0022\u003e添加和删除文件\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#文件的重置\u0022\u003e文件的重置\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#提交到新版本\u0022\u003e提交到新版本\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#对commit进行检查\u0022\u003e对commit进行检查\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#回退commit\u0022\u003e回退commit\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#分支管理\u0022\u003e分支管理\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#工作区改动入栈暂存\u0022\u003e工作区改动入栈暂存\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#结语\u0022\u003e结语\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#快速了解-git-术语\u0022\u003e快速了解 Git 术语\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建并配置本地仓库\u0022\u003e创建并配置本地仓库\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#转换仓库中文件的状态\u0022\u003e转换仓库中文件的状态\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#添加和删除文件\u0022\u003e添加和删除文件\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#文件的重置\u0022\u003e文件的重置\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#提交到新版本\u0022\u003e提交到新版本\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#对-commit-进行检查\u0022\u003e对 commit 进行检查\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#回退-commit\u0022\u003e回退 commit\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#分支管理\u0022\u003e分支管理\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#工作区改动入栈暂存\u0022\u003e工作区改动入栈暂存\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#结语\u0022\u003e结语\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,

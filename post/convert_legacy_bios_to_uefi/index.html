@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          2887 Words
+                          2871 Words
                     
 
                   </div>
@@ -247,7 +247,7 @@
 
 </code></pre></div><h2 id="前言">前言</h2>
 <p>现代设备中，采用 UEFI 启动的机器越来越多了，虽然在服务器中可以通过 CSM 来提供 Legacy BIOS 的支持，但是 UEFI 将会是未来使用的主流方式，所以有必要开始尝试使用 UEFI 启动。</p>
-<h2 id="将mbr转换为gpt">将MBR转换为GPT</h2>
+<h2 id="将-mbr-转换为-gpt">将 MBR 转换为 GPT</h2>
 <p>和 UEFI 启动模式紧密配合的分区方式是 GPT ，原有的 MBR 分区方式存在一定的局限性。而 GPT 为了保持兼容，使用了 LBA 0 扇区作为 MBR 保护扇区，这也使得 MBR 分区方式迁移到 GPT 分区方式成为可能。</p>
 <p>将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动的第一步工作就是将 MBR 转换为 GPT 。</p>
 <p><strong>进行分区操作时，一定要小心谨慎，做好数据备份，对根分区的错误操作可能是无法挽救的。</strong></p>
@@ -392,7 +392,7 @@ $ yum install dosfstools
 <span class="c1"># 但我们现在使用的是 BIOS 启动，这个目录应该为空且没有挂载</span>
 $ mount /dev/sda4 /boot/efi
 <span class="c1"># 为了后续使用，这一步完成后应该手动更新到 fstab 中</span>
-</code></pre></div><h2 id="重新安装bootloader">重新安装BootLoader</h2>
+</code></pre></div><h2 id="重新安装-bootloader">重新安装 BootLoader</h2>
 <p>由于我们转换了分区方式，原有的 BootLoader 也需要重新安装，现代 Liunx 系统基本都使用 grub2 作为 BootLoader 。</p>
 <p>grub2 在安装时有两个重要镜像 boot.img 和 core.img ，它们协作完成系统的引导工作，其中 boot.img 会安装在 MBR 分区硬盘的第一个扇区中，它主要负责把程序执行权转交给 core.img 。</p>
 <p>而 core.img 包含了基本功能和必要的模块，承担了引导系统内核的核心工作，一般会安装 MBR 分区硬盘的第一个扇区和第一个分区之间的空隙，这个位置通常称为 MBR gap ，这部分信息可以在 grub2 的<a href="https://www.gnu.org/software/grub/manual/grub/grub.html#BIOS-installation">官方文档</a>找到。</p>
@@ -414,7 +414,7 @@ $ sed -i <span class="s1">&#39;s/linux16/linuxefi/g&#39;</span> /boot/grub2/grub
 $ sed -i <span class="s1">&#39;s/initrd16/initrdefi/g&#39;</span> /boot/grub2/grub.cfg
 <span class="c1"># 如果没有对 grub.cfg 进行修改，系统仍然可以从 BIOS 模式启动，但无法从 UEFI 模式启动</span>
 </code></pre></div><p>到这里系统下的工作基本完成，下一步需要重启机器进入 BIOS setup 来修改启动模式。</p>
-<h2 id="修改启动模式和uefi启动项">修改启动模式和UEFI启动项</h2>
+<h2 id="修改启动模式和-uefi-启动项">修改启动模式和 UEFI 启动项</h2>
 <p>在机器重启自检过程中，根据提示按下按键就能进入 BIOS setup ，这个按键一般会是 Del 或者 F2 。</p>
 <p>进入到 BIOS setup ，常规主板会在 Boot Mode 选项设置启动模式，在服务器平台这个设置可能在 CSM 选项中，我们只需要将 Legacy BIOS 修改为 UEFI ，然后保存退出即可。</p>
 <p>第一次 UEFI 启动可能需要手动从 Boot Manager 引导，通过 Boot from File ，进入 ESP 选择对应的 efi 引导文件 grubx64.efi ，选择 efi 文件之后的界面会是熟悉的 grub2 内核选择界面，我们就可以正常进入系统了。</p>
@@ -469,7 +469,7 @@ $ efibootmgr -c -d /dev/sda -p <span class="m">4</span> -L Grub2 -l /EFI/centos/
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#将mbr转换为gpt\u0022\u003e将MBR转换为GPT\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#挂载-esp\u0022\u003e挂载 ESP\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#重新安装bootloader\u0022\u003e重新安装BootLoader\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#修改启动模式和uefi启动项\u0022\u003e修改启动模式和UEFI启动项\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#总结\u0022\u003e总结\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#前言\u0022\u003e前言\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#将-mbr-转换为-gpt\u0022\u003e将 MBR 转换为 GPT\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#挂载-esp\u0022\u003e挂载 ESP\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#重新安装-bootloader\u0022\u003e重新安装 BootLoader\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#修改启动模式和-uefi-启动项\u0022\u003e修改启动模式和 UEFI 启动项\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#总结\u0022\u003e总结\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,

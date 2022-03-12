@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          1302 Words
+                          1296 Words
                     
 
                   </div>
@@ -245,7 +245,7 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="ldap的基本知识">LDAP的基本知识</h2>
+</code></pre></div><h2 id="ldap-的基本知识">LDAP 的基本知识</h2>
 <p>LDAP 全称为 Light Directory Access Portocol ，它是基于 X.500 标准的轻量级目录访问协议，经常应用于企业的权限管控和登录认证，比如 AD 域控就是微软基于 LDAP 协议所开发的权限管控应用。</p>
 <p>实际上 LDAP 主要是通过维护一个类似于文件目录结构的数据库，根据存储的记录条目提供给外部作为权限管控的数据来源。</p>
 <p>由于涉及到 LDAP 有比较多的名词，在这里先给出常用的 LDAP 名词：</p>
@@ -274,7 +274,7 @@
 <p>可以看到， 在 DN 中 DC 就是对域名的分割，和常规的域名一致，顶级域处于第一位，域名级别越低，它在 DN 中出现的位置越靠前。</p>
 <p>而 OU 和 CN 都是可以多级嵌套的，例子中没有体现，但实际中可以有 <code>cn=fileA,ou=prd,ou=web,dc=A,dc=com</code> 或者 <code>cn=fileA,cn=files,ou=prd,dc=A,dc=com</code> 这样的 DN 。多级 CN 和多级 OU 的顺序也类似于 DC ，都是级别越低，位置越靠前，我们可以自由地根据实际去定义 OU 或者 CN 。</p>
 <p>一般来说， CN 出现在 DN 的首位，这里可以使用 uid 或者 sAMAccountName 去替代 CN 在 DN 中的位置，因为它们都是 entry 的 Attributes ，可以需要根据具体使用的 LDAP 服务器决定。</p>
-<h2 id="接入ldap的代码思路">接入LDAP的代码思路</h2>
+<h2 id="接入-ldap-的代码思路">接入 LDAP 的代码思路</h2>
 <p>为了代码更具有通用性，方便接入到各式各样的系统中，认证过程通常可以这样设计：</p>
 <ol>
 <li>在 LDAP 中，在比较高等级的域设置一个只读权限的账号，只需要它可以获取下级记录的各项 Attributes 即可。</li>
@@ -364,7 +364,7 @@
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#ldap的基本知识\u0022\u003eLDAP的基本知识\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#接入ldap的代码思路\u0022\u003e接入LDAP的代码思路\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#具体实现代码\u0022\u003e具体实现代码\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#ldap-的基本知识\u0022\u003eLDAP 的基本知识\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#接入-ldap-的代码思路\u0022\u003e接入 LDAP 的代码思路\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#具体实现代码\u0022\u003e具体实现代码\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,

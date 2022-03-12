@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:25:55 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:25:55 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          2737 Words
+                          2726 Words
                     
 
                   </div>
@@ -279,7 +279,7 @@ SHELL BUILTIN COMMANDS
 <h2 id="设置可持久化的环境变量">设置可持久化的环境变量</h2>
 <p>由于前面所述的方法只对当前 shell 生效，那么持久方案也值得我们额外关注。</p>
 <p>这里只讨论 Linux 环境下的 bash ，其他类型的 shell 和 bash 可能略有差别，但它们的机制应该是相近的。</p>
-<h3 id="shell的属性">shell的属性</h3>
+<h3 id="shell-的属性">shell 的属性</h3>
 <p>bash 的机制比表面看上去的复杂得多，它隐藏了很多的属性设置。可以根据我们比较关系的属性，来简单划分 shell 的种类。</p>
 <p>影响环境变量的属性有比较关键的两个，分别是登录相关的属性和交互相关的属性。</p>
 <p>根据登录相关的属性分为登录式 login shell 和非登录式 non-login shell ，根据交互相关的属性分为交互式 interactive shell 和非交互式 non-interactive shell ，将两种属性组合起来可以将 shell 分为四个种类。</p>
@@ -331,7 +331,7 @@ SHELL BUILTIN COMMANDS
               -H      Enable !  style <span class="nb">history</span> substitution.  This option is on by default when the shell is interactive.
                       <span class="c1"># 允许快速索引存在历史记录中的命令</span>
 ...
-</code></pre></div><h3 id="profile和rc">profile和rc</h3>
+</code></pre></div><h3 id="profile-和-rc">profile 和 rc</h3>
 <p>bash 使用了 profile 和 rc 来完成一些 bash 环境的设置工作，环境变量的设置会在这一步完成。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以下出自 bash 的相关文档</span>
 $ man bash
@@ -433,7 +433,7 @@ INVOCATION
 
  const tippyInstance = tippy('#toc-toggle', {
   trigger: 'click',
-  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#背景\u0022\u003e背景\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#设置即时生效的环境变量\u0022\u003e设置即时生效的环境变量\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#设置可持久化的环境变量\u0022\u003e设置可持久化的环境变量\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#shell的属性\u0022\u003eshell的属性\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#profile和rc\u0022\u003eprofile和rc\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#选择合理的设置文件\u0022\u003e选择合理的设置文件\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#题外话\u0022\u003e题外话\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#背景\u0022\u003e背景\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#设置即时生效的环境变量\u0022\u003e设置即时生效的环境变量\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#设置可持久化的环境变量\u0022\u003e设置可持久化的环境变量\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#shell-的属性\u0022\u003eshell 的属性\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#profile-和-rc\u0022\u003eprofile 和 rc\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#选择合理的设置文件\u0022\u003e选择合理的设置文件\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#题外话\u0022\u003e题外话\u003c\/a\u003e\u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
   allowHTML: true,
   placement: 'bottom-start',
   interactive: true,
