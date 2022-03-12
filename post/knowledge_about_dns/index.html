@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 01 Mar 2022 16:36:52 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
                     class="no-wrap">
-                    Tue, 01 Mar 2022 16:36:52 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          5469 Words
+                          5482 Words
                     
 
                   </div>
@@ -610,16 +610,16 @@ options <span class="o">{</span>
 </ul>
 <p>开启 dnssec 支持的查询过程大概如下：</p>
 <ol>
-<li>在向权威 DNS 服务器发起正常 A 记录请求的同时，发起本次请求时启用 dnssec 。</li>
+<li>在向权威 DNS 服务器发起正常 A 记录请求的同时，发起本次请求同时启用 dnssec 的信息。</li>
 <li>如果目标 DNS 服务器不支持 dnssec ，则它只处理 A 记录请求。</li>
 <li>如果目标 DNS 服务器支持 dnssec ，那么目标 DNS 服务器还会一并返回该 A 记录的 RRSIG 。</li>
-<li>向目标 DNS 服务器请求 DNSKEY 和对应的 RRSIG ，使用 DNSKEY 验证上一步 A 记录的 RRSIG 。</li>
-<li>向上级域请求 DS 记录和 DS 记录的 RRSIG ，然后使用 DS 记录验证上一步 DNSKEY 。</li>
+<li>向目标 DNS 服务器请求 DNSKEY 和 DNSKEY 记录的 RRSIG ，使用 DNSKEY 验证上一步 A 记录的 RRSIG 。</li>
+<li>向上级域请求 DS 记录和 DS 记录的 RRSIG ，然后使用 DS 记录验证上一步 DNSKEY 记录的 RRSIG 。</li>
 <li>向更上一级域请求 DNSKEY 和对应的 RRSIG ，然后使用 DNSKEY 验证上一步 DS 记录的 RRSIG 。</li>
 <li>重复步骤 5 和 步骤 6 ，验证一系列域的 DNSKEY 和 DS 记录的 RRSIG 。</li>
 <li>到达根域后，由于根域的 DNSKEY 已经配置在服务中，所以整个查询链都是生效的。</li>
 </ol>
-<p>可以看到，在这个过程中， DS 用于对 DNSKEY 的认证， RRSIG 用于对查询记录的认证， DNSKEY 是用于解密 RRSIG 的公钥， dnssec 的信任链机制类似于 SSL 的 CA ，因为根域的密钥已经默认配置，所以需要通过逐级信任 DS 记录以构建信任链，三种记录协作完成 dnssec 的验证。</p>
+<p>可以看到，在这个过程中， DS 用于对 DNSKEY 的认证， RRSIG 用于对查询记录的认证， DNSKEY 是用于解密 RRSIG 的公钥， dnssec 的信任链机制类似于 SSL 的 CA ，因为根域的密钥已经默认配置，所以需要通过逐级信任 DS 记录来构建整条信任链，三种记录协作完成 dnssec 的验证。</p>
 <p>在 named.conf 中，使用以下关键字配置 dnssec ：</p>
 <ul>
 <li>dnssec-enable 定义了是否对本地权威域启用 dnssec 。</li>
@@ -628,7 +628,7 @@ options <span class="o">{</span>
 <li>managed-keys-directory 用于指定迭代过程中，可信任 dnssec 密钥存储目录。</li>
 </ul>
 <p>如果要对本地的权威域需要开启 dnssec ，则需要使用配套工具生成密钥对，然后对 zone file 进行数字签名，并修改对应的配置文件。</p>
-<p>在面向公众的 DNS 服务，可以选择开启 dnssec ，作为内网 DNS 服务则没有必要开启 dnssec 。</p>
+<p>在面向公众的 DNS 服务，可以选择开启 dnssec ，而作为内网 DNS 服务时则没有必要开启 dnssec 。</p>
 <h3 id="使用rndc管理bind">使用rndc管理BIND</h3>
 <p>rndc 是 BIND 内置的管理工具，可以在本地和远端对运行中的 BIND 进行操作和管理。</p>
 <p>bind 还提供了一个管理工具 rndc ，来对 named 进行操作和管理，这个工具的特点是可以在 named 运行过程中动态修改部分配置。它通过 TCP 连接和 named 进行交互，这个工具可以在本地和远端使用，通过 TCP 连接到 953 端口和 BIND 服务进行通信。</p>

@@ -168,9 +168,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 01 Mar 2022 16:36:52 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Mar 2022 16:07:47 &#43;0000"
                     class="no-wrap">
-                    Tue, 01 Mar 2022 16:36:52 &#43;0000</relative-time>
+                    Sat, 12 Mar 2022 16:07:47 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -194,7 +194,7 @@
                         <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
                       </svg>
                     </summary>
-                          2847 Words
+                          2858 Words
                     
 
                   </div>
@@ -429,40 +429,40 @@ $ cat /etc/supervisord.conf
 <span class="c1"># 可以看到具体的配置范例</span>
 ...
 <span class="p">;</span><span class="o">[</span>program:theprogramname<span class="o">]</span>
-<span class="p">;</span><span class="nv">command</span><span class="o">=</span>/bin/cat              <span class="p">;</span> the program <span class="o">(</span>relative uses PATH, can take args<span class="o">)</span>
-<span class="p">;</span><span class="nv">process_name</span><span class="o">=</span>%<span class="o">(</span>program_name<span class="o">)</span>s <span class="p">;</span> process_name expr <span class="o">(</span>default %<span class="o">(</span>program_name<span class="o">)</span>s<span class="o">)</span>
-<span class="p">;</span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>                    <span class="p">;</span> number of processes copies to start <span class="o">(</span>def 1<span class="o">)</span>
-<span class="p">;</span><span class="nv">directory</span><span class="o">=</span>/tmp                <span class="p">;</span> directory to cwd to before <span class="nb">exec</span> <span class="o">(</span>def no cwd<span class="o">)</span>
-<span class="p">;</span><span class="nv">umask</span><span class="o">=</span><span class="m">022</span>                     <span class="p">;</span> <span class="nb">umask</span> <span class="k">for</span> process <span class="o">(</span>default None<span class="o">)</span>
-<span class="p">;</span><span class="nv">priority</span><span class="o">=</span><span class="m">999</span>                  <span class="p">;</span> the relative start priority <span class="o">(</span>default 999<span class="o">)</span>
-<span class="p">;</span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>                <span class="p">;</span> start at supervisord start <span class="o">(</span>default: <span class="nb">true</span><span class="o">)</span>
-<span class="p">;</span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>              <span class="p">;</span> retstart at unexpected quit <span class="o">(</span>default: <span class="nb">true</span><span class="o">)</span>
-<span class="p">;</span><span class="nv">startsecs</span><span class="o">=</span><span class="m">10</span>                  <span class="p">;</span> number of secs prog must stay running <span class="o">(</span>def. 1<span class="o">)</span>
-<span class="p">;</span><span class="nv">startretries</span><span class="o">=</span><span class="m">3</span>                <span class="p">;</span> max of serial start failures <span class="o">(</span>default 3<span class="o">)</span>
-<span class="p">;</span><span class="nv">exitcodes</span><span class="o">=</span>0,2                 <span class="p">;</span> <span class="s1">&#39;expected&#39;</span> <span class="nb">exit</span> codes <span class="k">for</span> process <span class="o">(</span>default 0,2<span class="o">)</span>
-<span class="p">;</span><span class="nv">stopsignal</span><span class="o">=</span>QUIT               <span class="p">;</span> signal used to <span class="nb">kill</span> process <span class="o">(</span>default TERM<span class="o">)</span>
-<span class="p">;</span><span class="nv">stopwaitsecs</span><span class="o">=</span><span class="m">10</span>               <span class="p">;</span> max num secs to <span class="nb">wait</span> b4 SIGKILL <span class="o">(</span>default 10<span class="o">)</span>
-<span class="p">;</span><span class="nv">user</span><span class="o">=</span>chrism                   <span class="p">;</span> setuid to this UNIX account to run the program
-<span class="p">;</span><span class="nv">redirect_stderr</span><span class="o">=</span><span class="nb">true</span>          <span class="p">;</span> redirect proc stderr to stdout <span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
-<span class="p">;</span><span class="nv">stdout_logfile</span><span class="o">=</span>/a/path        <span class="p">;</span> stdout log path, NONE <span class="k">for</span> none<span class="p">;</span> default AUTO
-<span class="p">;</span><span class="nv">stdout_logfile_maxbytes</span><span class="o">=</span>1MB   <span class="p">;</span> max logfile bytes b4 rotation <span class="o">(</span>default 50MB<span class="o">)</span>
-<span class="p">;</span><span class="nv">stdout_logfile_backups</span><span class="o">=</span><span class="m">10</span>     <span class="p">;</span> max of stdout logfile backups <span class="o">(</span>default 10<span class="o">)</span>
-<span class="p">;</span><span class="nv">stdout_capture_maxbytes</span><span class="o">=</span>1MB   <span class="p">;</span> number of bytes in <span class="s1">&#39;capturemode&#39;</span> <span class="o">(</span>default 0<span class="o">)</span>
-<span class="p">;</span><span class="nv">stdout_events_enabled</span><span class="o">=</span><span class="nb">false</span>   <span class="p">;</span> emit events on stdout writes <span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
-<span class="p">;</span><span class="nv">stderr_logfile</span><span class="o">=</span>/a/path        <span class="p">;</span> stderr log path, NONE <span class="k">for</span> none<span class="p">;</span> default AUTO
-<span class="p">;</span><span class="nv">stderr_logfile_maxbytes</span><span class="o">=</span>1MB   <span class="p">;</span> max logfile bytes b4 rotation <span class="o">(</span>default 50MB<span class="o">)</span>
-<span class="p">;</span><span class="nv">stderr_logfile_backups</span><span class="o">=</span><span class="m">10</span>     <span class="p">;</span> max of stderr logfile backups <span class="o">(</span>default 10<span class="o">)</span>
-<span class="p">;</span><span class="nv">stderr_capture_maxbytes</span><span class="o">=</span>1MB   <span class="p">;</span> number of bytes in <span class="s1">&#39;capturemode&#39;</span> <span class="o">(</span>default 0<span class="o">)</span>
-<span class="p">;</span><span class="nv">stderr_events_enabled</span><span class="o">=</span><span class="nb">false</span>   <span class="p">;</span> emit events on stderr writes <span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
-<span class="p">;</span><span class="nv">environment</span><span class="o">=</span><span class="nv">A</span><span class="o">=</span>1,B<span class="o">=</span><span class="m">2</span>           <span class="p">;</span> process environment additions <span class="o">(</span>def no adds<span class="o">)</span>
-<span class="p">;</span><span class="nv">serverurl</span><span class="o">=</span>AUTO                <span class="p">;</span> override serverurl computation <span class="o">(</span>childutils<span class="o">)</span>
+<span class="p">;</span><span class="nv">command</span><span class="o">=</span>/bin/cat                        <span class="p">;</span> the program <span class="o">(</span>relative uses PATH, can take args<span class="o">)</span>
+<span class="p">;</span><span class="nv">process_name</span><span class="o">=</span>%<span class="o">(</span>program_name<span class="o">)</span>s           <span class="p">;</span> process_name expr <span class="o">(</span>default %<span class="o">(</span>program_name<span class="o">)</span>s<span class="o">)</span>
+<span class="p">;</span><span class="nv">numprocs</span><span class="o">=</span><span class="m">1</span>                              <span class="p">;</span> number of processes copies to start <span class="o">(</span>def 1<span class="o">)</span>
+<span class="p">;</span><span class="nv">directory</span><span class="o">=</span>/tmp                          <span class="p">;</span> directory to cwd to before <span class="nb">exec</span> <span class="o">(</span>def no cwd<span class="o">)</span>
+<span class="p">;</span><span class="nv">umask</span><span class="o">=</span><span class="m">022</span>                               <span class="p">;</span> <span class="nb">umask</span> <span class="k">for</span> process <span class="o">(</span>default None<span class="o">)</span>
+<span class="p">;</span><span class="nv">priority</span><span class="o">=</span><span class="m">999</span>                            <span class="p">;</span> the relative start priority <span class="o">(</span>default 999<span class="o">)</span>
+<span class="p">;</span><span class="nv">autostart</span><span class="o">=</span><span class="nb">true</span>                          <span class="p">;</span> start at supervisord start <span class="o">(</span>default: <span class="nb">true</span><span class="o">)</span>
+<span class="p">;</span><span class="nv">autorestart</span><span class="o">=</span><span class="nb">true</span>                        <span class="p">;</span> retstart at unexpected quit <span class="o">(</span>default: <span class="nb">true</span><span class="o">)</span>
+<span class="p">;</span><span class="nv">startsecs</span><span class="o">=</span><span class="m">10</span>                            <span class="p">;</span> number of secs prog must stay running <span class="o">(</span>def. 1<span class="o">)</span>
+<span class="p">;</span><span class="nv">startretries</span><span class="o">=</span><span class="m">3</span>                          <span class="p">;</span> max of serial start failures <span class="o">(</span>default 3<span class="o">)</span>
+<span class="p">;</span><span class="nv">exitcodes</span><span class="o">=</span>0,2                           <span class="p">;</span> <span class="s1">&#39;expected&#39;</span> <span class="nb">exit</span> codes <span class="k">for</span> process <span class="o">(</span>default 0,2<span class="o">)</span>
+<span class="p">;</span><span class="nv">stopsignal</span><span class="o">=</span>QUIT                         <span class="p">;</span> signal used to <span class="nb">kill</span> process <span class="o">(</span>default TERM<span class="o">)</span>
+<span class="p">;</span><span class="nv">stopwaitsecs</span><span class="o">=</span><span class="m">10</span>                         <span class="p">;</span> max num secs to <span class="nb">wait</span> b4 SIGKILL <span class="o">(</span>default 10<span class="o">)</span>
+<span class="p">;</span><span class="nv">user</span><span class="o">=</span>chrism                             <span class="p">;</span> setuid to this UNIX account to run the program
+<span class="p">;</span><span class="nv">redirect_stderr</span><span class="o">=</span><span class="nb">true</span>                    <span class="p">;</span> redirect proc stderr to stdout <span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
+<span class="p">;</span><span class="nv">stdout_logfile</span><span class="o">=</span>/a/path                  <span class="p">;</span> stdout log path, NONE <span class="k">for</span> none<span class="p">;</span> default AUTO
+<span class="p">;</span><span class="nv">stdout_logfile_maxbytes</span><span class="o">=</span>1MB             <span class="p">;</span> max logfile bytes b4 rotation <span class="o">(</span>default 50MB<span class="o">)</span>
+<span class="p">;</span><span class="nv">stdout_logfile_backups</span><span class="o">=</span><span class="m">10</span>               <span class="p">;</span> max of stdout logfile backups <span class="o">(</span>default 10<span class="o">)</span>
+<span class="p">;</span><span class="nv">stdout_capture_maxbytes</span><span class="o">=</span>1MB             <span class="p">;</span> number of bytes in <span class="s1">&#39;capturemode&#39;</span> <span class="o">(</span>default 0<span class="o">)</span>
+<span class="p">;</span><span class="nv">stdout_events_enabled</span><span class="o">=</span><span class="nb">false</span>             <span class="p">;</span> emit events on stdout writes <span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
+<span class="p">;</span><span class="nv">stderr_logfile</span><span class="o">=</span>/a/path                  <span class="p">;</span> stderr log path, NONE <span class="k">for</span> none<span class="p">;</span> default AUTO
+<span class="p">;</span><span class="nv">stderr_logfile_maxbytes</span><span class="o">=</span>1MB             <span class="p">;</span> max logfile bytes b4 rotation <span class="o">(</span>default 50MB<span class="o">)</span>
+<span class="p">;</span><span class="nv">stderr_logfile_backups</span><span class="o">=</span><span class="m">10</span>               <span class="p">;</span> max of stderr logfile backups <span class="o">(</span>default 10<span class="o">)</span>
+<span class="p">;</span><span class="nv">stderr_capture_maxbytes</span><span class="o">=</span>1MB             <span class="p">;</span> number of bytes in <span class="s1">&#39;capturemode&#39;</span> <span class="o">(</span>default 0<span class="o">)</span>
+<span class="p">;</span><span class="nv">stderr_events_enabled</span><span class="o">=</span><span class="nb">false</span>             <span class="p">;</span> emit events on stderr writes <span class="o">(</span>default <span class="nb">false</span><span class="o">)</span>
+<span class="p">;</span><span class="nv">environment</span><span class="o">=</span><span class="nv">A</span><span class="o">=</span>1,B<span class="o">=</span><span class="m">2</span>                     <span class="p">;</span> process environment additions <span class="o">(</span>def no adds<span class="o">)</span>
+<span class="p">;</span><span class="nv">serverurl</span><span class="o">=</span>AUTO                          <span class="p">;</span> override serverurl computation <span class="o">(</span>childutils<span class="o">)</span>
 ...
 </code></pre></div><p>以下是其中非常重要的几个配置项：</p>
 <ul>
 <li>autorestart ：决定进程状态异常后是否会自动重启，这是最重要的值守功能，一般需要开启。</li>
 <li>autostart ：决定进程是否跟随 supervisord 启动，一般需要开启，这样启动 supervisord 服务就相当于直接启动我们自定义的程序。</li>
-<li>environment ：进程的环境变量配置，如果是 python 进程，一般用于配置项目的虚拟环境。</li>
-<li>command ：启动时的具体命令。</li>
+<li>environment ：进程的环境变量配置。</li>
+<li>command ：启动时的具体命令，如果是 python 进程，可以使用项目虚拟环境的绝对路径来指明对应的解释器。</li>
 <li>directory ：程序的具体工作目录。</li>
 </ul>
 <p>在安装 supervisor 后，只要写入对应的 ini 文件到 <code>/etc/supervisord.d/</code> 目录中，就可以使用 <code>supervisorctl</code> 启动 ini 文件定义的 program ，或者在定义文件后直接重启整个 supervisord 服务 ，同样可以启动我们需要的 program 。</p>
