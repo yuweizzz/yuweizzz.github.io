@@ -35,6 +35,15 @@
     </item>
     
     <item>
+      <title>Django 知识笔记</title>
+      <link>https://yuweizzz.github.io/post/knowledge_about_django/</link>
+      <pubDate>Sat, 15 Jan 2022 23:22:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/knowledge_about_django/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些 Django 常用的项目组件。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Python 知识笔记</title>
       <link>https://yuweizzz.github.io/post/knowledge_about_python/</link>
       <pubDate>Tue, 04 Jan 2022 22:22:45 +0000</pubDate>

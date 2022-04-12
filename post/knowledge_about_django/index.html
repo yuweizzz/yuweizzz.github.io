@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://yuweizzz.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
+    <title>Django 知识笔记 - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="这篇笔记用来记录一些 Django 常用的项目组件。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/knowledge_about_django/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Django 知识笔记 - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="这篇笔记用来记录一些 Django 常用的项目组件。
+" />
+<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://yuweizzz.github.io">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Django 知识笔记 - Wei&#39;s blog">
+<meta property="og:description"
+  content="这篇笔记用来记录一些 Django 常用的项目组件。
+" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_django/" />
+<meta property="og:site_name" content="Django 知识笔记" />
+<meta property="og:image"
+  content="https://yuweizzz.github.io">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2022-01-15 23:22:45 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174929827-1"></script>
+<script>
+  if (navigator.doNotTrack !== '1') {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-174929827-1');
+  }
+</script>
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://yuweizzz.github.io">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://yuweizzz.github.io">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<script src="https://unpkg.com/@popperjs/core@2"></script>
+<script src="https://unpkg.com/tippy.js@6"></script>
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                  <img class=" avatar-user"
+                    src="https://yuweizzz.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://yuweizzz.github.io">Wei</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://yuweizzz.github.io/post/knowledge_about_django/">Django 知识笔记</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Sat, 15 Jan 2022 23:22:45 &#43;0000"
+                    class="no-wrap">
+                    Sat, 15 Jan 2022 23:22:45 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Tue, 12 Apr 2022 13:51:10 &#43;0000"
+                    class="no-wrap">
+                    Tue, 12 Apr 2022 13:51:10 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" class="btn btn-octicon m-0 mr-2 p-2" aria-haspopup="menu" aria-label="Table of Contents" role="button">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                          1936 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/python">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Python
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/django">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Django
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5">
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些 Django 常用的项目组件。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
+                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+                                  <span class="o">(</span>   <span class="o">)</span>
+                              <span class="o">(</span>@@@@<span class="o">)</span>
+                           <span class="o">(</span>    <span class="o">)</span>
+
+                         <span class="o">(</span>@@@<span class="o">)</span>
+                       <span class="o">====</span>        ________                ___________
+                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+
+</code></pre></div><h2 id="创建-django-项目">创建 Django 项目</h2>
+<p>在虚拟环境中创建 Django 项目。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 激活虚拟环境</span>
+$ <span class="nb">source</span> project/bin/activate
+
+<span class="c1"># 安装 Django 3.2 </span>
+<span class="o">(</span>project<span class="o">)</span> $ pip install django
+
+<span class="c1"># 初始化 Django 项目</span>
+<span class="c1"># django-admin startproject name [directory]</span>
+<span class="o">(</span>project<span class="o">)</span> $ django-admin startproject new_project
+
+<span class="c1"># 在项目中添加 app</span>
+<span class="o">(</span>project<span class="o">)</span> $ django-admin startapp new_app
+
+<span class="c1"># 测试项目</span>
+<span class="o">(</span>project<span class="o">)</span> $ python manage.py runserver
+</code></pre></div><p>不带 directory 的初始化会在当前工作目录创建新的项目目录，然后你可以在其中找到 <code>manage.py</code> 和保存项目配置文件的目录。</p>
+<h2 id="使用-mysql-做后端存储">使用 MySQL 做后端存储</h2>
+<p>Django 默认的后端存储是 sqlite3 ，可以用更强大的 MySQL 或者 PostgreSQL 代替。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装依赖</span>
+<span class="o">(</span>project<span class="o">)</span> $ pip install mysqlclient
+
+<span class="c1"># 安装后需要将以下内容写入到 settings.py 中</span>
+<span class="o">(</span>project<span class="o">)</span> $ cat settings.py
+...
+<span class="nv">DATABASES</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="s1">&#39;default&#39;</span>: <span class="o">{</span>
+        <span class="s1">&#39;ENGINE&#39;</span>: <span class="s1">&#39;django.db.backends.mysql&#39;</span>,
+        <span class="s1">&#39;NAME&#39;</span>: <span class="s1">&#39;database_name&#39;</span>,
+        <span class="s1">&#39;HOST&#39;</span>: <span class="s1">&#39;127.0.0.1&#39;</span>,
+        <span class="s1">&#39;PORT&#39;</span>: <span class="s1">&#39;3306&#39;</span>,
+        <span class="s1">&#39;USER&#39;</span>: <span class="s1">&#39;root&#39;</span>,
+        <span class="s1">&#39;PASSWORD&#39;</span>: <span class="s1">&#39;mysecret&#39;</span>,
+        <span class="s1">&#39;ATOMIC_REQUESTS&#39;</span>: True,
+    <span class="o">}</span>
+<span class="o">}</span>
+...
+
+<span class="c1"># Django 不会自动生成 database ，需要手动创建数据库</span>
+mysql &gt; CREATE DATABASE database_name
+     -&gt; DEFAULT CHARACTER SET utf8  <span class="c1"># 尽量把字符集设置为 utf8 ，这样可以将中文字符存入数据</span>
+     -&gt; DEFAULT COLLATE utf8_general_ci<span class="p">;</span>
+
+<span class="c1"># 在 app 中定义 model 后，需要执行迁移命令生成对应的表</span>
+<span class="o">(</span>project<span class="o">)</span> $ python manage.py makemigrations
+<span class="o">(</span>project<span class="o">)</span> $ python manage.py migrate
+</code></pre></div><p>如果因为已有数据库的字符集不是 utf8 而导致的中文字符乱码，可以这样做：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看表的详细信息</span>
+mysql &gt; SHOW CREATE TABLE table_name<span class="p">;</span>
+
+<span class="c1"># 修改 database 的字符集，但这对已有字段不起效果</span>
+mysql &gt; ALTER DATABASE db_name DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>
+
+<span class="c1"># 修改所有字段的字符集，可以即时生效</span>
+mysql &gt; ALTER TABLE table_name CONVERT TO CHARACTER SET utf8 COLLATE utf8_general_ci<span class="p">;</span>
+</code></pre></div><h2 id="使用-redis-做缓存引擎">使用 Redis 做缓存引擎</h2>
+<p>低版本的 Django 原生支持 Memcached 作为缓存引擎，我们可以额外安装扩展来支持 Redis ，而 Django 4.0 已经原生支持 Redis 作为缓存引擎。</p>
+<p>可选的 Redis 扩展有很多，比较推荐使用 django-redis 和 python-redis-lock 的组合应用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 只使用 django-redis</span>
+<span class="o">(</span>project<span class="o">)</span> $ pip install django-redis
+
+<span class="c1"># 安装后需要将以下内容写入到 settings.py 中</span>
+<span class="o">(</span>project<span class="o">)</span> $ cat settings.py
+...
+<span class="nv">CACHES</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="s2">&#34;default&#34;</span>: <span class="o">{</span>
+        <span class="s2">&#34;BACKEND&#34;</span>: <span class="s2">&#34;django_redis.cache.RedisCache&#34;</span>,
+        <span class="s2">&#34;LOCATION&#34;</span>: <span class="s2">&#34;redis://127.0.0.1:6379/1&#34;</span>,
+        <span class="s2">&#34;OPTIONS&#34;</span>: <span class="o">{</span>
+            <span class="s2">&#34;CLIENT_CLASS&#34;</span>: <span class="s2">&#34;django_redis.client.DefaultClient&#34;</span>,
+            <span class="s2">&#34;PASSWORD&#34;</span>: <span class="s2">&#34;mysecret&#34;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+...
+
+<span class="c1"># 使用 django-redis 和 python-redis-lock 的组合</span>
+<span class="o">(</span>project<span class="o">)</span> $ pip install <span class="s2">&#34;python-redis-lock[django]&#34;</span>
+<span class="c1"># 这是 python-redis-lock 推荐使用的方法，所有扩展都会自动安装</span>
+
+<span class="c1"># 安装后需要将以下内容写入到 settings.py 中</span>
+<span class="o">(</span>project<span class="o">)</span> $ cat settings.py
+...
+<span class="nv">CACHES</span> <span class="o">=</span> <span class="o">{</span>
+    <span class="s1">&#39;default&#39;</span>: <span class="o">{</span>
+        <span class="s1">&#39;BACKEND&#39;</span>: <span class="s1">&#39;redis_lock.django_cache.RedisCache&#39;</span>,
+        <span class="s1">&#39;LOCATION&#39;</span>: <span class="s1">&#39;redis://127.0.0.1:6379/1&#39;</span>,
+        <span class="s1">&#39;OPTIONS&#39;</span>: <span class="o">{</span>
+            <span class="s1">&#39;CLIENT_CLASS&#39;</span>: <span class="s1">&#39;django_redis.client.DefaultClient&#39;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+...
+
+<span class="c1"># 原生的 django-redis 没有 lock 函数，使用 python-redis-lock 可以较好应对并发的问题</span>
+<span class="o">(</span>project<span class="o">)</span> $ cat cache_test.py
+from django.core.cache import cache
+
+def <span class="k">function</span><span class="o">()</span>:
+    <span class="nv">val</span> <span class="o">=</span> cache.get<span class="o">(</span>key<span class="o">)</span>
+    <span class="k">if</span> not val:
+        with cache.lock<span class="o">(</span>key<span class="o">)</span>:
+            <span class="nv">val</span> <span class="o">=</span> cache.get<span class="o">(</span>key<span class="o">)</span>
+            <span class="k">if</span> not val:
+                <span class="c1"># DO EXPENSIVE WORK</span>
+                <span class="nv">val</span> <span class="o">=</span> ...
+                cache.set<span class="o">(</span>key, value<span class="o">)</span>
+    <span class="k">return</span> val
+</code></pre></div><h2 id="使用-celery-做任务队列">使用 Celery 做任务队列</h2>
+<p>Celery 是分布式任务队列，可以非常方便地实现任务调度。</p>
+<p>Celery 通过消息机制进行通信，生产者将消息发布到 Broker 中， Worker 会消费 Broker 中的消息，执行具体的任务内容， Celery 可以有多个 Worker 和 Broker ，实现高可用和横向扩展。</p>
+<p>在已有的 Djnago 项目中使用 Celery 只需要简单添加修改几个文件即可。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 在 Django 项目中配置 Celery</span>
+
+<span class="c1"># 假设已有项目名为 project ，那么应该在 project 配置文件的目录中新增这个文件</span>
+<span class="c1"># project/project/celery.py</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">Celery</span>
+
+<span class="c1"># Set the default Django settings module for the &#39;celery&#39; program.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;DJANGO_SETTINGS_MODULE&#39;</span><span class="p">,</span> <span class="s1">&#39;project.settings&#39;</span><span class="p">)</span>
+
+<span class="c1"># Enable running a worker with superuser privileges, don&#39;t use it in production.</span>
+<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s1">&#39;C_FORCE_ROOT&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;True&#39;</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="s1">&#39;project&#39;</span><span class="p">)</span>
+
+<span class="c1"># Using a string here means the worker doesn&#39;t have to serialize</span>
+<span class="c1"># the configuration object to child processes.</span>
+<span class="c1"># - namespace=&#39;CELERY&#39; means all celery-related configuration keys</span>
+<span class="c1">#   should have a `CELERY_` prefix.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">config_from_object</span><span class="p">(</span><span class="s1">&#39;django.conf:settings&#39;</span><span class="p">,</span> <span class="n">namespace</span><span class="o">=</span><span class="s1">&#39;CELERY&#39;</span><span class="p">)</span>
+
+<span class="c1"># Set timezone</span>
+<span class="n">app</span><span class="o">.</span><span class="n">conf</span><span class="o">.</span><span class="n">timezone</span> <span class="o">=</span> <span class="s1">&#39;UTC&#39;</span>
+
+<span class="c1"># Load task modules from all registered Django apps.</span>
+<span class="n">app</span><span class="o">.</span><span class="n">autodiscover_tasks</span><span class="p">()</span>
+
+
+<span class="c1"># 在 Django 项目启动时，同时加载完成配置的 Celery 实例</span>
+<span class="c1"># project/project/__init__.py</span>
+<span class="c1"># This will make sure the app is always imported when</span>
+<span class="c1"># Django starts so that shared_task will use this app.</span>
+<span class="kn">from</span> <span class="nn">.celery</span> <span class="kn">import</span> <span class="n">app</span> <span class="k">as</span> <span class="n">celery_app</span>
+
+<span class="n">__all__</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;celery_app&#39;</span><span class="p">,)</span>
+
+
+<span class="c1"># 使用指定 namespace 的 config_from_object 从 Django settings 加载 Celery 配置</span>
+<span class="c1"># 这里使用 Redis 作为 Broker 和任务执行结果的保存后端，实际可以根据情况使用不同的后端</span>
+<span class="c1"># part of project/project/settings.py</span>
+<span class="n">CELERY_BROKER_URL</span> <span class="o">=</span> <span class="s1">&#39;redis://127.0.0.1:6379/2&#39;</span>
+<span class="n">CELERY_RESULT_BACKEND</span> <span class="o">=</span> <span class="s1">&#39;redis://127.0.0.1:6379/3&#39;</span>
+<span class="n">CELERY_TASK_SERIALIZER</span> <span class="o">=</span> <span class="s1">&#39;pickle&#39;</span>
+<span class="n">CELERY_RESULT_SERIALIZER</span> <span class="o">=</span> <span class="s1">&#39;pickle&#39;</span>
+<span class="n">CELERY_ACCEPT_CONTENT</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;json&#39;</span><span class="p">,</span> <span class="s1">&#39;pickle&#39;</span><span class="p">]</span>
+
+
+<span class="c1"># 在具体 Django app 中添加任务实体，它会由 autodiscover_tasks 自动发现</span>
+<span class="c1"># project/appA/tasks.py</span>
+<span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">shared_task</span>
+
+<span class="nd">@shared_task</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</code></pre></div><p>可以看到大概的配置步骤如下：</p>
+<ol>
+<li>创建 Celery 实例。</li>
+<li>在设置 Django 项目的环境变量完成后，从它们之中获取 Celery 实例需要的配置。</li>
+<li>执行自动任务发现，获取到项目中的定义完成的具体任务。</li>
+</ol>
+<p>除了必要的 Broker ，你还需要手动启动 Worker 。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 启动输出 INFO 级别日志的 worker </span>
+<span class="o">(</span>project<span class="o">)</span> $ celery -A project worker -l INFO
+</code></pre></div><h3 id="celery-的定时任务">Celery 的定时任务</h3>
+<p>Celery 提供了 beat 来实现任务的定时调度，我们可以将 shared_task 注册到 Celery 实例的 beat_schedule 中，它就会作为定时任务被自动调度执行。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat project/project/celery.py
+...
+<span class="c1"># Register period task</span>
+app.conf.beat_schedule <span class="o">=</span> <span class="o">{</span>
+    <span class="s1">&#39;add-every-30-seconds&#39;</span>: <span class="o">{</span>
+        <span class="s1">&#39;task&#39;</span>: <span class="s1">&#39;appA.tasks.add&#39;</span>,
+        <span class="s1">&#39;schedule&#39;</span>: 30.0,
+        <span class="s1">&#39;args&#39;</span>: <span class="o">(</span>1, 2<span class="o">)</span>,
+    <span class="o">}</span>,
+<span class="o">}</span>
+...
+<span class="c1"># 实际的 schedule 除了简单的定时时长，还可以使用 celery 提供的 crontab 和 solar 调度器来实现不同的调度周期</span>
+</code></pre></div><p>使用 beat 会产生 celerybeat-schedule 文件，它会存储任务的最后运行时间，我们需要在启动 Worker 的同时额外启动 beat 进程。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 启动 beat 进程</span>
+<span class="o">(</span>project<span class="o">)</span> $ celery -A project beat
+
+<span class="c1"># 可以在启动 worker 时将 beat 嵌入 worker ，应用于测试场景</span>
+<span class="o">(</span>project<span class="o">)</span> $ celery -A project worker -B -l INFO
+
+<span class="c1"># -s 可以指定 celerybeat-schedule 的写入位置</span>
+<span class="o">(</span>project<span class="o">)</span> $ celery -A project beat -s /var/run/celerybeat-schedule
+</code></pre></div><h3 id="定义-celery-工作流">定义 Celery 工作流</h3>
+<p>Celery 提供了一些任务编排的基本函数，我们可以通过这些函数定义工作流。</p>
+<p>首先需要先对具体的 shared_task 任务函数进行签名，然后对签名使用编排函数构建工作流，比较常用的有 chain 任务链， group 并行任务组和 chord 回调。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># project/appA/tasks.py</span>
+<span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">shared_task</span>
+
+<span class="nd">@shared_task</span>
+<span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+
+<span class="c1"># 基本的函数签名</span>
+<span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">signature</span>
+<span class="n">signature_instance</span> <span class="o">=</span> <span class="n">signature</span><span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="c1"># 函数签名简写</span>
+<span class="n">signature_instance</span> <span class="o">=</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># group 用来并行执行任务，它的参数是一组函数签名组成的列表</span>
+<span class="n">signature_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)]</span>
+<span class="n">group_instance</span> <span class="o">=</span> <span class="n">group</span><span class="p">(</span><span class="n">signature_list</span><span class="p">)</span>
+<span class="c1"># 直接调用 group 实例就会调用整个任务组</span>
+<span class="n">group_instance</span><span class="p">()</span>
+
+<span class="c1"># chain 用来描述任务链，上一次任务结果会以参数形式传递到下一任务中</span>
+<span class="n">chain_instance</span> <span class="o">=</span> <span class="p">(</span><span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">|</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span> <span class="o">|</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="c1"># 直接调用 chain 实例会自动调度任务，如果中间有失败任务，整个工作链会中断</span>
+<span class="n">chain_instance</span><span class="p">()</span>
+
+<span class="c1"># chord 用来执行回调，用于并行任务组完成后执行额外的任务</span>
+<span class="n">chord_instance</span> <span class="o">=</span> <span class="p">(</span><span class="n">group_instance</span> <span class="o">|</span> <span class="n">add</span><span class="o">.</span><span class="n">s</span><span class="p">())</span>
+<span class="c1"># 直接调用 chord 的实际结果类似于 chain</span>
+<span class="n">chord_instance</span><span class="p">()</span>
+</code></pre></div><h3 id="celery-的任务监控">Celery 的任务监控</h3>
+<p>使用 flower 可以对 Celery 队列运行情况提供 web 界面监控面板。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 flower</span>
+<span class="o">(</span>project<span class="o">)</span> $ pip install flower
+
+<span class="c1"># 需要先启动 Celery Workers</span>
+<span class="o">(</span>project<span class="o">)</span> $ celery -A project worker -l INFO
+
+<span class="c1"># 直接启动 flower</span>
+<span class="o">(</span>project<span class="o">)</span> $ flower -A project --address<span class="o">=</span>127.0.0.1 --port<span class="o">=</span><span class="m">5555</span>
+
+<span class="c1"># 通过 Celery 启动 flower</span>
+<span class="o">(</span>project<span class="o">)</span> $ celery -A project flower --address<span class="o">=</span>127.0.0.1 --port<span class="o">=</span><span class="m">5555</span>
+</code></pre></div></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script>
+ 
+ 
+ 
+ window.onload = function () {
+   const header = document.getElementById('post-header');
+   const headerHeight = header.offsetHeight;
+   
+   document.documentElement.style.scrollPaddingTop = headerHeight + 10 + "px";
+ }
+
+ const tocToggleButton = document.getElementById("toc-toggle");
+
+ const tippyInstance = tippy('#toc-toggle', {
+  trigger: 'click',
+  content: '<div id="table-of-contents">\u003cnav id=\u0022TableOfContents\u0022\u003e\n  \u003cul\u003e\n    \u003cli\u003e\u003ca href=\u0022#创建-django-项目\u0022\u003e创建 Django 项目\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用-mysql-做后端存储\u0022\u003e使用 MySQL 做后端存储\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用-redis-做缓存引擎\u0022\u003e使用 Redis 做缓存引擎\u003c\/a\u003e\u003c\/li\u003e\n    \u003cli\u003e\u003ca href=\u0022#使用-celery-做任务队列\u0022\u003e使用 Celery 做任务队列\u003c\/a\u003e\n      \u003cul\u003e\n        \u003cli\u003e\u003ca href=\u0022#celery-的定时任务\u0022\u003eCelery 的定时任务\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#定义-celery-工作流\u0022\u003e定义 Celery 工作流\u003c\/a\u003e\u003c\/li\u003e\n        \u003cli\u003e\u003ca href=\u0022#celery-的任务监控\u0022\u003eCelery 的任务监控\u003c\/a\u003e\u003c\/li\u003e\n      \u003c\/ul\u003e\n    \u003c\/li\u003e\n  \u003c\/ul\u003e\n\u003c\/nav\u003e</div>',
+  allowHTML: true,
+  placement: 'bottom-start',
+  interactive: true,
+  arrow: false,
+  maxWidth: "none",
+  onHide: function () { tocToggleButton.classList.remove("hover"); },
+  onShow: function () { tocToggleButton.classList.add("hover"); },
+  onShown: function () {
+    selectTableOfContentsOption();
+
+    if (window.hasSetupTableOfContentsListeners) {
+      return;
+    }
+
+    const tableOfContents = document.getElementById("table-of-contents");
+    tableOfContents.addEventListener('click', function () {
+      
+      tippyInstance[0].hide();
+    });
+
+    window.hasSetupTableOfContentsListeners = true;
+  }
+ });
+
+ function selectTableOfContentsOption () {
+   const optionSelectedClass = 'table-of-contents-option-selected';
+
+   const tableOfContentsOptions = document.querySelectorAll("#table-of-contents > nav > ul li");
+
+   for (const option of tableOfContentsOptions) {
+     
+
+     const [child] = option.children;
+     if (child.tagName.toLowerCase() !== 'a') {
+       continue;
+     }
+
+     if (window.location.href === child.href) {
+       child.classList.add(optionSelectedClass);
+     } else {
+       child.classList.remove(optionSelectedClass);
+     }
+   }
+ }
+
+ window.onhashchange = selectTableOfContentsOption;
+</script>
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+<script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
+
+
+</html>
