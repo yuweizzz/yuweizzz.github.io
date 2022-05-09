@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 18 Apr 2022 13:30:35 &#43;0000"
+                  Modified <relative-time datetime="Mon, 09 May 2022 14:56:19 &#43;0000"
                     class="no-wrap">
-                    Mon, 18 Apr 2022 13:30:35 &#43;0000</relative-time>
+                    Mon, 09 May 2022 14:56:19 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1828 Words
+                      2653 Words
                     
 
                   </div>
@@ -230,6 +230,15 @@
                         </path>
                       </svg>
                       PowerDNS
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/lua">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Lua
                     </a>
                     
                     
@@ -310,10 +319,113 @@ $ cat pdns.conf
 pdns-distributes-queries<span class="o">=</span>no
 <span class="nv">reuseport</span><span class="o">=</span>yes
 cpu-map<span class="o">=</span><span class="nv">0</span><span class="o">=</span><span class="m">0</span> <span class="nv">1</span><span class="o">=</span><span class="m">1</span> <span class="nv">2</span><span class="o">=</span><span class="m">2</span> <span class="nv">3</span><span class="o">=</span><span class="m">3</span>
+</code></pre></div><h2 id="recursor-server-的-lua-扩展">Recursor Server 的 lua 扩展</h2>
+<p>powerdns 可以通过 lua 扩展脚本在查询的基础上实现更复杂的功能。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 添加 lua 脚本扩展</span>
+$ cat pdns.conf
+lua-dns-script /path/to/lua/script
+
+<span class="c1"># 动态重载 lua 脚本</span>
+rec_control reload-lua-script
+</code></pre></div><p>powerdns 提供了多个查询钩子，可以在对应的查询阶段进行请求拦截并重写对应的回答动作，有以下几个钩子：</p>
+<ul>
+<li>ipfilter ：在查询数据包开始解析之前。</li>
+<li>gettag ：在查询数据包缓存之前。</li>
+<li>prerpz ：在应用响应策略之前。</li>
+<li>preresolve ：在查询逻辑工作开始之前。</li>
+<li>nodata, nxdomain ：在返回无数据结果和无域名结果之后。</li>
+<li>postresolve ：在查询逻辑工作结束之后。</li>
+<li>preoutquery ：在向权威服务器查询之前。</li>
+<li>policyEventFilter ：在响应策略命中之后。</li>
+</ul>
+<p>由于存在着多阶段的钩子函数，所以实现扩展功能只需要重写对应的函数即可。</p>
+<p>以下是一些参考用例，更多详细用法可以参考官方文档。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- 以无响应域名结果的钩子为例，来自官方实例</span>
+<span class="n">nxdomainsuffix</span> <span class="o">=</span> <span class="n">newDN</span><span class="p">(</span><span class="s2">&#34;com&#34;</span><span class="p">)</span>
+<span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+    <span class="n">pdnslog</span><span class="p">(</span><span class="s2">&#34;nxdomain called for: &#34;</span><span class="o">..</span><span class="n">dq.qname</span><span class="p">:</span><span class="n">toString</span><span class="p">())</span>
+    <span class="kr">if</span> <span class="n">dq.qname</span><span class="p">:</span><span class="n">isPartOf</span><span class="p">(</span><span class="n">nxdomainsuffix</span><span class="p">)</span> <span class="kr">then</span>
+        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">-- 修改为正常应答</span>
+        <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.CNAME</span><span class="p">,</span> <span class="s2">&#34;www.powerdns.org&#34;</span><span class="p">)</span>
+        <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.A</span><span class="p">,</span> <span class="s2">&#34;1.2.3.4&#34;</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="s2">&#34;www.powerdns.org&#34;</span><span class="p">)</span>
+        <span class="kr">return</span> <span class="kc">true</span>  <span class="c1">-- return true 说明这个钩子函数生效，如果 return false 则这个钩子函数不生效</span>
+    <span class="kr">end</span>
+    <span class="kr">return</span> <span class="kc">false</span>
+<span class="kr">end</span>
+
+<span class="c1">-- 以查询逻辑工作开始之前的钩子为例，由官方实例改写</span>
+<span class="n">blockset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
+<span class="n">blockset</span><span class="p">:</span><span class="n">add</span><span class="p">{</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">,</span> <span class="s2">&#34;powerdns.com&#34;</span><span class="p">}</span>  <span class="c1">-- 以列表形式添加多个域名</span>
+<span class="n">dropset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
+<span class="n">dropset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;pdns.org&#34;</span><span class="p">)</span>  <span class="c1">-- 添加单个域名</span>
+<span class="kr">function</span> <span class="nf">preresolve</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+    <span class="c1">-- 重写响应结果</span>
+    <span class="kr">if</span> <span class="n">blockset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span>
+        <span class="n">dq.variable</span> <span class="o">=</span> <span class="kc">true</span>      <span class="c1">-- disable packet cache in any case</span>
+        <span class="kr">if</span> <span class="n">dq.qtype</span> <span class="o">==</span> <span class="n">pdns.A</span> <span class="kr">then</span>
+            <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.A</span><span class="p">,</span> <span class="s2">&#34;1.2.3.4&#34;</span><span class="p">)</span>
+            <span class="kr">return</span> <span class="kc">true</span>
+        <span class="kr">end</span>
+    <span class="kr">end</span>
+    <span class="c1">-- 黑名单机制</span>
+    <span class="kr">if</span> <span class="n">dropset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span>
+        <span class="n">dq.appliedPolicy</span><span class="p">.</span><span class="n">policyKind</span> <span class="o">=</span> <span class="n">pdns.policykinds</span><span class="p">.</span><span class="n">Drop</span>  <span class="c1">-- 改写响应策略</span>
+        <span class="kr">return</span> <span class="kc">false</span> <span class="c1">-- recursor still needs to handle the policy, 后续由定义策略处理</span>
+    <span class="kr">end</span>
+
+    <span class="kr">return</span> <span class="kc">false</span>
+<span class="kr">end</span>
+
+<span class="c1">-- 比较复杂的重写行为，可以在自建权威服务器的基础上，配合递归转发配置实现 dns 的内网劫持</span>
+<span class="c1">-- 基本原理：查询请求由递归转发到自建域中，如果自建域不存在域名，再次转发到公网进行查询</span>
+<span class="n">rewriteset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
+<span class="n">rewriteset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">)</span>
+<span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+    <span class="kr">if</span> <span class="n">rewriteset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span> 
+        <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
+        <span class="c1">-- 独立的处理函数 udpQueryResponse 允许发起新的 udp 查询，具体用法可以参考官方文档</span>
+        <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;udpQueryResponse&#34;</span>
+        <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;gotdomaindetails&#34;</span>  <span class="c1">-- 处理函数的回调函数</span>
+        <span class="n">dq.udpQueryDest</span> <span class="o">=</span> <span class="n">newCA</span><span class="p">(</span><span class="s2">&#34;114.114.114.114:53&#34;</span><span class="p">)</span>
+        <span class="c1">-- build_udp_package 需要自行实现，可以参考 lua-resty-dns ，工作内容为构建 dns 查询请求包</span>
+        <span class="n">dq.udpQuery</span> <span class="o">=</span> <span class="n">build_udp_package</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">:</span><span class="n">toString</span><span class="p">(),</span> <span class="n">dh</span><span class="p">:</span><span class="n">getID</span><span class="p">(),</span> <span class="n">dh</span><span class="p">:</span><span class="n">getRD</span><span class="p">())</span>
+        <span class="kr">return</span> <span class="kc">true</span>
+    <span class="kr">end</span>
+    <span class="kr">return</span> <span class="kc">false</span>
+<span class="kr">end</span>
+
+<span class="kr">function</span> <span class="nf">gotdomaindetails</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+    <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
+    <span class="c1">-- 回调函数需要清除上一步的 dq 对象的赋值</span>
+    <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+    <span class="c1">-- parse_response 需要自行实现，可以参考 lua-resty-dns ，工作内容为解析 dns 响应包</span>
+    <span class="kd">local</span> <span class="n">answers</span> <span class="o">=</span> <span class="n">parse_response</span><span class="p">(</span><span class="n">dq.udpAnswer</span><span class="p">,</span> <span class="n">dh</span><span class="p">:</span><span class="n">getID</span><span class="p">())</span>
+    <span class="kr">if</span> <span class="ow">not</span> <span class="n">answers</span> <span class="kr">then</span>
+        <span class="kr">return</span> <span class="kc">false</span>
+    <span class="kr">end</span>
+    <span class="kr">if</span> <span class="n">answers.errcode</span> <span class="kr">then</span>
+        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="n">answers.errcode</span>
+        <span class="kr">return</span> <span class="kc">true</span>
+    <span class="kr">end</span>
+    <span class="kr">if</span> <span class="n">answers</span> <span class="kr">then</span>
+        <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ans</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span> <span class="kr">do</span>
+            <span class="n">dq</span><span class="p">:</span><span class="n">addRecord</span><span class="p">(</span><span class="n">ans.type</span><span class="p">,</span> <span class="n">ans.address</span> <span class="ow">or</span> <span class="n">ans.cname</span><span class="p">,</span> <span class="n">ans.class</span><span class="p">,</span> <span class="n">ans.ttl</span><span class="p">,</span> <span class="n">ans.name</span><span class="p">)</span>
+        <span class="kr">end</span>
+        <span class="c1">-- 修改为正常应答</span>
+        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="kr">return</span> <span class="kc">true</span>
+    <span class="kr">end</span>
+<span class="kr">end</span>
+
+<span class="c1">-- 自定义 metrics</span>
+<span class="n">new_metrics</span> <span class="o">=</span> <span class="n">getMetric</span><span class="p">(</span><span class="s2">&#34;metrics&#34;</span><span class="p">)</span>  <span class="c1">-- 新增 metrics</span>
+<span class="n">metrics</span><span class="p">:</span><span class="n">inc</span><span class="p">()</span>  <span class="c1">-- 增加 metrics 计数，更多 metrics 方法可以参考官方文档</span>
 </code></pre></div><h2 id="参考文档">参考文档</h2>
 <ul>
-<li><a href="https://doc.powerdns.com/authoritative/performance.html">https://doc.powerdns.com/authoritative/performance.html</a></li>
-<li><a href="https://docs.powerdns.com/recursor/performance.html">https://docs.powerdns.com/recursor/performance.html</a></li>
+<li><a href="https://doc.powerdns.com/authoritative/performance.html">powerdns authoritative performance</a></li>
+<li><a href="https://docs.powerdns.com/recursor/performance.html">powerdns recursor performance</a></li>
+<li><a href="https://docs.powerdns.com/recursor/lua-scripting/index.html">powerdns recursor lua scripting</a></li>
 </ul></article>
               </div>
             </div>
