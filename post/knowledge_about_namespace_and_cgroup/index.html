@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 14 May 2022 10:06:52 &#43;0000"
+                  Modified <relative-time datetime="Wed, 08 Jun 2022 14:58:29 &#43;0000"
                     class="no-wrap">
-                    Sat, 14 May 2022 10:06:52 &#43;0000</relative-time>
+                    Wed, 08 Jun 2022 14:58:29 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4120 Words
+                      4175 Words
                     
 
                   </div>
@@ -542,7 +542,8 @@ $ systemctl status toptest
    Memory: 0B <span class="o">(</span>limit: 10.0M<span class="o">)</span>
    CGroup: /test.slice/toptest.service
            └─2661 /usr/bin/top -b
-</code></pre></div><p>在现有的容器进行时中， docker 默认会在 <code>/sys/fs/cgroup</code> 的各个子系统中自行维护 cgroup ，但可以通过修改 cgroup driver 来托管到 systemd 中，而 containerd 则会默认在托管的 systemd cgroup 下创建子 cgroup ，交由 systemd 管控是更受推荐的做法。</p>
+</code></pre></div><p>现有常用的容器进行时中， docker 默认会在 <code>/sys/fs/cgroup</code> 的各个子系统中自行维护 cgroup ，但可以通过修改 cgroup driver 来托管到 systemd 中，而 containerd 也存在类似的驱动设置。</p>
+<p>在 docker 使用 <code>&quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;]</code> 改变 cgroup driver 的情况下，新运行的容器会作为 system.slice 中的 scope 运行，如果使用默认的 cgroupfs 的情况下，会如前面所述，在 <code>/sys/fs/cgroup</code> 的各个子系统中创建 cgroup ，而不是托管在 systemd 中。</p>
 <h2 id="结语">结语</h2>
 <p>总结来看，容器依赖内核功能来实现隔离能力， namespace 主要面向信息隔离， cgroup 主要面向资源隔离管控，在实际使用中，我们无需细致去关心它们的技术细节，但是了解它们的实现原理对后续学习是比较有帮助的。</p></article>
               </div>
