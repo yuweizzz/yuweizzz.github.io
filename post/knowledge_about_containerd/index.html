@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>由 BIOS 传统启动向 UEFI 启动迁移 - Wei&#39;s blog</title>
+    <title>符合容器化标准的容器运行时：Containerd - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/github.png'>
     
@@ -18,18 +18,18 @@
 
     
     <meta name="description"
-  content="将 MBR&#43;BIOS 启动的硬盘转换为 GPT&#43;UEFI 启动。
+  content="这篇笔记用来记录 Containerd 的相关知识。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/knowledge_about_containerd/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="由 BIOS 传统启动向 UEFI 启动迁移 - Wei&#39;s blog" />
+<meta name="twitter:title" content="符合容器化标准的容器运行时：Containerd - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="将 MBR&#43;BIOS 启动的硬盘转换为 GPT&#43;UEFI 启动。
+  content="这篇笔记用来记录 Containerd 的相关知识。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io" />
 <meta name="twitter:creator" content="" />
@@ -38,18 +38,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="由 BIOS 传统启动向 UEFI 启动迁移 - Wei&#39;s blog">
+<meta property="og:title" content="符合容器化标准的容器运行时：Containerd - Wei&#39;s blog">
 <meta property="og:description"
-  content="将 MBR&#43;BIOS 启动的硬盘转换为 GPT&#43;UEFI 启动。
+  content="这篇笔记用来记录 Containerd 的相关知识。
 " />
-<meta property="og:url" content="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/" />
-<meta property="og:site_name" content="由 BIOS 传统启动向 UEFI 启动迁移" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_containerd/" />
+<meta property="og:site_name" content="符合容器化标准的容器运行时：Containerd" />
 <meta property="og:image"
   content="https://yuweizzz.github.io">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2021-07-03 15:00:00 &#43;0000 UTC" />
+<meta property="article:published_time" content="2022-06-07 19:44:45 &#43;0000 UTC" />
 
 
 
@@ -157,12 +157,12 @@
                   <span class="author">
                     <a href="https://yuweizzz.github.io">Wei</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/">由 BIOS 传统启动向 UEFI 启动迁移</a></strong>
+                      href="https://yuweizzz.github.io/post/knowledge_about_containerd/">符合容器化标准的容器运行时：Containerd</a></strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Sat, 03 Jul 2021 15:00:00 &#43;0000"
+                  Created <relative-time datetime="Tue, 07 Jun 2022 19:44:45 &#43;0000"
                     class="no-wrap">
-                    Sat, 03 Jul 2021 15:00:00 &#43;0000</relative-time>
+                    Tue, 07 Jun 2022 19:44:45 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -198,29 +198,29 @@
                         </div>
                       </div>
                     </details-menu>
-                      2871 Words
+                      2053 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/linux">
+                    <a class="muted-link mr-3" href="/tags/container">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      Linux
+                      Container
                     </a>
                     
-                    <a class="muted-link mr-3" href="/tags/uefi">
+                    <a class="muted-link mr-3" href="/tags/containerd">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      UEFI
+                      Containerd
                     </a>
                     
                     
@@ -230,7 +230,7 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动。</p>
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录 Containerd 的相关知识。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
                                        <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
                                   <span class="o">(</span>   <span class="o">)</span>
@@ -250,206 +250,201 @@
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
 </code></pre></div><h2 id="前言">前言</h2>
-<p>现代设备中，采用 UEFI 启动的机器越来越多了，虽然在服务器中可以通过 CSM 来提供 Legacy BIOS 的支持，但是 UEFI 将会是未来使用的主流方式，所以有必要开始尝试使用 UEFI 启动。</p>
-<h2 id="将-mbr-转换为-gpt">将 MBR 转换为 GPT</h2>
-<p>和 UEFI 启动模式紧密配合的分区方式是 GPT ，原有的 MBR 分区方式存在一定的局限性。而 GPT 为了保持兼容，使用了 LBA 0 扇区作为 MBR 保护扇区，这也使得 MBR 分区方式迁移到 GPT 分区方式成为可能。</p>
-<p>将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动的第一步工作就是将 MBR 转换为 GPT 。</p>
-<p><strong>进行分区操作时，一定要小心谨慎，做好数据备份，对根分区的错误操作可能是无法挽救的。</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 首先观察根分区情况，这时可以使用 fdisk 或 parted</span>
-<span class="c1"># 这个硬盘来自我的虚拟机</span>
+<p>containerd 是由 docker 公司贡献，符合 OCI 标准的容器进行时。</p>
+<h2 id="containerd-和-docker-的关系">containerd 和 docker 的关系</h2>
+<p>首先我们需要了解 <a href="https://opencontainers.org/">OCI</a> 是什么，它的全称为 Open Container Initiative ，也就是开放容器提案，目前主要有 Runtime Spec 和 Image Spec ，Distribution Spec 几个定制标准，标准化使得各种第三方组件不再限定于某种容器运行时，而是可以自由运行在任何符合 OCI 标准的容器进行时，可以说 OCI 促进了容器技术的生态发展。</p>
+<p>通常来说，容器进行时指的是管理容器生命周期的守护进程，比如 docker 就是最经典的容器进行时，我们只需要调用 docker 命令就可以启动或者停止容器。但实际上 docker 要做的工作不止这些，它还兼顾了镜像管理，镜像构建，容器网络和存储管理等工作，属于高层级的容器进行时。</p>
+<p>containerd 也属于高层级的容器进行时，但相比于 docker 它更加精简，最关键地保留了管控容器生命周期的核心功能，在较新版本的 docker 中，管控容器生命周期的功能已经完全由 containerd 承担， docker 守护进程和 containerd 守护进程之间使用 grpc 进行通信。</p>
+<p>containerd 守护进程管理着运行中的容器，与容器具体的交互功能则是由 runc 负责的， runc 是低底层的容器运行时接口，只要是符合 OCI 标准的容器镜像，就可以直接调用 runc 运行这个镜像。</p>
+<p>但是 containerd 并不是直接调用 runc ，而是采用了垫片的方式，由 containerd-shim 去调用 runc ，而 containerd 只需要和 shim 交互，无需直接和更底层的 runc 交互，垫片机制在容器技术中很常见， Kubernetes 使用 dokcer 作为容器运行时也是通过 shim 来实现的。</p>
+<pre><code>#    containerd 和 docker 的关系
 
-$ fdisk /dev/sda
-...
-Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
+          docker daemon
+                | grpc
+                v
+        containerd daemon
+                | shim
+                v
+               runc
+                |
+                v
+            container
 
-Disk /dev/sda: 10.7 GB, <span class="m">10737418240</span> bytes, <span class="m">20971520</span> sectors
-<span class="nv">Units</span> <span class="o">=</span> sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
-Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-Disk label type: dos
-Disk identifier: 0x0004dcb6
+</code></pre><h2 id="直接通过-containerd-cli-运行容器">直接通过 containerd cli 运行容器</h2>
+<p>由于 containerd 具备完善的容器生命周期能力，我们可以不再使用 docker cli ，直接使用 containerd 的 cli 工具 ctr 直接运行容器。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 containerd </span>
+$ yum install containerd
+$ systemctl <span class="nb">enable</span> containerd
+$ systemctl start containerd
 
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sda1   *        <span class="m">2048</span>     <span class="m">1026047</span>      <span class="m">512000</span>   <span class="m">83</span>  Linux
-/dev/sda2         <span class="m">1026048</span>     <span class="m">3123199</span>     <span class="m">1048576</span>   <span class="m">83</span>  Linux
-/dev/sda3         <span class="m">3123200</span>    <span class="m">20971519</span>     <span class="m">8924160</span>   <span class="m">83</span>  Linux
+<span class="c1"># 拉取镜像</span>
+$ ctr i pull docker.io/library/busybox:latest
+$ ctr i pull docker.io/library/nginx:alpine
 
-$ parted -l
-Model: VMware, VMware Virtual S <span class="o">(</span>scsi<span class="o">)</span>
-Disk /dev/sda: 10.7GB
-Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
-Partition Table: msdos
-Disk Flags: 
+<span class="c1"># 生成容器</span>
+$ ctr c create docker.io/library/busybox:latest mybusybox 
+$ ctr c ls
+CONTAINER    IMAGE                               RUNTIME                           
+mybusybox    docker.io/library/busybox:latest    io.containerd.runtime.v1.linux
 
-Number  Start   End     Size    Type     File system     Flags
- <span class="m">1</span>      1049kB  525MB   524MB   primary  xfs             boot
- <span class="m">2</span>      525MB   1599MB  1074MB  primary  linux-swap<span class="o">(</span>v1<span class="o">)</span>
- <span class="m">3</span>      1599MB  10.7GB  9138MB  primary  xfs
-</code></pre></div><p>如果你的系统盘如上面展示的一样，最后一个分区用尽了所有剩余的硬盘扇区，这种情况下不建议进行分区方式的转换，因为根据 GPT 分区格式的定义， GPT 比 MBR 使用到了更多的硬盘起始扇区存放分区信息 (Primary GPT) ，而且还占用了硬盘末尾的部分扇区作为分区信息的备份 (Secondary GPT) 。</p>
-<p>虽然很多分区工具在操作 msdos 硬盘时会保留一些起始扇区，默认从 1 MB 开始分区，以便后续兼容 GPT 格式，但一般不会对末尾扇区做保留。所以在转换 GPT 时，处于硬盘头部的分区通常可以无损转换，而处于硬盘尾部的分区会遭遇文件系统受损。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 尝试对这个无法无损转换的硬盘进行操作</span>
-$ gdisk /dev/sda
-GPT fdisk <span class="o">(</span>gdisk<span class="o">)</span> version 0.8.10
+<span class="c1"># 启动容器</span>
+$ ctr t start -d mybusybox
+$ ctr t ls
+TASK         PID     STATUS    
+mybusybox    <span class="m">2973</span>    RUNNING
+</code></pre></div><p>根据 OCI Runtime Spec ，正常的容器会经过以下几种运行状态：</p>
+<pre><code># OCI Runtime Spec 
 
-Partition table scan:
-  MBR: MBR only
-  BSD: not present
-  APM: not present
-  GPT: not present
+          init     -&gt;    creating
+                            |
+            ^               v
+     delete |            created
+                            | start
+                            v
+         stopped   &lt;-    running        &lt;-&gt;      paused
+                  kill             pause/resume
 
+</code></pre><p>在 containerd 中，除了 container ，还引入了 task 的概念， start ， kill 和 delete 等动作是使用在 task 上的，对应 OCI Runtime Spec 定义的容器状态。而 container 只有 create 和 delete 两个动作，从表象上来看 task 在 containerd 中是实际运行的容器进程，而 container 是容器信息的声明。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># task 支持多种动作</span>
+<span class="c1"># pause 和 resume 就是冻结和恢复</span>
+$ ctr t ls
+TASK         PID     STATUS    
+mybusybox    <span class="m">2973</span>    RUNNING
 
-***************************************************************
-Found invalid GPT and valid MBR<span class="p">;</span> converting MBR to GPT format
-in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
-typing <span class="s1">&#39;q&#39;</span> <span class="k">if</span> you don<span class="err">&#39;</span>t want to convert your MBR partitions
-to GPT format!
-***************************************************************
+$ ctr t pause mybusybox
+$ ctr t ls
+TASK         PID     STATUS    
+mybusybox    <span class="m">2973</span>    PAUSED
 
+$ ctr t resume mybusybox
+$ ctr t ls
+TASK         PID     STATUS    
+mybusybox    <span class="m">2973</span>    RUNNING
 
-Warning! Secondary partition table overlaps the last partition by
-<span class="m">33</span> blocks!
-You will need to delete this partition or resize it in another utility.
+<span class="c1"># kill 就是发送进程 signal ，一般用来发送终结信号</span>
+$ ctr t <span class="nb">kill</span> -s <span class="m">9</span> mybusybox
+<span class="c1"># 2: SIGINT</span>
+<span class="c1"># 9: SIGKILL</span>
+<span class="c1"># 15: SIGTERM</span>
+$ ctr t ls
+TASK         PID     STATUS    
+mybusybox    <span class="m">2973</span>    STOPPED
 
-<span class="c1"># 这里已经给出分区告警：检测到无效的 GPT 和有效的 MBR ，</span>
-<span class="c1"># 分区工具将分区表自动转换为 GPT 格式，并且最后一个分区需要重新划分，</span>
-<span class="c1"># 在退出分区工具时可以按 q 来取消这次转换</span>
+<span class="c1"># 只有处于 STOPPED 状态才能被删除</span>
+$ ctr t delete mybusybox
+$ ctr t ls
+TASK    PID    STATUS
 
-<span class="c1"># 为了文件系统安全，记得通过按下 q 来退出。</span>
-</code></pre></div><p>虽然在我的虚拟机硬盘上无法直接实现转换，但是如果你的系统盘没有用尽所有的空间，或者最后一个分区用作交换分区时，分区方式就可以实现完美转换。</p>
-<pre><code># 对可以无损转换的硬盘进行操作，原有分区信息大概如下
-# 这是一块 msdos 分区的硬盘，未用尽所有扇区
-# 这里为了实验删除了 swap 分区，实际上这一步可以省去，直接建立新分区和直接转换是没问题的
-...
-Number  Start (sector)    End (sector)  Size       Code  Name
-   1            2048         4196351   2.0 GiB     8300  Linux filesystem
-   2         4196352       903086079   428.6 GiB   8300  Linux filesystem
-   3       904110080       905134079   500.0 MiB   8200  Linux swap
-...
+<span class="c1"># exec 则是在容器中执行命令</span>
+$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
+<span class="c1"># -t 选项要求命令执行时分配终端</span>
+<span class="c1"># --exec-id 选项用于命名这个 exec 进程</span>
+<span class="c1"># 执行上述命令会生成基于 mybusybox task 的 sh 进程</span>
+</code></pre></div><h2 id="增强-containerd-运行的容器">增强 containerd 运行的容器</h2>
+<h3 id="声明持久化挂载点">声明持久化挂载点</h3>
+<p>虽然 containerd 不具备 docker volumes 的功能，但是可以基于 mount 命名空间将宿主机上的某些文件目录映射到容器中。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 需要在 container creater 阶段声明 mount 信息</span>
+$ ctr c create docker.io/library/busybox:latest mybusybox --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/home/busybox,dst<span class="o">=</span>/mnt,options<span class="o">=</span>rbind:ro
 
-# 直接通过 gdisk 进行操作
-$ gdisk /dev/sda
-GPT fdisk (gdisk) version 0.8.10
+$ ls /home/busybox/
+fileA  fileB  fileC
+$ ctr start -d mybusybox
+<span class="c1"># 进入容器并查询挂载目录</span>
+$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
+/ <span class="c1"># ls -l /mnt/</span>
+total <span class="m">0</span>
+-rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileA
+-rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileB
+-rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileC
+</code></pre></div><h3 id="使用-cni-扩展网络能力">使用 cni 扩展网络能力</h3>
+<p>containerd 可以基于 net 命名空间，配合 cni 工具构建网络模型。</p>
+<p>cni 工具由 cnitool 和各个网络插件组成，一般使用 cnitool 读取定义了各种参数和插件的配置文件来生成网络接口，再将它们附加到 net 命名空间中。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 直接与宿主机共享网络栈</span>
+$ ctr c create --net-host docker.io/library/busybox:latest mybusybox
+<span class="c1"># 这样设置使得容器完全使用宿主机的网络，包括本地回环等所有网络接口</span>
+<span class="c1"># --net-host 用于声明容器共享主机网络</span>
 
-Partition table scan:
-  MBR: MBR only
-  BSD: not present
-  APM: not present
-  GPT: not present
+<span class="c1"># 使用 cni 扩展工具构建网络模型</span>
+<span class="c1"># 使用 yum 安装 cni</span>
+$ yum install containernetworking-plugins
 
+<span class="c1"># cni 严重依赖环境变量提供运行时信息</span>
+<span class="c1"># 配置文件路径声明，这一步通常可以省去，因为默认值就是 /etc/cni/net.d</span>
+$ <span class="nb">export</span> <span class="nv">NETCONFPATH</span><span class="o">=</span>/etc/cni/net.d
+<span class="c1"># 插件所在路径声明，如果 cnitool 执行失败，通常是没有指定这个路径导致的</span>
+$ ls /usr/libexec/cni/
+bandwidth  firewall     host-local  macvlan  sample  tuning
+bridge     flannel      ipvlan      portmap  sbr     vlan
+dhcp       host-device  loopback    ptp      static
+$ <span class="nb">export</span> <span class="nv">CNI_PATH</span><span class="o">=</span>/usr/libexec/cni/
 
-***************************************************************
-Found invalid GPT and valid MBR; converting MBR to GPT format
-in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
-typing 'q' if you don't want to convert your MBR partitions
-to GPT format!
-***************************************************************
+<span class="c1"># 使用 iproute2 创建 net 命名空间</span>
+$ ip netns add container-net
 
+<span class="c1"># 通过 conf 文件创建网络接口</span>
+$ cat /etc/cni/net.d/cni.conf
+<span class="o">{</span>
+    <span class="s2">&#34;cniVersion&#34;</span>: <span class="s2">&#34;0.4.0&#34;</span>,
+    <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;cni&#34;</span>,
+    <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;bridge&#34;</span>,
+    <span class="s2">&#34;bridge&#34;</span>: <span class="s2">&#34;cni0&#34;</span>,
+    <span class="s2">&#34;isDefaultGateway&#34;</span>: true,
+    <span class="s2">&#34;forceAddress&#34;</span>: false,
+    <span class="s2">&#34;ipMasq&#34;</span>: true,
+    <span class="s2">&#34;hairpinMode&#34;</span>: true,
+    <span class="s2">&#34;ipam&#34;</span>: <span class="o">{</span>
+        <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;host-local&#34;</span>,
+        <span class="s2">&#34;subnet&#34;</span>: <span class="s2">&#34;10.88.0.0/16&#34;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1"># 创建这个网络接口并附加到命名空间中</span>
+$ /usr/libexec/cnitool add cni /var/run/netns/container-net
+<span class="c1"># 查看已经生成的 cni0 网桥</span>
+$ ip a
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc pfifo_fast state UP group default qlen <span class="m">1000</span>
+    link/ether 00:0c:29:0a:69:d0 brd ff:ff:ff:ff:ff:ff
+    inet 192.168.0.7/24 brd 192.168.0.255 scope global dynamic ens33
+       valid_lft 84564sec preferred_lft 84564sec
+    inet6 fe80::20c:29ff:fe0a:69d0/64 scope link 
+       valid_lft forever preferred_lft forever
+3: cni0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue state UP group default qlen <span class="m">1000</span>
+    link/ether b2:51:ec:c7:b0:39 brd ff:ff:ff:ff:ff:ff
+    inet 10.88.0.1/16 brd 10.88.255.255 scope global cni0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::b051:ecff:fec7:b039/64 scope link 
+       valid_lft forever preferred_lft forever
+4: veth3adfd297@if3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue master cni0 state UP group default 
+    link/ether 96:4e:da:cb:0b:27 brd ff:ff:ff:ff:ff:ff link-netnsid <span class="m">0</span>
+    inet6 fe80::944e:daff:fecb:b27/64 scope link 
+       valid_lft forever preferred_lft forever
 
-Command (? for help): d
-Partition number (1-3): 3
+<span class="c1"># 声明并启动容器，查看容器内的网络信息</span>
+$ ctr c create docker.io/library/busybox:latest mybusybox --with-ns<span class="o">=</span>network:/var/run/netns/container-net
+$ ctr t start -d mybusybox
+$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
+/ <span class="c1"># ip a</span>
+1: lo: &lt;LOOPBACK&gt; mtu <span class="m">65536</span> qdisc noop qlen <span class="m">1000</span>
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+3: eth0@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu <span class="m">1500</span> qdisc noqueue 
+    link/ether ee:0f:03:a0:22:b7 brd ff:ff:ff:ff:ff:ff
+    inet 10.88.0.2/16 brd 10.88.255.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::ec0f:3ff:fea0:22b7/64 scope link 
+       valid_lft forever preferred_lft forever
 
-Command (? for help): n
-Partition number (3-128, default 3): 3
-First sector (34-976773168, default = 904110080) or {+-}size{KMGTP}: 34
-Last sector (34-2047, default = 2047) or {+-}size{KMGTP}: 
-Current type is 'Linux filesystem'
-Hex code or GUID (L to show codes, Enter = 8300): ef02
-Changed type of partition to 'BIOS boot partition'
-
-Command (? for help): n
-Partition number (4-128, default 4): 4
-First sector (904110080-976773168, default = 904110080) or {+-}size{KMGTP}: 
-Last sector (904110080-976773168, default = 976773168) or {+-}size{KMGTP}: +500M
-Current type is 'Linux filesystem'
-Hex code or GUID (L to show codes, Enter = 8300): ef00
-Changed type of partition to 'EFI System'
-
-Command (? for help): w
-
-Final checks complete. About to write GPT data. THIS WILL OVERWRITE EXISTING
-PARTITIONS!!
-
-Do you want to proceed? (Y/N): y
-OK; writing new GUID partition table (GPT) to /dev/sda.
-Warning: The kernel is still using the old partition table.
-The new table will be used at the next reboot.
-The operation has completed successfully.
-
-# 执行 partprobe 可以得到新的分区信息如下：
-...
-Number  Start (sector)    End (sector)  Size       Code  Name
-   1            2048         4196351   2.0 GiB     8300  Linux filesystem
-   2         4196352       903086079   428.6 GiB   8300  Linux filesystem
-   3              34            2047   1007.0 KiB  EF02  BIOS boot partition
-   4       904110080       905134079   500.0 MiB   EF00  EFI System
-...
-# 这里没有恢复 swap 分区，实际操作时可以按需求来恢复。
-</code></pre><p>相比原有的三个分区，只需要新增 BIOS boot partition 和 EFI System 两个新分区即可，它们会在后续派上用场。</p>
-<h2 id="挂载-esp">挂载 ESP</h2>
-<p>接下来需要挂载 ESP ，也就是刚才新增的 EFI System 分区，它的全称是 EFI System Partition ，是预留给 UEFI 启动存放引导文件的分区。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 格式化 ESP ，注意它的文件系统是 FAT 格式</span>
-$ mkfs.vfat /dev/sda4
-<span class="c1"># 如果命令不存在，安装新的软件包后重试</span>
-$ yum install dosfstools
-
-<span class="c1"># /boot 分区已经预留了 efi 目录以供 UEFI 启动分区挂载</span>
-<span class="c1"># 但我们现在使用的是 BIOS 启动，这个目录应该为空且没有挂载</span>
-$ mount /dev/sda4 /boot/efi
-<span class="c1"># 为了后续使用，这一步完成后应该手动更新到 fstab 中</span>
-</code></pre></div><h2 id="重新安装-bootloader">重新安装 BootLoader</h2>
-<p>由于我们转换了分区方式，原有的 BootLoader 也需要重新安装，现代 Liunx 系统基本都使用 grub2 作为 BootLoader 。</p>
-<p>grub2 在安装时有两个重要镜像 boot.img 和 core.img ，它们协作完成系统的引导工作，其中 boot.img 会安装在 MBR 分区硬盘的第一个扇区中，它主要负责把程序执行权转交给 core.img 。</p>
-<p>而 core.img 包含了基本功能和必要的模块，承担了引导系统内核的核心工作，一般会安装 MBR 分区硬盘的第一个扇区和第一个分区之间的空隙，这个位置通常称为 MBR gap ，这部分信息可以在 grub2 的<a href="https://www.gnu.org/software/grub/manual/grub/grub.html#BIOS-installation">官方文档</a>找到。</p>
-<p>由于我们将 MBR 转换为 GPT 格式，原有的 MBR gap 的位置会被 GPT 头所占据，按照 grub2 官方文档对 GPT 分区格式的使用指引，我们需要新的分区来替代 MBR gap ，这就是之前在分区时额外划分 BIOS Boot Partition 的原因。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 1.以 UEFI 引导为目标重装 grub2 ，需要提前挂载 ESP 分区</span>
-$ grub2-install --target<span class="o">=</span>x86_64-efi --efi-directory<span class="o">=</span>/boot/efi /dev/sda
-<span class="c1"># 此时应该可以在 ESP 分区， /boot/efi 子目录下找到 grubx64.efi 文件</span>
-<span class="c1"># 如果执行有类似模块信息丢失的报错，安装新的软件包后重试</span>
-$ yum install grub2-efi-x64-modules
-
-<span class="c1"># 2.生成 grub.cfg</span>
-$ grub2-mkconfig -o /boot/grub2/grub.cfg
-<span class="c1"># 如果对比观察新生成的 grub.cfg 和原有的 grub.cfg ，</span>
-<span class="c1"># 可以发现主要区别在于处理 MBR 的模块已经转换为处理 GPT 的模块。</span>
-
-<span class="c1"># 3.值得注意的是，我们目前的系统并不处在 UEFI 启动模式，系统下没有 UEFI 变量</span>
-<span class="c1"># 所以 grub2-mkconfig 还不能完全生成正确结果，需要手动修改一次</span>
-$ sed -i <span class="s1">&#39;s/linux16/linuxefi/g&#39;</span> /boot/grub2/grub.cfg
-$ sed -i <span class="s1">&#39;s/initrd16/initrdefi/g&#39;</span> /boot/grub2/grub.cfg
-<span class="c1"># 如果没有对 grub.cfg 进行修改，系统仍然可以从 BIOS 模式启动，但无法从 UEFI 模式启动</span>
-</code></pre></div><p>到这里系统下的工作基本完成，下一步需要重启机器进入 BIOS setup 来修改启动模式。</p>
-<h2 id="修改启动模式和-uefi-启动项">修改启动模式和 UEFI 启动项</h2>
-<p>在机器重启自检过程中，根据提示按下按键就能进入 BIOS setup ，这个按键一般会是 Del 或者 F2 。</p>
-<p>进入到 BIOS setup ，常规主板会在 Boot Mode 选项设置启动模式，在服务器平台这个设置可能在 CSM 选项中，我们只需要将 Legacy BIOS 修改为 UEFI ，然后保存退出即可。</p>
-<p>第一次 UEFI 启动可能需要手动从 Boot Manager 引导，通过 Boot from File ，进入 ESP 选择对应的 efi 引导文件 grubx64.efi ，选择 efi 文件之后的界面会是熟悉的 grub2 内核选择界面，我们就可以正常进入系统了。</p>
-<p>为了后续的使用方便，进入系统后我们还要修改 UEFI 启动项。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 efibootmgr</span>
-$ yum install efibootmgr
-
-<span class="c1"># 查看系统启动项</span>
-$ efibootmgr <span class="o">[</span>-v<span class="o">]</span>
-<span class="c1"># -v 可以看到更详细的信息</span>
-
-<span class="c1"># 禁用一些无用的启动项</span>
-$ efibootmgr -B -b <span class="o">[</span>number<span class="o">]</span>
-<span class="c1"># 启用需要的启动项目</span>
-$ efibootmgr -a -b <span class="o">[</span>number<span class="o">]</span>
-<span class="c1"># 修改启动顺序</span>
-$ efibootmgr -o <span class="o">[</span>number,number,number...<span class="o">]</span>
-
-<span class="c1"># 将系统添加到独立的启动项</span>
-$ efibootmgr -c -d /dev/sda -p <span class="m">4</span> -L Grub2 -l /EFI/centos/grubx64.efi
-<span class="c1"># -c | --create  create new variable bootnum and add to bootorder</span>
-<span class="c1"># -d | --disk disk  (defaults to /dev/sda) containing loader</span>
-<span class="c1"># -l | --loader name  (defaults to &#34;\EFI\centos\grub.efi&#34;)</span>
-<span class="c1"># -L | --label label  Boot manager display label (defaults to &#34;Linux&#34;)</span>
-<span class="c1"># -p | --part part  partition containing loader (defaults to 1 on partitioned devices)</span>
-<span class="c1"># 大概的用法如上，比较值得注意的是 -L 选项，使用 \ 会有异常，无法指向正确的路径</span>
-<span class="c1"># 添加选项后最好要使用 efibootmgr -o 检查引导文件路径是否正确</span>
-</code></pre></div><p>到这里我们的系统已经完成由 MBR+BIOS 向 GPT+UEFI 的迁移工作。</p>
+<span class="c1"># 清除接口</span>
+$ /usr/libexec/cnitool del cni /var/run/netns/container-net
+$ ip link delete cni0
+$ ip netns delete container-net
+</code></pre></div><p>以上信息描述了两种容器网络的实现方法，第一种非常简单，直接和主机共享网络栈，第二种网络模式则是由 cni 提供支持，和 docker 默认的网桥模式类似，更复杂的 cni 网络模式可以参阅<a href="https://github.com/containernetworking/cni/blob/spec-v1.0.0/SPEC.md">官方文档</a>和各插件的<a href="https://www.cni.dev/plugins/current/main/">详细说明</a>。</p>
 <h2 id="总结">总结</h2>
-<p>转换启动模式直接应用于生产环境的场景可能比较少，即使我们修改了启动模式可能也没有带来特别大的收益，不过这个过程可以让我们比较详细地了解 UEFI 和传统的 BIOS 启动模式的不同之处，扩展一下系统引导的相关知识，并且未来 UEFI 的使用场景可能会越来越多，提前接触也是好事。</p>
-<p>这次实验还引出一个比较重要的问题：对于系统盘的分区划分，我个人觉得应该考虑把根分区安排在中间， swap 分区放在最后，这样分区的好处是遇到根分区扩容的场景或者类似于这次分区格式转换的场景会比较方便操作。</p></article>
+<p>目前 contained 已经可以直接作为 Kubernetes 的容器进行时，并且后续 Kubernetes 会减弱对 docker 的支持，在容器集群环境可以尝试直接使用 contained 替代 docker ，如果是单机环境则 docker 依旧是较好的选择。</p></article>
               </div>
             </div>
           </div>
