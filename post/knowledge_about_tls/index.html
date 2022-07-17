@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 08 Jun 2022 15:03:32 &#43;0000"
+                  Modified <relative-time datetime="Sun, 17 Jul 2022 16:03:45 &#43;0000"
                     class="no-wrap">
-                    Wed, 08 Jun 2022 15:03:32 &#43;0000</relative-time>
+                    Sun, 17 Jul 2022 16:03:45 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3471 Words
+                      3802 Words
                     
 
                   </div>
@@ -312,10 +312,30 @@ $ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -si
 
 <span class="c1"># 站点生成证书签发请求</span>
 $ openssl genrsa -out server_key.pri <span class="m">2048</span>
+<span class="c1"># 这里可以通过配置多个 CN ，也可以将单个 CN 指定类似 *.software.ibm.com 的泛解析来满足多域名的情况</span>
 $ openssl req -new -sha256 -key server_key.pri <span class="se">\
 </span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=software.ibm.com&#34;</span> -out request.csr
 <span class="c1"># CA 处理签发请求，生成证书</span>
 $ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial -out software.crt
+</code></pre></div><p>在 golang 1.15 之后的版本，进行 tls 握手时发生报错 <code>&quot;x509: certificate relies on legacy Common Name field, use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0&quot;</code> 是因为当前使用的证书依赖于 CN 作为域名绑定，需要使用 x509 拓展字段 Subject Alternative Name 才能进行正常验证，也就是报错信息所述的 SAN 。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 生成 SAN 证书</span>
+
+<span class="c1"># 前序步骤和使用 CN 的证书相似</span>
+<span class="c1"># 生成私钥</span>
+$ openssl genrsa -out server_key.pri <span class="m">2048</span>
+<span class="c1"># 生成证书签发请求</span>
+$ openssl req -new -sha256 -key server_key.pri <span class="se">\
+</span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=software.ibm.com&#34;</span> -out request.csr
+<span class="c1"># 使用 CA 处理签发请求，生成 SAN 证书</span>
+$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial <span class="se">\
+</span><span class="se"></span> -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;subjectAltName=DNS:www.software.ibm.com,DNS:software.ibm.com,IP:1.1.1.1&#34;</span><span class="o">)</span> -out software.crt
+
+<span class="c1"># 如果是高版本的 openssl 可以尝试这样做</span>
+$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial <span class="se">\
+</span><span class="se"></span> -addext <span class="s2">&#34;subjectAltName=subjectAltName=DNS:www.software.ibm.com,DNS:software.ibm.com,IP:1.1.1.1&#34;</span> -out software.crt
+
+<span class="c1"># 可以看到实际的签发方式和使用 CN 的证书类似，但是使用了 x509 ext 字段，这样可以扩展证书的泛用性，匹配多个域名和 IP 地址</span>
+<span class="c1"># 签发之后就可以在证书的 X509v3 extensions 看到这部分信息</span>
 </code></pre></div><p>通过信任上述例子中的 <code>CA.crt</code> ，后续如 <code>software.crt</code> 等由 <code>CA.crt</code> 签发的证书都是自动授信的。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 在 CentOS 中添加信任 CA </span>
 $ mv TrustCA.crt /etc/pki/ca-trust/source/anchors/
