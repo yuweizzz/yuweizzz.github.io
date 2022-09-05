@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 17 Jul 2022 16:03:45 &#43;0000"
+                  Modified <relative-time datetime="Mon, 05 Sep 2022 14:55:30 &#43;0000"
                     class="no-wrap">
-                    Sun, 17 Jul 2022 16:03:45 &#43;0000</relative-time>
+                    Mon, 05 Sep 2022 14:55:30 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4407 Words
+                      4406 Words
                     
 
                   </div>
@@ -624,7 +624,7 @@ $ rpm2cpio package.rpm <span class="p">|</span> cpio -divm
 <span class="c1"># -o/--create 生成文件</span>
 <span class="c1"># -v/--verbose 显示详细过程</span>
 <span class="c1"># -d/--make-directories 在需要时建立目录</span>
-<span class="c1"># -m/--preserve-modification-time 保留更改时间。</span>
+<span class="c1"># -m/--preserve-modification-time 保留更改时间</span>
 </code></pre></div><h2 id="更新文件到-initramfs-镜像中">更新文件到 initramfs 镜像中</h2>
 <p>在 Linux 系统中，我们一般可以在 <code>/boot</code> 目录中找到 initramfs 镜像文件，它们是引导系统的必要组件。如果需要使用到的系统命令没有编译到镜像中，可以使用 dracut 命令进行镜像更新。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 file 命令可以看到 CentOS 7.4 的 initramfs 镜像是由 gunzip 压缩的文件</span>
