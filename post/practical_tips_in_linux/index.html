@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 05 Sep 2022 15:12:38 &#43;0000"
+                  Modified <relative-time datetime="Mon, 19 Sep 2022 15:19:47 &#43;0000"
                     class="no-wrap">
-                    Mon, 05 Sep 2022 15:12:38 &#43;0000</relative-time>
+                    Mon, 19 Sep 2022 15:19:47 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4406 Words
+                      4499 Words
                     
 
                   </div>
@@ -563,7 +563,7 @@ $ cat /etc/yum.conf
 <span class="nv">plugins</span><span class="o">=</span><span class="m">1</span>  <span class="c1"># 指定是否可以使用插件</span>
 <span class="nv">installonly_limit</span><span class="o">=</span><span class="m">5</span>  <span class="c1"># 指定允许保存的内核软件包数量</span>
 <span class="nv">bugtracker_url</span><span class="o">=</span>http://bugs.centos.org/set_project.php?project_id<span class="o">=</span>23<span class="p">&amp;</span><span class="nv">ref</span><span class="o">=</span>http://bugs.centos.org/bug_report_page.php?category<span class="o">=</span>yum
-<span class="nv">distroverpkg</span><span class="o">=</span>centos-release  <span class="c1">#指定用来获取系统的发行版信息的软件</span>
+<span class="nv">distroverpkg</span><span class="o">=</span>centos-release  <span class="c1"># 指定用来获取系统的发行版信息的软件</span>
 </code></pre></div><p>全局配置基本上不用做修改，更多情况下只需要自行添加需要的镜像源。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 参考具体的镜像源配置</span>
 $ <span class="nb">cd</span> /etc/yum.repos.d
@@ -571,50 +571,46 @@ $ cat CentOS-Base.repo
 <span class="o">[</span>base<span class="o">]</span>
 <span class="nv">name</span><span class="o">=</span>CentOS-<span class="nv">$releasever</span> - Base
 <span class="nv">mirrorlist</span><span class="o">=</span>http://mirrorlist.centos.org/?release<span class="o">=</span><span class="nv">$releasever</span><span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span><span class="p">&amp;</span><span class="nv">repo</span><span class="o">=</span>os<span class="p">&amp;</span><span class="nv">infra</span><span class="o">=</span><span class="nv">$infra</span>
-<span class="c1">#baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/</span>
+<span class="c1"># baseurl=http://mirror.centos.org/centos/$releasever/os/$basearch/</span>
 <span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
 <span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
-<span class="c1">#rerpmleased updates </span>
+<span class="c1"># rerpmleased updates </span>
 <span class="o">[</span>updates<span class="o">]</span>
 <span class="nv">name</span><span class="o">=</span>CentOS-<span class="nv">$releasever</span> - Updates
 <span class="nv">mirrorlist</span><span class="o">=</span>http://mirrorlist.centos.org/?release<span class="o">=</span><span class="nv">$releasever</span><span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span><span class="p">&amp;</span><span class="nv">repo</span><span class="o">=</span>updates<span class="p">&amp;</span><span class="nv">infra</span><span class="o">=</span><span class="nv">$infra</span>
-<span class="c1">#baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/</span>
+<span class="c1"># baseurl=http://mirror.centos.org/centos/$releasever/updates/$basearch/</span>
 <span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
 <span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 
-<span class="c1">#additional packages that may be useful</span>
+<span class="c1"># additional packages that may be useful</span>
 <span class="o">[</span>extras<span class="o">]</span>
 <span class="nv">name</span><span class="o">=</span>CentOS-<span class="nv">$releasever</span> - Extras
 <span class="nv">mirrorlist</span><span class="o">=</span>http://mirrorlist.centos.org/?release<span class="o">=</span><span class="nv">$releasever</span><span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span><span class="p">&amp;</span><span class="nv">repo</span><span class="o">=</span>extras<span class="p">&amp;</span><span class="nv">infra</span><span class="o">=</span><span class="nv">$infra</span>
-<span class="c1">#baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/</span>
+<span class="c1"># baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/</span>
 <span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
 <span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 </code></pre></div><p>在 /etc/yum.repos.d 目录中以 repo 结尾的文件会被识别为镜像源的配置文件，一个镜像源配置文件内可以配置多个 Repository ，每个 Repository 的唯一标识用 [xxxx] 表示，它们的具体内容如下：</p>
 <ul>
-<li>
-<p>name 是对 Repository 的描述。</p>
-</li>
-<li>
-<p>enable 规定对应 Repository 是否启用，可以使用这个选项屏蔽 Repository 。</p>
-</li>
-<li>
-<p>mirrorlist 和 baseurl 规定了 Repository 的地址。</p>
-<ul>
-<li>baseurl 是指向 Repository 的 repodata 目录的地址，里面存放了软件包和他们的依赖关系。它可以指向本地和云端，本地一般以 file:// 来指定，云端可以使用 http，ftp 等工具。</li>
+<li>name 是对 Repository 的描述。</li>
+<li>enable 规定对应 Repository 是否启用，可以使用这个选项屏蔽 Repository 。</li>
+<li>baseurl 是指向 Repository 的 repodata 目录的地址，里面存放了软件包和他们的依赖关系。它可以指向本地和云端，本地文件以 <code>file://</code> 来指定，云端可以使用 http，ftp 等工具。</li>
 <li>mirrorlist 是 baseurl 的一种集合形式，可以说 mirrorlist 指向的是一系列的 baseurl ，配合 fastestmirror 插件能找到响应速度最快的 Repository 。</li>
-</ul>
-</li>
-<li>
-<p>gpgcheck 和 gpgkey 是对软件包的签名检查的相关选项。</p>
-<ul>
 <li>gpgcheck 规定是否进行签名检查。</li>
 <li>gpgkey 指定了签名检查的合法签名数据源。</li>
 </ul>
-</li>
-</ul>
 <p>现有国内网络环境下，原始镜像速度很慢，可以使用公开的国内镜像源，它们大部分提供了相关的配置方法，如果是自建的镜像源，那么至少需要自行配置 name 和 baseurl 才能正常使用。</p>
-<h2 id="使用-cpio-打开-rpm-文件">使用 cpio 打开 rpm 文件</h2>
+<h2 id="配置-debian-源">配置 Debian 源</h2>
+<p>dpkg 和 apt 是 Debian 系列 Linux 发行版的软件包管理器，其中 dpkg 是比较底层的软件包工具，而 apt 则是更高层级的管理工具，两者之间的关系类似于 rpm 和 yum 的关系。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 修改 Debian 10 buster 的 apt 镜像源</span>
+$ <span class="nb">echo</span> <span class="s1">&#39;deb http://mirrors.ustc.edu.cn/debian buster main contrib non-free
+</span><span class="s1">deb http://mirrors.ustc.edu.cn/debian buster-updates main contrib non-free
+</span><span class="s1">deb http://mirrors.ustc.edu.cn/debian buster-backports main contrib non-free
+</span><span class="s1">deb http://mirrors.ustc.edu.cn/debian-security/ buster/updates main contrib non-free&#39;</span> &gt; /etc/apt/sources.list
+
+<span class="c1"># 更新软件列表</span>
+$ apt update
+</code></pre></div><h2 id="使用-cpio-打开-rpm-文件">使用 cpio 打开 rpm 文件</h2>
 <p>rpm 包可以视为一个特殊的归档文件，如果需要提取这个档案中的内容，一般通过 rpm2cpio 和 cpio 去实现。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 常用的实例命令</span>
 $ rpm2cpio package.rpm <span class="p">|</span> cpio -divm

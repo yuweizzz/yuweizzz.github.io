@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 05 Sep 2022 15:12:38 &#43;0000"
+                  Modified <relative-time datetime="Mon, 19 Sep 2022 15:19:47 &#43;0000"
                     class="no-wrap">
-                    Mon, 05 Sep 2022 15:12:38 &#43;0000</relative-time>
+                    Mon, 19 Sep 2022 15:19:47 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2839 Words
+                      3056 Words
                     
 
                   </div>
@@ -212,6 +212,15 @@
                         </path>
                       </svg>
                       Python
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/elasticsearch">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      ElasticSearch
                     </a>
                     
                     
@@ -480,6 +489,73 @@ $ systemctl reload supervisord
 $ supervisorctl start all
 <span class="c1"># 操作某个 program 需要使用指明具体名称，这个名称对应 ini 文件中定义的 program:theprogramname</span>
 $ supervisorctl start theprogramname
+</code></pre></div><h2 id="使用-python-进行-elasticsearch-滚动查询">使用 python 进行 ElasticSearch 滚动查询</h2>
+<p>适用于不关心数据顺序，获取索引中所有文档部分所需字段的场景。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 实现 ElasticSearch 滚动查询，将结果写入 csv</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="s1">&#39;index&#39;</span>
+<span class="n">host</span> <span class="o">=</span> <span class="s1">&#39;host&#39;</span>
+<span class="n">user</span> <span class="o">=</span> <span class="s1">&#39;user&#39;</span>
+<span class="n">password</span> <span class="o">=</span> <span class="s1">&#39;password&#39;</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+<span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;http://{user}:{password}@{host}:9200/{index}/_search?scroll=1m&#39;</span>
+
+<span class="c1"># 获取符合条件的数据</span>
+<span class="n">dsl</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;size&#39;</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="s1">&#39;query&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;wildcard&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;*abc*&#39;</span>
+        <span class="p">}</span>
+    <span class="p">},</span>
+    <span class="s1">&#39;sort&#39;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="s1">&#39;_doc&#39;</span>
+    <span class="p">]</span>
+    <span class="s1">&#39;_source&#39;</span><span class="p">:</span> <span class="p">[</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">]</span>
+<span class="p">}</span>
+
+<span class="c1"># 获取全量数据</span>
+<span class="c1"># dsl = {</span>
+<span class="c1">#     &#39;size&#39;: 10000,</span>
+<span class="c1">#     &#39;query&#39;: {</span>
+<span class="c1">#         &#39;match_all&#39;: {}</span>
+<span class="c1">#     },</span>
+<span class="c1">#     &#39;sort&#39;: [</span>
+<span class="c1">#         &#39;_doc&#39;</span>
+<span class="c1">#     ]</span>
+<span class="c1">#     &#39;_source&#39;: [&#39;name&#39;, &#39;value&#39;]</span>
+<span class="c1"># }</span>
+
+<span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">dsl</span><span class="p">))</span>
+<span class="n">dicts</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+<span class="n">csvfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;result.csv&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">csvfile</span><span class="p">)</span>
+<span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;name&#39;</span><span class="p">,</span> <span class="s1">&#39;value&#39;</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">dicts</span><span class="p">[</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">]:</span>
+    <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">each</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="n">each</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+
+<span class="n">scroll_id</span> <span class="o">=</span> <span class="n">dicts</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;_scroll_id&#39;</span><span class="p">)</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="n">f</span><span class="s1">&#39;http://{user}:{password}@{host}:9200/_search/scroll/&#39;</span>
+<span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;scroll&#39;</span><span class="p">:</span> <span class="s1">&#39;1m&#39;</span><span class="p">,</span> 
+    <span class="s1">&#39;scroll_id&#39;</span><span class="p">:</span> <span class="n">scroll_id</span>
+<span class="p">}</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">resp</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">))</span>
+    <span class="n">dicts</span> <span class="o">=</span> <span class="n">resp</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="c1"># 滚动结束， hits 数组为空</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">dicts</span><span class="p">[</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">]:</span>
+        <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">each</span> <span class="ow">in</span> <span class="n">dicts</span><span class="p">[</span><span class="s1">&#39;hits&#39;</span><span class="p">][</span><span class="s1">&#39;hits&#39;</span><span class="p">]:</span>
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">each</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="n">each</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)])</span>
+
+<span class="n">csvfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></article>
               </div>
             </div>
