@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 19 Sep 2022 15:19:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 31 Oct 2022 15:27:34 &#43;0000"
                     class="no-wrap">
-                    Mon, 19 Sep 2022 15:19:47 &#43;0000</relative-time>
+                    Mon, 31 Oct 2022 15:27:34 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3172 Words
+                      3293 Words
                     
 
                   </div>
@@ -415,6 +415,22 @@ $ git stash drop <span class="o">[</span>&lt;stash&gt;<span class="o">]</span>
 
 $ git stash clear
 <span class="c1"># 删除所有已入栈的工作区变动</span>
+</code></pre></div><h2 id="标签管理">标签管理</h2>
+<p>标签 tag 可以认为是一个特殊的分支，我们通过给分支中的某个 commit 打上标签，用来作为代码的版本信息管理依据。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag -l
+<span class="c1"># 列出历史 tag 信息</span>
+
+$ git tag v1.0
+<span class="c1"># 新增标签</span>
+
+$ git tag -d v1.0
+<span class="c1"># 删除已有标签</span>
+
+$ git push origin v1.0
+<span class="c1"># 将已有标签同步到远程仓库</span>
+
+$ git push origin :v1.0
+<span class="c1"># 将远程仓库中的标签删除</span>
 </code></pre></div><h2 id="结语">结语</h2>
 <p>这篇笔记基本覆盖了本地使用 Git 时的可能会使用的命令，它们的复杂度并不高，我们只需要记忆这些实际应用中使用率比较高的命令，更复杂的命令可以在需要时再查阅。</p></article>
               </div>
