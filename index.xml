@@ -6,7 +6,16 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 13 Aug 2022 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Aug 2022 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Logstash S3 插件使用</title>
+      <link>https://yuweizzz.github.io/post/using_s3_plugin_in_logstash/</link>
+      <pubDate>Mon, 15 Aug 2022 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/using_s3_plugin_in_logstash/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录如何使用 Logstash S3 插件。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>搭建轻量级服务器</title>
       <link>https://yuweizzz.github.io/post/build_a_lightweight_server/</link>

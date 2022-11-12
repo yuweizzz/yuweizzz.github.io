@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 13 Aug 2022 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 15 Aug 2022 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Logstash</title>
+      <link>https://yuweizzz.github.io/tags/logstash/</link>
+      <pubDate>Mon, 15 Aug 2022 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/logstash/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>IPv6</title>
       <link>https://yuweizzz.github.io/tags/ipv6/</link>
