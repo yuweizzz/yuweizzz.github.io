@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://yuweizzz.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
+    <title>Nginx 实用技巧 - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="这篇笔记用来 Nginx 在实际应用场景的一些使用技巧。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/practical_tips_in_nginx/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="Nginx 实用技巧 - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="这篇笔记用来 Nginx 在实际应用场景的一些使用技巧。
+" />
+<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://yuweizzz.github.io">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Nginx 实用技巧 - Wei&#39;s blog">
+<meta property="og:description"
+  content="这篇笔记用来 Nginx 在实际应用场景的一些使用技巧。
+" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/practical_tips_in_nginx/" />
+<meta property="og:site_name" content="Nginx 实用技巧" />
+<meta property="og:image"
+  content="https://yuweizzz.github.io">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2022-07-16 15:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174929827-1"></script>
+<script>
+  if (navigator.doNotTrack !== '1') {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-174929827-1');
+  }
+</script>
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://yuweizzz.github.io">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://yuweizzz.github.io">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                  <img class=" avatar-user"
+                    src="https://yuweizzz.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://yuweizzz.github.io">Wei</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://yuweizzz.github.io/post/practical_tips_in_nginx/">Nginx 实用技巧</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Sat, 16 Jul 2022 15:00:00 &#43;0000"
+                    class="no-wrap">
+                    Sat, 16 Jul 2022 15:00:00 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Sat, 12 Nov 2022 11:58:35 &#43;0000"
+                    class="no-wrap">
+                    Sat, 12 Nov 2022 11:58:35 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      2959 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/nginx">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Nginx
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/ocsp">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      OCSP
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/hsts">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      HSTS
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/cors">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      CORS
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来 Nginx 在实际应用场景的一些使用技巧。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
+                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+                                  <span class="o">(</span>   <span class="o">)</span>
+                              <span class="o">(</span>@@@@<span class="o">)</span>
+                           <span class="o">(</span>    <span class="o">)</span>
+
+                         <span class="o">(</span>@@@<span class="o">)</span>
+                       <span class="o">====</span>        ________                ___________
+                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+
+</code></pre></div><h2 id="nginx-获取内置变量">Nginx 获取内置变量</h2>
+<p>Nginx 经常需要使用内置变量和请求相关的变量来构成配置文件。</p>
+<p>Nginx 可以轻松获取 HTTP 请求头，使用 <code>$http_xxxx</code> 来获取，比如 <code>Host</code> 可以使用 <code>$http_host</code> 来获取， <code>User-Agent</code> 可以使用 <code>$http_user_agent</code> 来获取。</p>
+<p>还有一些比较重要的内置变量：</p>
+<ul>
+<li><code>$remote_addr</code> ：请求的来源 IP 地址，这里是指直接和当前 Nginx 交互的对端地址，所以它有可能只是源请求的一个代理地址。</li>
+<li><code>$server_name</code> ： Nginx 虚拟主机中的 <code>server_name</code> 。</li>
+<li><code>$request</code> ：原始的请求 url 。</li>
+<li><code>$scheme</code> ：请求的协议，通常是 http 和 https 。</li>
+<li><code>$request_method</code> ：请求的方法，也就是 HTTP 的请求方法 GET ， POST 等。</li>
+<li><code>$request_uri</code> ：原始的请求路径和完整参数，是不可修改的。</li>
+<li><code>$uri</code> ：来自 <code>$request_uri</code> 中的路径部分，在经过重写行为后可能会与原来不同。</li>
+<li><code>$args</code> ：来自 <code>$request_uri</code> 中的参数部分。</li>
+</ul>
+<blockquote>
+<p><code>$request_uri</code> 可以拆解为 <code>$uri$is_args$args</code> ，其中 <code>$is_args</code> 就是 uri 请求中的 <code>?</code> ，在实际请求没有参数的时候， <code>$is_args</code> 和 <code>$args</code> 都为空。</p>
+</blockquote>
+<ul>
+<li><code>$host</code> ：以下出自官方文档的解释，可以看到取值优先级来源于以下三个值：请求 url 中的主机部分；请求头中 <code>Host</code> 的部分，同 <code>$http_host</code> ； Nginx 虚拟主机中匹配命中的 <code>server_name</code> 。</li>
+</ul>
+<blockquote>
+<p>$host：in this order of precedence: host name from the request line, or host name from the &ldquo;Host&rdquo; request header field, or the server name matching a request</p>
+</blockquote>
+<p>和请求时间相关的变量，更多用于排查问题和性能分析：</p>
+<ul>
+<li><code>$request_time</code> ：本地响应请求所使用的时间，从客户端读取第一个字节开始计时，单位精确到毫秒，这个值计算的时间已经包括了 <code>$upstream_response_time</code> 。</li>
+<li><code>$upstream_response_time</code> ：使用代理的情况下，上游响应代理请求所使用的时间，单位精确到毫秒，这个值可以直观反应具体程序对请求的处理所需时间。</li>
+<li><code>$time_local</code> ：输出当前时间值，通常用于日志记录。</li>
+</ul>
+<h2 id="使用-map-映射变量">使用 map 映射变量</h2>
+<p><code>map</code> 是 Nginx 模块 ngx_http_map_module 提供的关键字，可以基于某个变量的现有值制定一定规则，从而设置新的变量。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 来自 Nginx 官方文档的示例</span>
+map <span class="nv">$http_user_agent</span> <span class="nv">$mobile</span> <span class="o">{</span>
+    default       0<span class="p">;</span>
+    <span class="s2">&#34;~Opera Mini&#34;</span> 1<span class="p">;</span>
+<span class="o">}</span>
+
+<span class="c1"># 获取 HTTP 请求头 User-Agent 的值，如果使用正则匹配到 Opera Mini 则设置变量 mobile 为 1 ，其他情况默认为 0 </span>
+</code></pre></div><h2 id="设置-json-格式日志">设置 json 格式日志</h2>
+<p>Nginx 原生的日志格式是列出了关键信息的单行文本，我们可以创建模拟 json 格式的日志写入规则。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 模拟 json 格式的纯文本</span>
+server <span class="o">{</span>
+    log_format main <span class="nv">escape</span><span class="o">=</span>default <span class="s1">&#39;{&#39;</span>
+        <span class="s1">&#39;&#34;datetime&#34;: &#34;$time_local&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;remote_addr&#34;: &#34;$remote_addr&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;http_host&#34;: &#34;$http_host&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;upstream_addr&#34;: &#34;$upstream_addr&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;request_method&#34;: &#34;$request_method&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;http_referer&#34;: &#34;$http_referer&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;status&#34;: &#34;$status&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;server_name&#34;: &#34;$server_name&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;request_uri&#34;: &#34;$request_uri&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;http_user_agent&#34;: &#34;$http_user_agent&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;http_x_forwarded_for&#34;: &#34;$http_x_forwarded_for&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;body_bytes_sent&#34;: &#34;$body_bytes_sent&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;upstream_response_time&#34;: &#34;$upstream_response_time&#34;,&#39;</span>
+        <span class="s1">&#39;&#34;request_time&#34;: &#34;$request_time&#34;&#39;</span>
+    <span class="s1">&#39;}&#39;</span><span class="p">;</span>
+    access_log  logs/access.log  main<span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="nginx-日志轮转">Nginx 日志轮转</h2>
+<p>生产环境的 Nginx 日志应该定时切割和归档，否则可能会将存储空间占满，一般通过 <code>logrotate</code> 或者 <code>crontab</code> 完成这项工作。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Nginx 切割日志实例</span>
+$ cat /etc/logrotate.d/nginx
+/usr/local/openresty/nginx/logs/*.log <span class="o">{</span>
+    daily                    <span class="c1"># 每日执行一次日志轮转</span>
+    rotate <span class="m">7</span>                 <span class="c1"># 历史日志保留 7 份</span>
+    missingok                <span class="c1"># 忽略文件不存在的报错</span>
+    dateext
+    dateformat -%Y%m%d%s     <span class="c1"># 以固定的日期格式重命名历史日志</span>
+    compress
+    delaycompress            <span class="c1"># 启用日志压缩，并在下次轮转时，压缩上一份历史日志</span>
+    notifempty               <span class="c1"># 空文件则不执行轮转</span>
+    sharedscripts            <span class="c1"># 使用 *.log 说明目录可能存在多种日志，这个关键字用来声明所有日志都需要执行 postrotate 脚本 </span>
+    postrotate               <span class="c1"># 轮转工作完成后需要执行脚本</span>
+        <span class="o">[</span> -e /usr/local/openresty/nginx/logs/nginx.pid <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">kill</span> -USR1 <span class="sb">`</span>cat /usr/local/openresty/nginx/logs/nginx.pid<span class="sb">`</span>
+    endscript
+<span class="o">}</span>
+</code></pre></div><p><code>logrotate</code> 的精细度最快只能每天执行一次，如果我们需要频繁地切割日志，可以将 <code>crontab</code> 和 <code>logrotate -v /etc/logrotate.d/nginx</code> 配合使用。</p>
+<p><code>postrotate</code> 的关键点在于 <code>kill -USR1 nginx.pid</code> 这个命令，它可以使 Nginx 重新打开日志文件。</p>
+<h2 id="代理-websocket">代理 WebSocket</h2>
+<p>WebSocket 是基于 HTTP 协议的实时双向通讯协议，它属于应用层的协议。</p>
+<p>在浏览器中， WebSocket 会以 <code>ws://</code> 的形式出现，基于 ssl 加密则会以 <code>wss://</code> 的形式出现，在 Nginx 中，所有的 WebSocket 请求只是带有特定请求头的普通 HTTP 请求。</p>
+<p>WebSocket 的握手请求带有重要的两个请求头 <code>Upgrade: websocket</code> 和 <code>Connection: Upgrade</code> ，握手成功将会返回 <code>101 Switching Protocols</code> ，后续双方就可以使用 WebSocket 的方法互相通信。</p>
+<p>通常 WebSocket 代理是这样做的：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">http <span class="o">{</span>
+    map <span class="nv">$http_upgrade</span> <span class="nv">$connection_upgrade</span> <span class="o">{</span>
+        default upgrade<span class="p">;</span>
+        <span class="s1">&#39;&#39;</span> close<span class="p">;</span>
+    <span class="o">}</span>
+
+    upstream webscoket <span class="o">{</span>
+        server 127.0.0.1:9000<span class="p">;</span>
+    <span class="o">}</span>
+
+    server <span class="o">{</span>
+        location /webscoket <span class="o">{</span>
+            proxy_pass http://webscoket<span class="p">;</span>
+            proxy_http_version 1.1<span class="p">;</span>
+            proxy_connect_timeout 60s<span class="p">;</span>
+            proxy_read_timeout 60s<span class="p">;</span>
+            proxy_send_timeout 60s<span class="p">;</span>
+            proxy_set_header Upgrade <span class="nv">$http_upgrade</span><span class="p">;</span>
+            proxy_set_header Connection <span class="nv">$connection_upgrade</span><span class="p">;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="支持跨域访问-cors">支持跨域访问 CORS</h2>
+<p>跨域访问是浏览器对 Web 资源访问的安全限制，通过特定的请求头响应来确认是否允许访问非同源的资源。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 简单的跨域请求</span>
+GET /resource HTTP/1.1         <span class="c1"># 请求资源路径： /resource</span>
+Origin: http://web.domain.com  <span class="c1"># 所在的请求页面： web.domain.com</span>
+Host: api.domain.com           <span class="c1"># 完整请求： api.domain.com/resource</span>
+</code></pre></div><p>所有的跨域请求都需要带上 <code>Origin</code> 作为来源标识，此外可能还额外带有一些额外的请求头，通常会以 <code>OPTIONS</code> 方法进行预检测服务端是否响应跨域请求。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Preflight Request from MDN Docs</span>
+
+<span class="c1"># Request</span>
+OPTIONS /doc HTTP/1.1
+Host: bar.other
+User-Agent: Mozilla/5.0 <span class="o">(</span>Macintosh<span class="p">;</span> Intel Mac OS X 10.14<span class="p">;</span> rv:71.0<span class="o">)</span> Gecko/20100101 Firefox/71.0
+Accept: text/html,application/xhtml+xml,application/xml<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.9,*/*<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.8
+Accept-Language: en-us,en<span class="p">;</span><span class="nv">q</span><span class="o">=</span>0.5
+Accept-Encoding: gzip,deflate
+Connection: keep-alive
+Origin: https://foo.example
+Access-Control-Request-Method: POST
+Access-Control-Request-Headers: X-PINGOTHER, Content-Type
+
+<span class="c1"># Response</span>
+HTTP/1.1 <span class="m">204</span> No Content
+Date: Mon, <span class="m">01</span> Dec <span class="m">2008</span> 01:15:39 GMT
+Server: Apache/2
+Access-Control-Allow-Origin: https://foo.example
+Access-Control-Allow-Methods: POST, GET, OPTIONS
+Access-Control-Allow-Headers: X-PINGOTHER, Content-Type
+Access-Control-Max-Age: <span class="m">86400</span>
+Vary: Accept-Encoding, Origin
+Keep-Alive: <span class="nv">timeout</span><span class="o">=</span>2, <span class="nv">max</span><span class="o">=</span><span class="m">100</span>
+Connection: Keep-Alive
+</code></pre></div><p>比较重要的响应 Header 有：</p>
+<ul>
+<li><code>Access-Control-Allow-Origin</code> ：允许跨域的来源，可以使用 <code>Access-Control-Allow-Origin: *</code> 代表公开资源。</li>
+<li><code>Access-Control-Allow-Methods</code> ：允许跨域请求所使用的 HTTP 方法。</li>
+<li><code>Access-Control-Allow-Headers</code> ：允许跨域请求所携带的 Header 。</li>
+<li><code>Access-Control-Max-Age</code> ：预检跨域请求的缓存时间。</li>
+<li><code>Access-Control-Allow-Credentials</code> ：允许跨域请求携带 cookies Header 信息，通过用于实现不同子域的 cookies 共享。当这个 Header 设置为 <code>true</code> 时， <code>Access-Control-Allow-Origin</code> 不允许设置为 <code>*</code> 。</li>
+<li><code>Access-Control-Expose-Headers</code> ：允许浏览器额外获取的 Header ， <code>XMLHttpRequest</code> 对象的方法 <code>getResponseHeader()</code> 就可以获取到 <code>Access-Control-Expose-Headers</code> 中设置的 Header 。</li>
+</ul>
+<p>除了在业务端实现跨域请求 Header 响应，还可以在 Nginx 中设置。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">location / <span class="o">{</span>
+    add_header <span class="s1">&#39;Access-Control-Allow-Origin&#39;</span> <span class="nv">$http_origin</span><span class="p">;</span>
+    add_header <span class="s1">&#39;Access-Control-Max-Age&#39;</span> <span class="s1">&#39;86400&#39;</span><span class="p">;</span>
+    add_header <span class="s1">&#39;Access-Control-Allow-Methods&#39;</span> <span class="s1">&#39;GET, POST, OPTIONS&#39;</span><span class="p">;</span>
+    add_header <span class="s1">&#39;Access-Control-Allow-Credentials&#39;</span> <span class="s1">&#39;true&#39;</span><span class="p">;</span>
+    add_header <span class="s1">&#39;Access-Control-Allow-Headers&#39;</span> <span class="s1">&#39;Authorization, Content-Type, Accept, Origin, User-Agent, Cache-Control, X-Requested-With&#39;</span><span class="p">;</span>
+
+    <span class="k">if</span> <span class="o">(</span><span class="nv">$request_method</span> <span class="o">=</span> <span class="s1">&#39;OPTIONS&#39;</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> 204<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><h2 id="开启-hsts">开启 HSTS</h2>
+<p>为了将访问 HTTP 的 80 端口流量导向 HTTPS 的 443 端口，通过会额外配置一个虚拟主机用于重定向。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">server <span class="o">{</span>
+    listen <span class="m">80</span> default_server<span class="p">;</span>
+    listen <span class="o">[</span>::<span class="o">]</span>:80 default_server<span class="p">;</span>
+
+    location / <span class="o">{</span>
+        <span class="k">return</span> <span class="m">301</span> https://<span class="nv">$host$request_uri</span><span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+server <span class="o">{</span>
+    listen <span class="m">443</span> ssl http2<span class="p">;</span>
+    listen <span class="o">[</span>::<span class="o">]</span>:443 ssl http2<span class="p">;</span>
+
+    <span class="c1"># Enable HSTS </span>
+    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span> always<span class="p">;</span>
+<span class="o">}</span>
+</code></pre></div><p>在第一次访问 80 端口时，如果服务成功将你重定向到了 443 端口，并且添加了 <code>Strict-Transport-Security</code> 的 Header ，那么在浏览器在下次访问这个域名的服务时，会强制使用 HTTPS 进行访问，如果 Header 添加了 <code>includeSubDomains</code> 则会连同服务的子域名一起保护。</p>
+<p>开启了 HSTS 后想降级使用 HTTP 是比较麻烦的，可能需要修改浏览器的 HSTS 相关设置，此外 <code>Strict-Transport-Security</code> 还可以添加 <code>preload</code> 指令，这样浏览器第一次访问时会直接强制 HTTPS 而不是经过一次重定向后再强制，要正常使用 <code>preload</code> 指令需要自行将域名注册到 Chromium 项目的 HSTS preload list 并修改服务端配置，成功注册到 HSTS preload list 后如果想降级使用 HTTP 可能会导致服务无法访问。</p>
+<h2 id="开启-ocsp-stapling">开启 OCSP Stapling</h2>
+<p>OCSP 全称 Online Certificate Status Protocol ，也就是在线证书状态协议，在请求端浏览器获取到服务端证书后，可以向证书签发机构调用接口检验证书的时效性。</p>
+<p>OCSP Stapling 是基于 OCSP 的 TLS 协议扩展，和 OCSP 不同的是，服务端预先通过缓存 OCSP 结果，将这些信息一步到位返回给请求端浏览器，省去浏览器调用证书签发机构验证接口的时间。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以 github.com 为测试站点，首先获取证书链</span>
+$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -showcerts -connect www.github.com:443 2&gt;/dev/null <span class="p">|</span> sed -n <span class="s1">&#39;/BEGIN/,/END/p&#39;</span>
+-----BEGIN CERTIFICATE-----
+MIIFajCCBPCgAwIBAgIQBRiaVOvox+kD4KsNklVF3jAKBggqhkjOPQQDAzBWMQsw
+CQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMTAwLgYDVQQDEydEaWdp
+Q2VydCBUTFMgSHlicmlkIEVDQyBTSEEzODQgMjAyMCBDQTEwHhcNMjIwMzE1MDAw
+MDAwWhcNMjMwMzE1MjM1OTU5WjBmMQswCQYDVQQGEwJVUzETMBEGA1UECBMKQ2Fs
+aWZvcm5pYTEWMBQGA1UEBxMNU2FuIEZyYW5jaXNjbzEVMBMGA1UEChMMR2l0SHVi
+LCBJbmMuMRMwEQYDVQQDEwpnaXRodWIuY29tMFkwEwYHKoZIzj0CAQYIKoZIzj0D
+AQcDQgAESrCTcYUh7GI/y3TARsjnANwnSjJLitVRgwgRI1JlxZ1kdZQQn5ltP3v7
+KTtYuDdUeEu3PRx3fpDdu2cjMlyA0aOCA44wggOKMB8GA1UdIwQYMBaAFAq8CCkX
+jKU5bXoOzjPHLrPt+8N6MB0GA1UdDgQWBBR4qnLGcWloFLVZsZ6LbitAh0I7HjAl
+BgNVHREEHjAcggpnaXRodWIuY29tgg53d3cuZ2l0aHViLmNvbTAOBgNVHQ8BAf8E
+BAMCB4AwHQYDVR0lBBYwFAYIKwYBBQUHAwEGCCsGAQUFBwMCMIGbBgNVHR8EgZMw
+gZAwRqBEoEKGQGh0dHA6Ly9jcmwzLmRpZ2ljZXJ0LmNvbS9EaWdpQ2VydFRMU0h5
+YnJpZEVDQ1NIQTM4NDIwMjBDQTEtMS5jcmwwRqBEoEKGQGh0dHA6Ly9jcmw0LmRp
+Z2ljZXJ0LmNvbS9EaWdpQ2VydFRMU0h5YnJpZEVDQ1NIQTM4NDIwMjBDQTEtMS5j
+cmwwPgYDVR0gBDcwNTAzBgZngQwBAgIwKTAnBggrBgEFBQcCARYbaHR0cDovL3d3
+dy5kaWdpY2VydC5jb20vQ1BTMIGFBggrBgEFBQcBAQR5MHcwJAYIKwYBBQUHMAGG
+GGh0dHA6Ly9vY3NwLmRpZ2ljZXJ0LmNvbTBPBggrBgEFBQcwAoZDaHR0cDovL2Nh
+Y2VydHMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0VExTSHlicmlkRUNDU0hBMzg0MjAy
+MENBMS0xLmNydDAJBgNVHRMEAjAAMIIBfwYKKwYBBAHWeQIEAgSCAW8EggFrAWkA
+dgCt9776fP8QyIudPZwePhhqtGcpXc+xDCTKhYY069yCigAAAX+Oi8SRAAAEAwBH
+MEUCIAR9cNnvYkZeKs9JElpeXwztYB2yLhtc8bB0rY2ke98nAiEAjiML8HZ7aeVE
+P/DkUltwIS4c73VVrG9JguoRrII7gWMAdwA1zxkbv7FsV78PrUxtQsu7ticgJlHq
+P+Eq76gDwzvWTAAAAX+Oi8R7AAAEAwBIMEYCIQDNckqvBhup7GpANMf0WPueytL8
+u/PBaIAObzNZeNMpOgIhAMjfEtE6AJ2fTjYCFh/BNVKk1mkTwBTavJlGmWomQyaB
+AHYAs3N3B+GEUPhjhtYFqdwRCUp5LbFnDAuH3PADDnk2pZoAAAF/jovErAAABAMA
+RzBFAiEA9Uj5Ed/XjQpj/MxQRQjzG0UFQLmgWlc73nnt3CJ7vskCICqHfBKlDz7R
+EHdV5Vk8bLMBW1Q6S7Ga2SbFuoVXs6zFMAoGCCqGSM49BAMDA2gAMGUCMCiVhqft
+7L/stBmv1XqSRNfE/jG/AqKIbmjGTocNbuQ7kt1Cs7kRg+b3b3C9Ipu5FQIxAM7c
+tGKrYDGt0pH8iF6rzbp9Q4HQXMZXkNxg+brjWxnaOVGTDNwNH7048+s/hT9bUQ<span class="o">==</span>
+-----END CERTIFICATE-----
+-----BEGIN CERTIFICATE-----
+MIIEFzCCAv+gAwIBAgIQB/LzXIeod6967+lHmTUlvTANBgkqhkiG9w0BAQwFADBh
+MQswCQYDVQQGEwJVUzEVMBMGA1UEChMMRGlnaUNlcnQgSW5jMRkwFwYDVQQLExB3
+d3cuZGlnaWNlcnQuY29tMSAwHgYDVQQDExdEaWdpQ2VydCBHbG9iYWwgUm9vdCBD
+QTAeFw0yMTA0MTQwMDAwMDBaFw0zMTA0MTMyMzU5NTlaMFYxCzAJBgNVBAYTAlVT
+MRUwEwYDVQQKEwxEaWdpQ2VydCBJbmMxMDAuBgNVBAMTJ0RpZ2lDZXJ0IFRMUyBI
+eWJyaWQgRUNDIFNIQTM4NCAyMDIwIENBMTB2MBAGByqGSM49AgEGBSuBBAAiA2IA
+BMEbxppbmNmkKaDp1AS12+umsmxVwP/tmMZJLwYnUcu/cMEFesOxnYeJuq20ExfJ
+qLSDyLiQ0cx0NTY8g3KwtdD3ImnI8YDEe0CPz2iHJlw5ifFNkU3aiYvkA8ND5b8v
+c6OCAYIwggF+MBIGA1UdEwEB/wQIMAYBAf8CAQAwHQYDVR0OBBYEFAq8CCkXjKU5
+bXoOzjPHLrPt+8N6MB8GA1UdIwQYMBaAFAPeUDVW0Uy7ZvCj4hsbw5eyPdFVMA4G
+A1UdDwEB/wQEAwIBhjAdBgNVHSUEFjAUBggrBgEFBQcDAQYIKwYBBQUHAwIwdgYI
+KwYBBQUHAQEEajBoMCQGCCsGAQUFBzABhhhodHRwOi8vb2NzcC5kaWdpY2VydC5j
+b20wQAYIKwYBBQUHMAKGNGh0dHA6Ly9jYWNlcnRzLmRpZ2ljZXJ0LmNvbS9EaWdp
+Q2VydEdsb2JhbFJvb3RDQS5jcnQwQgYDVR0fBDswOTA3oDWgM4YxaHR0cDovL2Ny
+bDMuZGlnaWNlcnQuY29tL0RpZ2lDZXJ0R2xvYmFsUm9vdENBLmNybDA9BgNVHSAE
+NjA0MAsGCWCGSAGG/WwCATAHBgVngQwBATAIBgZngQwBAgEwCAYGZ4EMAQICMAgG
+BmeBDAECAzANBgkqhkiG9w0BAQwFAAOCAQEAR1mBf9QbH7Bx9phdGLqYR5iwfnYr
+6v8ai6wms0KNMeZK6BnQ79oU59cUkqGS8qcuLa/7Hfb7U7CKP/zYFgrpsC62pQsY
+kDUmotr2qLcy/JUjS8ZFucTP5Hzu5sn4kL1y45nDHQsFfGqXbbKrAjbYwrwsAZI/
+BKOLdRHHuSm8EdCGupK8JvllyDfNJvaGEwwEqonleLHBTnm8dqMLUeTF0J5q/hos
+Vq4GNiejcxwIfZMy0MJEGdqN9A57HSgDKwmKdsp33Id6rHtSJlWncg+d0ohP/rEh
+xRqhqjn1VtvChMQ1H3Dau0bwhr9kAMQ+959GG50jBbl9s08PqUU643QwmA<span class="o">==</span>
+-----END CERTIFICATE-----
+
+<span class="c1"># 可以看到一共有两张证书，第一张证书是 github.com 站点本身使用的证书，第二张证书是签发机构的证书</span>
+<span class="c1"># 将第一张证书保存为 github.pem ，第二张证书单独保存为 issuer.pem</span>
+<span class="c1"># 证书链如果有两张以上的证书，那么 issuer.pem 应该保持中间证书应该在前，根证书应该在后</span>
+
+<span class="c1"># 查询 OCSP 接口</span>
+$ openssl x509 -noout -ocsp_uri -in github.pem
+http://ocsp.digicert.com
+
+<span class="c1"># 进行 OCSP 校验</span>
+$ openssl ocsp -issuer issuer.pem -cert github.pem -text -no_nonce -url http://ocsp.digicert.com
+<span class="c1"># 获得到完整的 OCSP 响应，可以看到结果是验证通过的，并且带有有效时间信息和 CA 签名</span>
+OCSP Request Data:
+    Version: <span class="m">1</span> <span class="o">(</span>0x0<span class="o">)</span>
+    Requestor List:
+        Certificate ID:
+          Hash Algorithm: sha1
+          Issuer Name Hash: 2B1D1E98CCF37604D6C1C8BD15A224C804130038
+          Issuer Key Hash: 0ABC0829178CA5396D7A0ECE33C72EB3EDFBC37A
+          Serial Number: 05189A54EBE8C7E903E0AB0D925545DE
+OCSP Response Data:
+    OCSP Response Status: successful <span class="o">(</span>0x0<span class="o">)</span>
+    Response Type: Basic OCSP Response
+    Version: <span class="m">1</span> <span class="o">(</span>0x0<span class="o">)</span>
+    Responder Id: 0ABC0829178CA5396D7A0ECE33C72EB3EDFBC37A
+    Produced At: Nov <span class="m">10</span> 13:30:57 <span class="m">2022</span> GMT
+    Responses:
+    Certificate ID:
+      Hash Algorithm: sha1
+      Issuer Name Hash: 2B1D1E98CCF37604D6C1C8BD15A224C804130038
+      Issuer Key Hash: 0ABC0829178CA5396D7A0ECE33C72EB3EDFBC37A
+      Serial Number: 05189A54EBE8C7E903E0AB0D925545DE
+    Cert Status: good
+    This Update: Nov <span class="m">10</span> 13:15:02 <span class="m">2022</span> GMT
+    Next Update: Nov <span class="m">17</span> 12:30:02 <span class="m">2022</span> GMT
+
+    Signature Algorithm: ecdsa-with-SHA384
+         30:64:02:30:68:1e:bf:ce:94:74:e2:b8:70:10:7e:f0:66:0c:
+         b1:d7:c2:1f:1d:4a:32:a0:fc:58:f9:6b:a7:8f:e7:73:b9:25:
+         57:17:33:bf:fc:58:df:d6:e9:e2:6a:0f:5b:22:69:9a:02:30:
+         28:88:61:cb:10:d8:71:27:80:08:38:cc:54:d5:c8:2a:46:e0:
+         ee:4d:7b:97:3b:5b:a1:90:ab:34:26:10:30:0b:81:01:a5:b4:
+         0c:f4:68:6d:eb:0b:ea:da:fa:63:4c:eb
+Response verify OK
+github.pem: good
+	This Update: Nov <span class="m">10</span> 13:15:02 <span class="m">2022</span> GMT
+	Next Update: Nov <span class="m">17</span> 12:30:02 <span class="m">2022</span> GMT
+</code></pre></div><p>在 Nginx 中可以通过 ssl 模块中的相关指令来开启 OCSP 支持。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 开启 OCSP 支持</span>
+http <span class="o">{</span>
+    server <span class="o">{</span>
+        listen              <span class="m">443</span> ssl<span class="p">;</span>
+        keepalive_timeout   70<span class="p">;</span>
+
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
+        ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5<span class="p">;</span>
+        ssl_certificate     /usr/local/nginx/conf/cert.pem<span class="p">;</span>
+        ssl_certificate_key /usr/local/nginx/conf/cert.key<span class="p">;</span>
+        ssl_session_cache   shared:SSL:10m<span class="p">;</span>
+        ssl_session_timeout 10m<span class="p">;</span>
+
+        ssl_stapling on<span class="p">;</span>
+        resolver 8.8.8.8<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1"># 使用上述配置时 cert.pem 包含完整的证书链</span>
+<span class="c1"># 以前面的 github.com 为例， cert.pem 需要是 showcerts 所展示的两张证书</span>
+
+http <span class="o">{</span>
+    server <span class="o">{</span>
+        listen              <span class="m">443</span> ssl<span class="p">;</span>
+        keepalive_timeout   70<span class="p">;</span>
+
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
+        ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5<span class="p">;</span>
+        ssl_certificate     /usr/local/nginx/conf/cert.pem<span class="p">;</span>
+        ssl_certificate_key /usr/local/nginx/conf/cert.key<span class="p">;</span>
+        ssl_session_cache   shared:SSL:10m<span class="p">;</span>
+        ssl_session_timeout 10m<span class="p">;</span>
+
+        ssl_stapling on<span class="p">;</span>
+        ssl_stapling_verify on<span class="p">;</span>
+        ssl_trusted_certificate /usr/local/nginx/conf/chain.pem<span class="p">;</span>
+        resolver 8.8.8.8<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+<span class="c1"># 使用上述配置用来应对 OCSP 响应返回包括对应证书的情况</span>
+<span class="c1"># 指定 ssl_trusted_certificate 会用于校验返回的证书， chain.pem 就是除了本身站点证书之外的证书链</span>
+<span class="c1"># 配置异常可能会出现下面的报错：</span>
+OCSP_basic_verify<span class="o">()</span> failed <span class="o">(</span>SSL: error:27069076:OCSP routines:OCSP_basic_verify:signer certificate not found<span class="o">)</span>
+
+<span class="c1"># 先行存储 OCSP 响应结果</span>
+$ openssl ocsp -issuer chain.pem -cert cert.pem -text -no_nonce -url <span class="sb">`</span>openssl x509 -noout -ocsp_uri -in cert.pem<span class="sb">`</span> -respout resp.der
+<span class="c1"># 使用 ssl_stapling_file 指令后无需动态调用 OCSP 接口，使用存储结果进行响应</span>
+http <span class="o">{</span>
+    server <span class="o">{</span>
+        listen              <span class="m">443</span> ssl<span class="p">;</span>
+        keepalive_timeout   70<span class="p">;</span>
+
+        ssl_protocols       TLSv1 TLSv1.1 TLSv1.2<span class="p">;</span>
+        ssl_ciphers         AES128-SHA:AES256-SHA:RC4-SHA:DES-CBC3-SHA:RC4-MD5<span class="p">;</span>
+        ssl_certificate     /usr/local/nginx/conf/cert.pem<span class="p">;</span>
+        ssl_certificate_key /usr/local/nginx/conf/cert.key<span class="p">;</span>
+        ssl_session_cache   shared:SSL:10m<span class="p">;</span>
+        ssl_session_timeout 10m<span class="p">;</span>
+
+        ssl_stapling on<span class="p">;</span>
+        ssl_stapling_file /usr/local/nginx/conf/resp.der<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1"># 验证是否服务端开启 OCSP stapling</span>
+$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -status -connect www.github.com:443 2&gt;/dev/null <span class="p">|</span> grep <span class="s1">&#39;OCSP Response&#39;</span>
+<span class="c1"># 出现 OCSP Response Status: successful (0x0) 则说明服务端开启了 OCSP stapling</span>
+</code></pre></div></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/toc.js'></script>
+<link rel="stylesheet" href='https://yuweizzz.github.io/css/toc.css' />
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+<script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
+
+
+</html>
