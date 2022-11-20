@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>RAID on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/raid/</link>
+    <description>Recent content in RAID on Wei&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 07 Nov 2021 21:49:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/raid/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>硬盘知识拓展：总线适配器和磁盘阵列</title>
+      <link>https://yuweizzz.github.io/post/knowledge_about_raid_and_hba/</link>
+      <pubDate>Sun, 07 Nov 2021 21:49:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/knowledge_about_raid_and_hba/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些服务器磁盘管理的相关知识。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -6,13 +6,22 @@
     <description>Recent content in HDD on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 09 Oct 2021 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/hdd/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Nov 2021 21:49:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/hdd/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>硬盘知识拓展：总线适配器和磁盘阵列</title>
+      <link>https://yuweizzz.github.io/post/knowledge_about_raid_and_hba/</link>
+      <pubDate>Sun, 07 Nov 2021 21:49:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/knowledge_about_raid_and_hba/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些服务器磁盘管理的相关知识。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>硬盘知识笔记</title>
-      <link>https://yuweizzz.github.io/post/tips_about_hdd/</link>
+      <link>https://yuweizzz.github.io/post/knowledge_about_hdd/</link>
       <pubDate>Sat, 09 Oct 2021 15:00:00 +0000</pubDate>
       
-      <guid>https://yuweizzz.github.io/post/tips_about_hdd/</guid>
+      <guid>https://yuweizzz.github.io/post/knowledge_about_hdd/</guid>
       <description>&lt;p&gt;这篇笔记用来记录一些硬盘的相关知识。&lt;/p&gt;</description>
     </item>
     
