@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>回顾 2021 年 - Wei&#39;s blog</title>
+    <title>Lua 学习笔记 - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/github.png'>
     
@@ -18,18 +18,18 @@
 
     
     <meta name="description"
-  content="2021 年总结和新年展望。
+  content="这篇笔记用来学习过程中一些 Lua 的相关知识。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://yuweizzz.github.io/post/review_of_2021/" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/study_notes_about_lua/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="回顾 2021 年 - Wei&#39;s blog" />
+<meta name="twitter:title" content="Lua 学习笔记 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="2021 年总结和新年展望。
+  content="这篇笔记用来学习过程中一些 Lua 的相关知识。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io" />
 <meta name="twitter:creator" content="" />
@@ -38,18 +38,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="回顾 2021 年 - Wei&#39;s blog">
+<meta property="og:title" content="Lua 学习笔记 - Wei&#39;s blog">
 <meta property="og:description"
-  content="2021 年总结和新年展望。
+  content="这篇笔记用来学习过程中一些 Lua 的相关知识。
 " />
-<meta property="og:url" content="https://yuweizzz.github.io/post/review_of_2021/" />
-<meta property="og:site_name" content="回顾 2021 年" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/study_notes_about_lua/" />
+<meta property="og:site_name" content="Lua 学习笔记" />
 <meta property="og:image"
   content="https://yuweizzz.github.io">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2021-12-24 21:44:45 &#43;0000 UTC" />
+<meta property="article:published_time" content="2022-09-04 19:44:45 &#43;0000 UTC" />
 
 
 
@@ -157,12 +157,12 @@
                   <span class="author">
                     <a href="https://yuweizzz.github.io">Wei</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://yuweizzz.github.io/post/review_of_2021/">回顾 2021 年</a></strong>
+                      href="https://yuweizzz.github.io/post/study_notes_about_lua/">Lua 学习笔记</a></strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Fri, 24 Dec 2021 21:44:45 &#43;0000"
+                  Created <relative-time datetime="Sun, 04 Sep 2022 19:44:45 &#43;0000"
                     class="no-wrap">
-                    Fri, 24 Dec 2021 21:44:45 &#43;0000</relative-time>
+                    Sun, 04 Sep 2022 19:44:45 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -198,20 +198,29 @@
                         </div>
                       </div>
                     </details-menu>
-                      2122 Words
+                      1127 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/life">
+                    <a class="muted-link mr-3" href="/tags/lua">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      Life
+                      Lua
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/luarocks">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Luarocks
                     </a>
                     
                     
@@ -221,7 +230,7 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>2021 年总结和新年展望。</p>
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来学习过程中一些 Lua 的相关知识。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
                                        <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
                                   <span class="o">(</span>   <span class="o">)</span>
@@ -240,31 +249,108 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="正文">正文</h2>
-<p>就我个人感觉来说，每次思考时，虽然心里想到了很多，但是口头表达却不及其一，我越发认同提笔记录是很好的办法。</p>
-<p>在今年的年末回首前，先记录一件小事，我在周二早上起床后就感觉喉咙不舒服，但当时情况并不是十分严重，因为我本身就有咽炎，这一天也就这么过去了。</p>
-<p>等到周三早上情况就加重了，而且在中午休息过后一度有发热的迹象，我对自己的身体比较清楚，如果有十分疲惫的感觉，就有很有可能导致发热，这回我不敢忽视了，一下班就马上买了药，去买药的时候还担心已经发热被测温仪器检查出来，当天晚上睡觉感觉浑身发冷，这是比较明显的发热前兆。</p>
-<p>周四早上起床这种发热的感觉和咽喉发炎的情况有所好转，但人还是不太清醒，坚持到了公司，等到下午情况渐渐好转，虽然咽喉炎症依然明显，但是疲惫的感觉渐渐退去。</p>
-<p>一整天也吃不下东西，人也是精神恍惚，回到家吃了药，人反而变得有精神了，临睡前居然感觉到饥饿。 昨天晚上我躺在床上，想着明天病好了，一定要多搞点好吃的。</p>
-<p>幸运的是今天真的好了一大半，虽然说不上完全恢复，但是至少人可以正常活动了，所以今天就血拼了一把，买了不少好吃的，当作是庆祝下。</p>
-<p>这次的事情对我来说，对我最大的触动是周四晚上躺在床上，畅想明天的美食，那种摒弃所有弊病，那种带着对明天美好的强烈期待，实在是令人备受鼓舞。</p>
-<p>在今年的工作和生活中，我感觉陷入了一种困境，当萦绕在心头的疑问越来越多，而它们无法得到解答时，会渐渐消磨对生活的热情，每一天的你对明天不再抱有期待，快乐也跟着变少了，就如同病重躺在床上时，人是非常痛苦的，如果是抱着痊愈的希望，想着明天的能吃到的好吃食物，那这苦中还留有着快乐，但如果没有对于明天的希望，心中的苦闷将会比身体上的更加令人难受。</p>
-<p>我认为它可以作为今年的主基调，进入年末总结的正题：</p>
-<p>在生活上，疫情时不时爆发，虽然我已经明白它基本上会长期存在，但是坏消息总是能带来无形的压力，还有来自互联网的多元信息，包括政府政策，网民言论，突发事件，企业变动，八卦事件等等，它们可能不会直接关系到我个人，但是它们经常带来大量的负面信息，这对生活热情也是极大的打击。所以我经常通过一些比较低回报的事情消磨时间，比如看网络小说，熬夜打游戏，我个人认为这些事情不至于做到完全杜绝，但是它们应该被有计划地控制，但是没有较好做到自我控制是今年比较失败的地方。</p>
-<p>在工作上，大形势是新的技术不断推出，但是旧的技术又不得不用，而它们都需要时间成本去学习，我觉得来自时间上的压力和方向上的困惑是两个重要原因，不像在读书的时候，每次都有着明确的方向和目标，我只需要顶住时间上的压力就可以了。但在工作中，方向和目标都非常容易迷失，由于这种迷失甚至导致了专注力的下降，很容易出现懈怠和厌恶，导致最终一无所成，这是现在最令我恐惧的地方。</p>
-<p>还有就是日益增长的孤独感，像这次生病的事情，我个人不想向任何人直接透露，其实这是不健康的心理状态，因为人的生活需要交流，不管是人生经验或者是技术经验，都应该是交流催生更大的进步。这是今年甚至说已经存在了较长时间的，人际交流方面的欠缺。</p>
-<p>前面的可能涉及了比较多的消极部分，但其实今年也是有收获的，首先是我已经认识到了过往的一些缺陷，这是一个好的开始，那么下一年需要做到事情就是改进，虽然我知道这可能是困难重重的，但我认为这应该可以做到更好。</p>
-<p>在工作和个人学习上，虽然常有懈怠，但是我一直是保持着学习的习惯，自我学习并没有停止过，总结今年，我的综合能力确实是提升了，也许不是在某个具体技能上，但它将会是更强技术能力的基石。</p>
-<p>关于孤独这方面，我认为它是人生当中不可避免的，虽然它在我的人生占据了更大的比例，但是目前我觉得这样也还行，甚至更好地利用它，即使这是一条更困难的路。我认为性格是这方面很重要的影响因素，而它不是目前强烈需要改变的地方，也不是一时能解决的，我更愿意顺其自然，慢慢改变。</p>
-<p>而且今年还收获了一个新的乐趣，集邮过程也许不全是快乐，有时会因为某个套票而着急，有时会懒得动手去做一些必要的洗片工作，但是我认为它是可以成为锻炼毅力的工具，全心地投入并坚持一项事业是非常难得的。</p>
-<p>好的也说完了，坏的也说完了，我感觉明年来说，也许人生的大方向是迷离不定的，但是踏实过好每一天，让自己每天都快乐也是很不错的，在下一年，我觉得至少要做到改进一些事情：</p>
-<p>生活上，注意保护身体，毕竟生病太难受了，希望可以改善不吃早餐的毛病和尽量早睡。</p>
-<p>工作学习上，我感觉做好规划是比较有效的方法，虽然现在还保持着学习，但是没有良好的规划和整理的话，学习效果会大打折扣。今年整年都是无组织无计划，导致欠下了不少技术债。希望下一年可以更好地改进。</p>
-<p>此外，对于外部信息的接收，我感觉自身的见识和认知还不能够抵御它们的冲击，这个目前还是无解，也许多看看书，少接收一些消极的外部信息是好办法，下一年可以朝着这个方向多做尝试。</p>
-<p>其实我不常做总结或者回顾，但希望这次的破例能给下一年带来更好的自己。</p>
-<blockquote>
-<p>写于 2021 年 12 月 24 日，平安夜。</p>
-</blockquote></article>
+</code></pre></div><p>lua 是一门高效的，易于嵌入其他应用程序的轻量级脚本语言。 lua 的高效快速主要是由于 lua 本身的底层设计以及非常高效的 Lua 解释器。这里主要会记录一些 lua 入门学习时一些遇到的问题。</p>
+<h2 id="lua-string-处理">Lua String 处理</h2>
+<p>lua 的 string 类型数据是不可改变的，大部分情况下要依靠 string 库来处理。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- 字符串连接</span>
+<span class="n">var_a</span> <span class="o">=</span> <span class="s2">&#34;a&#34;</span>
+<span class="n">var_b</span> <span class="o">=</span> <span class="s2">&#34;b&#34;</span>
+<span class="n">var_c</span> <span class="o">=</span> <span class="s2">&#34;c&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">var_a</span><span class="o">..</span><span class="n">var_b</span><span class="o">..</span><span class="n">var_c</span><span class="p">)</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- abc</span>
+
+<span class="c1">-- 字符串搜索</span>
+<span class="n">var_a</span> <span class="o">=</span> <span class="s2">&#34;a&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.find</span><span class="p">(</span><span class="n">var_a</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- 1	1</span>
+<span class="c1">-- 搜索成功则返回匹配字符的起止位置索引，失败则返回 nil </span>
+
+<span class="c1">-- 字符串匹配</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.match</span><span class="p">(</span><span class="s2">&#34;  1 + 1  =2&#34;</span><span class="p">,</span> <span class="s2">&#34;^%s*(.-)%s*=.*&#34;</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- 1 + 1</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.match</span><span class="p">(</span><span class="s2">&#34;  1 + 1  =2&#34;</span><span class="p">,</span> <span class="s2">&#34;^%s*.-%s*=(.*)&#34;</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- 2</span>
+<span class="c1">-- 匹配成功则返回整个匹配的字符串，由于使用了括号进行子模式匹配，所以只返回了匹配部分，其中 .- 代表任意字符的非贪婪匹配</span>
+</code></pre></div><h2 id="lua-table">Lua Table</h2>
+<p>lua table 是一种异于其他编程语言的数据类型，它是动态增长的字典类容器，同时具有数组的特性，如果仔细研究它的内部结构，可以发现它是有两者混合构成的。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="n">t</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="o">=</span><span class="s2">&#34;A&#34;</span><span class="p">,</span> <span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&#34;C&#34;</span><span class="p">,</span> <span class="n">D</span><span class="p">}</span>
+<span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>    <span class="c1">-- output: nil</span>
+<span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s2">&#34;a&#34;</span><span class="p">])</span>  <span class="c1">-- output: A</span>
+<span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>    <span class="c1">-- output: B</span>
+<span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="s2">&#34;c&#34;</span><span class="p">])</span>  <span class="c1">-- output: C</span>
+<span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>    <span class="c1">-- output: nil</span>
+<span class="n">print</span><span class="p">(</span><span class="n">t</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span>    <span class="c1">-- output: nil</span>
+
+<span class="c1">-- D 这个值是测试时疏漏了引号产生的错误，它会认为是一个值为 nil 的变量，相当于空洞</span>
+</code></pre></div><p>通过这个例子可以简单看出它们的混合特点，键值对和数组是互相独立的，需要使用明确的键取对应的值，数组值则使用数字索引，并且索引是从 1 开始而不是 0 ，要注意这里只是为了弄清楚它们的特性才使用了混合结构，实际中基本不会这样使用。</p>
+<h2 id="lua-模块和-luarocks">Lua 模块和 Luarocks</h2>
+<p>常规的 lua 脚本需要依靠两个重要变量 <code>package.path</code> 和 <code>package.cpath</code> 来获取一些运行模块信息，它们主要区别在于模块是由 lua 语言实现还是由 c 语言实现。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat p.lua
+print<span class="o">(</span>package.path<span class="o">)</span>
+print<span class="o">(</span>package.cpath<span class="o">)</span>
+
+$ lua p.lua
+./?.lua<span class="p">;</span>/usr/share/lua/5.1/?.lua<span class="p">;</span>/usr/share/lua/5.1/?/init.lua<span class="p">;</span>/usr/lib64/lua/5.1/?.lua<span class="p">;</span>/usr/lib64/lua/5.1/?/init.lua
+./?.so<span class="p">;</span>/usr/lib64/lua/5.1/?.so<span class="p">;</span>/usr/lib64/lua/5.1/loadall.so
+
+<span class="c1"># 可以通过指定环境变量 LUA_PATH 和 LUA_CPATH 来改变这两个值，其中 ;; 的第二个 ; 会被替换为原有的默认值</span>
+$ <span class="nv">LUA_PATH</span><span class="o">=</span><span class="s2">&#34;/tmp/?.lua;;&#34;</span> <span class="nv">LUA_CPATH</span><span class="o">=</span><span class="s2">&#34;/tmp/?.so;;&#34;</span> lua p.lua
+/tmp/?.lua<span class="p">;</span>./?.lua<span class="p">;</span>/usr/share/lua/5.1/?.lua<span class="p">;</span>/usr/share/lua/5.1/?/init.lua<span class="p">;</span>/usr/lib64/lua/5.1/?.lua<span class="p">;</span>/usr/lib64/lua/5.1/?/init.lua<span class="p">;</span>
+/tmp/?.so<span class="p">;</span>./?.so<span class="p">;</span>/usr/lib64/lua/5.1/?.so<span class="p">;</span>/usr/lib64/lua/5.1/loadall.so<span class="p">;</span>
+</code></pre></div><p>我们如果想使用别人写好的 lua 脚本，通常需要自己去对应的发布地址下载并自行安装，但是 lua 也有类似于模块管理器一样的软件 luarocks ，使用它我们可以更方便管理我们需要用到的模块，也可以把我们自己写好的脚本提供给他人下载使用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 luarocks 下载安装 luasql</span>
+$ luarocks install luasql-mysql --server https://luarocks.cn <span class="nv">MYSQL_INCDIR</span><span class="o">=</span>/usr/include/mysql/ <span class="nv">MYSQL_LIBDIR</span><span class="o">=</span>/usr/lib64/mysql
+<span class="c1"># --server 可以指定 luarocks 服务器</span>
+<span class="c1"># 可以通过环境变量来指定某些库文件位置，这些环境变量可以在对应模块的 rockspec 查找</span>
+
+<span class="c1"># luasql-mysql rockspec</span>
+<span class="nv">package</span> <span class="o">=</span> <span class="s2">&#34;LuaSQL-MySQL&#34;</span>
+<span class="nv">version</span> <span class="o">=</span> <span class="s2">&#34;2.3.5-1&#34;</span>
+<span class="nb">source</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nv">url</span> <span class="o">=</span> <span class="s2">&#34;git://github.com/keplerproject/luasql.git&#34;</span>,
+  <span class="nv">branch</span> <span class="o">=</span> <span class="s2">&#34;v2.3.5&#34;</span>,
+<span class="o">}</span>
+<span class="nv">description</span> <span class="o">=</span> <span class="o">{</span>
+   <span class="nv">summary</span> <span class="o">=</span> <span class="s2">&#34;Database connectivity for Lua (MySQL driver)&#34;</span>,
+   <span class="nv">detailed</span> <span class="o">=</span> <span class="o">[[</span>
+      LuaSQL is a simple interface from Lua to a DBMS. It enables a
+      Lua program to connect to databases, execute arbitrary SQL statements
+      and retrieve results in a row-by-row cursor fashion.
+   <span class="o">]]</span>,
+   <span class="nv">license</span> <span class="o">=</span> <span class="s2">&#34;MIT/X11&#34;</span>,
+   <span class="nv">homepage</span> <span class="o">=</span> <span class="s2">&#34;http://www.keplerproject.org/luasql/&#34;</span>
+<span class="o">}</span>
+<span class="nv">dependencies</span> <span class="o">=</span> <span class="o">{</span>
+   <span class="s2">&#34;lua &gt;= 5.1&#34;</span>
+<span class="o">}</span>
+<span class="nv">external_dependencies</span> <span class="o">=</span> <span class="o">{</span>
+   <span class="nv">MYSQL</span> <span class="o">=</span> <span class="o">{</span>
+      <span class="nv">header</span> <span class="o">=</span> <span class="s2">&#34;mysql.h&#34;</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+<span class="nv">build</span> <span class="o">=</span> <span class="o">{</span>
+   <span class="nb">type</span> <span class="o">=</span> <span class="s2">&#34;builtin&#34;</span>,
+   <span class="nv">modules</span> <span class="o">=</span> <span class="o">{</span>
+     <span class="o">[</span><span class="s2">&#34;luasql.mysql&#34;</span><span class="o">]</span> <span class="o">=</span> <span class="o">{</span>
+       <span class="nv">sources</span> <span class="o">=</span> <span class="o">{</span> <span class="s2">&#34;src/luasql.c&#34;</span>, <span class="s2">&#34;src/ls_mysql.c&#34;</span> <span class="o">}</span>,
+       <span class="nv">libraries</span> <span class="o">=</span> <span class="o">{</span> <span class="s2">&#34;mysqlclient&#34;</span> <span class="o">}</span>,
+       <span class="nv">incdirs</span> <span class="o">=</span> <span class="o">{</span> <span class="s2">&#34;</span><span class="k">$(</span>MYSQL_INCDIR<span class="k">)</span><span class="s2">&#34;</span> <span class="o">}</span>,
+       <span class="nv">libdirs</span> <span class="o">=</span> <span class="o">{</span> <span class="s2">&#34;</span><span class="k">$(</span>MYSQL_LIBDIR<span class="k">)</span><span class="s2">&#34;</span> <span class="o">}</span>
+     <span class="o">}</span>
+   <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="c1"># 为了维持解释器环境不被污染，可以使用 --tree 指定模块的安装路径</span>
+$ luarocks install luasql-mysql --tree <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+<span class="c1"># 如果不指定 --tree ，会根据当前用户决定安装路径， root 一般会安装到 /usr 这个路径中</span>
+
+<span class="c1"># 删除已经安装的模块，必须指定 --tree</span>
+$ luarocks purge luasql-mysql --tree <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
+</code></pre></div></article>
               </div>
             </div>
           </div>

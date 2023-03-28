@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Thu, 23 Mar 2023 07:07:44 &#43;0000"
+                  Modified <relative-time datetime="Tue, 28 Mar 2023 07:13:24 &#43;0000"
                     class="no-wrap">
-                    Thu, 23 Mar 2023 07:07:44 &#43;0000</relative-time>
+                    Tue, 28 Mar 2023 07:13:24 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2853 Words
+                      2975 Words
                     
 
                   </div>
@@ -404,6 +404,10 @@ $ git branch -vv
 $ git fetch origin master
 <span class="c1"># 将 origin/master 分支 merge 到当前分支，也就是 master 分支</span>
 $ git merge origin/master
+</code></pre></div><h2 id="解决-git-clone-超时的问题">解决 git clone 超时的问题</h2>
+<p>由于众所周知的网络原因，有时候从 Github 直接 clone 或者 pull 代码可能会出现超时问题，这个问题在我使用 luarocks 出现了几次，经过查阅资料后发现应该是 <code>git://</code> 被封锁导致的，应对这种情况的一种做法是将 git 协议修改为 https 协议并使用代理服务器。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config --global url.<span class="s2">&#34;https://&#34;</span>.insteadOf git://
+$ git config --global https.proxy http://127.0.0.1:4396
 </code></pre></div><h2 id="使用-submodule-功能">使用 submodule 功能</h2>
 <p>submodule 可以让你的代码仓库使用其他现有的仓库作为子模块，这样我们可以轻松引用别人的仓库作为我们自己代码仓库的一部分。</p>
 <p>它的特色在于二者的文件管控是分离的，子模块在父仓库的 git 管控中显示为一个对象，但是它拥有独立的 git 目录。这样父仓库和子仓库就可以拥有各自 commit ，但同时又可以正确地关联二者之间的从属关系。</p>
