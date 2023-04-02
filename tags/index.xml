@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 04 Sep 2022 19:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Sep 2022 15:22:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubernetes</title>
+      <link>https://yuweizzz.github.io/tags/kubernetes/</link>
+      <pubDate>Sat, 10 Sep 2022 15:22:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>Lua</title>
       <link>https://yuweizzz.github.io/tags/lua/</link>

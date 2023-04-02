@@ -6,14 +6,23 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 04 Sep 2022 19:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 10 Sep 2022 15:22:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Kubernetes 实践笔记</title>
+      <link>https://yuweizzz.github.io/post/practice_notes_about_kubernetes/</link>
+      <pubDate>Sat, 10 Sep 2022 15:22:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/practice_notes_about_kubernetes/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些 Kubernetes 的相关知识。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Lua 学习笔记</title>
       <link>https://yuweizzz.github.io/post/study_notes_about_lua/</link>
       <pubDate>Sun, 04 Sep 2022 19:44:45 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/post/study_notes_about_lua/</guid>
-      <description>&lt;p&gt;这篇笔记用来学习过程中一些 Lua 的相关知识。&lt;/p&gt;</description>
+      <description>&lt;p&gt;这篇笔记用来记录一些 Lua 的相关知识。&lt;/p&gt;</description>
     </item>
     
     <item>
