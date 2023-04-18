@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 10 Sep 2022 15:22:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Apr 2023 21:46:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ffmpeg</title>
+      <link>https://yuweizzz.github.io/tags/ffmpeg/</link>
+      <pubDate>Sat, 15 Apr 2023 21:46:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/ffmpeg/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>kubernetes</title>
       <link>https://yuweizzz.github.io/tags/kubernetes/</link>

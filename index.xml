@@ -6,7 +6,16 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 10 Sep 2022 15:22:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 15 Apr 2023 21:46:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>ffmpeg 命令笔记</title>
+      <link>https://yuweizzz.github.io/post/useful_command_about_ffmpeg/</link>
+      <pubDate>Sat, 15 Apr 2023 21:46:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/useful_command_about_ffmpeg/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些常用的 ffmpeg 命令。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Kubernetes 实践笔记</title>
       <link>https://yuweizzz.github.io/post/practice_notes_about_kubernetes/</link>

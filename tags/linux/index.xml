@@ -17,30 +17,12 @@
     </item>
     
     <item>
-      <title>TLS 协议工作原理</title>
-      <link>https://yuweizzz.github.io/post/knowledge_about_tls/</link>
-      <pubDate>Sat, 26 Mar 2022 13:22:45 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/post/knowledge_about_tls/</guid>
-      <description>&lt;p&gt;这篇笔记用来记录 TLS 协议的工作原理及其相关计算机密码学的知识。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
       <title>PowerDNS 调优</title>
       <link>https://yuweizzz.github.io/post/powerdns_performance_guide/</link>
       <pubDate>Sat, 12 Mar 2022 10:22:45 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/post/powerdns_performance_guide/</guid>
       <description>&lt;p&gt;这篇笔记用来记录 PowerDNS 的性能优化。&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>前端项目开发笔记</title>
-      <link>https://yuweizzz.github.io/post/tips_about_javascript_project/</link>
-      <pubDate>Tue, 03 Aug 2021 22:00:00 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/post/tips_about_javascript_project/</guid>
-      <description>&lt;p&gt;这篇笔记用来记录一些前端项目开发过程中的常用操作。&lt;/p&gt;</description>
     </item>
     
     <item>
