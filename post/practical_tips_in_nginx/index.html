@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Apr 2023 14:27:53 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Apr 2023 15:02:08 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Apr 2023 14:27:53 &#43;0000</relative-time>
+                    Tue, 18 Apr 2023 15:02:08 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2959 Words
+                      3096 Words
                     
 
                   </div>
@@ -427,6 +427,25 @@ Connection: Keep-Alive
         <span class="k">return</span> 204<span class="p">;</span>
     <span class="o">}</span>
 <span class="o">}</span>
+</code></pre></div><h2 id="通过-sni-分发不同证书">通过 SNI 分发不同证书</h2>
+<p>Nginx 可以通过 SNI 获取到请求的域名信息，我们可以根据这个信息分发对应的证书，适合用于同站点多域名的情况。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 需要确认 nginx 版本是否支持 SNI</span>
+$ nginx -V
+......
+TLS SNI support enabled
+......
+
+$ cat nginx.conf
+......
+<span class="c1"># 变量 ssl_server_name 可以获取 ssl 握手时请求的域名，只需要将实际签发的证书按照对应域名命名即可</span>
+server <span class="o">{</span>
+    listen <span class="m">443</span> ssl<span class="p">;</span>
+    server_name <span class="nv">$ssl_server_name</span><span class="p">;</span>
+    ssl_certificate <span class="nv">$ssl_server_name</span>.crt<span class="p">;</span>
+    ssl_certificate_key <span class="nv">$ssl_server_name</span>.pri<span class="p">;</span>
+    ......
+<span class="o">}</span>
+......
 </code></pre></div><h2 id="开启-hsts">开启 HSTS</h2>
 <p>为了将访问 HTTP 的 80 端口流量导向 HTTPS 的 443 端口，通过会额外配置一个虚拟主机用于重定向。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">server <span class="o">{</span>
