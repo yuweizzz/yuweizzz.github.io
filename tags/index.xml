@@ -6,7 +6,16 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 15 Apr 2023 21:46:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Apr 2023 13:26:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>filebeat</title>
+      <link>https://yuweizzz.github.io/tags/filebeat/</link>
+      <pubDate>Mon, 24 Apr 2023 13:26:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/filebeat/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>ffmpeg</title>
       <link>https://yuweizzz.github.io/tags/ffmpeg/</link>
@@ -337,6 +346,15 @@
       <pubDate>Thu, 13 Aug 2020 22:00:00 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/tags/git/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VMware Workstation</title>
+      <link>https://yuweizzz.github.io/tags/vmware-workstation/</link>
+      <pubDate>Thu, 23 Jul 2020 22:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/vmware-workstation/</guid>
       <description></description>
     </item>
     

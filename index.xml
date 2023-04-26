@@ -6,7 +6,16 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 15 Apr 2023 21:46:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 24 Apr 2023 13:26:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>filebeat 配置参考</title>
+      <link>https://yuweizzz.github.io/post/detail_about_filebeat_config_file/</link>
+      <pubDate>Mon, 24 Apr 2023 13:26:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/detail_about_filebeat_config_file/</guid>
+      <description>&lt;p&gt;这篇笔记主要介绍 filebeat 配置文件各参数含义和一些配置实例。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>ffmpeg 命令笔记</title>
       <link>https://yuweizzz.github.io/post/useful_command_about_ffmpeg/</link>
@@ -239,6 +248,15 @@
       
       <guid>https://yuweizzz.github.io/post/more_tips_about_git/</guid>
       <description>&lt;p&gt;这篇笔记用来记录一些 Git 命令的进阶使用和部分原理知识。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>VMware Workstation 虚拟机共享宿主机磁盘目录</title>
+      <link>https://yuweizzz.github.io/post/share_folder_in_vmware_workstation/</link>
+      <pubDate>Thu, 23 Jul 2020 22:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/share_folder_in_vmware_workstation/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录如何把宿主机的磁盘目录共享到 VMware Workstation 创建的虚拟机之中。&lt;/p&gt;</description>
     </item>
     
     <item>
