@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://yuweizzz.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
+    <title>硬件测试工具使用笔记 - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/github.png'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="这篇笔记用来记录硬件测试工具 fio 和 stream 的使用。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="硬件测试工具使用笔记 - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="这篇笔记用来记录硬件测试工具 fio 和 stream 的使用。
+" />
+<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://yuweizzz.github.io">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="硬件测试工具使用笔记 - Wei&#39;s blog">
+<meta property="og:description"
+  content="这篇笔记用来记录硬件测试工具 fio 和 stream 的使用。
+" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/" />
+<meta property="og:site_name" content="硬件测试工具使用笔记" />
+<meta property="og:image"
+  content="https://yuweizzz.github.io">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2023-01-10 15:22:45 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-174929827-1"></script>
+<script>
+  if (navigator.doNotTrack !== '1') {
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-174929827-1');
+  }
+</script>
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://yuweizzz.github.io">
+        <svg class="octicon" height="32" viewBox="0 0 16 16" version="1.1" width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd"
+            d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+            </label>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://yuweizzz.github.io">
+        <svg class="octicon octicon-mark-github v-align-middle" height="32" viewBox="0 0 16 16" version="1.1"
+          width="32">
+          <path fill-rule="evenodd"
+            d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+          </path>
+        </svg>
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+  
+<div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                  <img class=" avatar-user"
+                    src="https://yuweizzz.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://yuweizzz.github.io">Wei</a></span><span
+                    class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
+                      href="https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/">硬件测试工具使用笔记</a></strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Tue, 10 Jan 2023 15:22:45 &#43;0000"
+                    class="no-wrap">
+                    Tue, 10 Jan 2023 15:22:45 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Tue, 20 Jun 2023 15:04:27 &#43;0000"
+                    class="no-wrap">
+                    Tue, 20 Jun 2023 15:04:27 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      1956 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/fio">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      fio
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/stream">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      stream
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录硬件测试工具 fio 和 stream 的使用。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
+                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+                                  <span class="o">(</span>   <span class="o">)</span>
+                              <span class="o">(</span>@@@@<span class="o">)</span>
+                           <span class="o">(</span>    <span class="o">)</span>
+
+                         <span class="o">(</span>@@@<span class="o">)</span>
+                       <span class="o">====</span>        ________                ___________
+                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+
+</code></pre></div><h2 id="硬盘性能测试工具-fio">硬盘性能测试工具 fio</h2>
+<p>fio 是比较常用的硬盘性能测试工具，它可以模拟不同读写场景并得到对应的 IOPS 和硬盘带宽，延迟等性能参数。</p>
+<h3 id="io-engine">io engine</h3>
+<p>使用 fio 需要指定 io engine ，实际上就是指定读写存储设备需要使用到的系统调用库，测试硬盘性能一般会使用 sync 或者 libaio ，其中 sync 使用的是 Linux 中基本的 IO 系统调用库，而 libaio 是 Linux 原生异步 IO 库。</p>
+<h3 id="io-pattern">io pattern</h3>
+<p>fio 可以指定具体的读写模式来模拟现实场景，比较常用的有下面几个：</p>
+<ul>
+<li>read 顺序读</li>
+<li>write 顺序写</li>
+<li>randread 随机读</li>
+<li>randwrite 随机写</li>
+<li>readwrite 顺序读写</li>
+<li>randrw 随机读写</li>
+</ul>
+<p>一般来说，机械硬盘的强项是顺序读写，而随机读写是机械硬盘的弱项；固态硬盘的强项是随机读写，顺序读写虽然表现也不错但是并不占优势，因为固态硬盘的价格比机械硬盘更高。</p>
+<p>像是常规的硬盘测试可以是裸盘测试或是基于文件系统测试，通常会结合顺序读写和随机读写来考量硬盘的综合性能。</p>
+<p>可以将如下测试过程作为参考，这是基于裸盘进行测试的：</p>
+<p>顺序写满 -&gt; 256k 顺序写 -&gt; 256k 顺序读 -&gt; 4k 顺序写 -&gt; 4k 顺序读 -&gt; 随机写满 -&gt; 4k 随机写 -&gt; 4k 随机读</p>
+<p>顺序读写一般会以比较大的块大小去操作，通常可以测试出比较高的带宽数据，但是随机读写一般会使用 4k 或者 16k 这些比较小且贴合操作系统的内存页大小去操作，这里更重要的数据应该是 IOPS ，同时也是衡量它们性能的重点。</p>
+<h3 id="fio-option">fio option</h3>
+<p>下面是一些重要的 fio 命令参数：</p>
+<ul>
+<li><code>-name</code> 可以命名当前进行的测试任务。</li>
+<li><code>-filename</code> 用来指定测试对象，如果是类似于 <code>/dev/sdb</code> 这样的设备则说明测试对象是裸盘，如果是类似于 <code>/home/file.img</code> 这样的文件路径则说明测试对象是基于文件系统的。如果是裸盘测试很有可能把原有的文件系统写坏，使用时要注意数据安全。</li>
+<li><code>-ioengine</code> 用来指定进行测试的 IO 函数库，也就是前述的 sync 或者 libaio 。</li>
+<li><code>-rw</code> 用来指定具体的读写模式，也就是前述的 io pattern 。</li>
+<li><code>-direct</code> 决定使用 buffered IO 或者是 non-buffered IO ，其中 buffered IO 是大多数操作系统的默认 IO 方式，数据会先被内核从硬盘中读取到缓冲中，再由用户层将内核缓冲作为第一层来读取，使用 <code>-direct=1</code> 可以屏蔽内核缓冲的使用，使用 non-buffered IO 来直接读取硬盘，大部分情况下应该使用 non-buffered IO 进行测试。</li>
+<li><code>-iodepth</code> 主要作用于异步 IO 库，也就是 libaio ，它可以决定并发性地发起多少个 IO 请求，这个选项在使用 buffered IO 和同步 IO 库时基本不起作用。</li>
+<li><code>-bs</code> 用来指定读写的 IO 块大小。</li>
+<li><code>-size</code> 用来指定读写内容的大小，在读写给定大小内容完成后就会结束任务，如果不指定 <code>-size</code> 还会根据 <code>-runtime</code> 决定任务的运行时间。</li>
+<li><code>-numjobs</code> 和 <code>-thread</code> 是控制测试任务的并发方式，如果使用 <code>-thread</code> 则使用单进程多线程的方式来运行，如果不使用 <code>-thread</code> 则使用多进程的方式来运行，而 <code>-numjobs</code> 则用来控制线程数量，在使用并发的情况下，可以使用 <code>-group_reporting</code> 来综合所有执行结果以输出测试报告。</li>
+</ul>
+<p>参考命令如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 顺序读</span>
+$ fio -name<span class="o">=</span><span class="nb">read</span> -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span><span class="nb">read</span> -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>256k -size<span class="o">=</span>8G <span class="se">\
+</span><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
+
+<span class="c1"># 顺序写</span>
+$ fio -name<span class="o">=</span>write -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>write -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>256k -size<span class="o">=</span>8G <span class="se">\
+</span><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
+
+<span class="c1"># 随机写</span>
+$ fio -name<span class="o">=</span>randwrite -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>randwrite -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>4k -size<span class="o">=</span>8G <span class="se">\
+</span><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
+
+<span class="c1"># 随机读</span>
+$ fio -name<span class="o">=</span>randread -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>randread -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>4k -size<span class="o">=</span>8G <span class="se">\
+</span><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
+</code></pre></div><h2 id="内存性能测试工具-stream">内存性能测试工具 stream</h2>
+<p>stream 是内存带宽性能的测试工具，主要通过内存运算操作来计算出机器的内存带宽性能。</p>
+<p>它的原理是通过在内存中划定三个数组，通过函数对不同数组内数据进行计算来得出内存的带宽性能，根据 stream 的设计，我们可以自行指定这三个数组的大小，并且这个大小应该超过 CPU 的三级缓存大小，这样测试时才不会受到 CPU 缓存的影响，推荐是 4 倍的三级缓存大小。</p>
+<p>实际使用可以参考下面的过程：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 获取机器的 CPU 信息</span>
+$ lscpu <span class="p">|</span> grep -E <span class="s1">&#39;Socket|L3&#39;</span>
+Socket<span class="o">(</span>s<span class="o">)</span>:           <span class="m">1</span>
+L3 cache:            16384K
+<span class="c1"># Socket(s) 可以得到机器有多少个物理 CPU ，一般服务器是单个，两个或者四个 CPU</span>
+<span class="c1"># L3 cache 可以得到单个物理 CPU 的三级缓存大小，整台机器的三级缓存大小应该是 Socket(s) * L3 cache Size</span>
+
+<span class="c1"># 下载源代码</span>
+$ wget http://www.cs.virginia.edu/stream/FTP/Code/stream.c
+
+<span class="c1"># 编译需要确定 STREAM_ARRAY_SIZE 编译参数</span>
+$ gcc -O3 -fopenmp -DSTREAM_ARRAY_SIZE<span class="o">=</span><span class="m">8500000</span> -DNTIMES<span class="o">=</span><span class="m">10</span> stream.c -o stream
+<span class="c1"># -O3 指定编译优化级别为最高</span>
+<span class="c1"># -fopenmp 启用多核支持，这样 stream 会默认以核心数量来启动线程</span>
+<span class="c1"># -DNTIMES 用来改变 stream 的运行次数， stream 默认会多次执行计算并取出最好的运行结果，默认值为 10</span>
+<span class="c1"># -DSTREAM_ARRAY_SIZE 就是我们需要指定的数组大小，默认值为 10000000 </span>
+<span class="c1"># 如果 STREAM_ARRAY_SIZE 默认值已经大于通过机器的三级缓存总和计算的结果，则可以直接保持这个默认值</span>
+
+<span class="c1"># 源代码部分参考：</span>
+/* -------------------------------------------------- */
+<span class="c1">#ifndef STREAM_TYPE</span>
+<span class="c1">#define STREAM_TYPE double</span>
+<span class="c1">#endif</span>
+
+static STREAM_TYPE      a<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span>,
+                        b<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span>,
+                        c<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span><span class="p">;</span>
+/* -------------------------------------------------- */
+<span class="c1"># 可以看到 STREAM_ARRAY_SIZE 默认使用 double 类型</span>
+<span class="c1"># 假设 Socket(s)=1 和 L3 cache Size=16384K ，则 STREAM_ARRAY_SIZE 的计算公式为：</span>
+<span class="c1"># 16384(KB) * 1024 * 1 * 4 / 8(B) = 8388608 -&gt; 8500000</span>
+<span class="c1"># 假设 Socket(s)=1 和 L3 cache Size=40M ，则 STREAM_ARRAY_SIZE 的计算公式为：</span>
+<span class="c1"># 40(MB) * 1024 * 1024 * 1 * 4 / 8(B) = 20971520 -&gt; 21000000</span>
+
+<span class="c1"># 执行 stream</span>
+$ ./stream
+<span class="c1"># 以下是在一台云服务器上的运行结果：</span>
+-------------------------------------------------------------
+STREAM version <span class="nv">$Revision</span>: 5.10 $
+-------------------------------------------------------------
+This system uses <span class="m">8</span> bytes per array element.
+-------------------------------------------------------------
+Array <span class="nv">size</span> <span class="o">=</span> <span class="m">8500000</span> <span class="o">(</span>elements<span class="o">)</span>, <span class="nv">Offset</span> <span class="o">=</span> <span class="m">0</span> <span class="o">(</span>elements<span class="o">)</span>
+Memory per <span class="nv">array</span> <span class="o">=</span> 64.8 MiB <span class="o">(=</span> 0.1 GiB<span class="o">)</span>.
+Total memory <span class="nv">required</span> <span class="o">=</span> 194.5 MiB <span class="o">(=</span> 0.2 GiB<span class="o">)</span>.
+Each kernel will be executed <span class="m">10</span> times.
+ The *best* <span class="nb">time</span> <span class="k">for</span> each kernel <span class="o">(</span>excluding the first iteration<span class="o">)</span>
+ will be used to compute the reported bandwidth.
+-------------------------------------------------------------
+Number of Threads <span class="nv">requested</span> <span class="o">=</span> <span class="m">4</span>
+Number of Threads <span class="nv">counted</span> <span class="o">=</span> <span class="m">4</span>
+-------------------------------------------------------------
+Your clock granularity/precision appears to be <span class="m">1</span> microseconds.
+Each <span class="nb">test</span> below will take on the order of <span class="m">3318</span> microseconds.
+   <span class="o">(=</span> <span class="m">3318</span> clock ticks<span class="o">)</span>
+Increase the size of the arrays <span class="k">if</span> this shows that
+you are not getting at least <span class="m">20</span> clock ticks per test.
+-------------------------------------------------------------
+WARNING -- The above is only a rough guideline.
+For best results, please be sure you know the
+precision of your system timer.
+-------------------------------------------------------------
+Function    Best Rate MB/s  Avg <span class="nb">time</span>     Min <span class="nb">time</span>     Max <span class="nb">time</span>
+Copy:           28577.0     0.005012     0.004759     0.005315
+Scale:          28416.1     0.004947     0.004786     0.005157
+Add:            29771.7     0.007201     0.006852     0.007542
+Triad:          29348.9     0.007279     0.006951     0.007677
+-------------------------------------------------------------
+Solution Validates: avg error less than 1.000000e-13 on all three arrays
+-------------------------------------------------------------
+</code></pre></div></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/toc.js'></script>
+<link rel="stylesheet" href='https://yuweizzz.github.io/css/toc.css' />
+
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+<script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
+
+
+</html>

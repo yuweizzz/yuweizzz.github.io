@@ -26,6 +26,15 @@
     </item>
     
     <item>
+      <title>硬件测试工具使用笔记</title>
+      <link>https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/</link>
+      <pubDate>Tue, 10 Jan 2023 15:22:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录硬件测试工具 fio 和 stream 的使用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>Kubernetes 实践笔记</title>
       <link>https://yuweizzz.github.io/post/practice_notes_about_kubernetes/</link>
       <pubDate>Sat, 10 Sep 2022 15:22:45 +0000</pubDate>
