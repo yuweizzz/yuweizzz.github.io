@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>apisix on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/apisix/</link>
+    <description>Recent content in apisix on Wei&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 03 Aug 2023 21:16:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/apisix/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Apisix 的负载均衡实现</title>
+      <link>https://yuweizzz.github.io/post/how_apisix_implements_load_balancing/</link>
+      <pubDate>Thu, 03 Aug 2023 21:16:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/how_apisix_implements_load_balancing/</guid>
+      <description>&lt;p&gt;这篇笔记用来分析 Apisix 是如何实现负载均衡的。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
