@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Aug 2023 17:19:08 &#43;0000"
+                  Modified <relative-time datetime="Mon, 11 Sep 2023 14:29:14 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Aug 2023 17:19:08 &#43;0000</relative-time>
+                    Mon, 11 Sep 2023 14:29:14 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1728 Words
+                      2705 Words
                     
 
                   </div>
@@ -356,7 +356,253 @@ options ndots:5
 </span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ExternalName</span><span class="w">
 </span><span class="w">  </span><span class="nt">externalName</span><span class="p">:</span><span class="w"> </span><span class="l">my.database.example.com</span><span class="w">
 </span></code></pre></div><p>从官方文档中的实例可以非常明确这个服务类型的作用，它创建了一个内部服务，在提供给其他服务的同时，它本身并未在集群中运行，而这个服务只是在内部 DNS 创建 CNAME 记录，当其他服务访问时，实际上会通过 CNAME 访问到集群外部。也就是在访问 <code>my-service.prod.svc.cluster.local</code> 时，实际相当于访问 <code>my.database.example.com</code> 。</p>
-<p>除了映射外部域名，它也经常用于将其他命名空间的服务映射为本地命名空间的服务，方便内部服务的域名访问规范。</p></article>
+<p>除了映射外部域名，它也经常用于将其他命名空间的服务映射为本地命名空间的服务，方便内部服务的域名访问规范。</p>
+<h2 id="kubernetes-身份认证与鉴权">Kubernetes 身份认证与鉴权</h2>
+<p>在 Kubernetes 中， Pod 和其他的工作负载资源是我们最经常接触的资源对象，通常来说它们是直接和集群外部交互的，但是当它们需要进行集群内部交互，比如最常见的与 ApiServer 进行交互的时候，就会涉及到身份认证与鉴权，在 Kubernetes 中是一般使用基于 RBAC 的鉴权方式来实现。</p>
+<p>在这个认证体系中，比较重要的是 <code>ServiceAccount</code> 资源对象，它在每个新的 <code>namespace</code> 创建时都会随之默认生成，实际上也就是这个命名空间中的资源向 ApiServer 请求时默认使用的身份，当然除了这个默认对象之外也可以自行创建。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># 来自 ingress nginx controller manifest 中的 ServiceAccount</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">automountServiceAccountToken</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/component</span><span class="p">:</span><span class="w"> </span><span class="l">controller</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/instance</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.2</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="c"># 来自 Kubernetes 官方文档，带有 imagePullSecrets 的 ServiceAccount</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">default</span><span class="w">
+</span><span class="w"></span><span class="nt">imagePullSecrets</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myregistrykey</span><span class="w">
+</span></code></pre></div><p><code>ServiceAccount</code> 中的 <code>automountServiceAccountToken</code> 参数可以控制是否将 <code>ServiceAccount</code> 对应生成的 token 挂载到具体的工作负载中，一般会在容器的 <code>/run/secrets/kubernetes.io/serviceaccount/</code> 路径下，但是 token 的具体内容信息跟所在 Kubernetes 集群的版本有关。 <code>ServiceAccount</code> 还可以通过 <code>imagePullSecrets</code> 参数来关联 <code>Secret</code> 类型资源，使用了这种关键字的 <code>ServiceAccount</code> 就会具有特定的镜像拉取认证信息。</p>
+<p>具体的 <code>ServiceAccount</code> 可以通过工作负载资源对象中的 <code>serviceAccountName</code> 参数来具体指定，否则工作负载默认使用创建命名空间时自动创建的 <code>ServiceAccount</code> 。</p>
+<p>但是只凭借 <code>ServiceAccount</code> 是不够的，可以说它只是确认了请求方究竟是谁的问题，也就我们说的身份认证。而对于请求方实际具有的权限则是通过 <code>Role</code> ， <code>RoleBinding</code> ，<code>ClusterRole</code> 和 <code>ClusterRoleBinding</code> 来定义。</p>
+<p>这种方式就是基于 RBAC 的鉴权方式，通过具体身份绑定了定义具体权限的角色，这样请求方认证身份后就拥有对应的权限。</p>
+<details>
+  <summary><code>Role</code> 和 <code>ClusterRole</code> 具体实例</summary>
+  <p></p>
+  <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Role</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/component</span><span class="p">:</span><span class="w"> </span><span class="l">controller</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/instance</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.2</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">namespaces</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">configmaps</span><span class="w">
+</span><span class="w">  </span>- <span class="l">pods</span><span class="w">
+</span><span class="w">  </span>- <span class="l">secrets</span><span class="w">
+</span><span class="w">  </span>- <span class="l">endpoints</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">services</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">ingresses</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">ingresses/status</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">update</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">ingressclasses</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">coordination.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resourceNames</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">ingress-nginx-leader</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">leases</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w">  </span>- <span class="l">update</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">coordination.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">leases</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">create</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">events</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">create</span><span class="w">
+</span><span class="w">  </span>- <span class="l">patch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">discovery.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">endpointslices</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/instance</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.2</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">configmaps</span><span class="w">
+</span><span class="w">  </span>- <span class="l">endpoints</span><span class="w">
+</span><span class="w">  </span>- <span class="l">nodes</span><span class="w">
+</span><span class="w">  </span>- <span class="l">pods</span><span class="w">
+</span><span class="w">  </span>- <span class="l">secrets</span><span class="w">
+</span><span class="w">  </span>- <span class="l">namespaces</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">coordination.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">leases</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">nodes</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">services</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">ingresses</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">events</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">create</span><span class="w">
+</span><span class="w">  </span>- <span class="l">patch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">ingresses/status</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">update</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">ingressclasses</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">discovery.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">endpointslices</span><span class="w">
+</span><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span>- <span class="l">list</span><span class="w">
+</span><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span></code></pre></div>
+  <p></p>
+</details>
+<p>根据 Kubernetes 的官方文档， <code>Role</code> 和 <code>ClusterRole</code> 都是用来定义具体权限规则的鉴权资源，但是 <code>Role</code> 只能用于定义某个命名空间范围内的资源对象，而 <code>ClusterRole</code> 可以定义甚至整个集群作用域范围内的资源对象，可以看到它们的具体内容都是根据不同的 apiGroups 来定义对应资源的访问方法，一般只要结合两者就可以覆盖所有资源对象的具体访问权限。</p>
+<p>在创建 <code>Role</code> 和 <code>ClusterRole</code> 之后，就完成了对角色具体权限的定义，这时只需要将这个角色和具体用户绑定，就可以赋予这个用户这些已经定义的权限，这一步需要用到的是 <code>RoleBinding</code> 和 <code>ClusterRoleBinding</code> 的资源对象。</p>
+<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">RoleBinding</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/component</span><span class="p">:</span><span class="w"> </span><span class="l">controller</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/instance</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.2</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w"></span><span class="nt">roleRef</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Role</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w"></span><span class="nt">subjects</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w"></span><span class="nn">---</span><span class="w">
+</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
+</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRoleBinding</span><span class="w">
+</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">labels</span><span class="p">:</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/instance</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">    </span><span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.2</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w"></span><span class="nt">roleRef</span><span class="p">:</span><span class="w">
+</span><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io</span><span class="w">
+</span><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w"></span><span class="nt">subjects</span><span class="p">:</span><span class="w">
+</span><span class="w"></span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span></code></pre></div><p>在完成上述资源的定义之后，就可以使用对应的工作负载中的 token 来和 ApiServer 进行交互，很多实际使用的云原生服务都用到了这些资源。</p></article>
               </div>
             </div>
           </div>
