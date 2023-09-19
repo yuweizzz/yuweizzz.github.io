@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Thu, 14 Sep 2023 14:10:34 &#43;0000"
+                  Modified <relative-time datetime="Tue, 19 Sep 2023 15:25:17 &#43;0000"
                     class="no-wrap">
-                    Thu, 14 Sep 2023 14:10:34 &#43;0000</relative-time>
+                    Tue, 19 Sep 2023 15:25:17 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -563,6 +563,7 @@ options ndots:5
 </span></code></pre></div>
   <p></p>
 </details>
+
 <p>根据 Kubernetes 的官方文档， <code>Role</code> 和 <code>ClusterRole</code> 都是用来定义具体权限规则的鉴权资源，但是 <code>Role</code> 只能用于定义某个命名空间范围内的资源对象，而 <code>ClusterRole</code> 可以定义甚至整个集群作用域范围内的资源对象，可以看到它们的具体内容都是根据不同的 apiGroups 来定义对应资源的访问方法，一般只要结合两者就可以覆盖所有资源对象的具体访问权限。</p>
 <p>在创建 <code>Role</code> 和 <code>ClusterRole</code> 之后，就完成了对角色具体权限的定义，这时只需要将这个角色和具体用户绑定，就可以赋予这个用户这些已经定义的权限，这一步需要用到的是 <code>RoleBinding</code> 和 <code>ClusterRoleBinding</code> 的资源对象。</p>
 <div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
