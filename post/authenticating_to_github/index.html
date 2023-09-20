@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 19 Sep 2023 15:25:17 &#43;0000"
+                  Modified <relative-time datetime="Wed, 20 Sep 2023 03:03:46 &#43;0000"
                     class="no-wrap">
-                    Tue, 19 Sep 2023 15:25:17 &#43;0000</relative-time>
+                    Wed, 20 Sep 2023 03:03:46 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      864 Words
+                      959 Words
                     
 
                   </div>
@@ -263,25 +263,39 @@
 <h2 id="创建秘钥对">创建秘钥对</h2>
 <p>GitHub 的推送和 SSH 的登陆原理非常相似，通常是本地使用私钥，GitHub 端保存公钥信息，我们使用 Git 推送时，以私钥加密的信息可以被对应的公钥解析，通信就能够建立了。</p>
 <p>我们需要在本地先生成一个新的秘钥对。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册 GitHub 时的邮箱&#34;</span>
 <span class="c1"># -t 代表秘钥对的加密算法，rsa是最常见的非对称加密算法</span>
-<span class="c1"># -C 可以指定公钥的文本信息，这一步是GitHub要求的</span>
+<span class="c1"># -C 可以指定公钥的文本信息，这一步是 GitHub 要求的</span>
 </code></pre></div><p>上述的命令会产生一个交互对话，按照对话提示输入对应信息即可。</p>
 <p>在交互式生成模式下，会提示我们指定生成秘钥对的文件名和路径，通常在 Linux 环境下，保持默认则为 /home/user/.ssh/id_rsa ，user 为当前使用的用户。</p>
 <p>此外，在交互式生成模式下，还会提示使用 passphrase 再度加密，这个功能一般不使用，否则每次使用密钥都需要再次输入 passphrase 。</p>
 <p>所以，我比较推荐使用非交互式的命令生成秘钥对。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册GitHub时的邮箱&#34;</span> -P <span class="s2">&#34;&#34;</span> -f ~/.ssh/id_rsa
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh-keygen -t rsa -C <span class="s2">&#34;注册 GitHub 时的邮箱&#34;</span> -P <span class="s2">&#34;&#34;</span> -f ~/.ssh/id_rsa
 <span class="c1"># 非交互生成的参考命令</span>
 <span class="c1"># -P passphrase为空</span>
 <span class="c1"># -f 指定路径名称</span>
 </code></pre></div><p>执行完命令后，我们可以得到 id_rsa 和 id_rsa.pub 两个文件，其中 id_rsa 是私钥，id_rsa.pub 是公钥。</p>
 <h2 id="在-github-账户中添加公钥">在 GitHub 账户中添加公钥</h2>
 <p>我们需要把公钥信息上传到自己的 GitHub 账户。</p>
-<p>打开自己的<a href="https://github.com/settings/keys"> GitHub 账户 </a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的喜好命名，然后 Add SSH Key ，完成公钥添加。</p>
+<p>打开自己的<a href="https://github.com/settings/keys"> GitHub 账户</a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的需求命名，然后 Add SSH Key ，完成公钥添加。</p>
 <h2 id="测试公钥">测试公钥</h2>
 <p>完成云端公钥信息的添加后，我们可以在本地测试公钥是否正确设置。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh git@github.com
-<span class="c1"># 使用生成秘钥的账户测试</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用生成秘钥的账户测试</span>
+$ ssh git@github.com
+
+<span class="c1"># 出现 kex_exchange_identification: Connection closed by remote host 报错的解决方法：</span>
+<span class="c1"># 通过 ~/.ssh/config 重新指定 ssh 信息</span>
+<span class="c1"># 应该尽量通过写入 ssh_config 的方式实现，尤其是私钥不是以默认方式命名的情况</span>
+$ cat &gt; ~/.ssh/config <span class="s">&lt;&lt; EOF
+</span><span class="s">Host github.com
+</span><span class="s">    HostName ssh.github.com
+</span><span class="s">    User git
+</span><span class="s">    Port 443
+</span><span class="s">    IdentityFile ~/.ssh/id_rsa
+</span><span class="s">EOF</span>
+
+<span class="c1"># 出现报错并且尚未写入 ssh_config 时可以通过以下的命令行测试</span>
+$ ssh git@ssh.github.com -i ~/.ssh/id_rsa -p <span class="m">443</span>
 </code></pre></div><p>在第一次使用免密登录时会需要我们确认 GitHub 的主机信息，输入 yes 即可。</p>
 <p>如果一切正常，会返回下面的信息：</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ssh git@github.com
