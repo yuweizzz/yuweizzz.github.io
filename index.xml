@@ -6,7 +6,16 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 03 Aug 2023 21:16:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 26 Sep 2023 15:22:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>探究字符编码格式</title>
+      <link>https://yuweizzz.github.io/post/study_notes_about_character_encoding_formats/</link>
+      <pubDate>Tue, 26 Sep 2023 15:22:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/study_notes_about_character_encoding_formats/</guid>
+      <description>&lt;p&gt;一个由游戏汉化项目引起的思考。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Apisix 的负载均衡实现</title>
       <link>https://yuweizzz.github.io/post/how_apisix_implements_load_balancing/</link>
