@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 27 Sep 2023 09:05:07 &#43;0000"
+                  Modified <relative-time datetime="Thu, 19 Oct 2023 10:34:01 &#43;0000"
                     class="no-wrap">
-                    Wed, 27 Sep 2023 09:05:07 &#43;0000</relative-time>
+                    Thu, 19 Oct 2023 10:34:01 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3056 Words
+                      3106 Words
                     
 
                   </div>
@@ -556,6 +556,16 @@ $ supervisorctl start theprogramname
             <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="n">each</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="n">each</span><span class="p">[</span><span class="s1">&#39;_source&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;value&#39;</span><span class="p">)])</span>
 
 <span class="n">csvfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div><h2 id="中文字符处理">中文字符处理</h2>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="c1"># 可用于处理中文文档中段落开头的两个空格</span>
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/readfile&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">readf</span><span class="p">:</span>
+    <span class="n">strings</span> <span class="o">=</span> <span class="n">readf</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1"># 通过 unicode 替换</span>
+    <span class="n">trim</span> <span class="o">=</span> <span class="n">strings</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="sa">u</span><span class="s1">&#39;</span><span class="se">\u3000</span><span class="s1">&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span>
+
+<span class="n">writef</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/path/to/writefile&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span>
+<span class="n">writef</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">trim</span><span class="p">)</span>
+<span class="n">writef</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 </code></pre></div></article>
               </div>
             </div>
