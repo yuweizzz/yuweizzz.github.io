@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Thu, 19 Oct 2023 10:37:55 &#43;0000"
+                  Modified <relative-time datetime="Tue, 07 Nov 2023 09:14:53 &#43;0000"
                     class="no-wrap">
-                    Thu, 19 Oct 2023 10:37:55 &#43;0000</relative-time>
+                    Tue, 07 Nov 2023 09:14:53 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4607 Words
+                      4765 Words
                     
 
                   </div>
@@ -319,10 +319,10 @@ $ mkfs.xfs /dev/sda1
 </code></pre></div><h2 id="curl-的基本使用">curl 的基本使用</h2>
 <p>curl 在 Linux 代替了浏览器的工作，经常用来调试接口。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 经典 curl 用例</span>
-$ curl -X POST -d <span class="s1">&#39;{&#34;key&#34;:&#34;value&#34;}&#39;</span> -H <span class="s1">&#39;Content-Type: application/json&#39;</span> http://....
-<span class="c1"># -X HTTP请求方法，通常有GET,POST,PUT,DELETE</span>
-<span class="c1"># -d body，常用于POST方法的请求体</span>
-<span class="c1"># -H header，定义HTTP请求头</span>
+$ curl -X POST -d <span class="s1">&#39;{&#34;key&#34;:&#34;value&#34;}&#39;</span> -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="s1">&#39;http://....&#39;</span>
+<span class="c1"># -X HTTP 请求方法，通常有 GET,POST,PUT,DELETE</span>
+<span class="c1"># -d body ，常用于 POST 方法的请求体</span>
+<span class="c1"># -H header ，定义 HTTP 请求头</span>
 
 <span class="c1"># 这里列举其他常用的参数</span>
 <span class="c1"># -b 用来设置 cookie ，常以 -b &#39;key1=value1;key2=value2&#39; 的形式出现</span>
@@ -330,6 +330,17 @@ $ curl -X POST -d <span class="s1">&#39;{&#34;key&#34;:&#34;value&#34;}&#39;</sp
 <span class="c1"># -i 用来额外输出请求的响应头，响应体正常输出</span>
 <span class="c1"># -I 使用这个参数后只输出请求的响应头，响应体不再输出</span>
 <span class="c1"># -x 用来设置代理服务器，用法为 -x/--proxy 127.0.0.1:8080</span>
+<span class="c1"># -u 用来设置 HTTP Basic Authentication ，用法为 -u &#39;username:password&#39;</span>
+
+<span class="c1"># 将文件内容作为请求体</span>
+$ cat data.json
+<span class="o">{</span>
+    <span class="s2">&#34;key&#34;</span>: <span class="s2">&#34;value&#34;</span>,
+<span class="o">}</span>
+$ curl -X POST -H <span class="s1">&#39;Content-Type: application/json&#39;</span> --data-binary @data.json <span class="s1">&#39;http://....&#39;</span>
+
+<span class="c1"># 将文件内容转换为标准输入流之后再作为请求体，这样可以多做一次处理</span>
+$ cat data.json <span class="p">|</span> curl -X POST -H <span class="s1">&#39;Content-Type: application/json&#39;</span> --data-binary @- <span class="s1">&#39;http://....&#39;</span>
 </code></pre></div><h2 id="curl-结合-bash-变量使用">curl 结合 bash 变量使用</h2>
 <p>curl 可以结合 bash 变量，实现更灵活的 url 请求。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 结合 bash 变量的简单实例</span>
@@ -662,6 +673,15 @@ $ dracut -v -I <span class="s1">&#39;/usr/sbin/xfsdump /usr/sbin/xfsrestore&#39;
 
 <span class="c1"># 这里添加了 xfs 文件系统的备份和还原命令，它们是需要额外安装的</span>
 <span class="c1"># 执行 dracut 完成后可以使用 lsinitrd 检查是否成功</span>
+</code></pre></div><h2 id="tcpdump-基本用法">tcpdump 基本用法</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 tcpdump 抓包</span>
+$ tcpdump -n -v -s0 -i lo port <span class="m">8080</span> -w tcpdump.pcap
+<span class="c1"># -n 不解析域名</span>
+<span class="c1"># -v 显示详细信息</span>
+<span class="c1"># -s 抓取数据包时的默认抓取长度， 0 表示抓取完整数据包</span>
+<span class="c1"># -i 指定网络接口</span>
+<span class="c1"># port 指定抓取条件为通过 8080 端口的数据包</span>
+<span class="c1"># -w 将抓取数据写入到指定文件中</span>
 </code></pre></div></article>
               </div>
             </div>
