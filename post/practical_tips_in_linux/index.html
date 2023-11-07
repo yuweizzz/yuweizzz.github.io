@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 07 Nov 2023 09:14:53 &#43;0000"
+                  Modified <relative-time datetime="Tue, 07 Nov 2023 13:18:41 &#43;0000"
                     class="no-wrap">
-                    Tue, 07 Nov 2023 09:14:53 &#43;0000</relative-time>
+                    Tue, 07 Nov 2023 13:18:41 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4765 Words
+                      4939 Words
                     
 
                   </div>
@@ -682,6 +682,21 @@ $ tcpdump -n -v -s0 -i lo port <span class="m">8080</span> -w tcpdump.pcap
 <span class="c1"># -i 指定网络接口</span>
 <span class="c1"># port 指定抓取条件为通过 8080 端口的数据包</span>
 <span class="c1"># -w 将抓取数据写入到指定文件中</span>
+</code></pre></div><h2 id="使用-mysqldump-进行数据库备份">使用 mysqldump 进行数据库备份</h2>
+<p>进行数据库备份迁移可以参考这个步骤：</p>
+<ol>
+<li>源数据导出：</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># db_name 是需要备份的数据库名称</span>
+$ mysqldump -u root -p db_name &gt; backup.sql
+</code></pre></div><p>备份完成后可以看到 backup.sql 基本都是由 <code>CREATE TABLE</code> 和 <code>INSERT INTO</code> 这些生成语句构成的，但是在表生成语句前一般都会有 <code>DROP</code> 旧表的动作，在实际操作时候应该小心。</p>
+<ol start="2">
+<li>导入到新的 mysql 服务中：</li>
+</ol>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 在导入 sql 语句前应该在创建新库并且显示使用这个库</span>
+$ sed -i <span class="s1">&#39;1i create database db_name;&#39;</span> backup.sql
+$ sed -i <span class="s1">&#39;2i use db_name;&#39;</span> backup.sql
+$ mysql -u root -p &lt; backup.sql
 </code></pre></div></article>
               </div>
             </div>

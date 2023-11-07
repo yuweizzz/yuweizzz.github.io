@@ -6,7 +6,16 @@
     <description>Recent content in Container on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 07 Jun 2022 19:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/container/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Oct 2023 11:16:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/container/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Kaniko 在 Kubernetes 集群中构建镜像</title>
+      <link>https://yuweizzz.github.io/post/use_kaniko_to_build_images_in_kubernetes_cluster/</link>
+      <pubDate>Tue, 17 Oct 2023 11:16:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/use_kaniko_to_build_images_in_kubernetes_cluster/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录如何使用 Kaniko 在 Kubernetes 集群中构建镜像。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>符合容器化标准的容器运行时：Containerd</title>
       <link>https://yuweizzz.github.io/post/knowledge_about_containerd/</link>

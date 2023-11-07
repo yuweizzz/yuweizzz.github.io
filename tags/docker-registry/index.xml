@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>docker registry on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/docker-registry/</link>
+    <description>Recent content in docker registry on Wei&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Tue, 17 Oct 2023 11:16:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/docker-registry/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Kaniko 在 Kubernetes 集群中构建镜像</title>
+      <link>https://yuweizzz.github.io/post/use_kaniko_to_build_images_in_kubernetes_cluster/</link>
+      <pubDate>Tue, 17 Oct 2023 11:16:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/use_kaniko_to_build_images_in_kubernetes_cluster/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录如何使用 Kaniko 在 Kubernetes 集群中构建镜像。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

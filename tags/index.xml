@@ -6,7 +6,43 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 26 Sep 2023 15:22:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Oct 2023 11:16:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Container</title>
+      <link>https://yuweizzz.github.io/tags/container/</link>
+      <pubDate>Tue, 17 Oct 2023 11:16:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/container/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>distroless</title>
+      <link>https://yuweizzz.github.io/tags/distroless/</link>
+      <pubDate>Tue, 17 Oct 2023 11:16:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/distroless/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>docker registry</title>
+      <link>https://yuweizzz.github.io/tags/docker-registry/</link>
+      <pubDate>Tue, 17 Oct 2023 11:16:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/docker-registry/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>kaniko</title>
+      <link>https://yuweizzz.github.io/tags/kaniko/</link>
+      <pubDate>Tue, 17 Oct 2023 11:16:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/kaniko/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>unicode</title>
       <link>https://yuweizzz.github.io/tags/unicode/</link>
@@ -175,15 +211,6 @@
       <pubDate>Sat, 16 Jul 2022 15:00:00 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/tags/ocsp/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Container</title>
-      <link>https://yuweizzz.github.io/tags/container/</link>
-      <pubDate>Tue, 07 Jun 2022 19:44:45 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/tags/container/</guid>
       <description></description>
     </item>
     
