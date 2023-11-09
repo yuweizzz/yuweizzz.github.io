@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 08 Nov 2023 09:49:32 &#43;0000"
+                  Modified <relative-time datetime="Thu, 09 Nov 2023 14:28:59 &#43;0000"
                     class="no-wrap">
-                    Wed, 08 Nov 2023 09:49:32 &#43;0000</relative-time>
+                    Thu, 09 Nov 2023 14:28:59 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3350 Words
+                      3979 Words
                     
 
                   </div>
@@ -663,7 +663,29 @@ http <span class="o">{</span>
 <span class="c1"># 验证是否服务端开启 OCSP stapling</span>
 $ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -status -connect www.github.com:443 2&gt;/dev/null <span class="p">|</span> grep <span class="s1">&#39;OCSP Response&#39;</span>
 <span class="c1"># 出现 OCSP Response Status: successful (0x0) 则说明服务端开启了 OCSP stapling</span>
-</code></pre></div></article>
+</code></pre></div><h2 id="nginx-常用配置选项">Nginx 常用配置选项</h2>
+<h3 id="ngx_http_core_module-配置">ngx_http_core_module 配置</h3>
+<ul>
+<li><code>client_header_buffer_size 1k;</code> ：这个配置用来定义请求的 Header 缓冲区大小，如果 Header 内容大于这个值，会使用 <code>large_client_header_buffers</code> 的配置。</li>
+<li><code>large_client_header_buffers 4 8k;</code> ：这个配置用来限制请求 URL 和 Header 字段大小，虽然定义了多个缓冲区，但是 URL 和单个 Header 不能超过单个缓冲区的最大限制，而且总大小应该保持在多个缓冲区总和内，否则都会返回请求错误。</li>
+</ul>
+<h3 id="ngx_http_proxy_module-超时时间配置">ngx_http_proxy_module 超时时间配置</h3>
+<ul>
+<li><code>proxy_connect_timeout 60s;</code> ：这个配置用来定义请求与上游建立连接的超时时间。</li>
+<li><code>proxy_read_timeout 60s;</code> ：这个配置用来定义读取连接的超时时间，是指相邻两次读操作之间的最长时间间隔，达到超时时间连接将会关闭。</li>
+<li><code>proxy_send_timeout 60s;</code> ：这个配置用来定义写入连接的超时时间，和 <code>proxy_read_timeout</code> 的定义类似，只不过它是基于写操作的。</li>
+</ul>
+<h3 id="ngx_http_proxy_module-缓冲设置">ngx_http_proxy_module 缓冲设置</h3>
+<p>启用代理缓冲在一定程度上可以提高访问的效率。其中 <code>proxy_buffering</code> 是启用代理缓冲的开关，而 <code>proxy_buffer_size</code> 是基本的内存缓冲区大小，和 <code>proxy_buffering</code> 是否启用无关。</p>
+<p>根据 nginx 的官方文档，不启用 <code>proxy_buffering</code> ， nginx 会同步性地获取上游响应并返回给客户端，每次获取的响应大小被限制在 <code>proxy_buffer_size</code> 中，通常情况下是 4k ，也就是一个内存页的大小，会根据运行平台而变。</p>
+<p>如果使用 <code>proxy_buffering</code> ，那么如下关键字就可以被有效使用：</p>
+<ul>
+<li><code>proxy_buffers 8 4k|8k;</code> ：定义缓冲区的数量和字节大小。</li>
+<li><code>proxy_busy_buffers_size 8k|16k;</code> ：在上游响应未完全读取的情况下，当缓冲的内容超过这个定义的大小时，就开始向客户端返回数据。</li>
+<li><code>proxy_temp_file_write_size 8k|16k;</code> ：内存缓冲区大小不足时，单次写入磁盘缓冲文件的字节大小。</li>
+<li><code>proxy_max_temp_file_size 1024m;</code> ：内存缓冲区大小不足时，最大可用的磁盘缓冲文件的字节大小。</li>
+</ul>
+<p>使用 <code>proxy_buffering</code> ，缓冲区将由 <code>proxy_buffer_size</code> 和 <code>proxy_buffers</code> 共同构成，并且 <code>proxy_busy_buffers_size</code> 默认是这两个值中单个缓冲区的两倍大小，在整体缓冲区容量不足的情况下，需要设置 <code>proxy_temp_file_write_size</code> 和 <code>proxy_max_temp_file_size</code> 的容量大小才能使用磁盘缓冲。</p></article>
               </div>
             </div>
           </div>
