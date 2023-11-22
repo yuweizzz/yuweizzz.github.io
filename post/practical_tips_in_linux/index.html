@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 12 Nov 2023 07:50:11 &#43;0000"
+                  Modified <relative-time datetime="Wed, 22 Nov 2023 09:34:33 &#43;0000"
                     class="no-wrap">
-                    Sun, 12 Nov 2023 07:50:11 &#43;0000</relative-time>
+                    Wed, 22 Nov 2023 09:34:33 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4939 Words
+                      5030 Words
                     
 
                   </div>
@@ -697,6 +697,34 @@ $ mysqldump -u root -p db_name &gt; backup.sql
 $ sed -i <span class="s1">&#39;1i create database db_name;&#39;</span> backup.sql
 $ sed -i <span class="s1">&#39;2i use db_name;&#39;</span> backup.sql
 $ mysql -u root -p &lt; backup.sql
+</code></pre></div><p>批量备份参考脚本：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="cp">#!/bin/bash
+</span><span class="cp"></span>
+<span class="c1"># db_names 文件内容可以通过 show databases 获取，并且应该去掉默认内置的数据库：</span>
+<span class="c1"># performance_schema</span>
+<span class="c1"># information_schema</span>
+<span class="c1"># sys</span>
+<span class="c1"># mysql</span>
+
+<span class="nb">export</span> <span class="nv">MYSQL_PWD</span><span class="o">=</span>mysql_password
+<span class="nv">endpoint</span><span class="o">=</span>mysql_endpoint
+<span class="nv">user</span><span class="o">=</span>mysql_user
+<span class="nv">port</span><span class="o">=</span>mysql_port
+<span class="nv">basedir</span><span class="o">=</span>/home/db_backup/<span class="nv">$endpoint</span>
+<span class="nv">db_name_file</span><span class="o">=</span>/home/db_backup/<span class="nv">$endpoint</span>/db_names
+<span class="nv">date</span><span class="o">=</span><span class="sb">`</span>date +%Y%m%d<span class="sb">`</span>
+<span class="nv">date_detail</span><span class="o">=</span><span class="sb">`</span>date +%Y%m%d_%H%M%S<span class="sb">`</span>
+
+<span class="nb">cd</span> <span class="nv">$basedir</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="nv">$date</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    mkdir <span class="nv">$date</span>
+<span class="k">fi</span>
+<span class="nb">cd</span> <span class="nv">$date</span>
+
+<span class="k">for</span> i in <span class="sb">`</span>cat <span class="nv">$db_name_file</span><span class="sb">`</span><span class="p">;</span>
+<span class="k">do</span>
+    mysqldump -h <span class="nv">$endpoint</span> -P <span class="nv">$port</span> -u <span class="nv">$user</span> <span class="nv">$i</span> <span class="p">|</span> gzip &gt; <span class="nv">$i</span>-<span class="nv">$date_detail</span>.sql.gz
+<span class="k">done</span>
 </code></pre></div></article>
               </div>
             </div>
