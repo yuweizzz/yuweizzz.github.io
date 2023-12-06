@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 22 Nov 2023 09:34:33 &#43;0000"
+                  Modified <relative-time datetime="Wed, 06 Dec 2023 06:59:19 &#43;0000"
                     class="no-wrap">
-                    Wed, 22 Nov 2023 09:34:33 &#43;0000</relative-time>
+                    Wed, 06 Dec 2023 06:59:19 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      5030 Words
+                      5456 Words
                     
 
                   </div>
@@ -725,6 +725,53 @@ $ mysql -u root -p &lt; backup.sql
 <span class="k">do</span>
     mysqldump -h <span class="nv">$endpoint</span> -P <span class="nv">$port</span> -u <span class="nv">$user</span> <span class="nv">$i</span> <span class="p">|</span> gzip &gt; <span class="nv">$i</span>-<span class="nv">$date_detail</span>.sql.gz
 <span class="k">done</span>
+</code></pre></div><h2 id="添加-sudo-命令">添加 sudo 命令</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 通过 visudo 去编辑 /etc/sudoers 文件</span>
+$ visudo
+
+<span class="c1"># 添加单个用户命令的具体格式</span>
+$ cat /etc/sudoers
+......
+username <span class="nv">ALL</span><span class="o">=(</span>ALL<span class="o">)</span> NOPASSWD:/usr/bin/ls
+......
+
+<span class="c1"># 具体用户可以查看已经允许的命令</span>
+$ sudo -l
+</code></pre></div><h2 id="rsyslog-日志重定向">rsyslog 日志重定向</h2>
+<p>使用 systemd 的 Linux 系统中，如果不明确指定 systemd service 的日志输出，也就是在 <code>/etc/systemd/system/*.service</code> 文件中配置 <code>[Service]</code> 部分的 <code>StandardOutput</code> ，那么默认的输出对象应该是 <code>journal</code> ，一般所有的 systemd service 都可以使用 <code>journalctl</code> 获取到日志信息。</p>
+<p>在 CentOS 中经常可以看到 <code>StandardOutput=syslog</code> 和 <code>StandardError=syslog</code> 的用法，此时一般可以在 <code>/var/log/messages</code> 中找到对应服务的日志信息，这里是由 syslog/rsyslog 所完成的工作，你可以在 <code>/etc/rsyslog.conf</code> 中找到 <code>$ModLoad imjournal</code> 和 <code>*.info;mail.none;authpriv.none;cron.none</code> 这两个相关的配置选项。</p>
+<p>如果想把某个服务中的日志文件独立出来，除了服务自身实现的日志管理，可以将日志输出到 rsyslog 中再做处理，但是这样做的前提是系统运行着 rsyslog 服务并且对应服务配置了 <code>StandardOutput=syslog</code> 和 <code>StandardError=syslog</code> 。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 简单的 systemd service 示例</span>
+$ cat /etc/systemd/system/my-service.service
+<span class="o">[</span>Unit<span class="o">]</span>
+<span class="nv">Description</span><span class="o">=</span>my-service
+<span class="nv">After</span><span class="o">=</span>network.target
+
+<span class="o">[</span>Service<span class="o">]</span>
+<span class="nv">Type</span><span class="o">=</span>simple
+
+<span class="nv">ExecStart</span><span class="o">=</span>my-service run
+<span class="nv">WorkingDirectory</span><span class="o">=</span>/usr/local/bin/my-service
+<span class="nv">Restart</span><span class="o">=</span>on-failure
+<span class="nv">StandardOutput</span><span class="o">=</span>syslog
+<span class="nv">StandardError</span><span class="o">=</span>syslog
+<span class="nv">SyslogIdentifier</span><span class="o">=</span>my-service
+
+<span class="o">[</span>Install<span class="o">]</span>
+<span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+
+<span class="c1"># 添加对应的配置项到 rsyslog</span>
+$ cat /etc/rsyslog.d/my-service.conf
+<span class="c1"># programname 就是 SyslogIdentifier 定义的内容</span>
+<span class="c1"># 如果没有定义 SyslogIdentifier ，则可以通过 journalctl -u my-service 查看具体的日志格式</span>
+<span class="c1"># 根据官方文档： For example, when TAG is “named[12345]”, programname is “named”.</span>
+<span class="k">if</span> <span class="nv">$programname</span> <span class="o">==</span> <span class="s1">&#39;my-service&#39;</span> <span class="k">then</span> <span class="o">{</span>
+    /var/log/my_service/my-service.log
+    stop
+<span class="o">}</span>
+
+<span class="c1"># 新增配置后需要重启 rsyslog</span>
+$ systemctl restart rsyslog.service
 </code></pre></div></article>
               </div>
             </div>
