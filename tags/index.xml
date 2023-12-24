@@ -6,7 +6,43 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 09 Nov 2023 20:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Dec 2023 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debian</title>
+      <link>https://yuweizzz.github.io/tags/debian/</link>
+      <pubDate>Sat, 23 Dec 2023 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/debian/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>https://yuweizzz.github.io/tags/linux/</link>
+      <pubDate>Sat, 23 Dec 2023 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Go</title>
+      <link>https://yuweizzz.github.io/tags/go/</link>
+      <pubDate>Fri, 15 Dec 2023 10:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>VictoriaMetrics</title>
+      <link>https://yuweizzz.github.io/tags/victoriametrics/</link>
+      <pubDate>Fri, 15 Dec 2023 10:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/victoriametrics/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>iproute2</title>
       <link>https://yuweizzz.github.io/tags/iproute2/</link>
@@ -22,15 +58,6 @@
       <pubDate>Thu, 09 Nov 2023 20:00:00 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/tags/iptables/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>https://yuweizzz.github.io/tags/linux/</link>
-      <pubDate>Thu, 09 Nov 2023 20:00:00 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/tags/linux/</guid>
       <description></description>
     </item>
     
@@ -265,15 +292,6 @@
       <pubDate>Fri, 13 May 2022 20:44:45 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/tags/namespace/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://yuweizzz.github.io/tags/go/</link>
-      <pubDate>Mon, 09 May 2022 19:44:45 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/tags/go/</guid>
       <description></description>
     </item>
     

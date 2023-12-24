@@ -6,7 +6,25 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 09 Nov 2023 20:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Dec 2023 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Debian 系统实用技巧笔记</title>
+      <link>https://yuweizzz.github.io/post/practical_tips_in_debian/</link>
+      <pubDate>Sat, 23 Dec 2023 15:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/practical_tips_in_debian/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录 Debian 系统中的一些实用技巧。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>解决使用 VictoriaMetrics 时的连接重置问题</title>
+      <link>https://yuweizzz.github.io/post/fix_connection_reset_error_when_query_from_victoriametrics/</link>
+      <pubDate>Fri, 15 Dec 2023 10:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/fix_connection_reset_error_when_query_from_victoriametrics/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录如何解决使用 VictoriaMetrics 过程中查询端出现 connection reset by peer 报错的问题。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Linux 网络协议知识笔记</title>
       <link>https://yuweizzz.github.io/post/knowledge_about_linux_network/</link>

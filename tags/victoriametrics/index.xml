@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VictoriaMetrics on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/victoriametrics/</link>
+    <description>Recent content in VictoriaMetrics on Wei&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 15 Dec 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/victoriametrics/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>解决使用 VictoriaMetrics 时的连接重置问题</title>
+      <link>https://yuweizzz.github.io/post/fix_connection_reset_error_when_query_from_victoriametrics/</link>
+      <pubDate>Fri, 15 Dec 2023 10:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/fix_connection_reset_error_when_query_from_victoriametrics/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录如何解决使用 VictoriaMetrics 过程中查询端出现 connection reset by peer 报错的问题。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
