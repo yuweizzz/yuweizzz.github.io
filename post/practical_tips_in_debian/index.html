@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 24 Dec 2023 09:45:25 &#43;0000"
+                  Modified <relative-time datetime="Wed, 27 Dec 2023 06:55:02 &#43;0000"
                     class="no-wrap">
-                    Sun, 24 Dec 2023 09:45:25 &#43;0000</relative-time>
+                    Wed, 27 Dec 2023 06:55:02 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      896 Words
+                      1060 Words
                     
 
                   </div>
@@ -325,6 +325,27 @@ $ <span class="nb">echo</span> <span class="s2">&#34;deb [arch=&#34;</span><span
 </span><span class="se"></span>  &gt; /etc/apt/sources.list.d/docker-ce.list
 $ apt update
 $ apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+
+<span class="c1"># openresty</span>
+$ curl -fsSL https://openresty.org/package/pubkey.gpg <span class="se">\
+</span><span class="se"></span>  &gt; /usr/share/keyrings/openresty-keyring.asc
+$ <span class="nb">echo</span> <span class="s2">&#34;deb [signed-by=/usr/share/keyrings/openresty-keyring.asc] http://openresty.org/package/debian \
+</span><span class="s2">  &#34;</span><span class="k">$(</span>. /etc/os-release <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&#34;</span><span class="k">)</span><span class="s2">&#34; openresty&#34;</span> <span class="se">\
+</span><span class="se"></span>  &gt; /etc/apt/sources.list.d/openresty.list
+$ apt update
+$ apt install openresty
+
+<span class="c1"># mysql</span>
+$ wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+<span class="c1"># mysql-apt-config 实际上就是安装对应的 apt 镜像源和签名信息的步骤</span>
+<span class="c1"># 0.8.15 版本的 mysql-apt-config 可以下载安装 mysql 5.7 和 mysql 8.0</span>
+<span class="c1"># 新版本的 mysql-apt-config 只能下载安装 mysql 8.0</span>
+$ dpkg -i mysql-apt-config_0.8.15-1_all.deb
+<span class="c1"># 安装完成后会跳出图形界面，可以自行选择需要的镜像源，这里选择的是 mysql 5.7</span>
+<span class="c1"># 配置完成后想要修改的话可以通过以下命令重新打开</span>
+$ dpkg-reconfigure mysql-apt-config
+$ apt update
+$ apt install mysql-community-server
 </code></pre></div><h2 id="调整网卡配置">调整网卡配置</h2>
 <p>Debian 系统使用的网卡配置文件是 <code>/etc/network/interfaces</code> 和 <code>/etc/network/interfaces.d/*</code> ，一般会在这里调整网卡的 IP 地址获取行为。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 默认的 /etc/network/interfaces 配置文件</span>
@@ -357,9 +378,9 @@ iface lo inet loopback
 allow-hotplug ens33
 auto ens33
 iface ens33 inet static
-    address 192.168.1.2/23
-    gateway 192.168.1.1
-    dns-nameservers 192.168.1.1
+address 192.168.1.2/23
+gateway 192.168.1.1
+dns-nameservers 192.168.1.1
 </code></pre></div></article>
               </div>
             </div>
