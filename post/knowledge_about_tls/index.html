@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 29 Dec 2023 08:00:54 &#43;0000"
+                  Modified <relative-time datetime="Fri, 05 Jan 2024 11:09:44 &#43;0000"
                     class="no-wrap">
-                    Fri, 29 Dec 2023 08:00:54 &#43;0000</relative-time>
+                    Fri, 05 Jan 2024 11:09:44 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3862 Words
+                      4231 Words
                     
 
                   </div>
@@ -287,6 +287,15 @@ $ openssl req -new -sha256 -key key.pri <span class="se">\
 </span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=www.ibm.com&#34;</span> -out request.csr
 <span class="c1"># 生成自签证书，由于它不会被自动信任， signkey 可以重新生成或者直接沿用自身的私钥</span>
 $ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out ibm.crt
+
+<span class="c1"># 上述例子生成的证书就是 RSA 证书，下面的例子是生成 ECC 证书</span>
+<span class="c1"># 查看当前 openssl 版本支持的椭圆曲线 </span>
+$ openssl ecparam -list_curves
+<span class="c1"># 一般使用 prime256v1 来生成私钥 </span>
+$ openssl ecparam -genkey -name prime256v1 -out key.pri
+$ openssl req -new -sha256 -key key.pri <span class="se">\
+</span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=www.ibm.com&#34;</span> -out request.csr
+$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out ibm.crt
 </code></pre></div><p>自签名意味着自身就是签发的 CA 机构，在访问使用自签名 TLS 证书的站点时，通常会显示证书不受信任的提示，手动把这个自签名证书加入到操作系统的信任链中后这个提示就不会再出现了。但是将单一站点的 TLS 证书加入到信任链中是非常少见的操作，一般只会直接信任 CA 证书。</p>
 <p>所以如果需要多个自签 TLS 证书，则自建 CA 会更方便，它与自签名 TLS 的区别在于不随意使用私钥去签名，而是固定一对密钥，把它持续用于后续 TLS 证书的签发，并且将固定公钥生成 CA 证书，那么只需要信任 CA 证书就可以自动信任它所签发的 TLS 证书。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 自建 CA</span>
@@ -360,6 +369,25 @@ $ openssl dgst -sha256 -verify key.pub -signature sign.txt file
 $ openssl x509 -in x509.crt -noout -enddate
 <span class="c1"># 配合 s_client 可以通过发起 ssl 连接来测试证书是否过期</span>
 $ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null <span class="p">|</span> openssl x509 -noout -enddate 2&gt;/dev/null <span class="p">|</span> awk -F <span class="s1">&#39;=&#39;</span> <span class="s1">&#39;{print $2}&#39;</span>
+
+<span class="c1"># 追踪 tls 握手过程</span>
+<span class="c1"># -status 可以看到 ocsp 信息</span>
+<span class="c1"># -tlsextdebug 可以看到 tls 扩展信息</span>
+$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -status -tlsextdebug -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null
+
+<span class="c1"># 指定加密算法的 tls 握手请求，主要用来测试 ECC 证书，对应前面的不同种类证书的生成命令</span>
+<span class="c1"># RSA 证书测试，理论上可以在输出中追踪到 PKEY: rsaEncryption</span>
+$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-RSA-AES128-SHA256 -status -tlsextdebug -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
+<span class="c1"># ECC 证书测试，理论上可以在输出中追踪到 PKEY: id-ecPublicKey</span>
+$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-ECDSA-AES128-SHA256 -status -tlsextdebug -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
+
+<span class="c1"># 查看 openssl 对各个版本 tls 协议的算法支持</span>
+$ openssl ciphers -v
+<span class="c1"># cipher 遵从对应的 RFC 命名标准，在 ECDHE-RSA-AES128-SHA256 中：</span>
+<span class="c1"># ECDHE 指的是 Key Exchange 算法， ECDHE 是 DH 算法基于椭圆曲线的变种</span>
+<span class="c1"># RSA 指的是认证算法， RSA 是非对称加密算法</span>
+<span class="c1"># AES128 指的是用于 session 过程中的加密算法， AES128 是 128 bit 的对称加密算法</span>
+<span class="c1"># SHA256 指的是摘要算法， SHA256 是 256 bit 的摘要算法</span>
 </code></pre></div><h2 id="tls-协议握手过程">TLS 协议握手过程</h2>
 <p>在 HTTP 通信之前，先在通信双方之间通过 TLS 协议建立一条安全通道，后续的 HTTP 通信内容就不再是明文的，只有通信双方才能解读这些信息，这也就是常说的 HTTPS 协议。</p>
 <p>现有的主流 TLS 版本是 TLS v1.2 和 TLS v1.3 ，低于这两个版本的协议安全性比较低，不建议使用。</p>
