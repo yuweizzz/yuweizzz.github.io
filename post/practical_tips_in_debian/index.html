@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 05 Jan 2024 11:09:44 &#43;0000"
+                  Modified <relative-time datetime="Thu, 11 Jan 2024 09:23:03 &#43;0000"
                     class="no-wrap">
-                    Fri, 05 Jan 2024 11:09:44 &#43;0000</relative-time>
+                    Thu, 11 Jan 2024 09:23:03 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1858 Words
+                      1989 Words
                     
 
                   </div>
@@ -484,6 +484,21 @@ $ chmod <span class="m">750</span> /data/sftp/sftp
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 追加环境变量到 /etc/profile.d/history_timestamp.sh 文件中</span>
 $ cat /etc/profile.d/history_timestamp.sh
 <span class="nb">export</span> <span class="nv">HISTTIMEFORMAT</span><span class="o">=</span><span class="s2">&#34;%F %T `whoami` &#34;</span>
+</code></pre></div><h2 id="修改-linux-进程数限制">修改 Linux 进程数限制</h2>
+<p>用户直接执行 <code>ulimit -a</code> 就可以看到对应的自身受到的进程相关限制，可以通过修改 <code>/etc/security/limits.conf</code> 来改变这个设置。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat /etc/security/limits.conf
+<span class="c1"># nproc 代表进程数量限制</span>
+<span class="c1"># nofile 代表打开文件数量限制</span>
+user soft nproc <span class="m">65536</span>
+user hard nproc <span class="m">65536</span>
+user soft nofile <span class="m">65536</span>
+user hard nofile <span class="m">65536</span>
+
+<span class="c1"># /etc/security/limits.conf 修改后需要确认 pam_limits.so 动态库正常加载</span>
+<span class="c1"># 确认以下两个配置存在 required pam_limits.so</span>
+$ cat /etc/pam.d/sshd
+$ cat /etc/pam.d/login
+session required pam_limits.so
 </code></pre></div></article>
               </div>
             </div>

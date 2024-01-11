@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 05 Jan 2024 11:09:44 &#43;0000"
+                  Modified <relative-time datetime="Thu, 11 Jan 2024 09:23:03 &#43;0000"
                     class="no-wrap">
-                    Fri, 05 Jan 2024 11:09:44 &#43;0000</relative-time>
+                    Thu, 11 Jan 2024 09:23:03 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3979 Words
+                      4136 Words
                     
 
                   </div>
@@ -685,7 +685,33 @@ $ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -status
 <li><code>proxy_temp_file_write_size 8k|16k;</code> ：内存缓冲区大小不足时，单次写入磁盘缓冲文件的字节大小。</li>
 <li><code>proxy_max_temp_file_size 1024m;</code> ：内存缓冲区大小不足时，最大可用的磁盘缓冲文件的字节大小。</li>
 </ul>
-<p>使用 <code>proxy_buffering</code> ，缓冲区将由 <code>proxy_buffer_size</code> 和 <code>proxy_buffers</code> 共同构成，并且 <code>proxy_busy_buffers_size</code> 默认是这两个值中单个缓冲区的两倍大小，在整体缓冲区容量不足的情况下，需要设置 <code>proxy_temp_file_write_size</code> 和 <code>proxy_max_temp_file_size</code> 的容量大小才能使用磁盘缓冲。</p></article>
+<p>使用 <code>proxy_buffering</code> ，缓冲区将由 <code>proxy_buffer_size</code> 和 <code>proxy_buffers</code> 共同构成，并且 <code>proxy_busy_buffers_size</code> 默认是这两个值中单个缓冲区的两倍大小，在整体缓冲区容量不足的情况下，需要设置 <code>proxy_temp_file_write_size</code> 和 <code>proxy_max_temp_file_size</code> 的容量大小才能使用磁盘缓冲。</p>
+<h2 id="acme-自动更新证书">acme 自动更新证书</h2>
+<p>以下是通过使用 acme.sh 的 webroot 模式申请免费证书的步骤。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 通过 80 端口提供认证服务接口</span>
+server <span class="o">{</span>
+    listen 80<span class="p">;</span>
+    server_name _<span class="p">;</span>
+
+    location ^~ /.well-known/acme-challenge/ <span class="o">{</span>
+        root /var/www/<span class="p">;</span>
+        try_files <span class="nv">$uri</span> <span class="o">=</span>404<span class="p">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div><p>修改完 nginx 配置后，参考的执行命令如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 acme.sh</span>
+$ curl https://get.acme.sh <span class="p">|</span> sh
+<span class="c1"># 选择 CA 登陆账号</span>
+$ acme.sh --register-account --server letsencrypt -m your_email@email.com
+<span class="c1"># 通过 webroot 模式签发证书</span>
+$ acme.sh --issue -d your.domain.com -w /var/www/ --server letsencrypt
+<span class="c1"># 签发成功后将证书安装到对应的 nginx 目录下</span>
+$ acme.sh --install-cert <span class="se">\
+</span><span class="se"></span>  -d your.domain.com <span class="se">\
+</span><span class="se"></span>  --key-file /path/to/cert.key <span class="se">\
+</span><span class="se"></span>  --fullchain-file /path/to/cert.pem <span class="se">\
+</span><span class="se"></span>  --reloadcmd <span class="s2">&#34;systemctl reload nginx&#34;</span>
+</code></pre></div></article>
               </div>
             </div>
           </div>

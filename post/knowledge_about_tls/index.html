@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 05 Jan 2024 11:09:44 &#43;0000"
+                  Modified <relative-time datetime="Thu, 11 Jan 2024 09:23:03 &#43;0000"
                     class="no-wrap">
-                    Fri, 05 Jan 2024 11:09:44 &#43;0000</relative-time>
+                    Thu, 11 Jan 2024 09:23:03 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4231 Words
+                      4249 Words
                     
 
                   </div>
@@ -369,6 +369,9 @@ $ openssl dgst -sha256 -verify key.pub -signature sign.txt file
 $ openssl x509 -in x509.crt -noout -enddate
 <span class="c1"># 配合 s_client 可以通过发起 ssl 连接来测试证书是否过期</span>
 $ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null <span class="p">|</span> openssl x509 -noout -enddate 2&gt;/dev/null <span class="p">|</span> awk -F <span class="s1">&#39;=&#39;</span> <span class="s1">&#39;{print $2}&#39;</span>
+
+<span class="c1"># 证书格式转换</span>
+$ openssl x509 -in x509.der -inform der -outform pem -out x509.pem
 
 <span class="c1"># 追踪 tls 握手过程</span>
 <span class="c1"># -status 可以看到 ocsp 信息</span>
