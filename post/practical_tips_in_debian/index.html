@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 15 Jan 2024 10:22:04 &#43;0000"
+                  Modified <relative-time datetime="Wed, 17 Jan 2024 09:25:48 &#43;0000"
                     class="no-wrap">
-                    Mon, 15 Jan 2024 10:22:04 &#43;0000</relative-time>
+                    Wed, 17 Jan 2024 09:25:48 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1989 Words
+                      2055 Words
                     
 
                   </div>
@@ -477,7 +477,7 @@ ChrootDirectory /data/sftp
 $ mkdir -p /data/sftp
 $ chown root:root /data/sftp
 $ mkdir -p /data/sftp/sftp
-$ chown sftp:sftp /data/sftp
+$ chown sftp:sftp /data/sftp/sftp
 $ chmod <span class="m">750</span> /data/sftp/sftp
 <span class="c1"># 使用 sftp 用户登陆后会被限制在 /data/sftp 中，并且只能修改 /data/sftp/sftp 下的文件</span>
 </code></pre></div><h2 id="增加-history-时间戳">增加 history 时间戳</h2>
@@ -499,6 +499,17 @@ user hard nofile <span class="m">65536</span>
 $ cat /etc/pam.d/sshd
 $ cat /etc/pam.d/login
 session required pam_limits.so
+</code></pre></div><h2 id="启用时间同步服务">启用时间同步服务</h2>
+<p>Debian 一般会默认启用这个服务，这里的主要是为了修改 ntp 服务器地址。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ vi /etc/systemd/timesyncd.conf
+<span class="o">[</span>Time<span class="o">]</span>
+<span class="nv">NTP</span><span class="o">=</span>ntp.aliyun.com ntp1.aliyun.com
+<span class="nv">FallbackNTP</span><span class="o">=</span>0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
+
+<span class="c1"># 配置检查</span>
+$ timedatectl show-timesync --all
+<span class="c1"># 重启服务</span>
+$ systemctl restart systemd-timesyncd.service
 </code></pre></div></article>
               </div>
             </div>
