@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 24 Jan 2024 09:27:34 &#43;0000"
+                  Modified <relative-time datetime="Wed, 24 Jan 2024 09:29:47 &#43;0000"
                     class="no-wrap">
-                    Wed, 24 Jan 2024 09:27:34 &#43;0000</relative-time>
+                    Wed, 24 Jan 2024 09:29:47 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2170 Words
+                      2173 Words
                     
 
                   </div>
@@ -457,7 +457,7 @@ diffie-hellman-group1-sha1
 $ nmap --script ssh2-enum-algos -sV -p <span class="m">22</span> 127.0.0.1
 $ ssh -o <span class="nv">Ciphers</span><span class="o">=</span>aes128-cbc root@127.0.0.1
 $ ssh -o <span class="nv">KexAlgorithms</span><span class="o">=</span>diffie-hellman-group-exchange-sha1 root@127.0.0.1
-</code></pre></div><h3 id="解决-rsa-密钥无法登陆">解决 rsa 密钥无法登陆</h3>
+</code></pre></div><h3 id="解决-rsa-密钥无法登陆的问题">解决 rsa 密钥无法登陆的问题</h3>
 <p>在较新版本的 OpenSSH 中，使用 RSA 密钥登陆时可能会产生 <code>userauth_pubkey: signature algorithm ssh-rsa not in pubkeyacceptedalgorithms</code> 的登陆错误日志，这是因为新版本的 OpenSSH 对一些不安全算法进行了禁用，可以通过修改配置解决。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 修改配置</span>
 $ cat /etc/ssh/sshd_config
