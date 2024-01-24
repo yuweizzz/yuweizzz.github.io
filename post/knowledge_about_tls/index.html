@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 24 Jan 2024 09:29:47 &#43;0000"
+                  Modified <relative-time datetime="Wed, 24 Jan 2024 14:16:03 &#43;0000"
                     class="no-wrap">
-                    Wed, 24 Jan 2024 09:29:47 &#43;0000</relative-time>
+                    Wed, 24 Jan 2024 14:16:03 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4249 Words
+                      4849 Words
                     
 
                   </div>
@@ -221,6 +221,15 @@
                         </path>
                       </svg>
                       TLS
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/ocsp">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      OCSP
                     </a>
                     
                     
@@ -317,7 +326,10 @@ $ openssl req -new -sha256 -key server_key.pri <span class="se">\
 </span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=software.ibm.com&#34;</span> -out request.csr
 <span class="c1"># CA 处理签发请求，生成证书</span>
 $ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial -out software.crt
-</code></pre></div><p>在 golang 1.15 之后的版本，进行 tls 握手时发生报错 <code>&quot;x509: certificate relies on legacy Common Name field, use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0&quot;</code> 是因为当前使用的证书依赖于 CN 作为域名绑定，需要使用 x509 拓展字段 Subject Alternative Name 才能进行正常验证，也就是报错信息所述的 SAN 。</p>
+</code></pre></div><blockquote>
+<p>在签发 CA 证书时最好通过 <code>-extfile &lt;(printf &quot;basicConstraints=CA:TRUE&quot;)</code> 表明自身是用作 CA 证书用途。</p>
+</blockquote>
+<p>在 golang 1.15 之后的版本，进行 tls 握手时发生报错 <code>&quot;x509: certificate relies on legacy Common Name field, use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0&quot;</code> 是因为当前使用的证书依赖于 CN 作为域名绑定，需要使用 x509 拓展字段 Subject Alternative Name 才能进行正常验证，也就是报错信息所述的 SAN 。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 生成 SAN 证书</span>
 
 <span class="c1"># 前序步骤和使用 CN 的证书相似</span>
@@ -368,29 +380,65 @@ $ openssl dgst -sha256 -verify key.pub -signature sign.txt file
 <span class="c1"># 查看证书过期时间</span>
 $ openssl x509 -in x509.crt -noout -enddate
 <span class="c1"># 配合 s_client 可以通过发起 ssl 连接来测试证书是否过期</span>
-$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null <span class="p">|</span> openssl x509 -noout -enddate 2&gt;/dev/null <span class="p">|</span> awk -F <span class="s1">&#39;=&#39;</span> <span class="s1">&#39;{print $2}&#39;</span>
+$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null <span class="p">|</span> <span class="se">\
+</span><span class="se"></span>  openssl x509 -noout -enddate 2&gt;/dev/null <span class="p">|</span> awk -F <span class="s1">&#39;=&#39;</span> <span class="s1">&#39;{print $2}&#39;</span>
 
 <span class="c1"># 证书格式转换</span>
 $ openssl x509 -in x509.der -inform der -outform pem -out x509.pem
 
 <span class="c1"># 追踪 tls 握手过程</span>
-<span class="c1"># -status 可以看到 ocsp 信息</span>
+<span class="c1"># -status 选项会在 clientHello 中带上 status_request extensions ，用于要求服务端附带 ocsp 响应信息</span>
 <span class="c1"># -tlsextdebug 可以看到 tls 扩展信息</span>
 $ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -status -tlsextdebug -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null
 
 <span class="c1"># 指定加密算法的 tls 握手请求，主要用来测试 ECC 证书，对应前面的不同种类证书的生成命令</span>
-<span class="c1"># RSA 证书测试，理论上可以在输出中追踪到 PKEY: rsaEncryption</span>
-$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-RSA-AES128-SHA256 -status -tlsextdebug -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
-<span class="c1"># ECC 证书测试，理论上可以在输出中追踪到 PKEY: id-ecPublicKey</span>
-$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-ECDSA-AES128-SHA256 -status -tlsextdebug -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
+<span class="c1"># RSA 证书测试，理论上可以在输出中追踪到 rsa 的相关证书信息</span>
+$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-RSA-AES128-SHA256 -status -tlsextdebug <span class="se">\
+</span><span class="se"></span>  -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
+<span class="c1"># ECC 证书测试，理论上可以在输出中追踪到 ecdsa 的相关证书信息</span>
+$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-ECDSA-AES128-SHA256 -status -tlsextdebug <span class="se">\
+</span><span class="se"></span>  -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
 
 <span class="c1"># 查看 openssl 对各个版本 tls 协议的算法支持</span>
 $ openssl ciphers -v
-<span class="c1"># cipher 遵从对应的 RFC 命名标准，在 ECDHE-RSA-AES128-SHA256 中：</span>
+<span class="c1"># cipher 遵从对应的 RFC 命名标准，例如在 ECDHE-RSA-AES128-SHA256 中：</span>
 <span class="c1"># ECDHE 指的是 Key Exchange 算法， ECDHE 是 DH 算法基于椭圆曲线的变种</span>
 <span class="c1"># RSA 指的是认证算法， RSA 是非对称加密算法</span>
 <span class="c1"># AES128 指的是用于 session 过程中的加密算法， AES128 是 128 bit 的对称加密算法</span>
 <span class="c1"># SHA256 指的是摘要算法， SHA256 是 256 bit 的摘要算法</span>
+</code></pre></div><h2 id="运行-ocsp-responder">运行 OCSP Responder</h2>
+<p><code>openssl</code> 可以运行一个用于响应 OCSP 请求的服务端，能够满足一些基本的测试要求，实际中 OCSP 具体如何在 Nginx 中进行应用则可以参考<a href="https://yuweizzz.github.io/post/practical_tips_in_nginx/#%E5%BC%80%E5%90%AF-ocsp-stapling">这里</a>。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 可以参照前面的例子生成证书签发请求，在具体签发 CA 证书时，需要主动声明证书用途</span>
+$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in ca.csr -signkey ca.key <span class="se">\
+</span><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;basicConstraints=CA:TRUE&#34;</span><span class="o">)</span> -out ca.crt
+
+<span class="c1"># 具体证书则应该带有 OCSP Responder 信息，这里通过 set_serial 来设置序列号，方便测试</span>
+$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in x509.csr -CA ca.crt -CAkey ca.key -set_serial <span class="m">1</span> <span class="se">\
+</span><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;authorityInfoAccess=OCSP;URI:http://localhost:8080/&#34;</span><span class="o">)</span> -out x509.crt
+
+<span class="c1"># 还需要一个额外证书来签发 OCSP 响应，可以不对序列号进行要求</span>
+$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in signer.csr -CA ca.crt -CAkey ca.key -CAcreateserial <span class="se">\
+</span><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;extendedKeyUsage=OCSPSigning&#34;</span><span class="o">)</span> -out signer.crt
+
+<span class="c1"># 生成 CA 数据库，参考以下的 CA 数据库的格式：</span>
+<span class="c1"># V/R 到期时间 吊销时间 序列号 unknown CN</span>
+<span class="c1"># 字段之间使用 \t 隔开，即使某些字段不存在，比如吊销时间，也需要保留制表符</span>
+<span class="c1"># 经过实践测试，最后的 CN 字段并不一定要与对应证书中的 CN 一致，但是在 index 中每行的 CN 都必须不同</span>
+$ cat index.txt
+V	340101075959Z		1	unknown	/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1
+R	340101075959Z	240124135959Z	3	unknown	/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com2
+<span class="c1"># 需要注意有效证书记录中序列号字段前的制表符数量</span>
+$ cat -T index.txt
+V^I340101075959Z^I^I1^Iunknown^I/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1
+R^I340101075959Z^I240124135959Z^I3^Iunknown^I/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com2
+
+<span class="c1"># 另外标准的吊销过程应该通过相关的 CA 命令来完成，使用命令吊销会自动更新数据库，而这里只是手动更改了 CA 数据库来达到这个效果</span>
+<span class="c1"># 经过测试，如果你的证书没有记录在 CA 数据库中会返回 unknown 状态，否则一般是 good 或者 revoked 两种状态</span>
+
+<span class="c1"># 运行 OCSP Responder</span>
+$ openssl ocsp -index index.txt -port <span class="m">8080</span> -rsigner signer.crt -rkey signer.key -CA ca.crt
+<span class="c1"># 可以指定响应具体的请求数量后自动退出</span>
+$ openssl ocsp -index index.txt -port <span class="m">8080</span> -rsigner signer.crt -rkey signer.key -CA ca.crt -nrequest <span class="m">1</span>
 </code></pre></div><h2 id="tls-协议握手过程">TLS 协议握手过程</h2>
 <p>在 HTTP 通信之前，先在通信双方之间通过 TLS 协议建立一条安全通道，后续的 HTTP 通信内容就不再是明文的，只有通信双方才能解读这些信息，这也就是常说的 HTTPS 协议。</p>
 <p>现有的主流 TLS 版本是 TLS v1.2 和 TLS v1.3 ，低于这两个版本的协议安全性比较低，不建议使用。</p>
