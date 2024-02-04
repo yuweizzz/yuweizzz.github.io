@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 24 Jan 2024 14:16:03 &#43;0000"
+                  Modified <relative-time datetime="Sun, 04 Feb 2024 08:41:56 &#43;0000"
                     class="no-wrap">
-                    Wed, 24 Jan 2024 14:16:03 &#43;0000</relative-time>
+                    Sun, 04 Feb 2024 08:41:56 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4136 Words
+                      4138 Words
                     
 
                   </div>
@@ -307,9 +307,9 @@ map <span class="nv">$http_user_agent</span> <span class="nv">$mobile</span> <sp
 <span class="c1"># 获取 HTTP 请求头 User-Agent 的值，如果使用正则匹配到 Opera Mini 则设置变量 mobile 为 1 ，其他情况默认为 0 </span>
 </code></pre></div><h2 id="设置-json-格式日志">设置 json 格式日志</h2>
 <p>Nginx 原生的日志格式是列出了关键信息的单行文本，我们可以创建模拟 json 格式的日志写入规则。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 模拟 json 格式的纯文本</span>
-server <span class="o">{</span>
-    log_format main <span class="nv">escape</span><span class="o">=</span>default <span class="s1">&#39;{&#39;</span>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 模拟 json 的日志格式</span>
+http <span class="o">{</span>
+    log_format main <span class="nv">escape</span><span class="o">=</span>json <span class="s1">&#39;{&#39;</span>
         <span class="s1">&#39;&#34;datetime&#34;: &#34;$time_local&#34;,&#39;</span>
         <span class="s1">&#39;&#34;remote_addr&#34;: &#34;$remote_addr&#34;,&#39;</span>
         <span class="s1">&#39;&#34;http_host&#34;: &#34;$http_host&#34;,&#39;</span>
@@ -325,7 +325,10 @@ server <span class="o">{</span>
         <span class="s1">&#39;&#34;upstream_response_time&#34;: &#34;$upstream_response_time&#34;,&#39;</span>
         <span class="s1">&#39;&#34;request_time&#34;: &#34;$request_time&#34;&#39;</span>
     <span class="s1">&#39;}&#39;</span><span class="p">;</span>
-    access_log  logs/access.log  main<span class="p">;</span>
+
+    server <span class="o">{</span>
+        access_log logs/access.log main<span class="p">;</span>
+    <span class="o">}</span>
 <span class="o">}</span>
 </code></pre></div><h2 id="nginx-日志轮转">Nginx 日志轮转</h2>
 <p>生产环境的 Nginx 日志应该定时切割和归档，否则可能会将存储空间占满，一般通过 <code>logrotate</code> 或者 <code>crontab</code> 完成这项工作。</p>
