@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 18 Feb 2024 02:30:58 &#43;0000"
+                  Modified <relative-time datetime="Tue, 20 Feb 2024 09:44:18 &#43;0000"
                     class="no-wrap">
-                    Sun, 18 Feb 2024 02:30:58 &#43;0000</relative-time>
+                    Tue, 20 Feb 2024 09:44:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2183 Words
+                      2270 Words
                     
 
                   </div>
@@ -519,6 +519,15 @@ session required pam_limits.so
 $ timedatectl show-timesync --all
 <span class="c1"># 重启服务</span>
 $ systemctl restart systemd-timesyncd.service
+</code></pre></div><h2 id="通过-dpkg-查询文件">通过 dpkg 查询文件</h2>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查询系统已经安装的 deb 软件包，对标 redhat 系列的 rpm -qa</span>
+$ dpkg -l
+
+<span class="c1"># 查询 deb 软件包安装的所有文件，对标 redhat 系列的 rpm -ql &lt;package_name&gt;</span>
+$ dpkg -L &lt;package_name&gt;
+
+<span class="c1"># 查询文件的 deb 软件包归属，对标 redhat 系列的 rpm -qf &lt;filename&gt;</span>
+$ dpkg -S &lt;filename&gt;
 </code></pre></div></article>
               </div>
             </div>
