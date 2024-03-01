@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>回顾 2021 年 - Wei&#39;s blog</title>
+    <title>VictoriaMetrics API 和常用的 PromQL - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/github.png'>
     
@@ -18,18 +18,18 @@
 
     
     <meta name="description"
-  content="2021 年总结和新年展望。
+  content="这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
 <meta name="robots" content="noodp" />
-<link rel="canonical" href="https://yuweizzz.github.io/post/review_of_2021/" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/" />
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="回顾 2021 年 - Wei&#39;s blog" />
+<meta name="twitter:title" content="VictoriaMetrics API 和常用的 PromQL - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="2021 年总结和新年展望。
+  content="这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io" />
 <meta name="twitter:creator" content="" />
@@ -38,18 +38,18 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="回顾 2021 年 - Wei&#39;s blog">
+<meta property="og:title" content="VictoriaMetrics API 和常用的 PromQL - Wei&#39;s blog">
 <meta property="og:description"
-  content="2021 年总结和新年展望。
+  content="这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。
 " />
-<meta property="og:url" content="https://yuweizzz.github.io/post/review_of_2021/" />
-<meta property="og:site_name" content="回顾 2021 年" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/" />
+<meta property="og:site_name" content="VictoriaMetrics API 和常用的 PromQL" />
 <meta property="og:image"
   content="https://yuweizzz.github.io">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
-<meta property="article:published_time" content="2021-12-24 21:44:45 &#43;0000 UTC" />
+<meta property="article:published_time" content="2023-12-16 10:00:00 &#43;0000 UTC" />
 
 
 
@@ -157,12 +157,12 @@
                   <span class="author">
                     <a href="https://yuweizzz.github.io">Wei</a></span><span
                     class="path-divider">/</span><strong class="css-truncate-target mr-1" style="max-width: 410px"><a
-                      href="https://yuweizzz.github.io/post/review_of_2021/">回顾 2021 年</a></strong>
+                      href="https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/">VictoriaMetrics API 和常用的 PromQL</a></strong>
                 </h1>
                 <div class="note m-0">
-                  Created <relative-time datetime="Fri, 24 Dec 2021 21:44:45 &#43;0000"
+                  Created <relative-time datetime="Sat, 16 Dec 2023 10:00:00 &#43;0000"
                     class="no-wrap">
-                    Fri, 24 Dec 2021 21:44:45 &#43;0000</relative-time>
+                    Sat, 16 Dec 2023 10:00:00 &#43;0000</relative-time>
 
                   
                   <span class="file-info-divider"></span>
@@ -198,20 +198,29 @@
                         </div>
                       </div>
                     </details-menu>
-                      2122 Words
+                      1135 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/life">
+                    <a class="muted-link mr-3" href="/tags/victoriametrics">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
                         </path>
                       </svg>
-                      Life
+                      VictoriaMetrics
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/prometheus">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Prometheus
                     </a>
                     
                     
@@ -221,7 +230,7 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>2021 年总结和新年展望。</p>
+                <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
                                        <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
                                   <span class="o">(</span>   <span class="o">)</span>
@@ -240,31 +249,112 @@
                   <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
                    <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 
-</code></pre></div><h2 id="正文">正文</h2>
-<p>就我个人感觉来说，每次思考时，虽然心里想到了很多，但是口头表达却不及其一，我越发认同提笔记录是很好的办法。</p>
-<p>在今年的年末回首前，先记录一件小事，我在周二早上起床后就感觉喉咙不舒服，但当时情况并不是十分严重，因为我本身就有咽炎，这一天也就这么过去了。</p>
-<p>等到周三早上情况就加重了，而且在中午休息过后一度有发热的迹象，我对自己的身体比较清楚，如果有十分疲惫的感觉，就有很有可能导致发热，这回我不敢忽视了，一下班就马上买了药，去买药的时候还担心已经发热被测温仪器检查出来，当天晚上睡觉感觉浑身发冷，这是比较明显的发热前兆。</p>
-<p>周四早上起床这种发热的感觉和咽喉发炎的情况有所好转，但人还是不太清醒，坚持到了公司，等到下午情况渐渐好转，虽然咽喉炎症依然明显，但是疲惫的感觉渐渐退去。</p>
-<p>一整天也吃不下东西，人也是精神恍惚，回到家吃了药，人反而变得有精神了，临睡前居然感觉到饥饿。 昨天晚上我躺在床上，想着明天病好了，一定要多搞点好吃的。</p>
-<p>幸运的是今天真的好了一大半，虽然说不上完全恢复，但是至少人可以正常活动了，所以今天就血拼了一把，买了不少好吃的，当作是庆祝下。</p>
-<p>这次的事情对我来说，对我最大的触动是周四晚上躺在床上，畅想明天的美食，那种摒弃所有弊病，那种带着对明天美好的强烈期待，实在是令人备受鼓舞。</p>
-<p>在今年的工作和生活中，我感觉陷入了一种困境，当萦绕在心头的疑问越来越多，而它们无法得到解答时，会渐渐消磨对生活的热情，每一天的你对明天不再抱有期待，快乐也跟着变少了，就如同病重躺在床上时，人是非常痛苦的，如果是抱着痊愈的希望，想着明天的能吃到的好吃食物，那这苦中还留有着快乐，但如果没有对于明天的希望，心中的苦闷将会比身体上的更加令人难受。</p>
-<p>我认为它可以作为今年的主基调，进入年末总结的正题：</p>
-<p>在生活上，疫情时不时爆发，虽然我已经明白它基本上会长期存在，但是坏消息总是能带来无形的压力，还有来自互联网的多元信息，包括政府政策，网民言论，突发事件，企业变动，八卦事件等等，它们可能不会直接关系到我个人，但是它们经常带来大量的负面信息，这对生活热情也是极大的打击。所以我经常通过一些比较低回报的事情消磨时间，比如看网络小说，熬夜打游戏，我个人认为这些事情不至于做到完全杜绝，但是它们应该被有计划地控制，但是没有较好做到自我控制是今年比较失败的地方。</p>
-<p>在工作上，大形势是新的技术不断推出，但是旧的技术又不得不用，而它们都需要时间成本去学习，我觉得来自时间上的压力和方向上的困惑是两个重要原因，不像在读书的时候，每次都有着明确的方向和目标，我只需要顶住时间上的压力就可以了。但在工作中，方向和目标都非常容易迷失，由于这种迷失甚至导致了专注力的下降，很容易出现懈怠和厌恶，导致最终一无所成，这是现在最令我恐惧的地方。</p>
-<p>还有就是日益增长的孤独感，像这次生病的事情，我个人不想向任何人直接透露，其实这是不健康的心理状态，因为人的生活需要交流，不管是人生经验或者是技术经验，都应该是交流催生更大的进步。这是今年甚至说已经存在了较长时间的，人际交流方面的欠缺。</p>
-<p>前面的可能涉及了比较多的消极部分，但其实今年也是有收获的，首先是我已经认识到了过往的一些缺陷，这是一个好的开始，那么下一年需要做到事情就是改进，虽然我知道这可能是困难重重的，但我认为这应该可以做到更好。</p>
-<p>在工作和个人学习上，虽然常有懈怠，但是我一直是保持着学习的习惯，自我学习并没有停止过，总结今年，我的综合能力确实是提升了，也许不是在某个具体技能上，但它将会是更强技术能力的基石。</p>
-<p>关于孤独这方面，我认为它是人生当中不可避免的，虽然它在我的人生占据了更大的比例，但是目前我觉得这样也还行，甚至更好地利用它，即使这是一条更困难的路。我认为性格是这方面很重要的影响因素，而它不是目前强烈需要改变的地方，也不是一时能解决的，我更愿意顺其自然，慢慢改变。</p>
-<p>而且今年还收获了一个新的乐趣，集邮过程也许不全是快乐，有时会因为某个套票而着急，有时会懒得动手去做一些必要的洗片工作，但是我认为它是可以成为锻炼毅力的工具，全心地投入并坚持一项事业是非常难得的。</p>
-<p>好的也说完了，坏的也说完了，我感觉明年来说，也许人生的大方向是迷离不定的，但是踏实过好每一天，让自己每天都快乐也是很不错的，在下一年，我觉得至少要做到改进一些事情：</p>
-<p>生活上，注意保护身体，毕竟生病太难受了，希望可以改善不吃早餐的毛病和尽量早睡。</p>
-<p>工作学习上，我感觉做好规划是比较有效的方法，虽然现在还保持着学习，但是没有良好的规划和整理的话，学习效果会大打折扣。今年整年都是无组织无计划，导致欠下了不少技术债。希望下一年可以更好地改进。</p>
-<p>此外，对于外部信息的接收，我感觉自身的见识和认知还不能够抵御它们的冲击，这个目前还是无解，也许多看看书，少接收一些消极的外部信息是好办法，下一年可以朝着这个方向多做尝试。</p>
-<p>其实我不常做总结或者回顾，但希望这次的破例能给下一年带来更好的自己。</p>
-<blockquote>
-<p>写于 2021 年 12 月 24 日，平安夜。</p>
-</blockquote></article>
+</code></pre></div><h2 id="victoriametrics-api">VictoriaMetrics API</h2>
+<p>这里主要指的是 VictoriaMetrics 单机版所使用的 API 。</p>
+<p>后续内容均使用以下 metrics 作为例子：</p>
+<pre><code>http_requests_total{code=&quot;200&quot;,handler=&quot;query&quot;,instance=&quot;localhost:9090&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  1
+http_requests_total{code=&quot;200&quot;,handler=&quot;query_range&quot;,instance=&quot;localhost:9090&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  0
+</code></pre><p>查询相关的 API 有即时查询和范围查询两种：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 即时查询</span>
+curl http://localhost:8428/prometheus/api/v1/query <span class="se">\
+</span><span class="se"></span>  -d <span class="s1">&#39;query=http_requests_total&#39;</span>
+
+<span class="c1"># 范围查询</span>
+curl http://localhost:8428/prometheus/api/v1/query_range <span class="se">\
+</span><span class="se"></span>  -d <span class="s1">&#39;query=http_requests_total&#39;</span> <span class="se">\
+</span><span class="se"></span>  -d <span class="s1">&#39;start=-1d&#39;</span> <span class="se">\
+</span><span class="se"></span>  -d <span class="s1">&#39;step=1h&#39;</span>
+</code></pre></div><p>即时查询一般会返回最新的数据样本，但是在指明某些时间节点时，如果没有直接命中对应的数据样本，会返回距离该时间最近的数据节点。</p>
+<p>范围查询和即时查询相似，但是它可以返回多个数据样本，并且同样会尽量返回某些接近的数据样本来替换一些缺失数据。</p>
+<p>所以两者返回的数据都不一定是实际时间对应的数据，可能是一个替换值。</p>
+<p>删除相关的 API ：</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl http://localhost:8428/api/v1/admin/tsdb/delete_series <span class="se">\
+</span><span class="se"></span>  -d <span class="s1">&#39;match[]=http_requests_total&#39;</span>
+</code></pre></div><p>该操作会将整个指标都直接删除，并且占用的存储空间不会立即释放。</p>
+<h2 id="常用的-promql">常用的 PromQL</h2>
+<p>这里会介绍一些比较常用的 PromQL 。</p>
+<h3 id="label_replace">label_replace</h3>
+<p>label_replace 的具体用法可以参考这个公式： <code>label_replace(v instant-vector, dst_label string, replacement string, src_label string, regex string)</code> 。</p>
+<p>主要用来替换某些标签内容，实际用例参考：</p>
+<pre><code>before:
+http_requests_total{code=&quot;200&quot;,handler=&quot;query&quot;,instance=&quot;localhost:9090&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  1
+http_requests_total{code=&quot;200&quot;,handler=&quot;query_range&quot;,instance=&quot;localhost:9090&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  0
+
+expr:
+label_replace(http_requests_total{instance=&quot;localhost:9090&quot;},&quot;instance&quot;,&quot;$1&quot;,&quot;job&quot;,&quot;(.*)&quot;)
+
+after:
+http_requests_total{code=&quot;200&quot;,handler=&quot;query&quot;,instance=&quot;prometheus&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  1
+http_requests_total{code=&quot;200&quot;,handler=&quot;query_range&quot;,instance=&quot;prometheus&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  0
+</code></pre><h3 id="increase">increase</h3>
+<p>increase 用来计算区间向量的增长量，以区间向量的第一个元素和最后一个元素进行计算，实际用例参考：</p>
+<pre><code>before:
+http_requests_total{code=&quot;200&quot;} 100375	@1708045914.967	
+http_requests_total{code=&quot;200&quot;} 100377	@1708045924.967
+http_requests_total{code=&quot;200&quot;} 100378	@1708045934.967
+http_requests_total{code=&quot;200&quot;} 100379	@1708045944.967
+http_requests_total{code=&quot;200&quot;} 100381	@1708045954.967
+http_requests_total{code=&quot;200&quot;} 100381	@1708045964.967
+
+expr:
+increase(http_requests_total{code=&quot;200&quot;}[1m])
+
+after:
+http_requests_total{code=&quot;200&quot;} 7
+</code></pre><p>increase 存在数据外推现象，所以实际使用的计算数据可能不是简单的区间向量的第一个元素和最后一个元素直接运算，而会通过外推后的值来平衡计算。</p>
+<h3 id="rate-和-irate">rate 和 irate</h3>
+<p>rate 和 irate 都可以用来计算区间向量中数据的增长率，但是 rate 是以区间向量的第一个元素和最后一个元素进行计算，而 irate 是以区间向量的最新两个元素进行计算： <code>rate(http_requests_total{code=&quot;200&quot;}[10m])</code> 和 <code>irate(http_requests_total{code=&quot;200&quot;}[10m])</code> 。</p>
+<p>rate 存在数据外推现象，它基本上是基于 increase 的计算值再和时间进行计算。而 irate 只会取最近的两个元素进行计算，所以不会存在数据外推。</p>
+<h3 id="group_left-和-group_right">group_left 和 group_right</h3>
+<p>group_left 和 group_right 是用于向量匹配的关键字，允许不同向量之间的多对一或者一对多的匹配。</p>
+<p>参考公式：</p>
+<pre><code>&lt;vector expr&gt; &lt;bin-op&gt; ignoring(&lt;label list&gt;) group_left(&lt;label list&gt;) &lt;vector expr&gt;
+&lt;vector expr&gt; &lt;bin-op&gt; ignoring(&lt;label list&gt;) group_right(&lt;label list&gt;) &lt;vector expr&gt;
+&lt;vector expr&gt; &lt;bin-op&gt; on(&lt;label list&gt;) group_left(&lt;label list&gt;) &lt;vector expr&gt;
+&lt;vector expr&gt; &lt;bin-op&gt; on(&lt;label list&gt;) group_right(&lt;label list&gt;) &lt;vector expr&gt;
+</code></pre><p>实际用例参考：</p>
+<pre><code>before:
+method_code:http_errors:rate5m{method=&quot;get&quot;, code=&quot;500&quot;}  24
+method_code:http_errors:rate5m{method=&quot;get&quot;, code=&quot;404&quot;}  30
+method_code:http_errors:rate5m{method=&quot;put&quot;, code=&quot;501&quot;}  3
+method_code:http_errors:rate5m{method=&quot;post&quot;, code=&quot;500&quot;} 6
+method_code:http_errors:rate5m{method=&quot;post&quot;, code=&quot;404&quot;} 21
+
+method:http_requests:rate5m{method=&quot;get&quot;}  600
+method:http_requests:rate5m{method=&quot;del&quot;}  34
+method:http_requests:rate5m{method=&quot;post&quot;} 120
+
+expr:
+method_code:http_errors:rate5m / ignoring(code) group_left method:http_requests:rate5m
+
+after:
+{method=&quot;get&quot;, code=&quot;500&quot;}  0.04            //  24 / 600
+{method=&quot;get&quot;, code=&quot;404&quot;}  0.05            //  30 / 600
+{method=&quot;post&quot;, code=&quot;500&quot;} 0.05            //   6 / 120
+{method=&quot;post&quot;, code=&quot;404&quot;} 0.175           //  21 / 120
+</code></pre><p>在上述例子中，我们需要先明确在计算表达式中，多的对象指的是 <code>method_code:http_errors:rate5m</code> ，而一的对象指的是 <code>method:http_requests:rate5m</code> 。它是由向量处于 group_left 或者 group_right 的左右位置决定的。</p>
+<p>on 或者 ignoring 是对多所指的对象而言的， ignoring 用来忽略这个标签， on 用来匹配这个标签。由于这个例子中， code 标签被忽略，所以使用 method 标签进行匹配。</p>
+<p>group_left 实际上还可以声明额外的标签，以允许使用一对象中的标签覆盖最终结果。由于这个例子中，只有单一的 method 标签，可以通过下面这里扩展例子来理解：</p>
+<pre><code>before:
+method_code:http_errors:rate5m{method=&quot;get&quot;, code=&quot;500&quot;, url=&quot;endpoint/500&quot;}  24
+method_code:http_errors:rate5m{method=&quot;get&quot;, code=&quot;404&quot;, url=&quot;endpoint/404&quot;}  30
+method_code:http_errors:rate5m{method=&quot;put&quot;, code=&quot;501&quot;, url=&quot;endpoint/501&quot;}  3
+method_code:http_errors:rate5m{method=&quot;post&quot;, code=&quot;500&quot;, url=&quot;endpoint/500&quot;} 6
+method_code:http_errors:rate5m{method=&quot;post&quot;, code=&quot;404&quot;, url=&quot;endpoint/404&quot;} 21
+
+method:http_requests:rate5m{method=&quot;get&quot;, url=&quot;endpoint&quot;}  600
+method:http_requests:rate5m{method=&quot;del&quot;, url=&quot;endpoint&quot;}  34
+method:http_requests:rate5m{method=&quot;post&quot;, url=&quot;endpoint&quot;} 120
+
+expr:
+method_code:http_errors:rate5m / on(method) group_left(url) method:http_requests:rate5m
+
+after:
+{method=&quot;get&quot;, code=&quot;500&quot;, url=&quot;endpoint&quot;}  0.04            //  24 / 600
+{method=&quot;get&quot;, code=&quot;404&quot;, url=&quot;endpoint&quot;}  0.05            //  30 / 600
+{method=&quot;post&quot;, code=&quot;500&quot;, url=&quot;endpoint&quot;} 0.05            //   6 / 120
+{method=&quot;post&quot;, code=&quot;404&quot;, url=&quot;endpoint&quot;} 0.175           //  21 / 120
+</code></pre></article>
               </div>
             </div>
           </div>

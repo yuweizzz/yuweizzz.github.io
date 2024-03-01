@@ -35,6 +35,15 @@
     </item>
     
     <item>
+      <title>VictoriaMetrics API 和常用的 PromQL</title>
+      <link>https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/</link>
+      <pubDate>Sat, 16 Dec 2023 10:00:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
       <title>解决使用 VictoriaMetrics 时的连接重置问题</title>
       <link>https://yuweizzz.github.io/post/fix_connection_reset_error_when_query_from_victoriametrics/</link>
       <pubDate>Fri, 15 Dec 2023 10:00:00 +0000</pubDate>
