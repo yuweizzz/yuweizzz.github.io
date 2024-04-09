@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 18 Feb 2024 15:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 31 Mar 2024 13:26:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Go</title>
+      <link>https://yuweizzz.github.io/tags/go/</link>
+      <pubDate>Sun, 31 Mar 2024 13:26:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/go/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Prometheus</title>
+      <link>https://yuweizzz.github.io/tags/prometheus/</link>
+      <pubDate>Sun, 31 Mar 2024 13:26:00 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/prometheus/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>cloudflare</title>
       <link>https://yuweizzz.github.io/tags/cloudflare/</link>
@@ -53,29 +71,11 @@
     </item>
     
     <item>
-      <title>Prometheus</title>
-      <link>https://yuweizzz.github.io/tags/prometheus/</link>
-      <pubDate>Sat, 16 Dec 2023 10:00:00 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/tags/prometheus/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>VictoriaMetrics</title>
       <link>https://yuweizzz.github.io/tags/victoriametrics/</link>
       <pubDate>Sat, 16 Dec 2023 10:00:00 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/tags/victoriametrics/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Go</title>
-      <link>https://yuweizzz.github.io/tags/go/</link>
-      <pubDate>Fri, 15 Dec 2023 10:00:00 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/tags/go/</guid>
       <description></description>
     </item>
     
