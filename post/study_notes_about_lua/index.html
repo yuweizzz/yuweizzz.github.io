@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 09 Apr 2024 08:04:25 &#43;0000"
+                  Modified <relative-time datetime="Fri, 19 Apr 2024 08:37:27 &#43;0000"
                     class="no-wrap">
-                    Tue, 09 Apr 2024 08:04:25 &#43;0000</relative-time>
+                    Fri, 19 Apr 2024 08:37:27 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1124 Words
+                      1710 Words
                     
 
                   </div>
@@ -252,29 +252,77 @@
 </code></pre></div><p>lua 是一门高效的，易于嵌入其他应用程序的轻量级脚本语言。 lua 的高效快速主要是由于 lua 本身的底层设计以及非常高效的 Lua 解释器。这里主要会记录一些 lua 入门学习时一些遇到的问题。</p>
 <h2 id="lua-string-处理">Lua String 处理</h2>
 <p>lua 的 string 类型数据是不可改变的，大部分情况下要依靠 string 库来处理。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- 字符串连接</span>
-<span class="n">var_a</span> <span class="o">=</span> <span class="s2">&#34;a&#34;</span>
-<span class="n">var_b</span> <span class="o">=</span> <span class="s2">&#34;b&#34;</span>
-<span class="n">var_c</span> <span class="o">=</span> <span class="s2">&#34;c&#34;</span>
-<span class="n">print</span><span class="p">(</span><span class="n">var_a</span><span class="o">..</span><span class="n">var_b</span><span class="o">..</span><span class="n">var_c</span><span class="p">)</span>
+<h3 id="string-拼接">string 拼接</h3>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="n">strings_a</span> <span class="o">=</span> <span class="s2">&#34;a&#34;</span>
+<span class="n">strings_b</span> <span class="o">=</span> <span class="s2">&#34;b&#34;</span>
+<span class="n">strings_c</span> <span class="o">=</span> <span class="s2">&#34;c&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">strings_a</span> <span class="o">..</span> <span class="n">strings_b</span> <span class="o">..</span> <span class="n">strings_c</span><span class="p">)</span>
 <span class="c1">-- output:</span>
 <span class="c1">-- abc</span>
+</code></pre></div><h3 id="string-替换和截取">string 替换和截取</h3>
+<p>一般使用 <code>string.gsub</code> 来替换字符串内容，而 <code>string.sub</code> 是用来截取字符串。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.gsub</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;z&#34;</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- zbcde	1</span>
+<span class="c1">-- 返回值分别是 gsub 执行后的字符串和具体发生替换的次数，可以根据第二个参数判断是否已经执行替换</span>
 
-<span class="c1">-- 字符串搜索</span>
-<span class="n">var_a</span> <span class="o">=</span> <span class="s2">&#34;a&#34;</span>
-<span class="n">print</span><span class="p">(</span><span class="n">string.find</span><span class="p">(</span><span class="n">var_a</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">))</span>
+<span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;aaaae&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.gsub</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;z&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- zzaae	2</span>
+<span class="c1">-- 可以通过传进第四个参数限制替换次数</span>
+
+<span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.sub</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- cde</span>
+<span class="c1">-- 从给定位置开始截取到最后一个字符</span>
+
+<span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.sub</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- cd</span>
+<span class="c1">-- 截取起止位置都确定的字符串</span>
+</code></pre></div><h3 id="string-find">string find</h3>
+<p><code>string.find</code> 可以用来进行字符串搜索，需要注意的用法是带有特殊字符时，应该指定为 plain 模式。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- 普通字符串搜索</span>
+<span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.find</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">))</span>
 <span class="c1">-- output:</span>
 <span class="c1">-- 1	1</span>
-<span class="c1">-- 搜索成功则返回匹配字符的起止位置索引，失败则返回 nil </span>
+<span class="c1">-- 成功则返回匹配字符的起止位置索引，失败则返回 nil</span>
 
-<span class="c1">-- 字符串匹配</span>
-<span class="n">print</span><span class="p">(</span><span class="n">string.match</span><span class="p">(</span><span class="s2">&#34;  1 + 1  =2&#34;</span><span class="p">,</span> <span class="s2">&#34;^%s*(.-)%s*=.*&#34;</span><span class="p">))</span>
+<span class="c1">-- 带有特殊字符的字符串搜索</span>
+<span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde.*&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.find</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;.*&#34;</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- 1	7</span>
+<span class="c1">-- 默认以正则模式进行搜索</span>
+
+<span class="n">print</span><span class="p">(</span><span class="n">string.find</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;.*&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- 6	7</span>
+<span class="c1">-- 指定为 plain 模式，不再以正则模式进行搜索</span>
+</code></pre></div><h3 id="string-match">string match</h3>
+<p>匹配取值有 match 和 gmatch 两种，前者用于直接匹配结果，后者可以返回迭代器函数，用于循环场景。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;  1 + 1  =2&#34;</span>
+<span class="n">print</span><span class="p">(</span><span class="n">string.match</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;^%s*(.-)%s*=.*&#34;</span><span class="p">))</span>
 <span class="c1">-- output:</span>
 <span class="c1">-- 1 + 1</span>
-<span class="n">print</span><span class="p">(</span><span class="n">string.match</span><span class="p">(</span><span class="s2">&#34;  1 + 1  =2&#34;</span><span class="p">,</span> <span class="s2">&#34;^%s*.-%s*=(.*)&#34;</span><span class="p">))</span>
+
+<span class="n">print</span><span class="p">(</span><span class="n">string.match</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;^%s*.-%s*=(.*)&#34;</span><span class="p">))</span>
 <span class="c1">-- output:</span>
 <span class="c1">-- 2</span>
 <span class="c1">-- 匹配成功则返回整个匹配的字符串，由于使用了括号进行子模式匹配，所以只返回了匹配部分，其中 .- 代表任意字符的非贪婪匹配</span>
+
+<span class="n">iterator</span> <span class="o">=</span> <span class="n">string.gmatch</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;%d&#34;</span><span class="p">)</span>
+<span class="kr">for</span> <span class="n">each</span> <span class="kr">in</span> <span class="n">iterator</span> <span class="kr">do</span> <span class="n">print</span><span class="p">(</span><span class="n">each</span><span class="p">)</span> <span class="kr">end</span>
+<span class="c1">-- output:</span>
+<span class="c1">-- 1</span>
+<span class="c1">-- 1</span>
+<span class="c1">-- 2</span>
+<span class="c1">-- 匹配成功则可以在每次循环中得到对应的匹配部分</span>
 </code></pre></div><h2 id="lua-table">Lua Table</h2>
 <p>lua table 是一种异于其他编程语言的数据类型，它是动态增长的字典类容器，同时具有数组的特性，如果仔细研究它的内部结构，可以发现它是有两者混合构成的。</p>
 <div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="n">t</span> <span class="o">=</span> <span class="p">{</span><span class="n">a</span><span class="o">=</span><span class="s2">&#34;A&#34;</span><span class="p">,</span> <span class="s2">&#34;B&#34;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s2">&#34;C&#34;</span><span class="p">,</span> <span class="n">D</span><span class="p">}</span>
@@ -303,11 +351,12 @@ $ <span class="nv">LUA_PATH</span><span class="o">=</span><span class="s2">&#34;
 /tmp/?.so<span class="p">;</span>./?.so<span class="p">;</span>/usr/lib64/lua/5.1/?.so<span class="p">;</span>/usr/lib64/lua/5.1/loadall.so<span class="p">;</span>
 </code></pre></div><p>我们如果想使用别人写好的 lua 脚本，通常需要自己去对应的发布地址下载并自行安装，但是 lua 也有类似于模块管理器一样的软件 luarocks ，使用它我们可以更方便管理我们需要用到的模块，也可以把我们自己写好的脚本提供给他人下载使用。</p>
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 luarocks 下载安装 luasql</span>
-$ luarocks install luasql-mysql --server https://luarocks.cn <span class="nv">MYSQL_INCDIR</span><span class="o">=</span>/usr/include/mysql/ <span class="nv">MYSQL_LIBDIR</span><span class="o">=</span>/usr/lib64/mysql
-<span class="c1"># --server 可以指定 luarocks 服务器</span>
-<span class="c1"># 可以通过环境变量来指定某些库文件位置，这些环境变量可以在对应模块的 rockspec 查找</span>
 
-<span class="c1"># luasql-mysql rockspec</span>
+<span class="c1"># --server 可以指定 luarocks 服务器</span>
+$ luarocks install luasql-mysql --server https://luarocks.cn <span class="nv">MYSQL_INCDIR</span><span class="o">=</span>/usr/include/mysql/ <span class="nv">MYSQL_LIBDIR</span><span class="o">=</span>/usr/lib64/mysql
+
+<span class="c1"># 编译过程可能需要指定一些依赖路径，可以通过环境变量来指定，具体变量信息可以在对应模块的 rockspec 查找</span>
+<span class="c1"># luasql-mysql rockspec </span>
 <span class="nv">package</span> <span class="o">=</span> <span class="s2">&#34;LuaSQL-MySQL&#34;</span>
 <span class="nv">version</span> <span class="o">=</span> <span class="s2">&#34;2.3.5-1&#34;</span>
 <span class="nb">source</span> <span class="o">=</span> <span class="o">{</span>
@@ -346,11 +395,43 @@ $ luarocks install luasql-mysql --server https://luarocks.cn <span class="nv">MY
 
 <span class="c1"># 为了维持解释器环境不被污染，可以使用 --tree 指定模块的安装路径</span>
 $ luarocks install luasql-mysql --tree <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
-<span class="c1"># 如果不指定 --tree ，会根据当前用户决定安装路径， root 一般会安装到 /usr 这个路径中</span>
+<span class="c1"># 如果不指定 --tree ，会根据当前用户决定安装路径</span>
+<span class="c1"># root 用户一般会将 lua 文件安装到 /usr/local/share/lua/ 中，而动态库文件则是 /usr/local/lib/lua/</span>
 
 <span class="c1"># 删除已经安装的模块，必须指定 --tree</span>
 $ luarocks purge luasql-mysql --tree <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>
-</code></pre></div></article>
+</code></pre></div><h2 id="lua-metatable">Lua Metatable</h2>
+<p>lua metatable 经常用来定义模块。</p>
+<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="n">_M</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="n">_VERSION</span> <span class="o">=</span> <span class="s1">&#39;1.0&#39;</span>
+<span class="p">}</span>
+
+<span class="kd">local</span> <span class="n">mt</span> <span class="o">=</span> <span class="p">{</span> <span class="n">__index</span> <span class="o">=</span> <span class="n">_M</span> <span class="p">}</span>
+
+<span class="kr">function</span> <span class="nc">_M</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">)</span>
+  <span class="kr">return</span> <span class="n">setmetatable</span><span class="p">(</span>
+     <span class="p">{</span>
+       <span class="n">left</span> <span class="o">=</span> <span class="n">left</span><span class="p">,</span>
+       <span class="n">right</span> <span class="o">=</span> <span class="n">right</span>
+     <span class="p">},</span> <span class="n">mt</span>
+   <span class="p">)</span>
+<span class="kr">end</span>
+
+<span class="kr">function</span> <span class="nc">_M</span><span class="p">:</span><span class="nf">add</span><span class="p">()</span>
+  <span class="kr">return</span> <span class="n">self.left</span> <span class="o">+</span> <span class="n">self.right</span>
+<span class="kr">end</span>
+
+<span class="kr">function</span> <span class="nc">_M</span><span class="p">:</span><span class="nf">sub</span><span class="p">()</span>
+  <span class="kr">return</span> <span class="n">self.left</span> <span class="o">-</span> <span class="n">self.right</span>
+<span class="kr">end</span>
+
+<span class="kr">function</span> <span class="nc">_M</span><span class="p">:</span><span class="nf">sum</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+  <span class="kr">return</span> <span class="n">self.left</span> <span class="o">+</span> <span class="n">self.right</span> <span class="o">+</span> <span class="n">data</span>
+<span class="kr">end</span>
+
+<span class="kr">return</span> <span class="n">_M</span>
+</code></pre></div><p>上述代码定义了一个模块，其中 <code>_M.new()</code> 函数相当于对象的实例化，而它提供的方法有 <code>_M:add()</code> ， <code>_M:sub()</code> 和 <code>_M:sum()</code> 三种。</p>
+<p>在通过 <code>local module = require(&quot;module_name&quot;)</code> 来引用模块之后，就可以使用具体的函数。其中而通过句号定义的函数会按照定义的参数内容传递参数，比如 <code>module.new(1, 2)</code> ，而通过冒号定义的函数定义默认会以自身作为第一个参数传入，比如 <code>module:add()</code> 实际上会直接返回计算结果。</p></article>
               </div>
             </div>
           </div>

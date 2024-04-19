@@ -6,7 +6,16 @@
     <description>Recent content in lua on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 03 Aug 2023 21:16:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/lua/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 03 Apr 2024 19:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/lua/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>openresty 学习笔记</title>
+      <link>https://yuweizzz.github.io/post/study_notes_about_openresty/</link>
+      <pubDate>Wed, 03 Apr 2024 19:44:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/study_notes_about_openresty/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些 Openresty 开发的相关知识。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>Apisix 的负载均衡实现</title>
       <link>https://yuweizzz.github.io/post/how_apisix_implements_load_balancing/</link>

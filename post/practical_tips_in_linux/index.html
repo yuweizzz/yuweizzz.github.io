@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 09 Apr 2024 08:04:25 &#43;0000"
+                  Modified <relative-time datetime="Fri, 19 Apr 2024 08:37:27 &#43;0000"
                     class="no-wrap">
-                    Tue, 09 Apr 2024 08:04:25 &#43;0000</relative-time>
+                    Fri, 19 Apr 2024 08:37:27 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      5338 Words
+                      5725 Words
                     
 
                   </div>
@@ -762,6 +762,41 @@ $ cat /etc/rsyslog.d/my-service.conf
 
 <span class="c1"># 新增配置后需要重启 rsyslog</span>
 $ systemctl restart rsyslog.service
+</code></pre></div><h2 id="freeradius">freeradius</h2>
+<p>freeradius 是 radius 协议的开源实现，包括身份验证，授权和统计三种协议。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 配置 freeradius 服务端以 Debug 模式运行方便排查问题</span>
+$ freeradius -X
+
+<span class="c1"># 测试具体用户</span>
+$ radtest username password localhost <span class="m">1812</span> secret
+<span class="c1"># username 和 password 分别是对应的用户信息</span>
+<span class="c1"># localhost 和 1812 分别是 freeradius 服务器的地址和监听端口</span>
+<span class="c1"># secret 是 freeradius 对各个客户端定义的认证信息，一般定义在 freeradius 配置目录下的 clients.conf</span>
+<span class="c1"># 这个命令应该以 Received Access-Accept 为正常结束，否则访问即是有问题的</span>
+</code></pre></div><h2 id="openldap">openldap</h2>
+<p>openldap 是实现了 LDAP 协议的目录数据存储服务，经常用来作身份验证。</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 通过 admin 用户查询某个具体用户是否存在</span>
+$ ldapsearch -h 10.0.0.1 <span class="se">\
+</span><span class="se"></span>    -p <span class="m">1389</span> <span class="se">\
+</span><span class="se"></span>    -x -W <span class="se">\
+</span><span class="se"></span>    -D <span class="s2">&#34;cn=admin,dc=example,dc=org&#34;</span> <span class="se">\
+</span><span class="se"></span>    -b <span class="s2">&#34;ou=users,dc=example,dc=org&#34;</span> <span class="se">\
+</span><span class="se"></span>    <span class="s2">&#34;(&amp;(cn=username)(objectClass=Person))&#34;</span>
+
+<span class="c1"># -h 和 -p 分别是 openldap 的服务器地址和监听端口</span>
+<span class="c1"># -x 用来声明进行简单认证， -W 用来声明密码内容</span>
+<span class="c1"># -D 用来声明 bind DN ，也就是当前用户的 entry ，对应的 -W 是该用户的密码</span>
+<span class="c1"># -b 用来声明 base DN ，也就是具体的搜索范围</span>
+<span class="c1"># &#34;(&amp;(cn=username)(objectClass=Person))&#34; 是需要执行的 filter</span>
+<span class="c1"># 上述 filter 的目标内容是获取 cn=username 并且对应的 objectClass=Person 的对象</span>
+
+<span class="c1"># 用户自行校验密码，实际上只要不返回 Invalid credentials 即可认为校验成功</span>
+$ ldapsearch -h 10.0.0.1 <span class="se">\
+</span><span class="se"></span>    -p <span class="m">1389</span> <span class="se">\
+</span><span class="se"></span>    -x -W <span class="se">\
+</span><span class="se"></span>    -D <span class="s2">&#34;cn=username,ou=users,dc=example,dc=org&#34;</span> <span class="se">\
+</span><span class="se"></span>    -b <span class="s2">&#34;ou=users,dc=example,dc=org&#34;</span> <span class="se">\
+</span><span class="se"></span>    <span class="s2">&#34;(&amp;(cn=username)(objectClass=Person))&#34;</span>
 </code></pre></div></article>
               </div>
             </div>
