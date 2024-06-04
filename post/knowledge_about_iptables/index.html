@@ -166,9 +166,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 19 Apr 2024 08:37:27 &#43;0000"
+                  Modified <relative-time datetime="Tue, 04 Jun 2024 09:51:00 &#43;0000"
                     class="no-wrap">
-                    Fri, 19 Apr 2024 08:37:27 &#43;0000</relative-time>
+                    Tue, 04 Jun 2024 09:51:00 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -198,7 +198,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2743 Words
+                      2830 Words
                     
 
                   </div>
@@ -325,25 +325,33 @@ num  target     prot opt <span class="nb">source</span>               destinatio
 <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># iptables 具体使用例子</span>
 
 <span class="c1"># 新增规则，新规则将会是表中最后一条规则</span>
-$ iptables  -t  filter  -A  INPUT  -s  192.168.1.222  -j  REJECT
+$ iptables -t filter -A INPUT -s 192.168.1.222 -j REJECT
 <span class="c1"># 插入规则，新规则的序号将会是 1</span>
-$ iptables  -t  filter  -I  INPUT  -s  192.168.1.222  -j  REJECT
+$ iptables -t filter -I INPUT -s 192.168.1.222 -j  REJECT
 <span class="c1"># 使用具体序号插入规则</span>
-$ iptables  -t  filter  -I  INPUT  <span class="m">4</span>  -s  192.168.1.222  -j  REJECT
+$ iptables -t filter -I INPUT <span class="m">4</span> -s 192.168.1.222 -j REJECT
 <span class="c1"># 通过详细条件匹配规则并进行删除</span>
-$ iptables  -t  filter  -D  INPUT  -s  192.168.1.222  -j  REJECT
+$ iptables -t filter -D INPUT -s 192.168.1.222 -j REJECT
 <span class="c1"># 通过规则序号匹配规则并进行删除</span>
-$ iptables  -t  filter  -D  INPUT  <span class="m">4</span>
+$ iptables -t filter -D INPUT  <span class="m">4</span>
 <span class="c1"># 通过规则序号匹配规则并进行规则内容替换</span>
-$ iptables  -t  filter  -R  INPUT  <span class="m">4</span>  -s  192.168.1.222  -j  REJECT
+$ iptables -t filter -R INPUT <span class="m">4</span> -s 192.168.1.222 -j REJECT
 <span class="c1"># 清除所有规则</span>
 $ iptables -F
 <span class="c1"># 设置规则链的默认策略</span>
-$ iptables  -t  filter  -P  INPUT  DROP
+$ iptables -t filter -P INPUT DROP
+<span class="c1"># 输出规则表中的所有规则</span>
+$ iptables -t filter -S
 <span class="c1"># 将当前所有规则保存到文件中</span>
 $ iptables-save &gt; /etc/sysconfig/iptables
 <span class="c1"># 使用文件中保存的规则覆盖当前所有规则</span>
 $ iptables-restore &lt; /etc/sysconfig/iptables
+
+
+<span class="c1"># 通过 iptables 设置端口转发</span>
+<span class="c1"># 源地址为 192.168.1.222:9999 ，目标地址为 192.168.1.233:10000 ，则应该在 192.168.1.222 上添加转发规则</span>
+$ iptables -t nat -A PREROUTING -p tcp -m tcp --dport <span class="m">9999</span> -j DNAT --to-destination 192.168.1.233:10000
+$ iptables -t nat -A POSTROUTING -d 192.168.1.233 -p tcp -m tcp --dport <span class="m">10000</span> -j SNAT --to-source 192.168.1.222
 </code></pre></div><h3 id="iptables-规则的多种匹配条件">Iptables 规则的多种匹配条件</h3>
 <p>在 iptables 中规则是以 IP 地址为基本匹配条件的，其中 <code>-s</code> 表示源地址，<code>-d</code> 表示目的地址，除了 IP 地址， iptables 还有很多匹配条件，包括端口，传输协议，数据包状态等。比如可以使用 <code>-p</code> 指定传输协议；使用 <code>-i</code> 指定流入数据的网卡接口；使用 <code>-o</code> 指定流出数据的网卡接口。</p>
 <p>以上还是比较单一的匹配条件，可以通过扩展模块来加强这些单一条件，常用的模块有 iprange ，string ，time ，limit ，connlimit ，state 等。</p>

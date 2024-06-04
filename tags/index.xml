@@ -6,7 +6,25 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 18 Apr 2024 15:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 May 2024 16:14:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>kubernetes</title>
+      <link>https://yuweizzz.github.io/tags/kubernetes/</link>
+      <pubDate>Thu, 09 May 2024 16:14:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/kubernetes/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tekton</title>
+      <link>https://yuweizzz.github.io/tags/tekton/</link>
+      <pubDate>Thu, 09 May 2024 16:14:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/tags/tekton/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>apisix</title>
       <link>https://yuweizzz.github.io/tags/apisix/</link>
@@ -238,15 +256,6 @@
       <pubDate>Tue, 10 Jan 2023 15:22:45 +0000</pubDate>
       
       <guid>https://yuweizzz.github.io/tags/stream/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>kubernetes</title>
-      <link>https://yuweizzz.github.io/tags/kubernetes/</link>
-      <pubDate>Sat, 10 Sep 2022 15:22:45 +0000</pubDate>
-      
-      <guid>https://yuweizzz.github.io/tags/kubernetes/</guid>
       <description></description>
     </item>
     

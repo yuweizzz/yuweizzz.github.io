@@ -6,7 +6,16 @@
     <description>Recent content in Posts on Wei&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 18 Apr 2024 15:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 09 May 2024 16:14:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 tekton 在 kubernetes 集群中运行流水线</title>
+      <link>https://yuweizzz.github.io/post/use_tekton_to_run_pipelines_in_kubernetes_cluster/</link>
+      <pubDate>Thu, 09 May 2024 16:14:45 +0000</pubDate>
+      
+      <guid>https://yuweizzz.github.io/post/use_tekton_to_run_pipelines_in_kubernetes_cluster/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录 tekton 在 kubernetes 集群中的基本使用。&lt;/p&gt;</description>
+    </item>
+    
     <item>
       <title>搭建 k3s 集群</title>
       <link>https://yuweizzz.github.io/post/install_k3s_cluster/</link>
