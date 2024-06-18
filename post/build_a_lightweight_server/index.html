@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录将玩客云主机作为家用服务器的搭建经历。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/build_a_lightweight_server/" />
 <meta property="og:site_name" content="搭建轻量级服务器" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -234,25 +241,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录将玩客云主机作为家用服务器的搭建经历。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="购买主机和系统刷入">购买主机和系统刷入</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="购买主机和系统刷入">购买主机和系统刷入</h2>
 <p>玩客云主机是迅雷出品的智能硬件，它会使用客户闲置的计算资源，同时给予可提现的玩客币作为回报，类似于比特币的挖矿行为，但是现在玩客币交易受限，所以被囤积挖矿的二手玩客云主机可以用较低的价格入手，在拼多多上只要 50 块钱左右就可以买到。</p>
 <p>主机的硬件配置为 4 核 1.5G ARM 架构 CPU ， 1GB RAM 和 8GB eMMC ROM ，千兆网卡和两个 USB 2.0 接口以及 HDMI 接口，作为轻量级内网服务器完全是足够的。</p>
 <p>刷机资源在网上也是非常之多，可以在恩山论坛或者 B 站都可以找到。</p>
@@ -310,133 +316,133 @@ if (!doNotTrack) {
 <h2 id="配置硬盘休眠">配置硬盘休眠</h2>
 <p>由于主机有 USB 2.0 接口，并且家里有一块闲置的西数 500GB SATA 硬盘，所以就将这块硬盘作为主机的外置存储。因为在实际使用过程中并不会经常地读写硬盘，所以我希望硬盘在平时可以处于休眠状态，并且在真正读写工作完成后继续休眠。</p>
 <p>在一开始时优先想到使用 <code>hdparm</code> 工具来设置硬盘的待机模式：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 hdparm 设置硬盘的待机模式</span>
-$ hdparm -y /dev/sda
-$ hdparm -C /dev/sda
-<span class="c1"># -y 可以使硬盘强制进入待机模式，不应该在系统盘上使用</span>
-<span class="c1"># -C 可以查看目前硬盘状态，硬盘一般会处于 active 或者 standby</span>
-<span class="c1"># -Y 可以使硬盘强制进入睡眠状态，尽量不要使用</span>
-
-<span class="c1"># 待机状态的硬盘可以被硬盘写入事件唤醒，但是睡眠状态的硬盘未经实测，很可能无法直接被硬盘写入事件唤醒</span>
-</code></pre></div><p>但是实际使用过程中却发生了错误，经过资料查阅之后得到大概的结论如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 hdparm 设置硬盘的待机模式</span>
+</span></span><span class="line"><span class="cl">$ hdparm -y /dev/sda
+</span></span><span class="line"><span class="cl">$ hdparm -C /dev/sda
+</span></span><span class="line"><span class="cl"><span class="c1"># -y 可以使硬盘强制进入待机模式，不应该在系统盘上使用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -C 可以查看目前硬盘状态，硬盘一般会处于 active 或者 standby</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -Y 可以使硬盘强制进入睡眠状态，尽量不要使用</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 待机状态的硬盘可以被硬盘写入事件唤醒，但是睡眠状态的硬盘未经实测，很可能无法直接被硬盘写入事件唤醒</span>
+</span></span></code></pre></div><p>但是实际使用过程中却发生了错误，经过资料查阅之后得到大概的结论如下：</p>
 <ul>
 <li>hdparm 工具是通过 kernel 的 libata 子系统和 IDE 子系统来和硬盘交互，达到读取或者设置硬盘参数的目的。</li>
 <li>玩客云主机使用 USB2.0 接口连接硬盘，系统实际上通过 UAS (USB Attached SCSI) 协议来和硬盘进行交互。</li>
 </ul>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看运行时的系统模块，可以看到 uas 正在被使用</span>
-$ lsmod <span class="p">|</span> grep uas
-uas                    <span class="m">20480</span>  <span class="m">0</span>
-
-<span class="c1"># 查询设备信息</span>
-$ udevadm info -q all -p /sys/block/sda
-P: /devices/platform/soc/c90c0000.usb/usb1/1-1/1-1:1.0/host0/target0:0:0/0:0:0:0/block/sda
-N: sda
-L: <span class="m">0</span>
-S: disk/by-path/platform-c90c0000.usb-usb-0:1:1.0-scsi-0:0:0:0
-S: disk/by-id/usb-WDC_WD50_00AVDS-61U7B1_7F833EEF5DC0-0:0
-E: <span class="nv">DEVPATH</span><span class="o">=</span>/devices/platform/soc/c90c0000.usb/usb1/1-1/1-1:1.0/host0/target0:0:0/0:0:0:0/block/sda
-E: <span class="nv">DEVNAME</span><span class="o">=</span>/dev/sda
-E: <span class="nv">DEVTYPE</span><span class="o">=</span>disk
-E: <span class="nv">MAJOR</span><span class="o">=</span><span class="m">8</span>
-E: <span class="nv">MINOR</span><span class="o">=</span><span class="m">0</span>
-E: <span class="nv">SUBSYSTEM</span><span class="o">=</span>block
-E: <span class="nv">USEC_INITIALIZED</span><span class="o">=</span><span class="m">11132604</span>
-E: <span class="nv">ID_VENDOR</span><span class="o">=</span>WDC_WD50
-E: <span class="nv">ID_VENDOR_ENC</span><span class="o">=</span>WDC<span class="se">\x</span>20WD50
-E: <span class="nv">ID_VENDOR_ID</span><span class="o">=</span>152d
-E: <span class="nv">ID_MODEL</span><span class="o">=</span>00AVDS-61U7B1
-E: <span class="nv">ID_MODEL_ENC</span><span class="o">=</span>00AVDS-61U7B1<span class="se">\x</span>20<span class="se">\x</span>20<span class="se">\x</span><span class="m">20</span>
-E: <span class="nv">ID_MODEL_ID</span><span class="o">=</span><span class="m">1337</span>
-E: <span class="nv">ID_REVISION</span><span class="o">=</span><span class="m">0508</span>
-E: <span class="nv">ID_SERIAL</span><span class="o">=</span>WDC_WD50_00AVDS-61U7B1_7F833EEF5DC0-0:0
-E: <span class="nv">ID_SERIAL_SHORT</span><span class="o">=</span>7F833EEF5DC0
-E: <span class="nv">ID_TYPE</span><span class="o">=</span>disk
-E: <span class="nv">ID_INSTANCE</span><span class="o">=</span>0:0
-E: <span class="nv">ID_BUS</span><span class="o">=</span>usb
-E: <span class="nv">ID_USB_INTERFACES</span><span class="o">=</span>:080650:080662:
-E: <span class="nv">ID_USB_INTERFACE_NUM</span><span class="o">=</span><span class="m">00</span>
-E: <span class="nv">ID_USB_DRIVER</span><span class="o">=</span>usb-storage
-E: <span class="nv">ID_PATH</span><span class="o">=</span>platform-c90c0000.usb-usb-0:1:1.0-scsi-0:0:0:0
-E: <span class="nv">ID_PATH_TAG</span><span class="o">=</span>platform-c90c0000_usb-usb-0_1_1_0-scsi-0_0_0_0
-E: <span class="nv">ID_PART_TABLE_UUID</span><span class="o">=</span>3f36f79e
-E: <span class="nv">ID_PART_TABLE_TYPE</span><span class="o">=</span>dos
-E: <span class="nv">DEVLINKS</span><span class="o">=</span>/dev/disk/by-path/platform-c90c0000.usb-usb-0:1:1.0-scsi-0:0:0:0 /dev/disk/by-id/usb-WDC_WD50_00AVDS-61U7B1_7F833EEF5DC0-0:0
-E: <span class="nv">TAGS</span><span class="o">=</span>:systemd:
-</code></pre></div><p>从物理层面上看，整体硬件直接表现为通过 USB 物理接口直接连接了 SATA 硬盘设备，但从协议层面上看，由于块设备挂载于 Linux 系统的 SCSI 总线，所以在使用 <code>hdparm</code> 下达命令时，系统需要使用 SAT (SCSI / ATA Translation) 将 ATA 命令转换为 SCSI 命令格式，经过 SCSI 总线，最终由 UAS 驱动模块将具体的电信号传达给硬盘，但是主机的 USB 接口芯片可能由于设计或固件版本等原因导致驱动无法正常传输某些转换后的 ATA 命令，这就是直接使用 <code>hdparm</code> 命令报错的原因。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看运行时的系统模块，可以看到 uas 正在被使用</span>
+</span></span><span class="line"><span class="cl">$ lsmod <span class="p">|</span> grep uas
+</span></span><span class="line"><span class="cl">uas                    <span class="m">20480</span>  <span class="m">0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询设备信息</span>
+</span></span><span class="line"><span class="cl">$ udevadm info -q all -p /sys/block/sda
+</span></span><span class="line"><span class="cl">P: /devices/platform/soc/c90c0000.usb/usb1/1-1/1-1:1.0/host0/target0:0:0/0:0:0:0/block/sda
+</span></span><span class="line"><span class="cl">N: sda
+</span></span><span class="line"><span class="cl">L: <span class="m">0</span>
+</span></span><span class="line"><span class="cl">S: disk/by-path/platform-c90c0000.usb-usb-0:1:1.0-scsi-0:0:0:0
+</span></span><span class="line"><span class="cl">S: disk/by-id/usb-WDC_WD50_00AVDS-61U7B1_7F833EEF5DC0-0:0
+</span></span><span class="line"><span class="cl">E: <span class="nv">DEVPATH</span><span class="o">=</span>/devices/platform/soc/c90c0000.usb/usb1/1-1/1-1:1.0/host0/target0:0:0/0:0:0:0/block/sda
+</span></span><span class="line"><span class="cl">E: <span class="nv">DEVNAME</span><span class="o">=</span>/dev/sda
+</span></span><span class="line"><span class="cl">E: <span class="nv">DEVTYPE</span><span class="o">=</span>disk
+</span></span><span class="line"><span class="cl">E: <span class="nv">MAJOR</span><span class="o">=</span><span class="m">8</span>
+</span></span><span class="line"><span class="cl">E: <span class="nv">MINOR</span><span class="o">=</span><span class="m">0</span>
+</span></span><span class="line"><span class="cl">E: <span class="nv">SUBSYSTEM</span><span class="o">=</span>block
+</span></span><span class="line"><span class="cl">E: <span class="nv">USEC_INITIALIZED</span><span class="o">=</span><span class="m">11132604</span>
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_VENDOR</span><span class="o">=</span>WDC_WD50
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_VENDOR_ENC</span><span class="o">=</span>WDC<span class="se">\x</span>20WD50
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_VENDOR_ID</span><span class="o">=</span>152d
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_MODEL</span><span class="o">=</span>00AVDS-61U7B1
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_MODEL_ENC</span><span class="o">=</span>00AVDS-61U7B1<span class="se">\x</span>20<span class="se">\x</span>20<span class="se">\x</span><span class="m">20</span>
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_MODEL_ID</span><span class="o">=</span><span class="m">1337</span>
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_REVISION</span><span class="o">=</span><span class="m">0508</span>
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_SERIAL</span><span class="o">=</span>WDC_WD50_00AVDS-61U7B1_7F833EEF5DC0-0:0
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_SERIAL_SHORT</span><span class="o">=</span>7F833EEF5DC0
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_TYPE</span><span class="o">=</span>disk
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_INSTANCE</span><span class="o">=</span>0:0
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_BUS</span><span class="o">=</span>usb
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_USB_INTERFACES</span><span class="o">=</span>:080650:080662:
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_USB_INTERFACE_NUM</span><span class="o">=</span><span class="m">00</span>
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_USB_DRIVER</span><span class="o">=</span>usb-storage
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_PATH</span><span class="o">=</span>platform-c90c0000.usb-usb-0:1:1.0-scsi-0:0:0:0
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_PATH_TAG</span><span class="o">=</span>platform-c90c0000_usb-usb-0_1_1_0-scsi-0_0_0_0
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_PART_TABLE_UUID</span><span class="o">=</span>3f36f79e
+</span></span><span class="line"><span class="cl">E: <span class="nv">ID_PART_TABLE_TYPE</span><span class="o">=</span>dos
+</span></span><span class="line"><span class="cl">E: <span class="nv">DEVLINKS</span><span class="o">=</span>/dev/disk/by-path/platform-c90c0000.usb-usb-0:1:1.0-scsi-0:0:0:0 /dev/disk/by-id/usb-WDC_WD50_00AVDS-61U7B1_7F833EEF5DC0-0:0
+</span></span><span class="line"><span class="cl">E: <span class="nv">TAGS</span><span class="o">=</span>:systemd:
+</span></span></code></pre></div><p>从物理层面上看，整体硬件直接表现为通过 USB 物理接口直接连接了 SATA 硬盘设备，但从协议层面上看，由于块设备挂载于 Linux 系统的 SCSI 总线，所以在使用 <code>hdparm</code> 下达命令时，系统需要使用 SAT (SCSI / ATA Translation) 将 ATA 命令转换为 SCSI 命令格式，经过 SCSI 总线，最终由 UAS 驱动模块将具体的电信号传达给硬盘，但是主机的 USB 接口芯片可能由于设计或固件版本等原因导致驱动无法正常传输某些转换后的 ATA 命令，这就是直接使用 <code>hdparm</code> 命令报错的原因。</p>
 <p>原生的 SCSI 命令可以正常被 UAS 驱动传达给硬盘，所以使用 <code>sdparm</code> 来设置硬盘的待机模式，它是可以直接发送 SCSI 命令的交互工具。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 sdparm 设置硬盘的待机模式</span>
-
-<span class="c1"># 查看硬盘是否允许进入待机模式</span>
-$ sdparm -l --get STANDBY /dev/sda
-    /dev/sda: WDC WD50  00AVDS-61U7B1     <span class="m">0508</span>
-STANDBY       <span class="m">1</span>  <span class="o">[</span>cha: y, def:  1, sav:  1<span class="o">]</span>  Standby_z timer <span class="nb">enable</span>
-<span class="c1"># 当前 sav 值允许硬盘进入待机模式</span>
-<span class="c1"># 当前 def 值说明默认情况下允许硬盘进入待机模式</span>
-
-<span class="c1"># 查看硬盘进入待机模式的定时器</span>
-$ sdparm -l --get SCT /dev/sda
-    /dev/sda: WDC WD50  00AVDS-61U7B1     <span class="m">0508</span>
-SCT           <span class="m">6000</span>  <span class="o">[</span>cha: y, def:18000, sav:6000<span class="o">]</span>  Standby_z condition timer <span class="o">(</span><span class="m">100</span> ms<span class="o">)</span>
-<span class="c1"># 当前定时器时间为 6000 * 100 ms 即 10 min</span>
-<span class="c1"># 默认定时器时间为 18000 * 100 ms 即 30 min</span>
-<span class="c1"># 到达定时时间值则硬盘进入待机模式</span>
-
-<span class="c1"># 允许硬盘进入待机模式</span>
-sdparm -l --save --set <span class="nv">STANDBY</span><span class="o">=</span><span class="m">1</span> /dev/sda
-<span class="c1"># 调节待机模式定时器时间为 5 min</span>
-sdparm -l --save --set <span class="nv">SCT</span><span class="o">=</span><span class="m">3000</span> /dev/sda
-</code></pre></div><p>经过上述设置后，硬盘会在停止读写活动的 5 min 之后变为待机状态，因为我的硬盘盒有工作指示灯，可以明显观察到空闲时硬盘的工作灯处于绿色状态，有别于工作时的红色状态。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 sdparm 设置硬盘的待机模式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看硬盘是否允许进入待机模式</span>
+</span></span><span class="line"><span class="cl">$ sdparm -l --get STANDBY /dev/sda
+</span></span><span class="line"><span class="cl">    /dev/sda: WDC WD50  00AVDS-61U7B1     <span class="m">0508</span>
+</span></span><span class="line"><span class="cl">STANDBY       <span class="m">1</span>  <span class="o">[</span>cha: y, def:  1, sav:  1<span class="o">]</span>  Standby_z timer <span class="nb">enable</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 当前 sav 值允许硬盘进入待机模式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 当前 def 值说明默认情况下允许硬盘进入待机模式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看硬盘进入待机模式的定时器</span>
+</span></span><span class="line"><span class="cl">$ sdparm -l --get SCT /dev/sda
+</span></span><span class="line"><span class="cl">    /dev/sda: WDC WD50  00AVDS-61U7B1     <span class="m">0508</span>
+</span></span><span class="line"><span class="cl">SCT           <span class="m">6000</span>  <span class="o">[</span>cha: y, def:18000, sav:6000<span class="o">]</span>  Standby_z condition timer <span class="o">(</span><span class="m">100</span> ms<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 当前定时器时间为 6000 * 100 ms 即 10 min</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 默认定时器时间为 18000 * 100 ms 即 30 min</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 到达定时时间值则硬盘进入待机模式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 允许硬盘进入待机模式</span>
+</span></span><span class="line"><span class="cl">sdparm -l --save --set <span class="nv">STANDBY</span><span class="o">=</span><span class="m">1</span> /dev/sda
+</span></span><span class="line"><span class="cl"><span class="c1"># 调节待机模式定时器时间为 5 min</span>
+</span></span><span class="line"><span class="cl">sdparm -l --save --set <span class="nv">SCT</span><span class="o">=</span><span class="m">3000</span> /dev/sda
+</span></span></code></pre></div><p>经过上述设置后，硬盘会在停止读写活动的 5 min 之后变为待机状态，因为我的硬盘盒有工作指示灯，可以明显观察到空闲时硬盘的工作灯处于绿色状态，有别于工作时的红色状态。</p>
 <h2 id="通过-rsync-同步文件">通过 rsync 同步文件</h2>
 <p>由于有一些原有文件存放在 Win10 电脑上想要同步到 Armbian 主机中，所以使用了 rsync 来同步文件，这样一来 Windows 是 rsync 服务端，而 Armbian 是 rsync 客户端。</p>
 <p>在 Windows 端使用 cwRsync 搭建服务端，可以直接使用 <code>rsync.exe</code> 通过命令行启动服务，具体配置和启动方法如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以下命令在 Windows cmd.exe 下执行：</span>
-&gt; <span class="nb">cd</span> cwrsync  <span class="c1"># 切换到工作目录</span>
-&gt; <span class="nb">type</span> rsyncd.conf  <span class="c1"># 查看配置文件</span>
-use <span class="nv">chroot</span> <span class="o">=</span> <span class="nb">false</span>
-strict <span class="nv">modes</span> <span class="o">=</span> <span class="nb">false</span>
-hosts <span class="nv">allow</span> <span class="o">=</span> *
-log <span class="nv">file</span> <span class="o">=</span> rsyncd.log
-pid <span class="nv">file</span> <span class="o">=</span> rsyncd.pid
-<span class="nv">port</span> <span class="o">=</span> <span class="m">873</span>
-
-<span class="o">[</span>data<span class="o">]</span>  <span class="c1"># 按需命名，在客户端中使用</span>
-<span class="nv">path</span> <span class="o">=</span> /cygdrive/c/Files/Downloads  <span class="c1"># 在 Windows 路径中为 C:\Files\Downloads</span>
-<span class="nb">read</span> <span class="nv">only</span> <span class="o">=</span> <span class="nb">true</span>
-transfer <span class="nv">logging</span> <span class="o">=</span> yes
-lock <span class="nv">file</span> <span class="o">=</span> rsyncd.lock
-auth <span class="nv">users</span> <span class="o">=</span> user  <span class="c1"># 客户端连接服务端需要的认证用户</span>
-secrets <span class="nv">file</span> <span class="o">=</span> rsync.password  <span class="c1"># 用户密码存放的文件</span>
-
-&gt; <span class="nb">type</span> rsync.password
-user:user
-
-<span class="c1"># 启动 rsyncd 时 rsync.password 和 rsyncd.conf 均需在同一目录下</span>
-&gt; rsync.exe --daemon --config<span class="o">=</span>rsyncd.conf
-
-<span class="c1"># 停止 rsyncd 时，找到进程号并杀死进程，清理 pid 文件以便下次启动</span>
-&gt; <span class="nb">type</span> rsyncd.pid
-<span class="m">1188</span>
-&gt; taskkill /PID <span class="m">1188</span> /F
-&gt; del rsyncd.pid
-
-<span class="c1"># 以下命令在 Linux shell 下执行：</span>
-<span class="c1"># Linux 客户端连接 rsyncd 服务端</span>
-$ rsync -rvu rsync://user@192.168.1.2/data /mnt/
-<span class="c1"># 执行命令会将 C:\Files\Downloads 中的文件会递归同步到 /mnt 中</span>
-
-<span class="c1"># 更复杂的同步用法要配合其他子选项，这是一个支持断点传输的用例：</span>
-$ rsync -rv --progress --partial --append-verify rsync://user@192.168.1.2/data /mnt/
-
-<span class="c1"># 具体的选项意义如下：</span>
-<span class="c1"># -r 表示同步过程将递归项目下的所有目录</span>
-<span class="c1"># -v 用于显示整个传输过程的运行信息</span>
-<span class="c1"># --progress 用于显示传输过程中各文件的传输进度</span>
-<span class="c1"># --partial 表示保留未完全传输完成的文件区块</span>
-<span class="c1"># --append-verify 会利用 --partial 中保留的文件区块，实现断点传输</span>
-<span class="c1"># -u/--update 与 --append-verify 都是优化传输的选项</span>
-<span class="c1"># -u 会根据文件命名和文件时间戳只更新不同的部分，是相对于整个文件而言</span>
-<span class="c1"># --append-verify 可以使得部分传输完成的文件块进行续传，不过它和 -u 选项不能同时使用</span>
-</code></pre></div></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以下命令在 Windows cmd.exe 下执行：</span>
+</span></span><span class="line"><span class="cl">&gt; <span class="nb">cd</span> cwrsync  <span class="c1"># 切换到工作目录</span>
+</span></span><span class="line"><span class="cl">&gt; <span class="nb">type</span> rsyncd.conf  <span class="c1"># 查看配置文件</span>
+</span></span><span class="line"><span class="cl">use <span class="nv">chroot</span> <span class="o">=</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">strict <span class="nv">modes</span> <span class="o">=</span> <span class="nb">false</span>
+</span></span><span class="line"><span class="cl">hosts <span class="nv">allow</span> <span class="o">=</span> *
+</span></span><span class="line"><span class="cl">log <span class="nv">file</span> <span class="o">=</span> rsyncd.log
+</span></span><span class="line"><span class="cl">pid <span class="nv">file</span> <span class="o">=</span> rsyncd.pid
+</span></span><span class="line"><span class="cl"><span class="nv">port</span> <span class="o">=</span> <span class="m">873</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>data<span class="o">]</span>  <span class="c1"># 按需命名，在客户端中使用</span>
+</span></span><span class="line"><span class="cl"><span class="nv">path</span> <span class="o">=</span> /cygdrive/c/Files/Downloads  <span class="c1"># 在 Windows 路径中为 C:\Files\Downloads</span>
+</span></span><span class="line"><span class="cl"><span class="nb">read</span> <span class="nv">only</span> <span class="o">=</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">transfer <span class="nv">logging</span> <span class="o">=</span> yes
+</span></span><span class="line"><span class="cl">lock <span class="nv">file</span> <span class="o">=</span> rsyncd.lock
+</span></span><span class="line"><span class="cl">auth <span class="nv">users</span> <span class="o">=</span> user  <span class="c1"># 客户端连接服务端需要的认证用户</span>
+</span></span><span class="line"><span class="cl">secrets <span class="nv">file</span> <span class="o">=</span> rsync.password  <span class="c1"># 用户密码存放的文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; <span class="nb">type</span> rsync.password
+</span></span><span class="line"><span class="cl">user:user
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动 rsyncd 时 rsync.password 和 rsyncd.conf 均需在同一目录下</span>
+</span></span><span class="line"><span class="cl">&gt; rsync.exe --daemon --config<span class="o">=</span>rsyncd.conf
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 停止 rsyncd 时，找到进程号并杀死进程，清理 pid 文件以便下次启动</span>
+</span></span><span class="line"><span class="cl">&gt; <span class="nb">type</span> rsyncd.pid
+</span></span><span class="line"><span class="cl"><span class="m">1188</span>
+</span></span><span class="line"><span class="cl">&gt; taskkill /PID <span class="m">1188</span> /F
+</span></span><span class="line"><span class="cl">&gt; del rsyncd.pid
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 以下命令在 Linux shell 下执行：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Linux 客户端连接 rsyncd 服务端</span>
+</span></span><span class="line"><span class="cl">$ rsync -rvu rsync://user@192.168.1.2/data /mnt/
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行命令会将 C:\Files\Downloads 中的文件会递归同步到 /mnt 中</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更复杂的同步用法要配合其他子选项，这是一个支持断点传输的用例：</span>
+</span></span><span class="line"><span class="cl">$ rsync -rv --progress --partial --append-verify rsync://user@192.168.1.2/data /mnt/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 具体的选项意义如下：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -r 表示同步过程将递归项目下的所有目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v 用于显示整个传输过程的运行信息</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --progress 用于显示传输过程中各文件的传输进度</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --partial 表示保留未完全传输完成的文件区块</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --append-verify 会利用 --partial 中保留的文件区块，实现断点传输</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -u/--update 与 --append-verify 都是优化传输的选项</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -u 会根据文件命名和文件时间戳只更新不同的部分，是相对于整个文件而言</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --append-verify 可以使得部分传输完成的文件块进行续传，不过它和 -u 选项不能同时使用</span>
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>
@@ -453,7 +459,7 @@ $ rsync -rv --progress --partial --append-verify rsync://user@192.168.1.2/data /
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

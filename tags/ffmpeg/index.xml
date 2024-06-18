@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>ffmpeg on Wei&#39;s blog</title>
+    <title>Ffmpeg on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/ffmpeg/</link>
-    <description>Recent content in ffmpeg on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Ffmpeg on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 15 Apr 2023 21:46:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/ffmpeg/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>ffmpeg 命令笔记</title>
       <link>https://yuweizzz.github.io/post/useful_command_about_ffmpeg/</link>
       <pubDate>Sat, 15 Apr 2023 21:46:00 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/useful_command_about_ffmpeg/</guid>
       <description>&lt;p&gt;这篇笔记用来记录一些常用的 ffmpeg 命令。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录一些 Git 命令的进阶使用和部分原理知识。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/more_tips_about_git/" />
 <meta property="og:site_name" content="Git 命令进阶使用笔记" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -225,25 +232,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些 Git 命令的进阶使用和部分原理知识。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="前言">前言</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="前言">前言</h2>
 <p>在本地环境的 Git 使用熟练后，我们会使用到一些更复杂的功能，协助我们更好地工作。</p>
 <h2 id="了解-git-原理">了解 Git 原理</h2>
 <p>在使用更复杂的功能前，简单了解一下 Git 的原理会对后续使用有帮助。</p>
@@ -260,7 +266,7 @@ if (!doNotTrack) {
 <li>commit object 对应着 commit ，用来保存本次 commit 对应的 tree object 和 parent commit object ，此外还会保存 commit 的用户配置和注释信息。</li>
 </ul>
 <p>每个 commit object 和其他 object 的关系一般是这样的：</p>
-<pre><code>                                          +-------------+
+<pre tabindex="0"><code>                                          +-------------+
                                        +-&gt;+ blob object |
                                        |  +-------------+
  +---------------+    +-------------+  |  +-------------+
@@ -270,7 +276,7 @@ if (!doNotTrack) {
                                        +-&gt;+ tree object |--&gt;+ blob object |
                                           +-------------+   +-------------+
 </code></pre><p>每一次 commit 会产生新的 commit object ，通过各自的 parent commit object 可以形成一条 commit 链。</p>
-<pre><code>     father              children             children              
+<pre tabindex="0"><code>     father              children             children              
 +---------------+    +---------------+    +---------------+
 | commit object +&lt;---+ commit object +&lt;---+ commit object |
 +---------------+    +---------------+    +---------------+
@@ -286,7 +292,7 @@ if (!doNotTrack) {
 <h2 id="branch-的工作原理">branch 的工作原理</h2>
 <p>在前面的使用过程中，我们接触了分支 branch 的概念了，也知道每个 Git 仓库会自动创建一个 master/main 分支，而它本质上是一个指向 commit object 的指针。</p>
 <p>虽然 Git 会默认创建 master/main 分支，但是对比其他分支，它并没有优先级的区别，只是在使用习惯上的差别。我们一般以 master/main 为主线，其他分支为辅来进行开发。</p>
-<pre><code>                                            +------------+
+<pre tabindex="0"><code>                                            +------------+
                                             | new branch |
                                             +-----+------+
                                                   |
@@ -300,32 +306,32 @@ if (!doNotTrack) {
                                               | master +&lt;---+ HEAD |
                                               +--------+    +------+
 </code></pre><p>分支在 Git 中的更底层描述是引用 reference ，一般简写为 refs 。经常和 refs 联系在一起的还有 HEAD 的这个概念，通过前面的使用我们知道 HEAD 用来指向当前分支的最新 commit ，这样的描述和 refs 非常接近，当分支切换时， HEAD 会自动指向切换后分支的最新 commit 。但实际上， HEAD 只是 refs 的符号引用，我们将通过实例来说明。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 以任意一个仓库为例，可以看到当前仓库有两个分支</span>
-$ git branch
-* branchA
-  main
-
-<span class="c1"># 查看仓库已拥有的 refs</span>
-$ ls .git/refs/heads/
-branchA  main
-
-<span class="c1"># 查看 refs 指向的 object 类型</span>
-$ git cat-file -t <span class="sb">`</span>cat .git/refs/heads/main<span class="sb">`</span>
-commit  <span class="c1"># 指向的正是 commit</span>
-
-<span class="c1"># 查看 refs 指向的 object 的具体内容</span>
-$ git cat-file -p <span class="sb">`</span>cat .git/refs/heads/main<span class="sb">`</span>
-<span class="c1"># 命令应该会输出某个 commit 的具体信息，我们可以通过对比 git log 得到它是当前分支的最新 commit </span>
-
-<span class="c1"># 查看 HEAD 的内容</span>
-$ cat .git/HEAD 
-ref: refs/heads/branchA
-<span class="c1"># 可以看到它是 refs 的符号引用</span>
-</code></pre></div><p>branch ， refs ， HEAD 三者之间有一个共同点，那就是它们的本质都是用来指向 commit object ， refs 是 branch 的低级原语，而 HEAD 是 refs 的符号引用，它是为了使用方便引出的概念，每次进行 branch 切换， HEAD 也会自动更新。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以任意一个仓库为例，可以看到当前仓库有两个分支</span>
+</span></span><span class="line"><span class="cl">$ git branch
+</span></span><span class="line"><span class="cl">* branchA
+</span></span><span class="line"><span class="cl">  main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看仓库已拥有的 refs</span>
+</span></span><span class="line"><span class="cl">$ ls .git/refs/heads/
+</span></span><span class="line"><span class="cl">branchA  main
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 refs 指向的 object 类型</span>
+</span></span><span class="line"><span class="cl">$ git cat-file -t <span class="sb">`</span>cat .git/refs/heads/main<span class="sb">`</span>
+</span></span><span class="line"><span class="cl">commit  <span class="c1"># 指向的正是 commit</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 refs 指向的 object 的具体内容</span>
+</span></span><span class="line"><span class="cl">$ git cat-file -p <span class="sb">`</span>cat .git/refs/heads/main<span class="sb">`</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令应该会输出某个 commit 的具体信息，我们可以通过对比 git log 得到它是当前分支的最新 commit </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 HEAD 的内容</span>
+</span></span><span class="line"><span class="cl">$ cat .git/HEAD 
+</span></span><span class="line"><span class="cl">ref: refs/heads/branchA
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以看到它是 refs 的符号引用</span>
+</span></span></code></pre></div><p>branch ， refs ， HEAD 三者之间有一个共同点，那就是它们的本质都是用来指向 commit object ， refs 是 branch 的低级原语，而 HEAD 是 refs 的符号引用，它是为了使用方便引出的概念，每次进行 branch 切换， HEAD 也会自动更新。</p>
 <h2 id="使用-remote-功能">使用 remote 功能</h2>
 <p>除了在本地设备上使用之外， Git 更强大的地方在于远端功能的支持，我们可以把仓库托管到云端，这个云端可以是 GitHub 或者自建的 GitLab 平台，这样我们就可以随时获得最新版本的代码仓库，使得团队协作开发更方便。</p>
 <p>在使用远端功能之前，需要确认 GitHub 或者自建的 GitLab 平台的账号鉴权是否完成，可以参考之前的<a href="https://yuweizzz.github.io/post/authenticating_to_github/">配置 GitHub 免密认证的方法</a>和<a href="https://yuweizzz.github.io/post/tips_about_git/#%E5%88%9B%E5%BB%BA%E5%B9%B6%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93">通用的账号配置方法</a>。</p>
-<pre><code># 本地仓库和远端仓库的基本关系:
+<pre tabindex="0"><code># 本地仓库和远端仓库的基本关系:
 
 # for new repository:
 
@@ -355,115 +361,115 @@ ref: refs/heads/branchA
 </li>
 </ul>
 <p>我们通过具体实际操作来熟悉它们。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看已配置的远程仓库</span>
-$ git remote -v
-origin  git@github.com:username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
-origin  git@github.com:username/repository.git <span class="o">(</span>push<span class="o">)</span>
-<span class="c1"># 每个本地仓库允许配置多个远程仓库，默认的远程仓库会是 origin </span>
-
-
-<span class="c1"># 将远端仓库下载到本地</span>
-<span class="c1"># 远端仓库的地址信息一般可以直接在对应网页复制</span>
-$ git clone git@github.com:username/repository.git
-<span class="c1"># clone 可以指定明确的远端仓库中任一分支，不指定默认为 master/main</span>
-$ git clone -b branchA git@github.com:username/repository.git
-
-
-<span class="c1"># 将本地仓库关联到远端仓库并推送更新</span>
-<span class="c1"># 将现存的本地仓库关联到全新的远程仓库</span>
-$ git remote add origin git@github.com:username/repository.git
-<span class="c1"># 设置分支关联并推送本地仓库的 commit 到远端仓库中</span>
-$ git push -u origin master
-<span class="c1"># -u 是关键的参数，它将 origin/master 分支和本地的 master 分支关联，它们才能使用 pull 和 push </span>
-<span class="c1"># 这一步可以根据情况使用下面命令进行替代</span>
-<span class="c1"># 使用 checkout 创建全新分支并设置上游分支</span>
-$ git checkout -b mybranch origin/mybranch
-<span class="c1"># 使用 set upstream 设置本地分支的上游分支</span>
-$ git checkout mybranch
-$ git branch -u/--set-upstream-to origin/mybranch
-<span class="c1"># 完成后，后续直接使用 git push 即可</span>
-$ git push
-
-
-<span class="c1"># 拉取远端仓库领先于本地仓库的 commit 同时合并到本地仓库的当前分支中</span>
-$ git pull
-<span class="c1"># 一般情况下它的效果会相当于 git pull origin master:master ， git pull 正常工作的前提是 remote 和 upstream 已经正常设置</span>
-<span class="c1"># 除了这种默认情况，也可以显式声明使用其他远端仓库和需要拉取合并的分支</span>
-
-<span class="c1"># 实际上 pull 是通过 fetch 和 merge 协助完成的，可以通过下面命令来替代</span>
-<span class="c1"># 这个步骤用来查看上游分支设置</span>
-$ git branch -vv
-* main 3f14e1e <span class="o">[</span>origin/main<span class="o">]</span> Update README.md
-<span class="c1"># fetch 指定了 origin master ，所以它会拉取 origin/master 这个分支</span>
-$ git fetch origin master
-<span class="c1"># 将 origin/master 分支 merge 到当前分支，也就是 master 分支</span>
-$ git merge origin/master
-</code></pre></div><h2 id="解决-git-clone-超时的问题">解决 git clone 超时的问题</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看已配置的远程仓库</span>
+</span></span><span class="line"><span class="cl">$ git remote -v
+</span></span><span class="line"><span class="cl">origin  git@github.com:username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
+</span></span><span class="line"><span class="cl">origin  git@github.com:username/repository.git <span class="o">(</span>push<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 每个本地仓库允许配置多个远程仓库，默认的远程仓库会是 origin </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将远端仓库下载到本地</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 远端仓库的地址信息一般可以直接在对应网页复制</span>
+</span></span><span class="line"><span class="cl">$ git clone git@github.com:username/repository.git
+</span></span><span class="line"><span class="cl"><span class="c1"># clone 可以指定明确的远端仓库中任一分支，不指定默认为 master/main</span>
+</span></span><span class="line"><span class="cl">$ git clone -b branchA git@github.com:username/repository.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将本地仓库关联到远端仓库并推送更新</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 将现存的本地仓库关联到全新的远程仓库</span>
+</span></span><span class="line"><span class="cl">$ git remote add origin git@github.com:username/repository.git
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置分支关联并推送本地仓库的 commit 到远端仓库中</span>
+</span></span><span class="line"><span class="cl">$ git push -u origin master
+</span></span><span class="line"><span class="cl"><span class="c1"># -u 是关键的参数，它将 origin/master 分支和本地的 master 分支关联，它们才能使用 pull 和 push </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这一步可以根据情况使用下面命令进行替代</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 checkout 创建全新分支并设置上游分支</span>
+</span></span><span class="line"><span class="cl">$ git checkout -b mybranch origin/mybranch
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 set upstream 设置本地分支的上游分支</span>
+</span></span><span class="line"><span class="cl">$ git checkout mybranch
+</span></span><span class="line"><span class="cl">$ git branch -u/--set-upstream-to origin/mybranch
+</span></span><span class="line"><span class="cl"><span class="c1"># 完成后，后续直接使用 git push 即可</span>
+</span></span><span class="line"><span class="cl">$ git push
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 拉取远端仓库领先于本地仓库的 commit 同时合并到本地仓库的当前分支中</span>
+</span></span><span class="line"><span class="cl">$ git pull
+</span></span><span class="line"><span class="cl"><span class="c1"># 一般情况下它的效果会相当于 git pull origin master:master ， git pull 正常工作的前提是 remote 和 upstream 已经正常设置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 除了这种默认情况，也可以显式声明使用其他远端仓库和需要拉取合并的分支</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 实际上 pull 是通过 fetch 和 merge 协助完成的，可以通过下面命令来替代</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个步骤用来查看上游分支设置</span>
+</span></span><span class="line"><span class="cl">$ git branch -vv
+</span></span><span class="line"><span class="cl">* main 3f14e1e <span class="o">[</span>origin/main<span class="o">]</span> Update README.md
+</span></span><span class="line"><span class="cl"><span class="c1"># fetch 指定了 origin master ，所以它会拉取 origin/master 这个分支</span>
+</span></span><span class="line"><span class="cl">$ git fetch origin master
+</span></span><span class="line"><span class="cl"><span class="c1"># 将 origin/master 分支 merge 到当前分支，也就是 master 分支</span>
+</span></span><span class="line"><span class="cl">$ git merge origin/master
+</span></span></code></pre></div><h2 id="解决-git-clone-超时的问题">解决 git clone 超时的问题</h2>
 <p>由于众所周知的网络原因，有时候从 Github 直接 clone 或者 pull 代码可能会出现超时问题，这个问题在我使用 luarocks 出现了几次，经过查阅资料后发现应该是 <code>git://</code> 被封锁导致的，应对这种情况的一种做法是将 git 协议修改为 https 协议并使用代理服务器。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git config --global url.<span class="s2">&#34;https://&#34;</span>.insteadOf git://
-$ git config --global https.proxy http://127.0.0.1:4396
-</code></pre></div><h2 id="使用-submodule-功能">使用 submodule 功能</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config --global url.<span class="s2">&#34;https://&#34;</span>.insteadOf git://
+</span></span><span class="line"><span class="cl">$ git config --global https.proxy http://127.0.0.1:4396
+</span></span></code></pre></div><h2 id="使用-submodule-功能">使用 submodule 功能</h2>
 <p>submodule 可以让你的代码仓库使用其他现有的仓库作为子模块，这样我们可以轻松引用别人的仓库作为我们自己代码仓库的一部分。</p>
 <p>它的特色在于二者的文件管控是分离的，子模块在父仓库的 git 管控中显示为一个对象，但是它拥有独立的 git 目录。这样父仓库和子仓库就可以拥有各自 commit ，但同时又可以正确地关联二者之间的从属关系。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 为现有仓库添加子模块</span>
-$ git submodule add git@github.com:username/repository.git subrepository
-<span class="c1"># add 会将远端仓库 repository 克隆到本地 subrepository 目录中，并命名子模块为 subrepository </span>
-
-<span class="c1"># 在父仓库的管控域查看新增的子模块</span>
-$ git status
-On branch master
-
-Initial commit
-
-Changes to be committed:
-  <span class="o">(</span>use <span class="s2">&#34;git rm --cached &lt;file&gt;...&#34;</span> to unstage<span class="o">)</span>
-
-    new file:   .gitmodules
-    new file:   subrepository  <span class="c1"># 可以看到，父仓库将子模块视为一个文件对象</span>
-
-<span class="c1"># 进入子模块的管控域，可以看到它和普通的仓库是相同的</span>
-$ <span class="nb">cd</span> subrepository
-<span class="c1"># 可以看到子模块的最后一次 commit</span>
-$ git show
-<span class="c1"># 可以看到子模块的 commit log</span>
-$ git log
-</code></pre></div><p>如果引用了一个由他人维护开发的仓库作为自己仓库的依赖，这种情况是比较常见的，而且我们可能需要对这个仓库作一些特殊定制，比如这个仓库中静态博客的主题就做了部分定制，这种情况下需要做一些额外设置。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 首先在 Github 上自行 fork 需要使用到的第三方仓库，这一步直接在 Github 或者 GitLab 上点击目标仓库的 fork 即可</span>
-
-<span class="c1"># 进入本地父仓库，自行添加 fork 的仓库作为子模块</span>
-$ git submodule add git@github.com:username/repository.git
-
-<span class="c1"># 由于这个子模块已经 fork 到我们自己的仓库中，所以可以无顾忌地做自定义的修改，它应该只会被你的父仓库所使用</span>
-<span class="c1"># 和普通仓库一样进行修改操作</span>
-$ <span class="nb">cd</span> repository
-$ vi xxxx
-$ git add xxxx
-$ git commit -m <span class="s2">&#34;add file xxxx&#34;</span>
-
-<span class="c1"># 接下来进行额外仓库的关联设置，帮助我们后续使用</span>
-<span class="c1"># 首先检查原有配置</span>
-$ git remote -v
-origin  git@github.com:username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
-origin  git@github.com:username/repository.git <span class="o">(</span>push<span class="o">)</span>
-<span class="c1"># 目前只指向了 fork 的远端仓库，我们把实际的仓库来源额外添加到配置中</span>
-$ git remote add <span class="nb">source</span> git@github.com:another_username/repository.git
-<span class="c1"># 再次检查配置，此时应该出现新的配置项</span>
-$ git remote -v
-origin  git@github.com:username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
-origin  git@github.com:username/repository.git <span class="o">(</span>push<span class="o">)</span>
-<span class="nb">source</span>  git@github.com:another_username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
-<span class="nb">source</span>  git@github.com:another_username/repository.git <span class="o">(</span>push<span class="o">)</span>
-
-<span class="c1"># 此时我们的子模块已经被自行修改过一次，但是源仓库有了新的 commit ，我们需要把它同步过来</span>
-<span class="c1"># 直接拉取来源仓库并直接合并，这个过程有可能需要修复版本冲突</span>
-<span class="c1"># 如果不需要修复冲突，这个命令会自动 merge 成为新的 commit </span>
-$ git pull <span class="nb">source</span> master
-
-<span class="c1"># 将新的变动同步到自己的 fork 仓库中，这一步不是必须的，可以按情况执行</span>
-$ git push origin master
-
-<span class="c1"># 回到父仓库，子模块会被记录为拥有新变动，父仓库需要自行提交 commit</span>
-</code></pre></div><p>这个操作同时也适用于普通仓库，进行额外关联配置后，虽然需要执行的操作变多了，但是对后续维护更方便。</p></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 为现有仓库添加子模块</span>
+</span></span><span class="line"><span class="cl">$ git submodule add git@github.com:username/repository.git subrepository
+</span></span><span class="line"><span class="cl"><span class="c1"># add 会将远端仓库 repository 克隆到本地 subrepository 目录中，并命名子模块为 subrepository </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在父仓库的管控域查看新增的子模块</span>
+</span></span><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl">On branch master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Initial commit
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Changes to be committed:
+</span></span><span class="line"><span class="cl">  <span class="o">(</span>use <span class="s2">&#34;git rm --cached &lt;file&gt;...&#34;</span> to unstage<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    new file:   .gitmodules
+</span></span><span class="line"><span class="cl">    new file:   subrepository  <span class="c1"># 可以看到，父仓库将子模块视为一个文件对象</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入子模块的管控域，可以看到它和普通的仓库是相同的</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> subrepository
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以看到子模块的最后一次 commit</span>
+</span></span><span class="line"><span class="cl">$ git show
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以看到子模块的 commit log</span>
+</span></span><span class="line"><span class="cl">$ git log
+</span></span></code></pre></div><p>如果引用了一个由他人维护开发的仓库作为自己仓库的依赖，这种情况是比较常见的，而且我们可能需要对这个仓库作一些特殊定制，比如这个仓库中静态博客的主题就做了部分定制，这种情况下需要做一些额外设置。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 首先在 Github 上自行 fork 需要使用到的第三方仓库，这一步直接在 Github 或者 GitLab 上点击目标仓库的 fork 即可</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入本地父仓库，自行添加 fork 的仓库作为子模块</span>
+</span></span><span class="line"><span class="cl">$ git submodule add git@github.com:username/repository.git
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 由于这个子模块已经 fork 到我们自己的仓库中，所以可以无顾忌地做自定义的修改，它应该只会被你的父仓库所使用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 和普通仓库一样进行修改操作</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> repository
+</span></span><span class="line"><span class="cl">$ vi xxxx
+</span></span><span class="line"><span class="cl">$ git add xxxx
+</span></span><span class="line"><span class="cl">$ git commit -m <span class="s2">&#34;add file xxxx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 接下来进行额外仓库的关联设置，帮助我们后续使用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 首先检查原有配置</span>
+</span></span><span class="line"><span class="cl">$ git remote -v
+</span></span><span class="line"><span class="cl">origin  git@github.com:username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
+</span></span><span class="line"><span class="cl">origin  git@github.com:username/repository.git <span class="o">(</span>push<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 目前只指向了 fork 的远端仓库，我们把实际的仓库来源额外添加到配置中</span>
+</span></span><span class="line"><span class="cl">$ git remote add <span class="nb">source</span> git@github.com:another_username/repository.git
+</span></span><span class="line"><span class="cl"><span class="c1"># 再次检查配置，此时应该出现新的配置项</span>
+</span></span><span class="line"><span class="cl">$ git remote -v
+</span></span><span class="line"><span class="cl">origin  git@github.com:username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
+</span></span><span class="line"><span class="cl">origin  git@github.com:username/repository.git <span class="o">(</span>push<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span>  git@github.com:another_username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span>  git@github.com:another_username/repository.git <span class="o">(</span>push<span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 此时我们的子模块已经被自行修改过一次，但是源仓库有了新的 commit ，我们需要把它同步过来</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 直接拉取来源仓库并直接合并，这个过程有可能需要修复版本冲突</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果不需要修复冲突，这个命令会自动 merge 成为新的 commit </span>
+</span></span><span class="line"><span class="cl">$ git pull <span class="nb">source</span> master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将新的变动同步到自己的 fork 仓库中，这一步不是必须的，可以按情况执行</span>
+</span></span><span class="line"><span class="cl">$ git push origin master
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 回到父仓库，子模块会被记录为拥有新变动，父仓库需要自行提交 commit</span>
+</span></span></code></pre></div><p>这个操作同时也适用于普通仓库，进行额外关联配置后，虽然需要执行的操作变多了，但是对后续维护更方便。</p></article>
               </div>
             </div>
           </div>
@@ -480,7 +486,7 @@ $ git push origin master
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

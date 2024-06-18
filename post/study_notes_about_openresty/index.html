@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录一些 Openresty 开发的相关知识。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/study_notes_about_openresty/" />
 <meta property="og:site_name" content="openresty 学习笔记" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -225,276 +232,275 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些 Openresty 开发的相关知识。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="定义-lua_package_path">定义 lua_package_path</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="定义-lua_package_path">定义 lua_package_path</h2>
 <p>在引入一系列自定义的 lua package 的时候比较有用，事实上大部分基于 openresty 的网关项目都是这样做的。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="o">#</span> <span class="n">nginx.conf</span>
-<span class="n">http</span> <span class="p">{</span>
-    <span class="n">lua_package_path</span> <span class="s1">&#39;/usr/local/src/lua-resty-http/?.lua;;&#39;</span><span class="p">;</span>
-    <span class="n">lua_package_cpath</span> <span class="s1">&#39;/usr/local/src/lua-cjson/?.so;;&#39;</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div><h2 id="body_filter_by_lua_block-的流式处理">body_filter_by_lua_block 的流式处理</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="o">#</span> <span class="n">nginx.conf</span>
+</span></span><span class="line"><span class="cl"><span class="n">http</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lua_package_path</span> <span class="s1">&#39;/usr/local/src/lua-resty-http/?.lua;;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">lua_package_cpath</span> <span class="s1">&#39;/usr/local/src/lua-cjson/?.so;;&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="body_filter_by_lua_block-的流式处理">body_filter_by_lua_block 的流式处理</h2>
 <p>openresty 请求响应可能会经过多次 body_filter_by_lua_block 阶段。其中在 body_filter_by_lua_block 阶段的 <code>ngx.arg[1]</code> 和 <code>ngx.arg[2]</code> 参数分别代表响应内容和响应结束标记。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- apisix brotli plugin</span>
-<span class="c1">-- body_filter 函数会在 body_filter_by_lua_block 中执行</span>
-<span class="kr">function</span> <span class="nc">_M</span><span class="p">.</span><span class="nf">body_filter</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">ctx.brotli_matched</span> <span class="kr">then</span>
-        <span class="kr">return</span>
-    <span class="kr">end</span>
-
-    <span class="kd">local</span> <span class="n">chunk</span><span class="p">,</span> <span class="n">eof</span> <span class="o">=</span> <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-    <span class="kr">if</span> <span class="n">type</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;string&#34;</span> <span class="ow">and</span> <span class="n">chunk</span> <span class="o">~=</span> <span class="s2">&#34;&#34;</span> <span class="kr">then</span>
-        <span class="kd">local</span> <span class="n">encode_chunk</span> <span class="o">=</span> <span class="n">ctx.compressor</span><span class="p">:</span><span class="n">compress</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
-        <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">encode_chunk</span> <span class="o">..</span> <span class="n">ctx.compressor</span><span class="p">:</span><span class="n">flush</span><span class="p">()</span>
-    <span class="kr">end</span>
-
-    <span class="kr">if</span> <span class="n">eof</span> <span class="kr">then</span>
-        <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">..</span> <span class="n">ctx.compressor</span><span class="p">:</span><span class="n">finish</span><span class="p">()</span>
-    <span class="kr">end</span>
-<span class="kr">end</span>
-</code></pre></div><p>eof 标记为 true 时 chunk 内容不一定为空，此时的 chunk 就是最后的响应内容。在某些响应体内容修改的场景中，可能需要将所有 <code>ngx.arg[1]</code> 内容进行合并后在处理，并且应该在 <code>header_filter_by_lua_block</code> 阶段将 <code>ngx.header.content_length</code> 置空。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- 合并 ngx.arg[1] 可以参考 apisix hold_body_chunk 函数</span>
-<span class="c1">-- apisix/core/response.lua</span>
-<span class="kd">local</span> <span class="n">arg</span> <span class="o">=</span> <span class="n">ngx.arg</span>
-<span class="kr">function</span> <span class="nc">_M</span><span class="p">.</span><span class="nf">hold_body_chunk</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">hold_the_copy</span><span class="p">)</span>
-    <span class="kd">local</span> <span class="n">body_buffer</span>
-    <span class="kd">local</span> <span class="n">chunk</span><span class="p">,</span> <span class="n">eof</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">ctx._body_buffer</span> <span class="kr">then</span>
-        <span class="n">ctx._body_buffer</span> <span class="o">=</span> <span class="p">{}</span>
-    <span class="kr">end</span>
-
-    <span class="kr">if</span> <span class="n">type</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;string&#34;</span> <span class="ow">and</span> <span class="n">chunk</span> <span class="o">~=</span> <span class="s2">&#34;&#34;</span> <span class="kr">then</span>
-        <span class="n">body_buffer</span> <span class="o">=</span> <span class="n">ctx._body_buffer</span><span class="p">[</span><span class="n">ctx._plugin_name</span><span class="p">]</span>
-        <span class="kr">if</span> <span class="ow">not</span> <span class="n">body_buffer</span> <span class="kr">then</span>
-            <span class="n">body_buffer</span> <span class="o">=</span> <span class="p">{</span>
-                <span class="n">chunk</span><span class="p">,</span>
-                <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
-            <span class="p">}</span>
-            <span class="n">ctx._body_buffer</span><span class="p">[</span><span class="n">ctx._plugin_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">body_buffer</span>
-        <span class="kr">else</span>
-            <span class="kd">local</span> <span class="n">n</span> <span class="o">=</span> <span class="n">body_buffer.n</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="n">body_buffer.n</span> <span class="o">=</span> <span class="n">n</span>
-            <span class="n">body_buffer</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">chunk</span>
-        <span class="kr">end</span>
-    <span class="kr">end</span>
-
-    <span class="kr">if</span> <span class="n">eof</span> <span class="kr">then</span>
-        <span class="n">body_buffer</span> <span class="o">=</span> <span class="n">ctx._body_buffer</span><span class="p">[</span><span class="n">ctx._plugin_name</span><span class="p">]</span>
-        <span class="kr">if</span> <span class="ow">not</span> <span class="n">body_buffer</span> <span class="kr">then</span>
-            <span class="kr">return</span> <span class="n">chunk</span>
-        <span class="kr">end</span>
-
-        <span class="n">body_buffer</span> <span class="o">=</span> <span class="n">concat_tab</span><span class="p">(</span><span class="n">body_buffer</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">body_buffer.n</span><span class="p">)</span>
-        <span class="n">ctx._body_buffer</span><span class="p">[</span><span class="n">ctx._plugin_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">nil</span>
-        <span class="kr">return</span> <span class="n">body_buffer</span>
-    <span class="kr">end</span>
-
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">hold_the_copy</span> <span class="kr">then</span>
-        <span class="c1">-- flush the origin body chunk</span>
-        <span class="n">arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">nil</span>
-    <span class="kr">end</span>
-    <span class="kr">return</span> <span class="kc">nil</span>
-<span class="kr">end</span>
-</code></pre></div><h2 id="proxy_next_upstream-和-balancer_by_lua_block">proxy_next_upstream 和 balancer_by_lua_block</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- apisix brotli plugin</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- body_filter 函数会在 body_filter_by_lua_block 中执行</span>
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nc">_M</span><span class="p">.</span><span class="nf">body_filter</span><span class="p">(</span><span class="n">conf</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">ctx.brotli_matched</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">chunk</span><span class="p">,</span> <span class="n">eof</span> <span class="o">=</span> <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">type</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;string&#34;</span> <span class="ow">and</span> <span class="n">chunk</span> <span class="o">~=</span> <span class="s2">&#34;&#34;</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">encode_chunk</span> <span class="o">=</span> <span class="n">ctx.compressor</span><span class="p">:</span><span class="n">compress</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">encode_chunk</span> <span class="o">..</span> <span class="n">ctx.compressor</span><span class="p">:</span><span class="n">flush</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">eof</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">ngx.arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">..</span> <span class="n">ctx.compressor</span><span class="p">:</span><span class="n">finish</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></div><p>eof 标记为 true 时 chunk 内容不一定为空，此时的 chunk 就是最后的响应内容。在某些响应体内容修改的场景中，可能需要将所有 <code>ngx.arg[1]</code> 内容进行合并后在处理，并且应该在 <code>header_filter_by_lua_block</code> 阶段将 <code>ngx.header.content_length</code> 置空。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- 合并 ngx.arg[1] 可以参考 apisix hold_body_chunk 函数</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- apisix/core/response.lua</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">arg</span> <span class="o">=</span> <span class="n">ngx.arg</span>
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nc">_M</span><span class="p">.</span><span class="nf">hold_body_chunk</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="n">hold_the_copy</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">body_buffer</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">chunk</span><span class="p">,</span> <span class="n">eof</span> <span class="o">=</span> <span class="n">arg</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">arg</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">ctx._body_buffer</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ctx._body_buffer</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">type</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;string&#34;</span> <span class="ow">and</span> <span class="n">chunk</span> <span class="o">~=</span> <span class="s2">&#34;&#34;</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">body_buffer</span> <span class="o">=</span> <span class="n">ctx._body_buffer</span><span class="p">[</span><span class="n">ctx._plugin_name</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="ow">not</span> <span class="n">body_buffer</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">body_buffer</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">chunk</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                <span class="n">n</span> <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ctx._body_buffer</span><span class="p">[</span><span class="n">ctx._plugin_name</span><span class="p">]</span> <span class="o">=</span> <span class="n">body_buffer</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">n</span> <span class="o">=</span> <span class="n">body_buffer.n</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="n">body_buffer.n</span> <span class="o">=</span> <span class="n">n</span>
+</span></span><span class="line"><span class="cl">            <span class="n">body_buffer</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">chunk</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">eof</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">body_buffer</span> <span class="o">=</span> <span class="n">ctx._body_buffer</span><span class="p">[</span><span class="n">ctx._plugin_name</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="ow">not</span> <span class="n">body_buffer</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span> <span class="n">chunk</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">body_buffer</span> <span class="o">=</span> <span class="n">concat_tab</span><span class="p">(</span><span class="n">body_buffer</span><span class="p">,</span> <span class="s2">&#34;&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">body_buffer.n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ctx._body_buffer</span><span class="p">[</span><span class="n">ctx._plugin_name</span><span class="p">]</span> <span class="o">=</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="n">body_buffer</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">hold_the_copy</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- flush the origin body chunk</span>
+</span></span><span class="line"><span class="cl">        <span class="n">arg</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></div><h2 id="proxy_next_upstream-和-balancer_by_lua_block">proxy_next_upstream 和 balancer_by_lua_block</h2>
 <p>proxy_next_upstream 是 ngx_http_proxy_module 提供的关键字，具体用法参考 <code>proxy_next_upstream error | timeout | invalid_header | http_500 | http_502 | http_503 | http_504 | http_403 | http_404 | http_429 | non_idempotent | off ...;</code> ，默认定义是 <code>proxy_next_upstream error timeout;</code> 。它定义了是否在对应的状态下将请求发送到下一个 upstream ，实际上就是 nginx 的重试机制。</p>
 <p>在 openresty 中，这部分可以配合 balancer_by_lua_block 来自定义上游的选择。但是只有在访问上游出现的错误符合所定义的条件时，才会再次进入 balancer_by_lua_block 执行阶段。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="o">#</span> <span class="n">openresty</span> <span class="n">balancer_by_lua_block</span> <span class="n">doc</span>
-<span class="n">http</span> <span class="p">{</span>
-    <span class="n">upstream</span> <span class="n">backend</span> <span class="p">{</span>
-        <span class="n">server</span> <span class="mf">0.0.0.1</span><span class="p">;</span>   <span class="o">#</span> <span class="n">just</span> <span class="n">an</span> <span class="n">invalid</span> <span class="n">address</span> <span class="n">as</span> <span class="n">a</span> <span class="n">place</span> <span class="n">holder</span>
-
-        <span class="n">balancer_by_lua_block</span> <span class="p">{</span>
-            <span class="kd">local</span> <span class="n">balancer</span> <span class="o">=</span> <span class="n">require</span> <span class="s2">&#34;ngx.balancer&#34;</span>
-
-            <span class="c1">-- well, usually we calculate the peer&#39;s host and port</span>
-            <span class="c1">-- according to some balancing policies instead of using</span>
-            <span class="c1">-- hard-coded values like below</span>
-            <span class="kd">local</span> <span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;127.0.0.2&#34;</span>
-            <span class="kd">local</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8080</span>
-
-            <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">balancer.set_current_peer</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
-            <span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
-                <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;failed to set the current peer: &#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-                <span class="kr">return</span> <span class="n">ngx.exit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
-            <span class="kr">end</span>
-        <span class="p">}</span>
-
-        <span class="n">keepalive</span> <span class="mi">10</span><span class="p">;</span>  <span class="o">#</span> <span class="n">connection</span> <span class="n">pool</span>
-    <span class="p">}</span>
-
-    <span class="n">server</span> <span class="p">{</span>
-        <span class="o">#</span> <span class="n">this</span> <span class="n">is</span> <span class="n">the</span> <span class="n">real</span> <span class="n">entry</span> <span class="n">point</span>
-        <span class="n">listen</span> <span class="mi">80</span><span class="p">;</span>
-
-        <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
-            <span class="o">#</span> <span class="n">make</span> <span class="n">use</span> <span class="n">of</span> <span class="n">the</span> <span class="n">upstream</span> <span class="n">named</span> <span class="s2">&#34;backend&#34;</span> <span class="n">defined</span> <span class="n">above</span><span class="p">:</span>
-            <span class="n">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">backend</span><span class="o">/</span><span class="n">fake</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-
-    <span class="n">server</span> <span class="p">{</span>
-        <span class="o">#</span> <span class="n">this</span> <span class="n">server</span> <span class="n">is</span> <span class="n">just</span> <span class="kr">for</span> <span class="n">mocking</span> <span class="n">up</span> <span class="n">a</span> <span class="n">backend</span> <span class="n">peer</span> <span class="n">here</span><span class="p">...</span>
-        <span class="n">listen</span> <span class="mf">127.0.0.2</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
-
-        <span class="n">location</span> <span class="o">=</span> <span class="o">/</span><span class="n">fake</span> <span class="p">{</span>
-            <span class="n">echo</span> <span class="s2">&#34;this is the fake backend peer...&#34;</span><span class="p">;</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div><p>进入 balancer_by_lua_block 阶段后可以通过 <code>ngx.balancer.set_more_tries</code> 来设置新增的重试次数，会在原有的重试次数上增加。所以应该额外设置 proxy_next_upstream_tries 或者 proxy_next_upstream_timeout ，否则可能出现无限重试的情况。而 <code>ngx.balancer.get_last_failure</code> 可以拿到进入本次 balancer_by_lua_block 阶段的原因以及状态码。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="o">#</span> <span class="n">openresty</span> <span class="n">balancer_by_lua_block</span> <span class="n">doc</span>
+</span></span><span class="line"><span class="cl"><span class="n">http</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">upstream</span> <span class="n">backend</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">server</span> <span class="mf">0.0.0.1</span><span class="p">;</span>   <span class="o">#</span> <span class="n">just</span> <span class="n">an</span> <span class="n">invalid</span> <span class="n">address</span> <span class="n">as</span> <span class="n">a</span> <span class="n">place</span> <span class="n">holder</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">balancer_by_lua_block</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">balancer</span> <span class="o">=</span> <span class="n">require</span> <span class="s2">&#34;ngx.balancer&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- well, usually we calculate the peer&#39;s host and port</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- according to some balancing policies instead of using</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- hard-coded values like below</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">host</span> <span class="o">=</span> <span class="s2">&#34;127.0.0.2&#34;</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">port</span> <span class="o">=</span> <span class="mi">8080</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">balancer.set_current_peer</span><span class="p">(</span><span class="n">host</span><span class="p">,</span> <span class="n">port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;failed to set the current peer: &#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="n">ngx.exit</span><span class="p">(</span><span class="mi">500</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">keepalive</span> <span class="mi">10</span><span class="p">;</span>  <span class="o">#</span> <span class="n">connection</span> <span class="n">pool</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">#</span> <span class="n">this</span> <span class="n">is</span> <span class="n">the</span> <span class="n">real</span> <span class="n">entry</span> <span class="n">point</span>
+</span></span><span class="line"><span class="cl">        <span class="n">listen</span> <span class="mi">80</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">location</span> <span class="o">/</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="o">#</span> <span class="n">make</span> <span class="n">use</span> <span class="n">of</span> <span class="n">the</span> <span class="n">upstream</span> <span class="n">named</span> <span class="s2">&#34;backend&#34;</span> <span class="n">defined</span> <span class="n">above</span><span class="p">:</span>
+</span></span><span class="line"><span class="cl">            <span class="n">proxy_pass</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">backend</span><span class="o">/</span><span class="n">fake</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">server</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="o">#</span> <span class="n">this</span> <span class="n">server</span> <span class="n">is</span> <span class="n">just</span> <span class="kr">for</span> <span class="n">mocking</span> <span class="n">up</span> <span class="n">a</span> <span class="n">backend</span> <span class="n">peer</span> <span class="n">here</span><span class="p">...</span>
+</span></span><span class="line"><span class="cl">        <span class="n">listen</span> <span class="mf">127.0.0.2</span><span class="p">:</span><span class="mi">8080</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">location</span> <span class="o">=</span> <span class="o">/</span><span class="n">fake</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="n">echo</span> <span class="s2">&#34;this is the fake backend peer...&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>进入 balancer_by_lua_block 阶段后可以通过 <code>ngx.balancer.set_more_tries</code> 来设置新增的重试次数，会在原有的重试次数上增加。所以应该额外设置 proxy_next_upstream_tries 或者 proxy_next_upstream_timeout ，否则可能出现无限重试的情况。而 <code>ngx.balancer.get_last_failure</code> 可以拿到进入本次 balancer_by_lua_block 阶段的原因以及状态码。</p>
 <h2 id="luajit-string-buffer">Luajit string buffer</h2>
 <p>Luajit 提供了一个高效的 string buffer 模块，可以实现 FIFO 的字符缓存队列。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="n">str_buffer</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;string.buffer&#34;</span><span class="p">)</span>
-
-<span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcdefghij&#34;</span>
-<span class="c1">-- new 方法可以指定给定的内存空间大小，但无论是否给定，后续内存空间都会自动适应增长</span>
-<span class="c1">-- set 方法可以直接设置数据内容</span>
-<span class="n">buffer</span> <span class="o">=</span> <span class="n">str_buffer.new</span><span class="p">():</span><span class="n">set</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
-
-<span class="n">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="c1">-- get 方法会将数据从队列中取出</span>
-<span class="c1">-- out:</span>
-<span class="c1">-- abcde</span>
-<span class="n">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span><span class="n">tostring</span><span class="p">())</span>
-<span class="c1">-- tostring 方法可以输出当前队列内容，并且不修改原有队列</span>
-<span class="c1">-- out:</span>
-<span class="c1">-- fghij</span>
-<span class="n">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="c1">-- out:</span>
-<span class="c1">-- fghij</span>
-
-<span class="c1">-- 取完所有数据，后续的 get 和 tostring 都会返回 &#34;&#34; </span>
-<span class="kr">if</span> <span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span> <span class="kr">then</span>
-    <span class="n">print</span><span class="p">(</span><span class="s">[[get &#34;&#34;]]</span><span class="p">)</span>
-    <span class="c1">--- out:</span>
-    <span class="c1">--- get &#34;&#34;</span>
-<span class="kr">end</span>
-
-<span class="c1">-- buffer 可以复用</span>
-<span class="n">buffer</span><span class="p">:</span><span class="n">put</span><span class="p">(</span><span class="s2">&#34;12345&#34;</span><span class="p">)</span>
-<span class="n">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
-<span class="c1">-- out:</span>
-<span class="c1">-- 12345</span>
-
-<span class="c1">-- reset 方法可以将 buffer 置空，相当于取出所有数据，但内存空间不会释放</span>
-<span class="n">buffer</span><span class="p">:</span><span class="n">reset</span><span class="p">()</span>
-<span class="c1">-- free 方法可以主动释放内存空间</span>
-<span class="n">buffer</span><span class="p">:</span><span class="n">free</span><span class="p">()</span>
-</code></pre></div><h2 id="ngxre-module">ngx.re module</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">str_buffer</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;string.buffer&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcdefghij&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- new 方法可以指定给定的内存空间大小，但无论是否给定，后续内存空间都会自动适应增长</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- set 方法可以直接设置数据内容</span>
+</span></span><span class="line"><span class="cl"><span class="n">buffer</span> <span class="o">=</span> <span class="n">str_buffer.new</span><span class="p">():</span><span class="n">set</span><span class="p">(</span><span class="n">strings</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- get 方法会将数据从队列中取出</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- abcde</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span><span class="n">tostring</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- tostring 方法可以输出当前队列内容，并且不修改原有队列</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- fghij</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- fghij</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- 取完所有数据，后续的 get 和 tostring 都会返回 &#34;&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s">[[get &#34;&#34;]]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">--- out:</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">--- get &#34;&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- buffer 可以复用</span>
+</span></span><span class="line"><span class="cl"><span class="n">buffer</span><span class="p">:</span><span class="n">put</span><span class="p">(</span><span class="s2">&#34;12345&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 12345</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- reset 方法可以将 buffer 置空，相当于取出所有数据，但内存空间不会释放</span>
+</span></span><span class="line"><span class="cl"><span class="n">buffer</span><span class="p">:</span><span class="n">reset</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- free 方法可以主动释放内存空间</span>
+</span></span><span class="line"><span class="cl"><span class="n">buffer</span><span class="p">:</span><span class="n">free</span><span class="p">()</span>
+</span></span></code></pre></div><h2 id="ngxre-module">ngx.re module</h2>
 <p>在 openresty 中，正则相关的处理一般使用 ngx.re 模块。这个模块提供的函数和 Lua string 非常接近，同样都有 find ， match ， gmatch ， sub ， gsub 这几个函数。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="n">location</span> <span class="o">/</span><span class="n">find</span> <span class="p">{</span>
-    <span class="n">content_by_lua_block</span> <span class="p">{</span>
-        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[\d+]]</span>
-        <span class="c1">-- find 同样是找到匹配式在目标字符串中的起止位置</span>
-        <span class="kd">local</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
-        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
-            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
-            <span class="kr">return</span>
-        <span class="kr">end</span>
-        <span class="kr">if</span> <span class="n">from</span> <span class="kr">then</span>
-            <span class="n">ngx.say</span><span class="p">(</span><span class="s2">&#34;from &#34;</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="s2">&#34; to &#34;</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
-        <span class="kr">else</span>
-            <span class="n">ngx.say</span><span class="p">(</span><span class="s2">&#34;not matched&#34;</span><span class="p">)</span>
-        <span class="kr">end</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">location</span> <span class="o">/</span><span class="n">match</span> <span class="p">{</span>
-    <span class="n">content_by_lua_block</span> <span class="p">{</span>
-        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[\d+]]</span>
-        <span class="c1">-- match 函数的返回值 m 是 table 类型</span>
-        <span class="c1">-- 其中 m[0] 是匹配字符串，而是否存在 m[1] 和 m[2] 等字符串则取决于 regex 是否使用子匹配捕获</span>
-        <span class="kd">local</span> <span class="n">m</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
-        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
-            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
-            <span class="kr">return</span>
-        <span class="kr">end</span>
-        <span class="kr">if</span> <span class="n">m</span> <span class="kr">then</span>
-            <span class="c1">-- out:</span>
-            <span class="c1">-- 1234</span>
-            <span class="n">ngx.say</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="kr">else</span>
-            <span class="n">ngx.say</span><span class="p">(</span><span class="s2">&#34;not matched&#34;</span><span class="p">)</span>
-        <span class="kr">end</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">location</span> <span class="o">/</span><span class="n">gmatch</span> <span class="p">{</span>
-    <span class="n">content_by_lua_block</span> <span class="p">{</span>
-        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[\d]]</span>
-        <span class="c1">-- gmatch 返回迭代器函数，每个迭代返回值和 match 一致</span>
-        <span class="kd">local</span> <span class="n">iterator</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">gmatch</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
-        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
-            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
-            <span class="kr">return</span>
-        <span class="kr">end</span>
-        <span class="kr">for</span> <span class="n">each</span> <span class="kr">in</span> <span class="n">iterator</span> <span class="kr">do</span>
-            <span class="c1">-- out:</span>
-            <span class="c1">-- 1</span>
-            <span class="c1">-- 2</span>
-            <span class="c1">-- 3</span>
-            <span class="c1">-- 4</span>
-            <span class="n">ngx.say</span><span class="p">(</span><span class="n">each</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="kr">end</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-
-<span class="n">location</span> <span class="o">/</span><span class="n">sub</span> <span class="p">{</span>
-    <span class="n">content_by_lua_block</span> <span class="p">{</span>
-        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[\d]]</span>
-        <span class="c1">-- sub 函数会执行一次符合匹配式的字符串替换</span>
-        <span class="c1">-- gsub 函数则会替换所有符合匹配式的字符串</span>
-        <span class="c1">-- n 都用来表示匹配次数</span>
-        <span class="c1">-- 没有成功匹配到替换内容， replaced 会原样输出</span>
-        <span class="kd">local</span> <span class="n">replaced</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
-        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
-            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
-            <span class="kr">return</span>
-        <span class="kr">end</span>
-        <span class="c1">-- out:</span>
-        <span class="c1">-- hello, a234</span>
-        <span class="n">ngx.say</span><span class="p">(</span><span class="n">replaced</span><span class="p">)</span>
-
-        <span class="kd">local</span> <span class="n">replaced</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
-        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
-            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
-            <span class="kr">return</span>
-        <span class="kr">end</span>
-        <span class="c1">-- out:</span>
-        <span class="c1">-- hello, aaaa</span>
-        <span class="n">ngx.say</span><span class="p">(</span><span class="n">replaced</span><span class="p">)</span>
-
-        <span class="c1">-- 使用子匹配替换</span>
-        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[(\d)(\d)]]</span>
-        <span class="kd">local</span> <span class="n">replaced</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;$2$1&#34;</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
-        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
-            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
-            <span class="kr">return</span>
-        <span class="kr">end</span>
-        <span class="c1">-- out:</span>
-        <span class="c1">-- hello, 2143</span>
-        <span class="n">ngx.say</span><span class="p">(</span><span class="n">replaced</span><span class="p">)</span>
-    <span class="p">}</span>
-<span class="p">}</span>
-</code></pre></div></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">location</span> <span class="o">/</span><span class="n">find</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content_by_lua_block</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[\d+]]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- find 同样是找到匹配式在目标字符串中的起止位置</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">from</span><span class="p">,</span> <span class="n">to</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">find</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">from</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.say</span><span class="p">(</span><span class="s2">&#34;from &#34;</span><span class="p">,</span> <span class="n">from</span><span class="p">,</span> <span class="s2">&#34; to &#34;</span><span class="p">,</span> <span class="n">to</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.say</span><span class="p">(</span><span class="s2">&#34;not matched&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">location</span> <span class="o">/</span><span class="n">match</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content_by_lua_block</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[\d+]]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- match 函数的返回值 m 是 table 类型</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 其中 m[0] 是匹配字符串，而是否存在 m[1] 和 m[2] 等字符串则取决于 regex 是否使用子匹配捕获</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">m</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">match</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">m</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- 1234</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.say</span><span class="p">(</span><span class="n">m</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.say</span><span class="p">(</span><span class="s2">&#34;not matched&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">location</span> <span class="o">/</span><span class="n">gmatch</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content_by_lua_block</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[\d]]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- gmatch 返回迭代器函数，每个迭代返回值和 match 一致</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">iterator</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">gmatch</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">for</span> <span class="n">each</span> <span class="kr">in</span> <span class="n">iterator</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- 1</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- 2</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- 3</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- 4</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.say</span><span class="p">(</span><span class="n">each</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">location</span> <span class="o">/</span><span class="n">sub</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">content_by_lua_block</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[\d]]</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- sub 函数会执行一次符合匹配式的字符串替换</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- gsub 函数则会替换所有符合匹配式的字符串</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- n 都用来表示匹配次数</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 没有成功匹配到替换内容， replaced 会原样输出</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">replaced</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">sub</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- hello, a234</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ngx.say</span><span class="p">(</span><span class="n">replaced</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">replaced</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- hello, aaaa</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ngx.say</span><span class="p">(</span><span class="n">replaced</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 使用子匹配替换</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">regex</span> <span class="o">=</span> <span class="s">[[(\d)(\d)]]</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">replaced</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">ngx.re</span><span class="p">.</span><span class="n">gsub</span><span class="p">(</span><span class="s2">&#34;hello, 1234&#34;</span><span class="p">,</span> <span class="n">regex</span><span class="p">,</span> <span class="s2">&#34;$2$1&#34;</span><span class="p">,</span> <span class="s2">&#34;jo&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ngx.log</span><span class="p">(</span><span class="n">ngx.ERR</span><span class="p">,</span> <span class="s2">&#34;error: &#34;</span> <span class="o">..</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- out:</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- hello, 2143</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ngx.say</span><span class="p">(</span><span class="n">replaced</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>
@@ -511,7 +517,7 @@ if (!doNotTrack) {
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

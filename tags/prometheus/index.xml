@@ -4,26 +4,23 @@
     <title>Prometheus on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/prometheus/</link>
     <description>Recent content in Prometheus on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 31 Mar 2024 13:26:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/prometheus/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prometheus exporter 代码参考</title>
       <link>https://yuweizzz.github.io/post/example_of_prometheus_exporter/</link>
       <pubDate>Sun, 31 Mar 2024 13:26:00 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/example_of_prometheus_exporter/</guid>
       <description>&lt;p&gt;这篇笔记主要记录如何自行编写 Prometheus exporter 。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>VictoriaMetrics API 和常用的 PromQL</title>
       <link>https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/</link>
       <pubDate>Sat, 16 Dec 2023 10:00:00 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/</guid>
       <description>&lt;p&gt;这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

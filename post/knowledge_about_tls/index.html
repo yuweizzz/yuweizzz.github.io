@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录 TLS 协议的工作原理及其相关计算机密码学的知识。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_tls/" />
 <meta property="og:site_name" content="TLS 协议工作原理" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -234,25 +241,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录 TLS 协议的工作原理及其相关计算机密码学的知识。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="计算机密码学算法">计算机密码学算法</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="计算机密码学算法">计算机密码学算法</h2>
 <p>TLS 协议的是结合了多种计算机密码学算法实现的，它用来实现传输过程中的数据安全。</p>
 <p>在计算机密码学中，经常使用的有对称加密算法，非对称加密算法和散列算法。</p>
 <p>对称加密算法用来加密数据，它的特点是数据加密和解密需要使用相同的密钥，所以密钥泄露时，加密数据就会被轻松破解，实际应用的对称加密算法有 DES 和 AES 。</p>
@@ -281,162 +287,162 @@ if (!doNotTrack) {
 <li>CA 对签发请求的信息生成信息摘要，并使用 CA 的私钥生成数字签名，再附上 CA 自身的信息，生成证书文件。</li>
 </ol>
 <p>在实际应用中，我们可以直接自行签发 TLS 证书，也可以通过自建 CA 来签发需要的 TLS 证书。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 自签名 TLS 证书</span>
-
-<span class="c1"># 生成私钥</span>
-$ openssl genrsa -out key.pri <span class="m">2048</span>
-<span class="c1"># 以 www.ibm.com 为例，生成证书签发请求</span>
-$ openssl req -new -sha256 -key key.pri <span class="se">\
-</span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=www.ibm.com&#34;</span> -out request.csr
-<span class="c1"># 生成自签证书，由于它不会被自动信任， signkey 可以重新生成或者直接沿用自身的私钥</span>
-$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out ibm.crt
-
-<span class="c1"># 上述例子生成的证书就是 RSA 证书，下面的例子是生成 ECC 证书</span>
-<span class="c1"># 查看当前 openssl 版本支持的椭圆曲线 </span>
-$ openssl ecparam -list_curves
-<span class="c1"># 一般使用 prime256v1 来生成私钥 </span>
-$ openssl ecparam -genkey -name prime256v1 -out key.pri
-$ openssl req -new -sha256 -key key.pri <span class="se">\
-</span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=www.ibm.com&#34;</span> -out request.csr
-$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out ibm.crt
-</code></pre></div><p>自签名意味着自身就是签发的 CA 机构，在访问使用自签名 TLS 证书的站点时，通常会显示证书不受信任的提示，手动把这个自签名证书加入到操作系统的信任链中后这个提示就不会再出现了。但是将单一站点的 TLS 证书加入到信任链中是非常少见的操作，一般只会直接信任 CA 证书。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 自签名 TLS 证书</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成私钥</span>
+</span></span><span class="line"><span class="cl">$ openssl genrsa -out key.pri <span class="m">2048</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 以 www.ibm.com 为例，生成证书签发请求</span>
+</span></span><span class="line"><span class="cl">$ openssl req -new -sha256 -key key.pri <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=www.ibm.com&#34;</span> -out request.csr
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成自签证书，由于它不会被自动信任， signkey 可以重新生成或者直接沿用自身的私钥</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out ibm.crt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 上述例子生成的证书就是 RSA 证书，下面的例子是生成 ECC 证书</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看当前 openssl 版本支持的椭圆曲线 </span>
+</span></span><span class="line"><span class="cl">$ openssl ecparam -list_curves
+</span></span><span class="line"><span class="cl"><span class="c1"># 一般使用 prime256v1 来生成私钥 </span>
+</span></span><span class="line"><span class="cl">$ openssl ecparam -genkey -name prime256v1 -out key.pri
+</span></span><span class="line"><span class="cl">$ openssl req -new -sha256 -key key.pri <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=www.ibm.com&#34;</span> -out request.csr
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out ibm.crt
+</span></span></code></pre></div><p>自签名意味着自身就是签发的 CA 机构，在访问使用自签名 TLS 证书的站点时，通常会显示证书不受信任的提示，手动把这个自签名证书加入到操作系统的信任链中后这个提示就不会再出现了。但是将单一站点的 TLS 证书加入到信任链中是非常少见的操作，一般只会直接信任 CA 证书。</p>
 <p>所以如果需要多个自签 TLS 证书，则自建 CA 会更方便，它与自签名 TLS 的区别在于不随意使用私钥去签名，而是固定一对密钥，把它持续用于后续 TLS 证书的签发，并且将固定公钥生成 CA 证书，那么只需要信任 CA 证书就可以自动信任它所签发的 TLS 证书。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 自建 CA</span>
-
-<span class="c1"># 生成私钥</span>
-$ openssl genrsa -out key.pri <span class="m">2048</span>
-<span class="c1"># 生成证书签发请求</span>
-$ openssl req -new -sha256 -key key.pri <span class="se">\
-</span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=IBM Root Certificate&#34;</span> -out request.csr
-<span class="c1"># 生成 CA 证书</span>
-$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out CA.crt
-
-<span class="c1"># 使用自建 CA 签发 TLS 证书</span>
-
-<span class="c1"># 站点生成证书签发请求</span>
-$ openssl genrsa -out server_key.pri <span class="m">2048</span>
-<span class="c1"># 这里可以通过配置多个 CN ，也可以将单个 CN 指定类似 *.software.ibm.com 的泛解析来满足多域名的情况</span>
-$ openssl req -new -sha256 -key server_key.pri <span class="se">\
-</span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=software.ibm.com&#34;</span> -out request.csr
-<span class="c1"># CA 处理签发请求，生成证书</span>
-$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial -out software.crt
-</code></pre></div><blockquote>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 自建 CA</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成私钥</span>
+</span></span><span class="line"><span class="cl">$ openssl genrsa -out key.pri <span class="m">2048</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成证书签发请求</span>
+</span></span><span class="line"><span class="cl">$ openssl req -new -sha256 -key key.pri <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=IBM Root Certificate&#34;</span> -out request.csr
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成 CA 证书</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out CA.crt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用自建 CA 签发 TLS 证书</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 站点生成证书签发请求</span>
+</span></span><span class="line"><span class="cl">$ openssl genrsa -out server_key.pri <span class="m">2048</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里可以通过配置多个 CN ，也可以将单个 CN 指定类似 *.software.ibm.com 的泛解析来满足多域名的情况</span>
+</span></span><span class="line"><span class="cl">$ openssl req -new -sha256 -key server_key.pri <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=software.ibm.com&#34;</span> -out request.csr
+</span></span><span class="line"><span class="cl"><span class="c1"># CA 处理签发请求，生成证书</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial -out software.crt
+</span></span></code></pre></div><blockquote>
 <p>在签发 CA 证书时最好通过 <code>-extfile &lt;(printf &quot;basicConstraints=CA:TRUE&quot;)</code> 表明自身是用作 CA 证书用途。</p>
 </blockquote>
 <p>在 golang 1.15 之后的版本，进行 tls 握手时发生报错 <code>&quot;x509: certificate relies on legacy Common Name field, use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0&quot;</code> 是因为当前使用的证书依赖于 CN 作为域名绑定，需要使用 x509 拓展字段 Subject Alternative Name 才能进行正常验证，也就是报错信息所述的 SAN 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 生成 SAN 证书</span>
-
-<span class="c1"># 前序步骤和使用 CN 的证书相似</span>
-<span class="c1"># 生成私钥</span>
-$ openssl genrsa -out server_key.pri <span class="m">2048</span>
-<span class="c1"># 生成证书签发请求</span>
-$ openssl req -new -sha256 -key server_key.pri <span class="se">\
-</span><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=software.ibm.com&#34;</span> -out request.csr
-<span class="c1"># 使用 CA 处理签发请求，生成 SAN 证书</span>
-$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial <span class="se">\
-</span><span class="se"></span> -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;subjectAltName=DNS:www.software.ibm.com,DNS:software.ibm.com,IP:1.1.1.1&#34;</span><span class="o">)</span> -out software.crt
-
-<span class="c1"># 如果是高版本的 openssl 可以尝试这样做</span>
-$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial <span class="se">\
-</span><span class="se"></span> -addext <span class="s2">&#34;subjectAltName=subjectAltName=DNS:www.software.ibm.com,DNS:software.ibm.com,IP:1.1.1.1&#34;</span> -out software.crt
-
-<span class="c1"># 可以看到实际的签发方式和使用 CN 的证书类似，但是使用了 x509 ext 字段，这样可以扩展证书的泛用性，匹配多个域名和 IP 地址</span>
-<span class="c1"># 签发之后就可以在证书的 X509v3 extensions 看到这部分信息</span>
-</code></pre></div><p>通过信任上述例子中的 <code>CA.crt</code> ，后续如 <code>software.crt</code> 等由 <code>CA.crt</code> 签发的证书都是自动授信的。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 在 CentOS 中添加信任 CA </span>
-$ mv TrustCA.crt /etc/pki/ca-trust/source/anchors/
-$ update-ca-trust
-
-<span class="c1"># 执行 update-ca-trust 后应该可以在 ca-bundle.crt 的文件开头看到新增的信任 CA</span>
-$ cat /etc/pki/tls/certs/ca-bundle.crt
-</code></pre></div><p>以下是 <code>openssl</code> 的一些常用命令以供参考：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看证书生成请求</span>
-$ openssl req -in request.csr -text -noout
-
-<span class="c1"># 查看证书内容信息</span>
-$ openssl x509 -in x509.crt -text -noout
-
-<span class="c1"># 生成 4096 bit 长度的 rsa 私钥，可选的长度还有 2048 ， 1024 ， 512</span>
-$ openssl genrsa -out key.pri <span class="m">4096</span>
-<span class="c1"># 检查生成的私钥</span>
-$ openssl rsa -in key.pri -check
-
-<span class="c1"># 提取对应的 rsa 公钥</span>
-$ openssl rsa -in key.pri -pubout -out key.pub
-
-<span class="c1"># 对文件进行数字签名</span>
-$ openssl dgst -sha256 -out sign.txt -sign key.pri file
-
-<span class="c1"># 使用公钥和私钥分别验证数字签名</span>
-$ openssl dgst -sha256 -prverify key.pri -signature sign.txt file
-$ openssl dgst -sha256 -verify key.pub -signature sign.txt file
-
-<span class="c1"># 查看证书过期时间</span>
-$ openssl x509 -in x509.crt -noout -enddate
-<span class="c1"># 配合 s_client 可以通过发起 ssl 连接来测试证书是否过期</span>
-$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null <span class="p">|</span> <span class="se">\
-</span><span class="se"></span>  openssl x509 -noout -enddate 2&gt;/dev/null <span class="p">|</span> awk -F <span class="s1">&#39;=&#39;</span> <span class="s1">&#39;{print $2}&#39;</span>
-
-<span class="c1"># 证书格式转换</span>
-$ openssl x509 -in x509.der -inform der -outform pem -out x509.pem
-
-<span class="c1"># 追踪 tls 握手过程</span>
-<span class="c1"># -status 选项会在 clientHello 中带上 status_request extensions ，用于要求服务端附带 ocsp 响应信息</span>
-<span class="c1"># -tlsextdebug 可以看到 tls 扩展信息</span>
-$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -status -tlsextdebug -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null
-
-<span class="c1"># 指定加密算法的 tls 握手请求，主要用来测试 ECC 证书，对应前面的不同种类证书的生成命令</span>
-<span class="c1"># RSA 证书测试，理论上可以在输出中追踪到 rsa 的相关证书信息</span>
-$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-RSA-AES128-SHA256 -status -tlsextdebug <span class="se">\
-</span><span class="se"></span>  -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
-<span class="c1"># ECC 证书测试，理论上可以在输出中追踪到 ecdsa 的相关证书信息</span>
-$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-ECDSA-AES128-SHA256 -status -tlsextdebug <span class="se">\
-</span><span class="se"></span>  -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
-
-<span class="c1"># 查看 openssl 对各个版本 tls 协议的算法支持</span>
-$ openssl ciphers -v
-<span class="c1"># cipher 遵从对应的 RFC 命名标准，例如在 ECDHE-RSA-AES128-SHA256 中：</span>
-<span class="c1"># ECDHE 指的是 Key Exchange 算法， ECDHE 是 DH 算法基于椭圆曲线的变种</span>
-<span class="c1"># RSA 指的是认证算法， RSA 是非对称加密算法</span>
-<span class="c1"># AES128 指的是用于 session 过程中的加密算法， AES128 是 128 bit 的对称加密算法</span>
-<span class="c1"># SHA256 指的是摘要算法， SHA256 是 256 bit 的摘要算法</span>
-</code></pre></div><h2 id="运行-ocsp-responder">运行 OCSP Responder</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成 SAN 证书</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 前序步骤和使用 CN 的证书相似</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成私钥</span>
+</span></span><span class="line"><span class="cl">$ openssl genrsa -out server_key.pri <span class="m">2048</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成证书签发请求</span>
+</span></span><span class="line"><span class="cl">$ openssl req -new -sha256 -key server_key.pri <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=software.ibm.com&#34;</span> -out request.csr
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 CA 处理签发请求，生成 SAN 证书</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;subjectAltName=DNS:www.software.ibm.com,DNS:software.ibm.com,IP:1.1.1.1&#34;</span><span class="o">)</span> -out software.crt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果是高版本的 openssl 可以尝试这样做</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -CA CA.crt -CAkey key.pri -CAcreateserial <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span> -addext <span class="s2">&#34;subjectAltName=subjectAltName=DNS:www.software.ibm.com,DNS:software.ibm.com,IP:1.1.1.1&#34;</span> -out software.crt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以看到实际的签发方式和使用 CN 的证书类似，但是使用了 x509 ext 字段，这样可以扩展证书的泛用性，匹配多个域名和 IP 地址</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 签发之后就可以在证书的 X509v3 extensions 看到这部分信息</span>
+</span></span></code></pre></div><p>通过信任上述例子中的 <code>CA.crt</code> ，后续如 <code>software.crt</code> 等由 <code>CA.crt</code> 签发的证书都是自动授信的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 CentOS 中添加信任 CA </span>
+</span></span><span class="line"><span class="cl">$ mv TrustCA.crt /etc/pki/ca-trust/source/anchors/
+</span></span><span class="line"><span class="cl">$ update-ca-trust
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行 update-ca-trust 后应该可以在 ca-bundle.crt 的文件开头看到新增的信任 CA</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/pki/tls/certs/ca-bundle.crt
+</span></span></code></pre></div><p>以下是 <code>openssl</code> 的一些常用命令以供参考：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看证书生成请求</span>
+</span></span><span class="line"><span class="cl">$ openssl req -in request.csr -text -noout
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看证书内容信息</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -in x509.crt -text -noout
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成 4096 bit 长度的 rsa 私钥，可选的长度还有 2048 ， 1024 ， 512</span>
+</span></span><span class="line"><span class="cl">$ openssl genrsa -out key.pri <span class="m">4096</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查生成的私钥</span>
+</span></span><span class="line"><span class="cl">$ openssl rsa -in key.pri -check
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 提取对应的 rsa 公钥</span>
+</span></span><span class="line"><span class="cl">$ openssl rsa -in key.pri -pubout -out key.pub
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 对文件进行数字签名</span>
+</span></span><span class="line"><span class="cl">$ openssl dgst -sha256 -out sign.txt -sign key.pri file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用公钥和私钥分别验证数字签名</span>
+</span></span><span class="line"><span class="cl">$ openssl dgst -sha256 -prverify key.pri -signature sign.txt file
+</span></span><span class="line"><span class="cl">$ openssl dgst -sha256 -verify key.pub -signature sign.txt file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看证书过期时间</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -in x509.crt -noout -enddate
+</span></span><span class="line"><span class="cl"><span class="c1"># 配合 s_client 可以通过发起 ssl 连接来测试证书是否过期</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null <span class="p">|</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  openssl x509 -noout -enddate 2&gt;/dev/null <span class="p">|</span> awk -F <span class="s1">&#39;=&#39;</span> <span class="s1">&#39;{print $2}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 证书格式转换</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -in x509.der -inform der -outform pem -out x509.pem
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 追踪 tls 握手过程</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -status 选项会在 clientHello 中带上 status_request extensions ，用于要求服务端附带 ocsp 响应信息</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -tlsextdebug 可以看到 tls 扩展信息</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -status -tlsextdebug -servername www.github.com -connect <span class="s2">&#34;www.github.com:443&#34;</span> 2&gt;/dev/null
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 指定加密算法的 tls 握手请求，主要用来测试 ECC 证书，对应前面的不同种类证书的生成命令</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># RSA 证书测试，理论上可以在输出中追踪到 rsa 的相关证书信息</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-RSA-AES128-SHA256 -status -tlsextdebug <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ECC 证书测试，理论上可以在输出中追踪到 ecdsa 的相关证书信息</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="p">|</span> openssl s_client -cipher ECDHE-ECDSA-AES128-SHA256 -status -tlsextdebug <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -servername www.ibm.com -connect <span class="s2">&#34;127.0.0.1:443&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 openssl 对各个版本 tls 协议的算法支持</span>
+</span></span><span class="line"><span class="cl">$ openssl ciphers -v
+</span></span><span class="line"><span class="cl"><span class="c1"># cipher 遵从对应的 RFC 命名标准，例如在 ECDHE-RSA-AES128-SHA256 中：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ECDHE 指的是 Key Exchange 算法， ECDHE 是 DH 算法基于椭圆曲线的变种</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># RSA 指的是认证算法， RSA 是非对称加密算法</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># AES128 指的是用于 session 过程中的加密算法， AES128 是 128 bit 的对称加密算法</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># SHA256 指的是摘要算法， SHA256 是 256 bit 的摘要算法</span>
+</span></span></code></pre></div><h2 id="运行-ocsp-responder">运行 OCSP Responder</h2>
 <p><code>openssl</code> 可以运行一个用于响应 OCSP 请求的服务端，能够满足一些基本的测试要求，实际中 OCSP 具体如何在 Nginx 中进行应用则可以参考<a href="https://yuweizzz.github.io/post/practical_tips_in_nginx/#%E5%BC%80%E5%90%AF-ocsp-stapling">这里</a>。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 可以参照前面的例子生成证书签发请求，在具体签发 CA 证书时，需要主动声明证书用途</span>
-$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in ca.csr -signkey ca.key <span class="se">\
-</span><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;basicConstraints=CA:TRUE&#34;</span><span class="o">)</span> -out ca.crt
-
-<span class="c1"># 具体证书则应该带有 OCSP Responder 信息，这里通过 set_serial 来设置序列号，方便测试</span>
-$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in x509.csr -CA ca.crt -CAkey ca.key -set_serial <span class="m">1</span> <span class="se">\
-</span><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;authorityInfoAccess=OCSP;URI:http://localhost:8080/&#34;</span><span class="o">)</span> -out x509.crt
-
-<span class="c1"># 还需要一个额外证书来签发 OCSP 响应，可以不对序列号进行要求</span>
-$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in signer.csr -CA ca.crt -CAkey ca.key -CAcreateserial <span class="se">\
-</span><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;extendedKeyUsage=OCSPSigning&#34;</span><span class="o">)</span> -out signer.crt
-
-<span class="c1"># 生成 CA 数据库，参考以下的 CA 数据库的格式：</span>
-<span class="c1"># V/R 到期时间 吊销时间 序列号 unknown CN</span>
-<span class="c1"># 字段之间使用 \t 隔开，即使某些字段不存在，比如吊销时间，也需要保留制表符</span>
-<span class="c1"># 经过实践测试，最后的 CN 字段并不一定要与对应证书中的 CN 一致，但是在 index 中每行的 CN 都必须不同</span>
-$ cat index.txt
-V	340101075959Z		1	unknown	/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1
-R	340101075959Z	240124135959Z	3	unknown	/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com2
-<span class="c1"># 需要注意有效证书记录中序列号字段前的制表符数量</span>
-$ cat -T index.txt
-V^I340101075959Z^I^I1^Iunknown^I/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1
-R^I340101075959Z^I240124135959Z^I3^Iunknown^I/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com2
-
-<span class="c1"># 另外标准的吊销过程应该通过相关的 CA 命令来完成，使用命令吊销会自动更新数据库，而这里只是手动更改了 CA 数据库来达到这个效果</span>
-<span class="c1"># 经过测试，如果你的证书没有记录在 CA 数据库中会返回 unknown 状态，否则一般是 good 或者 revoked 两种状态</span>
-
-<span class="c1"># 运行 OCSP Responder</span>
-$ openssl ocsp -index index.txt -port <span class="m">8080</span> -rsigner signer.crt -rkey signer.key -CA ca.crt
-<span class="c1"># 可以指定响应具体的请求数量后自动退出</span>
-$ openssl ocsp -index index.txt -port <span class="m">8080</span> -rsigner signer.crt -rkey signer.key -CA ca.crt -nrequest <span class="m">1</span>
-</code></pre></div><h2 id="tls-协议握手过程">TLS 协议握手过程</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 可以参照前面的例子生成证书签发请求，在具体签发 CA 证书时，需要主动声明证书用途</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in ca.csr -signkey ca.key <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;basicConstraints=CA:TRUE&#34;</span><span class="o">)</span> -out ca.crt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 具体证书则应该带有 OCSP Responder 信息，这里通过 set_serial 来设置序列号，方便测试</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in x509.csr -CA ca.crt -CAkey ca.key -set_serial <span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;authorityInfoAccess=OCSP;URI:http://localhost:8080/&#34;</span><span class="o">)</span> -out x509.crt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 还需要一个额外证书来签发 OCSP 响应，可以不对序列号进行要求</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">3650</span> -in signer.csr -CA ca.crt -CAkey ca.key -CAcreateserial <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -extfile &lt;<span class="o">(</span><span class="nb">printf</span> <span class="s2">&#34;extendedKeyUsage=OCSPSigning&#34;</span><span class="o">)</span> -out signer.crt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成 CA 数据库，参考以下的 CA 数据库的格式：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># V/R 到期时间 吊销时间 序列号 unknown CN</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 字段之间使用 \t 隔开，即使某些字段不存在，比如吊销时间，也需要保留制表符</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 经过实践测试，最后的 CN 字段并不一定要与对应证书中的 CN 一致，但是在 index 中每行的 CN 都必须不同</span>
+</span></span><span class="line"><span class="cl">$ cat index.txt
+</span></span><span class="line"><span class="cl">V	340101075959Z		1	unknown	/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1
+</span></span><span class="line"><span class="cl">R	340101075959Z	240124135959Z	3	unknown	/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com2
+</span></span><span class="line"><span class="cl"><span class="c1"># 需要注意有效证书记录中序列号字段前的制表符数量</span>
+</span></span><span class="line"><span class="cl">$ cat -T index.txt
+</span></span><span class="line"><span class="cl">V^I340101075959Z^I^I1^Iunknown^I/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1
+</span></span><span class="line"><span class="cl">R^I340101075959Z^I240124135959Z^I3^Iunknown^I/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com2
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 另外标准的吊销过程应该通过相关的 CA 命令来完成，使用命令吊销会自动更新数据库，而这里只是手动更改了 CA 数据库来达到这个效果</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 经过测试，如果你的证书没有记录在 CA 数据库中会返回 unknown 状态，否则一般是 good 或者 revoked 两种状态</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 运行 OCSP Responder</span>
+</span></span><span class="line"><span class="cl">$ openssl ocsp -index index.txt -port <span class="m">8080</span> -rsigner signer.crt -rkey signer.key -CA ca.crt
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以指定响应具体的请求数量后自动退出</span>
+</span></span><span class="line"><span class="cl">$ openssl ocsp -index index.txt -port <span class="m">8080</span> -rsigner signer.crt -rkey signer.key -CA ca.crt -nrequest <span class="m">1</span>
+</span></span></code></pre></div><h2 id="tls-协议握手过程">TLS 协议握手过程</h2>
 <p>在 HTTP 通信之前，先在通信双方之间通过 TLS 协议建立一条安全通道，后续的 HTTP 通信内容就不再是明文的，只有通信双方才能解读这些信息，这也就是常说的 HTTPS 协议。</p>
 <p>现有的主流 TLS 版本是 TLS v1.2 和 TLS v1.3 ，低于这两个版本的协议安全性比较低，不建议使用。</p>
-<pre><code>TLS v1.2 的握手过程:
+<pre tabindex="0"><code>TLS v1.2 的握手过程:
 
       Client                                               Server
 
@@ -492,7 +498,6 @@ Auth | {CertificateVerify*}
 
          [] Indicates messages protected using keys
             derived from [sender]_application_traffic_secret_N.
-
 </code></pre><p>虽然两个主流 TLS 版本的握手过程是略有差异的，但它们的核心过程是一致的，我们可以通过 TLS v1.2 的握手过程来学习：</p>
 <ol>
 <li>客户端发起 ClientHello ， ClientHello 主要内容是时间戳，随机数，算法协议簇等握手需要的信息。</li>
@@ -527,7 +532,7 @@ Auth | {CertificateVerify*}
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

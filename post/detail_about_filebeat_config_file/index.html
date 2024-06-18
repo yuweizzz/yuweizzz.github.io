@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记主要介绍 filebeat 配置文件各参数含义和一些配置实例。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/detail_about_filebeat_config_file/" />
 <meta property="og:site_name" content="filebeat 配置参考" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -192,7 +199,7 @@ if (!doNotTrack) {
                         </div>
                       </div>
                     </details-menu>
-                      3871 Words
+                      3540 Words
                     
 
                   </div>
@@ -216,115 +223,114 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记主要介绍 filebeat 配置文件各参数含义和一些配置实例。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><p>filebeat 用于收集和处理日志，是 Elastic Beats 开源组件中的关键一员，它通过 yaml 文件来控制具体的日志文件收集行为，这里会将 yaml 配置文件作为探讨的主题。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><p>filebeat 用于收集和处理日志，是 Elastic Beats 开源组件中的关键一员，它通过 yaml 文件来控制具体的日志文件收集行为，这里会将 yaml 配置文件作为探讨的主题。</p>
 <p>在 Elastic 官方文件中， Beats 家族被定位为轻量级数据传输器，这里的轻量级主要是和 logstash 做比较，但它们的核心功能都是将源数据进行格式化处理后输出到目的端，所以它们的配置文件就相当于对管道进行配置，主要关心数据进入时和数据输出时的动作。</p>
 <h2 id="配置-input">配置 input</h2>
 <p>在 filebeat 中， input 来源非常丰富，可以是标准输入，具体文件，甚至是容器，网络流，对象存储等。我们这里以最常见的 <code>log</code> 为例，也就是将具体文件作为输入来进行基本配置定义。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span></code></pre></div><p><code>log</code> 类型的列表项中 <code>path</code> 和 <code>exclude_files</code> 可以用来定义需要被 filebeat 收集的文件，默认会收集 <code>path</code> 中定义的所有文件路径中的文件， <code>exclude_files</code> 用来去掉通配路径中不需要的文件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></div><p><code>log</code> 类型的列表项中 <code>path</code> 和 <code>exclude_files</code> 可以用来定义需要被 filebeat 收集的文件，默认会收集 <code>path</code> 中定义的所有文件路径中的文件， <code>exclude_files</code> 用来去掉通配路径中不需要的文件。</p>
 <h3 id="common-options">Common options</h3>
 <p>filebeat 将逻辑上的单条日志当作一个 event 来处理，并使用 <a href="https://www.elastic.co/guide/en/ecs/current/ecs-base.html">Elastic Common Schema</a> 来描述 event ，其中具体的日志内容的存储字段将是 <code>event.message</code> ，还会带有 <code>event.@timestamp</code> ， <code>event.tags</code> ， <code>event.labels</code> 这些元数据字段，而 inputs Common options 中的某些配置可以直接影响 event 中的字段内容。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></code></pre></div><p><code>tags</code> 中的内容会直接出现在 <code>event.tags</code> 字段中，可以用于后续处理的重要标识。而 <code>fields</code> 和 <code>fields_under_root</code> 是关联出现的，如果 <code>fields_under_root</code> 为 false ，那么 <code>fields</code> 中的所有字段将直接出现在 <code>event.fields</code> 字段中，如果 <code>fields_under_root</code> 为 true ，那么 <code>fields</code> 中的每个子字段会成为 event 的根字段，并且遇到同名字段将以 <code>fields</code> 中定义的内容覆盖。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><p><code>tags</code> 中的内容会直接出现在 <code>event.tags</code> 字段中，可以用于后续处理的重要标识。而 <code>fields</code> 和 <code>fields_under_root</code> 是关联出现的，如果 <code>fields_under_root</code> 为 false ，那么 <code>fields</code> 中的所有字段将直接出现在 <code>event.fields</code> 字段中，如果 <code>fields_under_root</code> 为 true ，那么 <code>fields</code> 中的每个子字段会成为 event 的根字段，并且遇到同名字段将以 <code>fields</code> 中定义的内容覆盖。</p>
 <h3 id="line-配置">line 配置</h3>
 <p>可以通过 <code>exclude_lines</code> 和 <code>include_lines</code> 来具体定义需要收集的内容，它们可以单独或同时出现，但是在同时出现时 <code>include_lines</code> 的优先级永远高于 <code>exclude_lines</code> 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
-</span></code></pre></div><p>关于两者共存的逻辑，具体相关的代码部分是这样的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Harvester</span><span class="p">)</span> <span class="nf">shouldExportLine</span><span class="p">(</span><span class="nx">line</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">IncludeLines</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="p">!</span><span class="nx">harvester</span><span class="p">.</span><span class="nf">MatchAny</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">IncludeLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span> <span class="p">{</span>
-			<span class="c1">// drop line
-</span><span class="c1"></span>			<span class="k">return</span> <span class="kc">false</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">ExcludeLines</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-		<span class="k">if</span> <span class="nx">harvester</span><span class="p">.</span><span class="nf">MatchAny</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">ExcludeLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="kc">false</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-
-	<span class="k">return</span> <span class="kc">true</span>
-<span class="p">}</span>
-</code></pre></div><h3 id="multiline-配置">multiline 配置</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></div><p>关于两者共存的逻辑，具体相关的代码部分是这样的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Harvester</span><span class="p">)</span> <span class="nf">shouldExportLine</span><span class="p">(</span><span class="nx">line</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">IncludeLines</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">!</span><span class="nx">harvester</span><span class="p">.</span><span class="nf">MatchAny</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">IncludeLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// drop line
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">ExcludeLines</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">harvester</span><span class="p">.</span><span class="nf">MatchAny</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">ExcludeLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h3 id="multiline-配置">multiline 配置</h3>
 <p>filebeat 还支持将多行日志聚合的功能，需要通过 multiline 相关配置来定义具体的行为。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">multiline.pattern</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;^\[&#39;</span><span class="w">
-</span><span class="w">  </span><span class="nt">multiline.negate</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">multiline.match</span><span class="p">:</span><span class="w"> </span><span class="l">after</span><span class="w">
-</span></code></pre></div><p><code>multiline.pattern</code> 用来定义正则表达式，用来定义需要匹配的行； <code>multiline.negate</code> 用来定义使用 <code>multiline.pattern</code> 进行匹配或者反选， <code>multiline.negate</code> 为 true 则为反选， <code>multiline.negate</code> 为 false 则为匹配； <code>multiline.match</code> 用来定义匹配值向前或者向后组合，具体值有 <code>before</code> 和 <code>after</code> 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">multiline.pattern</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;^\[&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">multiline.negate</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">multiline.match</span><span class="p">:</span><span class="w"> </span><span class="l">after</span><span class="w">
+</span></span></span></code></pre></div><p><code>multiline.pattern</code> 用来定义正则表达式，用来定义需要匹配的行； <code>multiline.negate</code> 用来定义使用 <code>multiline.pattern</code> 进行匹配或者反选， <code>multiline.negate</code> 为 true 则为反选， <code>multiline.negate</code> 为 false 则为匹配； <code>multiline.match</code> 用来定义匹配值向前或者向后组合，具体值有 <code>before</code> 和 <code>after</code> 。</p>
 <p>它的具体工作模式是这样的：首先使用 <code>multiline.pattern</code> 进行逐行比较，根据 <code>multiline.negate</code> 判定该行是聚合行中的子行或者是聚合行的开始行，再根据 <code>multiline.match</code> 进行组合。</p>
 <p>示例中的表达式匹配了使用开头为 <code>[</code> 的行，由于它的 <code>multiline.negate</code> 为 true ，所以不以 <code>[</code> 开头的行被认为是聚合行中的子行，并且根据 <code>multiline.match</code> 的 <code>after</code> ，每次匹配到 <code>[</code> 之后，后续的子行会与它聚合为一行，直到下一符合 <code>[</code> 开头的行为止。</p>
 <h3 id="json-配置">json 配置</h3>
 <p><code>json</code> 配置可以使 filebeat 读取日志文件时将对应的日志内容解析为 json 格式。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></code></pre></div><p>它适用于日志文件本身就是单行 json 格式的场景，因为它默认的解析来源是 <code>event.message</code> 字段，不过这个来源可以通过 <code>message_key</code> 进行修改。其中参数 <code>keys_under_root</code> 和 <code>overwrite_keys</code> 的定义类似于 <code>fields_under_root</code> 的行为，如果成功解析日志，字段都会被添加到 event 中，且同名字段时也是采取覆盖操作。而 <code>add_error_key</code> 则会在解析日志失败时添加 <code>event.error</code> 字段并在其中加入报错信息。解析成功后，不会再出现 <code>event.message</code> 字段。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><p>它适用于日志文件本身就是单行 json 格式的场景，因为它默认的解析来源是 <code>event.message</code> 字段，不过这个来源可以通过 <code>message_key</code> 进行修改。其中参数 <code>keys_under_root</code> 和 <code>overwrite_keys</code> 的定义类似于 <code>fields_under_root</code> 的行为，如果成功解析日志，字段都会被添加到 event 中，且同名字段时也是采取覆盖操作。而 <code>add_error_key</code> 则会在解析日志失败时添加 <code>event.error</code> 字段并在其中加入报错信息。解析成功后，不会再出现 <code>event.message</code> 字段。</p>
 <h3 id="具体行为配置">具体行为配置</h3>
 <p>filebeat 可以通过某些配置项来定义对日志文件的具体操作细节：</p>
 <ul>
@@ -354,230 +360,230 @@ if (!doNotTrack) {
 <p>但是 <code>clean_*</code> 的使用要比较小心，比如在日志写入间隔时间长的场景下，使用不恰当的 <code>clean_inactive</code> 和 <code>clean_removed</code> 可能会发生日志从头读取的情况，而且 <code>clean_inactive</code> 必须大于 <code>ignore_older + scan_frequency</code> ，否则也会出现日志从头读取的情况。</p>
 <h2 id="配置-processor">配置 processor</h2>
 <p>processor 可以用于处理 event 中的数据，它可以配置在各个 input 中独享，也可以在 inputs 之外配置并由所有 input 共享。 filebeat 会优先执行独享的 processors ，再执行共享配置的 processors 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># input 独享 processors</span><span class="w">
-</span><span class="w"></span><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
-</span><span class="w">        </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
-</span><span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;574734885120952459&#39;</span><span class="w">
-</span><span class="w"></span><span class="nn">---</span><span class="w">
-</span><span class="w"></span><span class="c"># inputs 共享 processors</span><span class="w">
-</span><span class="w"></span><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
-</span><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
-</span><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;574734885120952459&#39;</span><span class="w">
-</span></code></pre></div><p>关于 processors 的运行顺序逻辑，具体相关的代码部分是这样的：</p>
-<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kd">type</span> <span class="nx">Processors</span> <span class="kd">struct</span> <span class="p">{</span>
-	<span class="nx">List</span> <span class="p">[]</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Processor</span>
-	<span class="nx">log</span>  <span class="o">*</span><span class="nx">logp</span><span class="p">.</span><span class="nx">Logger</span>
-<span class="p">}</span>
-
-<span class="kd">func</span> <span class="p">(</span><span class="nx">procs</span> <span class="o">*</span><span class="nx">Processors</span><span class="p">)</span> <span class="nf">Run</span><span class="p">(</span><span class="nx">event</span> <span class="o">*</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Event</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Event</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-	<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
-	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">p</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">procs</span><span class="p">.</span><span class="nx">List</span> <span class="p">{</span>
-		<span class="nx">event</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">p</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
-		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="k">return</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed applying processor %v: %w&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-		<span class="p">}</span>
-		<span class="k">if</span> <span class="nx">event</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
-			<span class="c1">// Drop.
-</span><span class="c1"></span>			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span>
-		<span class="p">}</span>
-	<span class="p">}</span>
-	<span class="k">return</span> <span class="nx">event</span><span class="p">,</span> <span class="kc">nil</span>
-<span class="p">}</span>
-</code></pre></div><p>以下会记录一些使用频率比较高的 processor 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># input 独享 processors</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;574734885120952459&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># inputs 共享 processors</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;574734885120952459&#39;</span><span class="w">
+</span></span></span></code></pre></div><p>关于 processors 的运行顺序逻辑，具体相关的代码部分是这样的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Processors</span> <span class="kd">struct</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">List</span> <span class="p">[]</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Processor</span>
+</span></span><span class="line"><span class="cl">	<span class="nx">log</span>  <span class="o">*</span><span class="nx">logp</span><span class="p">.</span><span class="nx">Logger</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">procs</span> <span class="o">*</span><span class="nx">Processors</span><span class="p">)</span> <span class="nf">Run</span><span class="p">(</span><span class="nx">event</span> <span class="o">*</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Event</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Event</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">p</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">procs</span><span class="p">.</span><span class="nx">List</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">		<span class="nx">event</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">p</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed applying processor %v: %w&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">event</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">			<span class="c1">// Drop.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">		<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">event</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><p>以下会记录一些使用频率比较高的 processor 。</p>
 <h3 id="add_fields">add_fields</h3>
 <p><code>add_fields</code> 用来新增 event 中的字段，如果 <code>target</code> 为 <code>&quot;&quot;</code> 则将 <code>fields</code> 内容添加到 event 的根字段，否则将添加 <code>event.$target</code> 的字段， <code>fields</code> 作为这个字段的内容。这个 processor 在具体行为上和 input 的 <code>fields</code> 接近，但 <code>add_fields</code> 使用更加灵活。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
-</span><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
-</span></code></pre></div><h3 id="drop_fields">drop_fields</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
+</span></span></span></code></pre></div><h3 id="drop_fields">drop_fields</h3>
 <p><code>drop_fields</code> 用来丢弃 event 中的某些字段，一般使用会配合 processor 的条件语句，符合条件才执行这个动作，如果不使用条件判断，则默认都会执行这个丢弃动作，这时 <code>ignore_missing</code> 比较重要，可以设置为 true 来屏蔽字段不存在的报错。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">drop_fields</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="l">when：</span><span class="w">
-</span><span class="w">        </span><span class="nt">equals</span><span class="p">:</span><span class="w">
-</span><span class="w">          </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l">OK</span><span class="w">
-</span><span class="w">      </span><span class="nt">ignore_missing</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;field1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;field2&#34;</span><span class="p">]</span><span class="w">
-</span></code></pre></div><h3 id="drop_event">drop_event</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">drop_fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">when：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">equals</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="l">OK</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_missing</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;field1&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;field2&#34;</span><span class="p">]</span><span class="w">
+</span></span></span></code></pre></div><h3 id="drop_event">drop_event</h3>
 <p><code>drop_event</code> 用来将整个 event 丢弃，这样它不会进行后续处理，可以用来屏蔽一些不需要的数据内容。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">drop_event</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="l">when：</span><span class="w">
-</span><span class="w">        </span><span class="nt">or</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- <span class="nt">equals</span><span class="p">:</span><span class="w">
-</span><span class="w">            </span><span class="nt">http_request_uri</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;/health&#39;</span><span class="w">
-</span><span class="w">        </span>- <span class="nt">regexp</span><span class="p">:</span><span class="w">
-</span><span class="w">            </span><span class="nt">http_user_agent</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kube-probe&#39;</span><span class="w">
-</span></code></pre></div><h3 id="convert">convert</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">drop_event</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="l">when：</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">or</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">equals</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">http_request_uri</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;/health&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">regexp</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">http_user_agent</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;kube-probe&#39;</span><span class="w">
+</span></span></span></code></pre></div><h3 id="convert">convert</h3>
 <p><code>convert</code> 用来转换字段的数据类型，比较常用的是字符类型和数值类型的相互转换。其中 <code>ignore_missing</code> 用来忽略无法正确找到 <code>from</code> 来源的错误， <code>fail_on_error</code> 用来忽略转换过程中发生的错误，比如格式错误等。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">convert</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span>- {<span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;src_ip&#34;</span><span class="nt">, to</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;source.ip&#34;</span><span class="nt">, type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ip&#34;</span>}<span class="w">
-</span><span class="w">        </span>- {<span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;src_port&#34;</span><span class="nt">, to</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;source.port&#34;</span><span class="nt">, type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;integer&#34;</span>}<span class="w">
-</span><span class="w">      </span><span class="nt">ignore_missing</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">      </span><span class="nt">fail_on_error</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></code></pre></div><h3 id="dissect">dissect</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">convert</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- {<span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;src_ip&#34;</span><span class="nt">, to</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;source.ip&#34;</span><span class="nt">, type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ip&#34;</span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- {<span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;src_port&#34;</span><span class="nt">, to</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;source.port&#34;</span><span class="nt">, type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;integer&#34;</span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_missing</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fail_on_error</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span></code></pre></div><h3 id="dissect">dissect</h3>
 <p><code>dissect</code> 可以通过给定匹配式截取出需要的数据并且拆分到对应的字段中，可以用于非标准 json 格式日志的信息格式化。其中 <code>target_prefix</code> 与 <code>add_fields</code> 中的 <code>target</code> 类似， <code>ignore_failure</code> 和 <code>overwrite_keys</code> 也同 <code>fields</code> 中错误处理和字段覆写用法相似。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># log_path: /var/log/info.log</span><span class="w">
-</span><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
-</span><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/var/log/%{level}.log&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;log.file.path&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#34;%{detail.pid|integer} - %{detail.name} - %{detail.status}&#34;&#39;</span><span class="w">
-</span><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;message&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="c"># final:</span><span class="w">
-</span><span class="w"></span><span class="c"># {</span><span class="w">
-</span><span class="w"></span><span class="c">#   &#34;level&#34;: &#34;info&#34;,</span><span class="w">
-</span><span class="w"></span><span class="c">#   &#34;detail&#34;: {</span><span class="w">
-</span><span class="w"></span><span class="c">#     &#34;pid&#34;: 789,</span><span class="w">
-</span><span class="w"></span><span class="c">#     &#34;name&#34;: &#34;App02&#34;,</span><span class="w">
-</span><span class="w"></span><span class="c">#     &#34;status&#34;: &#34;Database is will be restarted in 5 minutes&#34;</span><span class="w">
-</span><span class="w"></span><span class="c">#   }</span><span class="w">
-</span><span class="w"></span><span class="c"># }</span><span class="w">
-</span></code></pre></div><p><code>dissect</code> 执行之后，原有的 <code>field</code> 还会保留，如果不再需要这个字段，需要显式调用 <code>drop_fields</code> 这个 processor 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># log_path: /var/log/info.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/var/log/%{level}.log&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;log.file.path&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#34;%{detail.pid|integer} - %{detail.name} - %{detail.status}&#34;&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;message&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># final:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#   &#34;level&#34;: &#34;info&#34;,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#   &#34;detail&#34;: {</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#     &#34;pid&#34;: 789,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#     &#34;name&#34;: &#34;App02&#34;,</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#     &#34;status&#34;: &#34;Database is will be restarted in 5 minutes&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#   }</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># }</span><span class="w">
+</span></span></span></code></pre></div><p><code>dissect</code> 执行之后，原有的 <code>field</code> 还会保留，如果不再需要这个字段，需要显式调用 <code>drop_fields</code> 这个 processor 。</p>
 <h3 id="script">script</h3>
 <p><code>script</code> 可以使用 javascript 来处理 event ，已有的内置函数可以参考<a href="https://www.elastic.co/guide/en/beats/filebeat/current/processor-script.html">官方文档</a>。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># log_path: /var/log/info.log</span><span class="w">
-</span><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
-</span><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/var/log/%{level}.log&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;log.file.path&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#34;%{detail.pid|integer} - %{detail.name} - %{detail.status}&#34;&#39;</span><span class="w">
-</span><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;message&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">script</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">javascript</span><span class="w">
-</span><span class="w">      </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
-</span><span class="sd">        function process(event) {
-</span><span class="sd">          var level = event.Get(&#34;level&#34;);
-</span><span class="sd">          var name = event.Get(&#34;detail.name&#34;);
-</span><span class="sd">          var final_name = name + &#34;-&#34; + level;
-</span><span class="sd">          event.Tag(&#34;javascript&#34;);
-</span><span class="sd">          event.Put(&#34;index&#34;, final_name);
-</span><span class="sd">        }</span><span class="w">        
-</span></code></pre></div><h2 id="配置-output">配置 output</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># log_path: /var/log/info.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/var/log/%{level}.log&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;log.file.path&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#34;%{detail.pid|integer} - %{detail.name} - %{detail.status}&#34;&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;message&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">javascript</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        function process(event) {
+</span></span></span><span class="line"><span class="cl"><span class="sd">          var level = event.Get(&#34;level&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="sd">          var name = event.Get(&#34;detail.name&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="sd">          var final_name = name + &#34;-&#34; + level;
+</span></span></span><span class="line"><span class="cl"><span class="sd">          event.Tag(&#34;javascript&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="sd">          event.Put(&#34;index&#34;, final_name);
+</span></span></span><span class="line"><span class="cl"><span class="sd">        }</span><span class="w">        
+</span></span></span></code></pre></div><h2 id="配置-output">配置 output</h2>
 <p>在输入数据经过处理后，我们还需要配置输出端，指明最终的数据流向。</p>
 <p>当我们处在调试阶段时，可以直接输出到控制台，如果使用 <code>systemd</code> 托管，那么使用 <code>systemctl status filebeat</code> 或者 <code>journalctl -fu filebeat</code> 就可以看到对应的输出。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">output.console</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">pretty</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></code></pre></div><p>在生产环境下，可以直接从 filebeat 把数据输出到 ElasticSearch ，也可以使用 Kafka 这类消息中间件做数据中转，再通过其他方式去消费。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="c"># log_path: /var/log/info.log</span><span class="w">
-</span><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
-</span><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/var/log/%{level}.log&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;log.file.path&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#34;%{detail.pid|integer} - %{detail.name} - %{detail.status}&#34;&#39;</span><span class="w">
-</span><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;message&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span>- <span class="nt">script</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">javascript</span><span class="w">
-</span><span class="w">      </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
-</span><span class="sd">        function process(event) {
-</span><span class="sd">          var level = event.Get(&#34;level&#34;);
-</span><span class="sd">          var name = event.Get(&#34;detail.name&#34;);
-</span><span class="sd">          var final_name = level + &#34;-&#34; + name ;
-</span><span class="sd">          event.Tag(&#34;javascript&#34;);
-</span><span class="sd">          event.Put(&#34;index&#34;, final_name);
-</span><span class="sd">        }</span><span class="w">        
-</span><span class="w">
-</span><span class="w"></span><span class="nt">output.elasticsearch</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;filebeat&#34;</span><span class="w">
-</span><span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;filebeat_password&#34;</span><span class="w">
-</span><span class="w">  </span><span class="nt">indices</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;%{[index]}-%{+yyyy.MM.dd}&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">when.equals</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;info&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;error-%{[detail.name]}-%{+yyyy.MM.dd}&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">when.contains</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ERR&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default-%{+yyyy.MM.dd}&#34;</span><span class="w">
-</span><span class="w">
-</span><span class="w"></span><span class="nt">output.kafka</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;localhost:9092&#34;</span><span class="p">]</span><span class="w">
-</span><span class="w">  </span><span class="nt">required_acks</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
-</span><span class="w">  </span><span class="nt">compression</span><span class="p">:</span><span class="w"> </span><span class="l">gzip</span><span class="w">
-</span><span class="w">  </span><span class="nt">max_message_bytes</span><span class="p">:</span><span class="w"> </span><span class="m">1000000</span><span class="w">
-</span><span class="w">  </span><span class="nt">partition.round_robin</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">reachable_only</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="w">  </span><span class="nt">topics</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;%{[index]}&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">when.equals</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;info&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;error-%{[detail.name]}&#34;</span><span class="w">
-</span><span class="w">      </span><span class="nt">when.contains</span><span class="p">:</span><span class="w">
-</span><span class="w">        </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ERR&#34;</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default&#34;</span><span class="w">
-</span></code></pre></div><p>两者的配置方式非常接近，但应该根据实际情况来选择输出，在日志量巨大的情况下还是输出到 Kafka 比较合适，在 Kafka 配置中需要注意的是 <code>max_message_bytes</code> 的默认值为 1M ，它应该和 Kafka 的 <code>message.max.bytes</code> 设置一致，而且在日志体过大的时候应该重新调整，否则可能会丢失日志。</p></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">output.console</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pretty</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span></code></pre></div><p>在生产环境下，可以直接从 filebeat 把数据输出到 ElasticSearch ，也可以使用 Kafka 这类消息中间件做数据中转，再通过其他方式去消费。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># log_path: /var/log/info.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/var/log/%{level}.log&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;log.file.path&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">dissect</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">tokenizer</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;&#34;%{detail.pid|integer} - %{detail.name} - %{detail.status}&#34;&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target_prefix</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;message&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">lang</span><span class="p">:</span><span class="w"> </span><span class="l">javascript</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="p">&gt;</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        function process(event) {
+</span></span></span><span class="line"><span class="cl"><span class="sd">          var level = event.Get(&#34;level&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="sd">          var name = event.Get(&#34;detail.name&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="sd">          var final_name = level + &#34;-&#34; + name ;
+</span></span></span><span class="line"><span class="cl"><span class="sd">          event.Tag(&#34;javascript&#34;);
+</span></span></span><span class="line"><span class="cl"><span class="sd">          event.Put(&#34;index&#34;, final_name);
+</span></span></span><span class="line"><span class="cl"><span class="sd">        }</span><span class="w">        
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">output.elasticsearch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;https://localhost:9200&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;filebeat&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">password</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;filebeat_password&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">indices</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;%{[index]}-%{+yyyy.MM.dd}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when.equals</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;info&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;error-%{[detail.name]}-%{+yyyy.MM.dd}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when.contains</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ERR&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default-%{+yyyy.MM.dd}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">output.kafka</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">hosts</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;localhost:9092&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">required_acks</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">compression</span><span class="p">:</span><span class="w"> </span><span class="l">gzip</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">max_message_bytes</span><span class="p">:</span><span class="w"> </span><span class="m">1000000</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">partition.round_robin</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">reachable_only</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">topics</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;%{[index]}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when.equals</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">level</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;info&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;error-%{[detail.name]}&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">when.contains</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">status</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ERR&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">topic</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;default&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>两者的配置方式非常接近，但应该根据实际情况来选择输出，在日志量巨大的情况下还是输出到 Kafka 比较合适，在 Kafka 配置中需要注意的是 <code>max_message_bytes</code> 的默认值为 1M ，它应该和 Kafka 的 <code>message.max.bytes</code> 设置一致，而且在日志体过大的时候应该重新调整，否则可能会丢失日志。</p></article>
               </div>
             </div>
           </div>
@@ -594,7 +600,7 @@ if (!doNotTrack) {
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

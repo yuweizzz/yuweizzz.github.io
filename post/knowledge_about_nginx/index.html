@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录 Nginx 的编译安装和基本使用。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_nginx/" />
 <meta property="og:site_name" content="Nginx 使用笔记" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -216,25 +223,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录 Nginx 的编译安装和基本使用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="安装-nginx">安装 Nginx</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="安装-nginx">安装 Nginx</h2>
 <p>Nginx 是应用广泛的服务器软件，在 Nginx 的官方文档中可以看到， Nginx 可以应用在多种场景，包括基本 HTTP 服务器，代理服务器，邮件代理服务器。由于支持的特性非常多，所以安装的时候需要考虑的地方也相应增多了。</p>
 <p>我们可以选择编译安装或者提供官网提供给对应发行版的软件包进行安装，使用软件包安装基本上只要解决软件源的问题就可以了，使用编译安装虽然比较麻烦，但是更适用于需要定制的软件特性的场景。</p>
 <p>需要的源码包或者软件包的安装方式都可以在 Nginx 的<a href="http://nginx.org/">官网</a>找到，在这里只介绍编译安装。</p>
@@ -246,11 +252,11 @@ if (!doNotTrack) {
 <li>auto : configure 脚本需要调用 auto 中的各个脚本文件完成配置工作。</li>
 </ul>
 <p>Nginx 源码包使用 autoconf 生成 configure 脚本，这种源码包的使用方式一般都是通过 configure 文件配置编译选项并生成 Makefile ，再通过 Makefile 进行编译和安装。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 由 autoconf 生成配置脚本的源码包编译时的一般步骤</span>
-$ ./configure
-$ make 
-$ make install
-</code></pre></div><p>在 configure 执行时，我们可以选择是否编译某些功能特性，使用了 autoconf 的源码包都有这一特点。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 由 autoconf 生成配置脚本的源码包编译时的一般步骤</span>
+</span></span><span class="line"><span class="cl">$ ./configure
+</span></span><span class="line"><span class="cl">$ make 
+</span></span><span class="line"><span class="cl">$ make install
+</span></span></code></pre></div><p>在 configure 执行时，我们可以选择是否编译某些功能特性，使用了 autoconf 的源码包都有这一特点。</p>
 <p>在 Nginx 的编译安装时，我们可以选择编译某个模块来开启某个功能特性。其中， HTTP 服务模块是默认支持的，而邮件服务模块和传输层服务模块并不会默认支持，需要在编译时额外指定。</p>
 <h3 id="常用模块">常用模块</h3>
 <p>Nginx 默认作为 HTTP 服务器工作，所以 HTTP 模块是 Nginx 的核心，但是这个模块可以强制禁用，方法是在 configure 执行时带上 <code>--without-http</code> 参数。</p>
@@ -267,50 +273,50 @@ $ make install
 <p>更多的编译信息可以参照 Nginx <a href="http://nginx.org/en/docs/configure.html">官方网站</a>。</p>
 <h3 id="编译安装">编译安装</h3>
 <p>下面给出最小的编译参考例子。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># rewrite 模块使用 prce 正则表达式，依赖 pcre 库</span>
-$ yum install pcre-devel pcre
-<span class="c1"># gzip 模块依赖 zlib 库</span>
-$ yum install zlib-devel zlib
-<span class="c1"># ssl 模块依赖 openssl 库</span>
-$ yum install openssl-devel openssl
-<span class="c1"># 添加 nginx 用户组</span>
-$ groupadd nginx
-<span class="c1"># 添加 nginx 用户</span>
-$ useradd nginx -g nginx -s /sbin/nologin -M
-$ ./configure --prefix<span class="o">=</span>/opt -user<span class="o">=</span>nginx -group<span class="o">=</span>nginx --with-http_ssl_module
-<span class="c1"># 不指定 prefix 则默认安装在 /usr/local 的 nginx 中</span>
-<span class="c1"># 执行编译并安装</span>
-$ make <span class="o">&amp;&amp;</span> make install
-<span class="c1"># 直接启动服务</span>
-$ /opt/nginx/sbin/nginx 
-</code></pre></div><h2 id="使用-nginx">使用 Nginx</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># rewrite 模块使用 prce 正则表达式，依赖 pcre 库</span>
+</span></span><span class="line"><span class="cl">$ yum install pcre-devel pcre
+</span></span><span class="line"><span class="cl"><span class="c1"># gzip 模块依赖 zlib 库</span>
+</span></span><span class="line"><span class="cl">$ yum install zlib-devel zlib
+</span></span><span class="line"><span class="cl"><span class="c1"># ssl 模块依赖 openssl 库</span>
+</span></span><span class="line"><span class="cl">$ yum install openssl-devel openssl
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加 nginx 用户组</span>
+</span></span><span class="line"><span class="cl">$ groupadd nginx
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加 nginx 用户</span>
+</span></span><span class="line"><span class="cl">$ useradd nginx -g nginx -s /sbin/nologin -M
+</span></span><span class="line"><span class="cl">$ ./configure --prefix<span class="o">=</span>/opt -user<span class="o">=</span>nginx -group<span class="o">=</span>nginx --with-http_ssl_module
+</span></span><span class="line"><span class="cl"><span class="c1"># 不指定 prefix 则默认安装在 /usr/local 的 nginx 中</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行编译并安装</span>
+</span></span><span class="line"><span class="cl">$ make <span class="o">&amp;&amp;</span> make install
+</span></span><span class="line"><span class="cl"><span class="c1"># 直接启动服务</span>
+</span></span><span class="line"><span class="cl">$ /opt/nginx/sbin/nginx 
+</span></span></code></pre></div><h2 id="使用-nginx">使用 Nginx</h2>
 <p>Nginx 通过 nginx.conf 文件来配置各项服务。</p>
 <h3 id="基本配置实例">基本配置实例</h3>
 <p>以下的例子是 Nginx 安装时提供的配置。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat nginx.conf
-worker_processes  1<span class="p">;</span>
-events <span class="o">{</span>
-    worker_connections  1024<span class="p">;</span>
-<span class="o">}</span>
-http <span class="o">{</span>
-    include       mime.types<span class="p">;</span>
-    default_type  application/octet-stream<span class="p">;</span>
-    sendfile        on<span class="p">;</span>
-    keepalive_timeout  65<span class="p">;</span>
-    server <span class="o">{</span>
-        listen       80<span class="p">;</span>
-        server_name  localhost<span class="p">;</span>
-        location / <span class="o">{</span>
-            root   html<span class="p">;</span>
-            index  index.html index.htm<span class="p">;</span>
-        <span class="o">}</span>
-        error_page   <span class="m">500</span> <span class="m">502</span> <span class="m">503</span> <span class="m">504</span>  /50x.html<span class="p">;</span>
-        <span class="nv">location</span> <span class="o">=</span> /50x.html <span class="o">{</span>
-            root   html<span class="p">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div><p>Nginx 是通过 master process 和 worker process 协同工作的，其中 master process 承担管控工作， worker process 承担具体请求处理工作。一般会设置多个 worker process 提高工作效率，数量通常是机器的硬件 CPU 核数。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat nginx.conf
+</span></span><span class="line"><span class="cl">worker_processes  1<span class="p">;</span>
+</span></span><span class="line"><span class="cl">events <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    worker_connections  1024<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">http <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    include       mime.types<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    default_type  application/octet-stream<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    sendfile        on<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    keepalive_timeout  65<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        listen       80<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        server_name  localhost<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            root   html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">            index  index.html index.htm<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">        error_page   <span class="m">500</span> <span class="m">502</span> <span class="m">503</span> <span class="m">504</span>  /50x.html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="nv">location</span> <span class="o">=</span> /50x.html <span class="o">{</span>
+</span></span><span class="line"><span class="cl">            root   html<span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="o">}</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>Nginx 是通过 master process 和 worker process 协同工作的，其中 master process 承担管控工作， worker process 承担具体请求处理工作。一般会设置多个 worker process 提高工作效率，数量通常是机器的硬件 CPU 核数。</p>
 <p>在 conf 文件中的 worker_processes 是需要启动的 worker process 的数量， worker_connections 则是单个 worker process 负责承载的连接数量。</p>
 <p>在 conf 文件中的 http 域用来配置具体的 HTTP 服务，它的下一级主要是通过 server 来划分不同的作用域。 http 域可以设置 HTTP 一些共有的服务配置，比如列出的 default_type 和 include ，它们主要定义 HTTP 服务的支持传输的类型相关内容， keepalive_timeout 设置长连接的超时时间。</p>
 <p>单个 Nginx http 域可以配置多个 server ，这些 server 甚至可以使用相同的 listen 端口，但需要至少保持不同 server_name 。 server_name 用来配置域名， loaction 用来匹配 url ，它们共同组合定位资源。</p>
@@ -392,72 +398,72 @@ http <span class="o">{</span>
 <p>proxy 模块提供了代理功能，代理实际上就是对请求的转发。</p>
 <p>代理分为正向代理和反向代理，它们的工作本质是一样的，主要不同在于工作的场景，其中正向代理主要是面向用户提供代理服务，受保护的对象是用户，反向代理主要是面向服务端提供代理服务，受保护的对象是服务端。</p>
 <p>一个普通的 http 正向代理配置如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">location / <span class="o">{</span>
-    <span class="c1"># 特殊指定的 dns 服务器</span>
-    resolver 8.8.8.8<span class="p">;</span>
-    <span class="c1"># 请求不做更改</span>
-    proxy_pass <span class="nv">$scheme</span>://<span class="nv">$http_host$request_uri</span><span class="p">;</span>
-<span class="o">}</span>
-</code></pre></div><p>如果用户需要通过代理上网，需要手动设置代理服务器。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 特殊指定的 dns 服务器</span>
+</span></span><span class="line"><span class="cl">    resolver 8.8.8.8<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 请求不做更改</span>
+</span></span><span class="line"><span class="cl">    proxy_pass <span class="nv">$scheme</span>://<span class="nv">$http_host$request_uri</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>如果用户需要通过代理上网，需要手动设置代理服务器。</p>
 <p>一个普通的 http 反向代理配置如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">location / <span class="o">{</span>
-    <span class="c1"># 指向上游服务器，可以配合 upstream 使用</span>
-    proxy_pass        http://localhost<span class="p">;</span>
-    proxy_set_header  Host             <span class="nv">$host</span><span class="p">;</span>
-    proxy_set_header  X-Real-IP        <span class="nv">$remote_addr</span><span class="p">;</span>
-    proxy_set_header  X-Forwarded-For  <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="o">}</span>
-</code></pre></div><p>由于反向代理架构中，真正提供服务的是上游节点，所以代理服务器需要向真正提供服务的节点传递客户信息，要在请求转发时设置一些特殊的头部信息。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 指向上游服务器，可以配合 upstream 使用</span>
+</span></span><span class="line"><span class="cl">    proxy_pass        http://localhost<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header  Host             <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header  X-Real-IP        <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header  X-Forwarded-For  <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>由于反向代理架构中，真正提供服务的是上游节点，所以代理服务器需要向真正提供服务的节点传递客户信息，要在请求转发时设置一些特殊的头部信息。</p>
 <h3 id="upstream-实现负载均衡">upstream 实现负载均衡</h3>
 <p>upstream 提供负载均衡功能，一般配合 proxy 模块使用，可以将反向代理的目的地由一个节点扩展为一个带有负载均衡功能的上游集群。</p>
 <p>一个普通的 http 反向代理和负载均衡配置如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">upstream servers <span class="o">{</span>
-    server server1.com<span class="p">;</span>
-    server server2.com<span class="p">;</span>
-    server server3.com<span class="p">;</span>
-<span class="o">}</span>
-
-location / <span class="o">{</span>
-    <span class="c1"># 指向上游服务器，可以配合 upstream 使用</span>
-    proxy_pass        http://servers<span class="p">;</span>
-    proxy_set_header  Host             <span class="nv">$host</span><span class="p">;</span>
-    proxy_set_header  X-Real-IP        <span class="nv">$remote_addr</span><span class="p">;</span>
-    proxy_set_header  X-Forwarded-For  <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
-<span class="o">}</span>
-</code></pre></div><p>upstream 用来定义上游集群， server 为集群内的具体节点，而且在这些 server 之间， upstream 还提供了多种负载均衡策略，现有的负载均衡策略如下：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">upstream servers <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    server server1.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server2.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server3.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># 指向上游服务器，可以配合 upstream 使用</span>
+</span></span><span class="line"><span class="cl">    proxy_pass        http://servers<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header  Host             <span class="nv">$host</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header  X-Real-IP        <span class="nv">$remote_addr</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    proxy_set_header  X-Forwarded-For  <span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>upstream 用来定义上游集群， server 为集群内的具体节点，而且在这些 server 之间， upstream 还提供了多种负载均衡策略，现有的负载均衡策略如下：</p>
 <ul>
 <li>round-robin ：将请求轮询到负载集群中。</li>
 <li>least-connected ：基于最小连接数决定负载对象。</li>
 <li>ip-hash ：基于请求 IP 地址的散列算法。</li>
 </ul>
 <p>具体的配置方法也非常简单，可以参考下面的例子：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 默认使用轮询策略，所有子节点没有优先级之分</span>
-upstream servers <span class="o">{</span>
-    server server1.com<span class="p">;</span>
-    server server2.com<span class="p">;</span>
-    server server3.com<span class="p">;</span>
-<span class="o">}</span>
-<span class="c1"># 使用加权轮询策略， weight 越大，命中的次数将会越高</span>
-upstream servers <span class="o">{</span>
-    server server1.com <span class="nv">weight</span><span class="o">=</span>3<span class="p">;</span>
-    server server2.com <span class="nv">weight</span><span class="o">=</span>2<span class="p">;</span>
-    server server3.com<span class="p">;</span>
-<span class="o">}</span>
-<span class="c1"># 使用最小连接数策略</span>
-upstream servers <span class="o">{</span>
-    least_conn<span class="p">;</span>
-    server server1.com<span class="p">;</span>
-    server server2.com<span class="p">;</span>
-    server server3.com<span class="p">;</span>
-<span class="o">}</span>
-<span class="c1"># 使用 ip-hash 策略</span>
-upstream servers <span class="o">{</span>
-    ip_hash<span class="p">;</span>
-    server server1.com<span class="p">;</span>
-    server server2.com<span class="p">;</span>
-    server server3.com<span class="p">;</span>
-<span class="o">}</span>
-</code></pre></div><p>对于这些负载均衡策略，轮询策略比较简单，按进站的请求顺序，依次给到后端的节点，达到负载均衡的效果，但是默认的轮询策略比较笨，可以通过加权提高轮询的灵活性。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 默认使用轮询策略，所有子节点没有优先级之分</span>
+</span></span><span class="line"><span class="cl">upstream servers <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    server server1.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server2.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server3.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用加权轮询策略， weight 越大，命中的次数将会越高</span>
+</span></span><span class="line"><span class="cl">upstream servers <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    server server1.com <span class="nv">weight</span><span class="o">=</span>3<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server2.com <span class="nv">weight</span><span class="o">=</span>2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server3.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用最小连接数策略</span>
+</span></span><span class="line"><span class="cl">upstream servers <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    least_conn<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server1.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server2.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server3.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 ip-hash 策略</span>
+</span></span><span class="line"><span class="cl">upstream servers <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    ip_hash<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server1.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server2.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    server server3.com<span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><p>对于这些负载均衡策略，轮询策略比较简单，按进站的请求顺序，依次给到后端的节点，达到负载均衡的效果，但是默认的轮询策略比较笨，可以通过加权提高轮询的灵活性。</p>
 <p>加权轮询可以实现根据权重分配负载， weight 越大，它就会被分配到更多的请求。</p>
 <p>最小连接数策略是检测所有的上游节点，哪个节点上的连接数最小，就将请求发给这个节点。</p>
 <p>比较特殊的是使用 hash 算法的策略， hash 策略的最大特点是可以使来源一致的请求固定到某一个上游节点中，达到保持会话的效果。</p>
@@ -487,7 +493,7 @@ upstream servers <span class="o">{</span>
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

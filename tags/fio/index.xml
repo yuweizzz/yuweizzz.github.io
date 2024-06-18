@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>fio on Wei&#39;s blog</title>
+    <title>Fio on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/fio/</link>
-    <description>Recent content in fio on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Fio on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 10 Jan 2023 15:22:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/fio/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/fio/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>硬件测试工具使用笔记</title>
       <link>https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/</link>
       <pubDate>Tue, 10 Jan 2023 15:22:45 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/</guid>
       <description>&lt;p&gt;这篇笔记用来记录硬件测试工具 fio 和 stream 的使用。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

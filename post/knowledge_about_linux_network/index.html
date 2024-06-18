@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录 Linux 系统下一些网络协议的相关知识。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_linux_network/" />
 <meta property="og:site_name" content="Linux 网络协议知识笔记" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -243,129 +250,128 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录 Linux 系统下一些网络协议的相关知识。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="路由管理">路由管理</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="路由管理">路由管理</h2>
 <p>在 Linux 系统中一般通过 iproute2 对路由进行管理。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ ip route
-default via 10.233.0.1 dev ens33 
-10.233.0.0/16 dev ens33 proto kernel scope link src 10.233.0.2
-</code></pre></div><p>虽然通过 <code>ip route</code> 大部分情况就可以满足基本的场景需求，但是可以使用多张路由表来实现更复杂的流量控制。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># Linux 系统默认定义的路由表，其中 ip route 默认使用的就是 main ，也是大多数情况下默认使用的路由表</span>
-<span class="c1"># /etc/iproute2/rt_tables 用来定义 route table 和 id 的映射关系</span>
-$ cat /etc/iproute2/rt_tables
-<span class="c1">#</span>
-<span class="c1"># reserved values</span>
-<span class="c1">#</span>
-255	<span class="nb">local</span>
-254	main
-253	default
-0	unspec
-<span class="c1">#</span>
-<span class="c1"># local</span>
-<span class="c1">#</span>
-<span class="c1">#1	inr.ruhep</span>
-
-<span class="c1"># 路由表有优先级定义，一般来说 local 表的优先级应该是最高的</span>
-<span class="c1"># 注意这里的数字表示的是 prio 而不是 table id</span>
-$ ip rule show
-0:      from all lookup <span class="nb">local</span>
-32766:  from all lookup main
-32767:  from all lookup default
-
-<span class="c1"># 添加新的路由表</span>
-$ <span class="nb">echo</span> <span class="s2">&#34;101 custom&#34;</span> &gt;&gt; /etc/iproute2/rt_tables  <span class="c1"># 预先定义路由表的映射关系</span>
-$ ip rule add from 10.10.10.0/24 table custom prio <span class="m">101</span>
-$ ip rule show
-0:      from all lookup <span class="nb">local</span>
-101:    from 10.10.10.0/24 lookup custom
-32766:  from all lookup main
-32767:  from all lookup default
-
-<span class="c1"># 可以不定义映射关系，直接通过 id 创建路由表</span>
-$ ip rule add from 10.10.11.0/24 table <span class="m">102</span> prio <span class="m">102</span>
-$ ip rule show
-0:      from all lookup <span class="nb">local</span>
-101:    from 10.10.10.0/24 lookup custom
-102:    from 10.10.11.0/24 lookup <span class="m">102</span>
-32766:  from all lookup main
-32767:  from all lookup default
-
-<span class="c1"># 往新路由表中添加路由规则</span>
-<span class="c1"># 当定义路由的 via 或者 src 时，指定的 IP 地址应该是本机持有的地址</span>
-$ ip route add default via 10.10.11.1 dev ens33 table <span class="m">102</span>        <span class="c1"># 默认网关</span>
-$ ip route add 10.10.11.0/24 dev ens33 src 10.10.11.1 table <span class="m">102</span>  <span class="c1"># 普通路由规则</span>
-
-<span class="c1"># 查看添加规则后的路由表，不指定 table 则默认使用 main 表</span>
-$ ip route show table <span class="m">102</span>
-
-<span class="c1"># 删掉路由表</span>
-$ ip rule del table <span class="m">102</span>
-$ ip rule del table custom  <span class="c1"># 有映射关系的可以使用 id 或者名称</span>
-</code></pre></div><p>多张路由表可以用在多网络出口和特殊子网管理的场景，使用单独的路由表来控制对应的流量，在网络情况复杂的时候会很有用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 通过 iptables 标记流量来指定处理的路由表，在容器网络管理方面经常使用</span>
-$ iptables -t mangle -A FORWARD -i ens33 -j MARK --set-mark <span class="m">1</span>
-$ iptables -t mangle -S
--P PREROUTING ACCEPT
--P INPUT ACCEPT
--P FORWARD ACCEPT
--P OUTPUT ACCEPT
--P POSTROUTING ACCEPT
--A FORWARD -i ens33 -j MARK --set-xmark 0x1/0xffffffff
-
-<span class="c1"># 添加处理对应流量标记的路由表</span>
-$ ip rule add fwmark <span class="m">1</span> table <span class="m">103</span> prio <span class="m">103</span>
-$ ip rule show 
-0:      from all lookup <span class="nb">local</span>
-101:    from 10.10.10.0/24 lookup custom
-102:    from 10.10.11.0/24 lookup <span class="m">102</span>
-103:    from all fwmark 0x1 lookup <span class="m">103</span>
-32766:  from all lookup main
-32767:  from all lookup default
-
-<span class="c1"># cilium 实际上也使用到了流量标记，以下输出是来自一台运行了 cilium 的系统</span>
-$ ip rule show
-9:	from all fwmark 0x200/0xf00 lookup <span class="m">2004</span>
-100:	from all lookup <span class="nb">local</span>
-32766:	from all lookup main
-32767:	from all lookup default
-</code></pre></div><h2 id="mtu-和-mss">MTU 和 MSS</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ ip route
+</span></span><span class="line"><span class="cl">default via 10.233.0.1 dev ens33 
+</span></span><span class="line"><span class="cl">10.233.0.0/16 dev ens33 proto kernel scope link src 10.233.0.2
+</span></span></code></pre></div><p>虽然通过 <code>ip route</code> 大部分情况就可以满足基本的场景需求，但是可以使用多张路由表来实现更复杂的流量控制。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># Linux 系统默认定义的路由表，其中 ip route 默认使用的就是 main ，也是大多数情况下默认使用的路由表</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># /etc/iproute2/rt_tables 用来定义 route table 和 id 的映射关系</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/iproute2/rt_tables
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># reserved values</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl">255	<span class="nb">local</span>
+</span></span><span class="line"><span class="cl">254	main
+</span></span><span class="line"><span class="cl">253	default
+</span></span><span class="line"><span class="cl">0	unspec
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># local</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#1	inr.ruhep</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 路由表有优先级定义，一般来说 local 表的优先级应该是最高的</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 注意这里的数字表示的是 prio 而不是 table id</span>
+</span></span><span class="line"><span class="cl">$ ip rule show
+</span></span><span class="line"><span class="cl">0:      from all lookup <span class="nb">local</span>
+</span></span><span class="line"><span class="cl">32766:  from all lookup main
+</span></span><span class="line"><span class="cl">32767:  from all lookup default
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加新的路由表</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;101 custom&#34;</span> &gt;&gt; /etc/iproute2/rt_tables  <span class="c1"># 预先定义路由表的映射关系</span>
+</span></span><span class="line"><span class="cl">$ ip rule add from 10.10.10.0/24 table custom prio <span class="m">101</span>
+</span></span><span class="line"><span class="cl">$ ip rule show
+</span></span><span class="line"><span class="cl">0:      from all lookup <span class="nb">local</span>
+</span></span><span class="line"><span class="cl">101:    from 10.10.10.0/24 lookup custom
+</span></span><span class="line"><span class="cl">32766:  from all lookup main
+</span></span><span class="line"><span class="cl">32767:  from all lookup default
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以不定义映射关系，直接通过 id 创建路由表</span>
+</span></span><span class="line"><span class="cl">$ ip rule add from 10.10.11.0/24 table <span class="m">102</span> prio <span class="m">102</span>
+</span></span><span class="line"><span class="cl">$ ip rule show
+</span></span><span class="line"><span class="cl">0:      from all lookup <span class="nb">local</span>
+</span></span><span class="line"><span class="cl">101:    from 10.10.10.0/24 lookup custom
+</span></span><span class="line"><span class="cl">102:    from 10.10.11.0/24 lookup <span class="m">102</span>
+</span></span><span class="line"><span class="cl">32766:  from all lookup main
+</span></span><span class="line"><span class="cl">32767:  from all lookup default
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 往新路由表中添加路由规则</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 当定义路由的 via 或者 src 时，指定的 IP 地址应该是本机持有的地址</span>
+</span></span><span class="line"><span class="cl">$ ip route add default via 10.10.11.1 dev ens33 table <span class="m">102</span>        <span class="c1"># 默认网关</span>
+</span></span><span class="line"><span class="cl">$ ip route add 10.10.11.0/24 dev ens33 src 10.10.11.1 table <span class="m">102</span>  <span class="c1"># 普通路由规则</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看添加规则后的路由表，不指定 table 则默认使用 main 表</span>
+</span></span><span class="line"><span class="cl">$ ip route show table <span class="m">102</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删掉路由表</span>
+</span></span><span class="line"><span class="cl">$ ip rule del table <span class="m">102</span>
+</span></span><span class="line"><span class="cl">$ ip rule del table custom  <span class="c1"># 有映射关系的可以使用 id 或者名称</span>
+</span></span></code></pre></div><p>多张路由表可以用在多网络出口和特殊子网管理的场景，使用单独的路由表来控制对应的流量，在网络情况复杂的时候会很有用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 通过 iptables 标记流量来指定处理的路由表，在容器网络管理方面经常使用</span>
+</span></span><span class="line"><span class="cl">$ iptables -t mangle -A FORWARD -i ens33 -j MARK --set-mark <span class="m">1</span>
+</span></span><span class="line"><span class="cl">$ iptables -t mangle -S
+</span></span><span class="line"><span class="cl">-P PREROUTING ACCEPT
+</span></span><span class="line"><span class="cl">-P INPUT ACCEPT
+</span></span><span class="line"><span class="cl">-P FORWARD ACCEPT
+</span></span><span class="line"><span class="cl">-P OUTPUT ACCEPT
+</span></span><span class="line"><span class="cl">-P POSTROUTING ACCEPT
+</span></span><span class="line"><span class="cl">-A FORWARD -i ens33 -j MARK --set-xmark 0x1/0xffffffff
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加处理对应流量标记的路由表</span>
+</span></span><span class="line"><span class="cl">$ ip rule add fwmark <span class="m">1</span> table <span class="m">103</span> prio <span class="m">103</span>
+</span></span><span class="line"><span class="cl">$ ip rule show 
+</span></span><span class="line"><span class="cl">0:      from all lookup <span class="nb">local</span>
+</span></span><span class="line"><span class="cl">101:    from 10.10.10.0/24 lookup custom
+</span></span><span class="line"><span class="cl">102:    from 10.10.11.0/24 lookup <span class="m">102</span>
+</span></span><span class="line"><span class="cl">103:    from all fwmark 0x1 lookup <span class="m">103</span>
+</span></span><span class="line"><span class="cl">32766:  from all lookup main
+</span></span><span class="line"><span class="cl">32767:  from all lookup default
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cilium 实际上也使用到了流量标记，以下输出是来自一台运行了 cilium 的系统</span>
+</span></span><span class="line"><span class="cl">$ ip rule show
+</span></span><span class="line"><span class="cl">9:	from all fwmark 0x200/0xf00 lookup <span class="m">2004</span>
+</span></span><span class="line"><span class="cl">100:	from all lookup <span class="nb">local</span>
+</span></span><span class="line"><span class="cl">32766:	from all lookup main
+</span></span><span class="line"><span class="cl">32767:	from all lookup default
+</span></span></code></pre></div><h2 id="mtu-和-mss">MTU 和 MSS</h2>
 <p>在使用 openconnect 搭建 VPN 服务时，比较有意思的地方就是 tunnel 的 MTU 设定。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 搭建 VPN 服务时用到的防火墙配置，其中 10.10.10.0/24 是 VPN 服务所使用的网段</span>
-$ iptables -t filter -A FORWARD -s 10.10.10.0/24 -j ACCEPT
-$ iptables -t filter -A FORWARD -o vpns+ -j ACCEPT
-$ iptables -t filter -A FORWARD -i vpns+ -j ACCEPT
-$ iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o eth0 -j MASQUERADE
-<span class="c1"># 有一些说法指出防火墙还需要配置下面这条规则</span>
-$ iptables -A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
-
-<span class="c1"># 连接 VPN 后查看新建立的 tunnel</span>
-$ ip tuntap show
-tun0: tun
-$ ip addr show tun0
-27: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu <span class="m">1472</span> qdisc pfifo_fast state UNKNOWN group default qlen <span class="m">500</span>
-    link/none
-    inet 10.10.10.101/32 scope global tun0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::ec6a:a1a5:de04:9aa3/64 scope link flags <span class="m">800</span>
-       valid_lft forever preferred_lft forever
-</code></pre></div><p>openconnect 使用 tun 设备来连接客户端和服务端， tun 设备是 Linux 系统下的虚拟三层网络设备，可以看到这里使用的 MTU 值是 1472 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 搭建 VPN 服务时用到的防火墙配置，其中 10.10.10.0/24 是 VPN 服务所使用的网段</span>
+</span></span><span class="line"><span class="cl">$ iptables -t filter -A FORWARD -s 10.10.10.0/24 -j ACCEPT
+</span></span><span class="line"><span class="cl">$ iptables -t filter -A FORWARD -o vpns+ -j ACCEPT
+</span></span><span class="line"><span class="cl">$ iptables -t filter -A FORWARD -i vpns+ -j ACCEPT
+</span></span><span class="line"><span class="cl">$ iptables -t nat -A POSTROUTING -s 10.10.10.0/24 -o eth0 -j MASQUERADE
+</span></span><span class="line"><span class="cl"><span class="c1"># 有一些说法指出防火墙还需要配置下面这条规则</span>
+</span></span><span class="line"><span class="cl">$ iptables -A FORWARD -p tcp -m tcp --tcp-flags SYN,RST SYN -j TCPMSS --clamp-mss-to-pmtu
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 连接 VPN 后查看新建立的 tunnel</span>
+</span></span><span class="line"><span class="cl">$ ip tuntap show
+</span></span><span class="line"><span class="cl">tun0: tun
+</span></span><span class="line"><span class="cl">$ ip addr show tun0
+</span></span><span class="line"><span class="cl">27: tun0: &lt;POINTOPOINT,MULTICAST,NOARP,UP,LOWER_UP&gt; mtu <span class="m">1472</span> qdisc pfifo_fast state UNKNOWN group default qlen <span class="m">500</span>
+</span></span><span class="line"><span class="cl">    link/none
+</span></span><span class="line"><span class="cl">    inet 10.10.10.101/32 scope global tun0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 fe80::ec6a:a1a5:de04:9aa3/64 scope link flags <span class="m">800</span>
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span></code></pre></div><p>openconnect 使用 tun 设备来连接客户端和服务端， tun 设备是 Linux 系统下的虚拟三层网络设备，可以看到这里使用的 MTU 值是 1472 。</p>
 <p>MTU 是网络层的概念，它定义了网络传输中允许数据包通过的最大值，这个值的计算已经包括数据包标头在内，而 TCP MSS 是除去标头部分后 TCP 协议传输实际数据内容的最大值，是传输层的概念。因为标准以太网接口的 MTU 是 1500 bytes ，而 TCP 协议标头和 IP 协议标头都是 20 bytes ，所以标准以太网下对应的 TCP MSS 就是 1460 bytes 。</p>
 <p>MTU 和 TCP MSS 的重要区别是，当数据包超过目标设备的 MTU 则会导致数据的分包或者丢弃，这种情况会降低传输效率。而在 TCP 协议的传输过程中，双方可以进行 MSS 通告，然后根据双方提供的 MSS 值中的最小值确定连接的具体 MSS 值。</p>
 <p>一般来说， VPN 软件可能会添加一些自定义的数据包标头，所以为了保险起见，在创建 tun 设备时，会尽量使用低于 1500 的 MTU 值，这样当隧道中的数据包驮载到以太网设备中传输时，尽量做到保持数据包大小在标准以太网接口 MTU 之内。这一点可以参考 gre tunnel 的实现， gre tunnel 经常使用 1476 的 MTU 值，因为它需要 24 bytes 作为数据包标头。在 gre tunnel 的数据包中，包括了均为 20 bytes 的 TCP 协议标头和 IP 协议标头，这样它的 MSS 应该设置为 1436 bytes 是最合理，当数据包从 tunnel 中发出时，还需要添加 24 bytes 的数据包标头，最后总共就是 1500 bytes 的数据包格式。更多的详细信息可以参考思科的<a href="https://www.cisco.com/c/zh_cn/support/docs/ip/generic-routing-encapsulation-gre/25885-pmtud-ipfrag.html">官方文档</a>。</p>
@@ -387,7 +393,7 @@ $ ip addr show tun0
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

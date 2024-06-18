@@ -4,17 +4,16 @@
     <title>VMware Workstation on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/vmware-workstation/</link>
     <description>Recent content in VMware Workstation on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Thu, 23 Jul 2020 22:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/vmware-workstation/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/vmware-workstation/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VMware Workstation 虚拟机共享宿主机磁盘目录</title>
       <link>https://yuweizzz.github.io/post/share_folder_in_vmware_workstation/</link>
       <pubDate>Thu, 23 Jul 2020 22:00:00 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/share_folder_in_vmware_workstation/</guid>
       <description>&lt;p&gt;这篇笔记用来记录如何把宿主机的磁盘目录共享到 VMware Workstation 创建的虚拟机之中。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录一些常用的 Git 命令。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/tips_about_git/" />
 <meta property="og:site_name" content="常用 Git 命令笔记" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -216,25 +223,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些常用的 Git 命令。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="前言">前言</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="前言">前言</h2>
 <p>使用 Git 可以有条理地管理代码，尤其是在大型项目和团队开发的场合，熟练使用 Git 是开发人员的基本功。</p>
 <p>想要熟练使用 Git 的最好办法是了解 Git 的基本原理和实践。</p>
 <h2 id="快速了解-git-术语">快速了解 Git 术语</h2>
@@ -245,38 +251,37 @@ if (!doNotTrack) {
 <li>提交 (commit) ：可以视为整个代码仓库的不同版本，提交会推进仓库的版本更新。</li>
 </ul>
 <h2 id="创建并配置本地仓库">创建并配置本地仓库</h2>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ <span class="nb">cd</span> repository
-$ git init
-</code></pre></div><p>这样 repository 目录就是一个 Git 本地仓库，后续用来添加项目代码文件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> repository
+</span></span><span class="line"><span class="cl">$ git init
+</span></span></code></pre></div><p>这样 repository 目录就是一个 Git 本地仓库，后续用来添加项目代码文件。</p>
 <p>初始化仓库后，仓库会带有一些默认的配置，我们可以根据需要去查询或者修改。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># config -l用来查看仓库属性</span>
-<span class="c1"># 如果要使用 github 的远程仓库，至少应该为仓库配置用户名和邮箱</span>
-<span class="c1"># --global 和 --local 可以用来设定属性是 git 全局属性还是单一仓库属性</span>
-$ git config -l 
-$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.name <span class="s2">&#34;your name&#34;</span> 
-$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.email <span class="s2">&#34;your@email.com&#34;</span> 
-</code></pre></div><h2 id="转换仓库中文件的状态">转换仓库中文件的状态</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># config -l用来查看仓库属性</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果要使用 github 的远程仓库，至少应该为仓库配置用户名和邮箱</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --global 和 --local 可以用来设定属性是 git 全局属性还是单一仓库属性</span>
+</span></span><span class="line"><span class="cl">$ git config -l 
+</span></span><span class="line"><span class="cl">$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.name <span class="s2">&#34;your name&#34;</span> 
+</span></span><span class="line"><span class="cl">$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.email <span class="s2">&#34;your@email.com&#34;</span> 
+</span></span></code></pre></div><h2 id="转换仓库中文件的状态">转换仓库中文件的状态</h2>
 <p>下面是一个 Git 仓库实例，基本覆盖了文件状态之间的转换：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git status
-<span class="c1"># On branch master</span>
-<span class="c1"># Changes to be committed:</span>
-<span class="c1">#   (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)</span>
-<span class="c1">#</span>
-<span class="c1">#   modified:   fileA</span>
-<span class="c1">#</span>
-<span class="c1"># Changes not staged for commit:</span>
-<span class="c1">#   (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)</span>
-<span class="c1">#   (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)</span>
-<span class="c1">#   (commit or discard the untracked or modified content in submodules)</span>
-<span class="c1">#</span>
-<span class="c1">#   modified:   fileB</span>
-<span class="c1">#</span>
-<span class="c1"># Untracked files:</span>
-<span class="c1">#   (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)</span>
-<span class="c1">#</span>
-<span class="c1">#   fileC</span>
-
-</code></pre></div><p>这里引入了 Git 仓库<strong>工作区</strong>和<strong>暂存区</strong>的概念：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git status
+</span></span><span class="line"><span class="cl"><span class="c1"># On branch master</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Changes to be committed:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   (use &#34;git reset HEAD &lt;file&gt;...&#34; to unstage)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   modified:   fileA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Changes not staged for commit:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   (use &#34;git add &lt;file&gt;...&#34; to update what will be committed)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   (use &#34;git checkout -- &lt;file&gt;...&#34; to discard changes in working directory)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   (commit or discard the untracked or modified content in submodules)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   modified:   fileB</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Untracked files:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   (use &#34;git add &lt;file&gt;...&#34; to include in what will be committed)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#   fileC</span>
+</span></span></code></pre></div><p>这里引入了 Git 仓库<strong>工作区</strong>和<strong>暂存区</strong>的概念：</p>
 <ul>
 <li>
 <p>上面的仓库包含了多种文件，FileA ，FileB ，FileC 处于同一个工作区，工作区 (workspace) 可以简单认为是仓库所在目录，其中存放了各种不同状态的文件。</p>
@@ -295,62 +300,62 @@ $ git config <span class="o">[</span>--global<span class="p">|</span>--local<spa
 <h3 id="添加和删除文件">添加和删除文件</h3>
 <p>添加文件和暂存文件都使用了 add 命令，删除文件使用 rm 命令。</p>
 <p>通过删除文件，我们可以把文件排除出工作区 (untracked) ，如果是某些特定种类的文件需要排除，推荐使用 .gitignore 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git add &lt;file&gt;
-<span class="c1"># add 用于 tracked 和 staged</span>
-
-$ git rm <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>--cached<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> &lt;file&gt;
-<span class="c1"># rm 用来移除文件</span>
-<span class="c1"># rm 带 -f 选项会删除工作区和暂存区文件，即本地文件也会被删除</span>
-<span class="c1"># rm 带 --cached 选项会删除暂存区文件，工作区文件不会被改变</span>
-<span class="c1"># -- 选项用来把操作限制在当前分支</span>
-</code></pre></div><h3 id="文件的重置">文件的重置</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git add &lt;file&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># add 用于 tracked 和 staged</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git rm <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>--cached<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> &lt;file&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># rm 用来移除文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rm 带 -f 选项会删除工作区和暂存区文件，即本地文件也会被删除</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rm 带 --cached 选项会删除暂存区文件，工作区文件不会被改变</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -- 选项用来把操作限制在当前分支</span>
+</span></span></code></pre></div><h3 id="文件的重置">文件的重置</h3>
 <p>需要丢弃不想要的修改，可以使用 reset 命令或者 checkout 命令。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git reset HEAD &lt;file&gt;
-<span class="c1"># reset 指令涉及 git 的实现原理，HEAD 是指向当前分支最新 commit 的指针</span>
-<span class="c1"># 这里只能用于回退暂存区文件，后面会有涉及这一步的解释</span>
-
-$ git checkout -- &lt;file&gt;
-<span class="c1"># checkout 其实是用于分支的命令，-- 用来把操作限制在当前分支</span>
-<span class="c1"># 这里用于将文件恢复到上次 add 的暂存区版本或 commit 保存的版本</span>
-<span class="c1"># 这个命令会改变实际文件，有一定风险</span>
-</code></pre></div><h2 id="提交到新版本">提交到新版本</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git reset HEAD &lt;file&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># reset 指令涉及 git 的实现原理，HEAD 是指向当前分支最新 commit 的指针</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里只能用于回退暂存区文件，后面会有涉及这一步的解释</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git checkout -- &lt;file&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># checkout 其实是用于分支的命令，-- 用来把操作限制在当前分支</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里用于将文件恢复到上次 add 的暂存区版本或 commit 保存的版本</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个命令会改变实际文件，有一定风险</span>
+</span></span></code></pre></div><h2 id="提交到新版本">提交到新版本</h2>
 <p>文件修改，重置，暂存一系列操作，都是为了将代码修改到我们认可的程度，然后 commit 到分支中，产生新的版本库，一次或多次的 commit 可以视为一个新的版本库。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git commit -m &lt;msg&gt;
-<span class="c1"># 提交暂存区的文件到版本库， -m 为提交的说明信息</span>
-
-$ git commit --amend <span class="o">[</span>&lt;msg&gt;<span class="o">]</span>
-<span class="c1"># 修改上次 commit ，可以添加提交暂存区文件并修改上次 commit 说明信息</span>
-</code></pre></div><p>这样所有 staged 的文件就会被提交到一个新的版本库中了。我们还会得到一个 commit id ，这是非常重要的依据，后续版本库的管理都是基于 commit id 来实现的。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git commit -m &lt;msg&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 提交暂存区的文件到版本库， -m 为提交的说明信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git commit --amend <span class="o">[</span>&lt;msg&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改上次 commit ，可以添加提交暂存区文件并修改上次 commit 说明信息</span>
+</span></span></code></pre></div><p>这样所有 staged 的文件就会被提交到一个新的版本库中了。我们还会得到一个 commit id ，这是非常重要的依据，后续版本库的管理都是基于 commit id 来实现的。</p>
 <p>带 &ndash;amend 的 commit 指令可以在一次提交后，追加位于暂存区的文件变动。使用这个命令后只会有一个提交，本次带 &ndash;amend 的提交将代替上一次提交的结果。如果暂存区是干净的，可以使用这个命令修改上次 commit 的说明信息。</p>
 <h2 id="对-commit-进行检查">对 commit 进行检查</h2>
 <p>在经过一定的开发时间后，仓库必然会产生很多 commit ，可以使用 log 和 diff 进行检查。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git log
-<span class="c1"># 查看 commit 历史记录，可以看到简要的提交信息</span>
-
-$ git show &lt;object&gt;
-<span class="c1"># 用来查看 commit 的具体变动，默认为最近一次 commit 的详细信息</span>
-<span class="c1"># 可以通过指定 commit id 来查看不同 commit </span>
-
-$ git reflog
-<span class="c1"># 类似于 bash history，它会输出 commit 操作的历史记录，可以作为版本回退和误操作恢复的依据</span>
-
-$ git diff &lt;commit&gt; &lt;commit&gt; <span class="o">[</span>--<span class="o">]</span> <span class="o">[</span>&lt;path&gt;...<span class="o">]</span>
-<span class="c1"># 用来查看不同 commit 之间的所有文件的变动，可以指定单个文件</span>
-
-$ git diff --cached <span class="o">[</span>&lt;commit&gt;<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> <span class="o">[</span>&lt;path&gt;...<span class="o">]</span>
-<span class="c1"># 除了用于 commit 外，还可以用来查看暂存区和工作区的文件变动</span>
-</code></pre></div><h2 id="回退-commit">回退 commit</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git log
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 commit 历史记录，可以看到简要的提交信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git show &lt;object&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 用来查看 commit 的具体变动，默认为最近一次 commit 的详细信息</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以通过指定 commit id 来查看不同 commit </span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git reflog
+</span></span><span class="line"><span class="cl"><span class="c1"># 类似于 bash history，它会输出 commit 操作的历史记录，可以作为版本回退和误操作恢复的依据</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git diff &lt;commit&gt; &lt;commit&gt; <span class="o">[</span>--<span class="o">]</span> <span class="o">[</span>&lt;path&gt;...<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 用来查看不同 commit 之间的所有文件的变动，可以指定单个文件</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git diff --cached <span class="o">[</span>&lt;commit&gt;<span class="o">]</span> <span class="o">[</span>--<span class="o">]</span> <span class="o">[</span>&lt;path&gt;...<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 除了用于 commit 外，还可以用来查看暂存区和工作区的文件变动</span>
+</span></span></code></pre></div><h2 id="回退-commit">回退 commit</h2>
 <p>如果需要撤消 commit ，恢复原有的代码版本，需要用到 reset 指令。</p>
 <p>在 reset 命令中，我们经常会看到 HEAD 的使用，它用来指向当前分支的最新 commit ，所以最新 commit 的上一个版本使用 HEAD^ 表示，上上一个版本使用 HEAD^^ 表示，这是一种便捷写法，使用对应 commit id 也是一样的效果。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># reset 的使用参数</span>
-$ git reset <span class="o">[</span>--mixed <span class="p">|</span> --soft <span class="p">|</span> --hard <span class="p">|</span> --merge <span class="p">|</span> --keep<span class="o">]</span> <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>&lt;commit&gt;<span class="o">]</span>
-<span class="c1"># --mixed               reset HEAD and index</span>
-<span class="c1"># --soft                reset only HEAD</span>
-<span class="c1"># --hard                reset HEAD, index and working tree</span>
-<span class="c1"># --merge               reset HEAD, index and working tree</span>
-<span class="c1"># --keep                reset HEAD but keep local changes</span>
-<span class="c1"># -q, --quiet           be quiet, only report errors</span>
-</code></pre></div><p>可以看到 reset 有五种工作模式，但我在使用的时候一般只用到 mixed ， soft 和 hard 三种：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># reset 的使用参数</span>
+</span></span><span class="line"><span class="cl">$ git reset <span class="o">[</span>--mixed <span class="p">|</span> --soft <span class="p">|</span> --hard <span class="p">|</span> --merge <span class="p">|</span> --keep<span class="o">]</span> <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>&lt;commit&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --mixed               reset HEAD and index</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --soft                reset only HEAD</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --hard                reset HEAD, index and working tree</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --merge               reset HEAD, index and working tree</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --keep                reset HEAD but keep local changes</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -q, --quiet           be quiet, only report errors</span>
+</span></span></code></pre></div><p>可以看到 reset 有五种工作模式，但我在使用的时候一般只用到 mixed ， soft 和 hard 三种：</p>
 <ul>
 <li>mixed ：默认的工作模式，这个模式会影响 commit 和暂存区保存的文件变动。</li>
 <li>soft ：这个模式的影响对象是 commit ，所以实际效果看起來就只有 commit 的消失，也就是 HEAD 指向了更旧的 commit 。 commit 回退后，文件变化会存放在暂存区。</li>
@@ -361,71 +366,71 @@ $ git reset <span class="o">[</span>--mixed <span class="p">|</span> --soft <spa
 <p>此外还有一个值得注意的地方， reset 命令可以应用于单个文件，但仅限于 mixed 模式， hard 模式和 soft 模式均无法对单文件作用。</p>
 <p>如果需要撤销 commit ，但不具体恢复到某个原有的代码版本，需要用到 revert 指令。</p>
 <p>revert 的使用方法类似于 reset ，但它不会改变 commit 的历史记录，而是在最新 commit 的基础上，将所指定 commit 的文件变动还原，并将这个过程提交为一个新的 commit 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># revert 的使用参数</span>
-$ git revert &lt;commit&gt;
-<span class="c1"># 执行后将会产生新的 commit 的提交，默认将以 revert 信息作为 commit 信息</span>
-</code></pre></div><h2 id="分支管理">分支管理</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># revert 的使用参数</span>
+</span></span><span class="line"><span class="cl">$ git revert &lt;commit&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行后将会产生新的 commit 的提交，默认将以 revert 信息作为 commit 信息</span>
+</span></span></code></pre></div><h2 id="分支管理">分支管理</h2>
 <p>简单项目可能没有使用到多分支，但如果是大型项目和团队开发项目，一般都会有多分支，多分支的好处在于开发过程中，各分支之间互不干扰，代码维护起来方便简单。</p>
 <p>分支创建，分支删除和分支合并是分支管理比较常用的操作，其中分支合并应该是多分支场景最重要的操作，当不同分支上的开发进行到一定程度时，可以将所涉及的文件变化都合并到同个分支中，然后这个分支就拥有了最新版本的文件。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># git branch 会列出当前已有分支，并以 * 标识目前所在的分支</span>
-$ git branch
-* master
-  branchA
-  branchB
-
-<span class="c1"># 创建一个新的分支。</span>
-$ git branch &lt;branch name&gt;
-
-<span class="c1"># 创建和切换到目的分支。</span>
-$ git checkout -b &lt;branch name&gt;
-<span class="c1"># -b 切换到目的分支，如果目的分支不存在，则会创建它后再执行切换</span>
-
-<span class="c1"># 删除一个分支</span>
-$ git branch <span class="o">[</span> -d <span class="p">|</span> -D <span class="o">]</span> &lt;branch name&gt;
-<span class="c1"># -d 删除分支时还会检查分支是否已经合并，如果未合并，那么删除不会执行</span>
-<span class="c1"># -D 和 -d 的区别在于不检查分支的合并情况，直接执行删除</span>
-
-<span class="c1"># 合并分支</span>
-<span class="c1"># 需要先切换到旧的分支中</span>
-$ git checkout &lt;old branch name&gt;
-<span class="c1"># 然后将新改动的分支合并到旧的分支中</span>
-$ git merge &lt;new branch name&gt;
-<span class="c1"># 最理想的情况是 Fast-forward ，如果不同分支中的改动有冲突，则需要手动解决后才能合并</span>
-</code></pre></div><h2 id="工作区改动入栈暂存">工作区改动入栈暂存</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># git branch 会列出当前已有分支，并以 * 标识目前所在的分支</span>
+</span></span><span class="line"><span class="cl">$ git branch
+</span></span><span class="line"><span class="cl">* master
+</span></span><span class="line"><span class="cl">  branchA
+</span></span><span class="line"><span class="cl">  branchB
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建一个新的分支。</span>
+</span></span><span class="line"><span class="cl">$ git branch &lt;branch name&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建和切换到目的分支。</span>
+</span></span><span class="line"><span class="cl">$ git checkout -b &lt;branch name&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># -b 切换到目的分支，如果目的分支不存在，则会创建它后再执行切换</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除一个分支</span>
+</span></span><span class="line"><span class="cl">$ git branch <span class="o">[</span> -d <span class="p">|</span> -D <span class="o">]</span> &lt;branch name&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># -d 删除分支时还会检查分支是否已经合并，如果未合并，那么删除不会执行</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -D 和 -d 的区别在于不检查分支的合并情况，直接执行删除</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 合并分支</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 需要先切换到旧的分支中</span>
+</span></span><span class="line"><span class="cl">$ git checkout &lt;old branch name&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 然后将新改动的分支合并到旧的分支中</span>
+</span></span><span class="line"><span class="cl">$ git merge &lt;new branch name&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 最理想的情况是 Fast-forward ，如果不同分支中的改动有冲突，则需要手动解决后才能合并</span>
+</span></span></code></pre></div><h2 id="工作区改动入栈暂存">工作区改动入栈暂存</h2>
 <p>如果我们需要临时切换到其他分支，而不想对现有工作区进行暂存和提交，希望它保持原状，可以使用 stash 来将工作区入栈保存。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git stash
-<span class="c1"># 保存暂存区和工作区的文件改动</span>
-
-$ git stash list
-<span class="c1"># 显示入栈暂存的情况</span>
-
-$ git stash pop
-<span class="c1"># 恢复已入栈的文件改动到工作区，默认会把工作区和暂存区的改动都恢复到工作区</span>
-$ git stash pop --index 
-<span class="c1"># 在默认的基础上，除了工作区的文件改动，还会将原来暂存区的改动恢复到暂存区</span>
-
-$ git stash drop <span class="o">[</span>&lt;stash&gt;<span class="o">]</span>
-<span class="c1"># 删除一个已入栈的工作区变动，如果不指定具体的 stash ，则默认删除最新入栈的 stash 。</span>
-
-$ git stash clear
-<span class="c1"># 删除所有已入栈的工作区变动</span>
-</code></pre></div><h2 id="标签管理">标签管理</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git stash
+</span></span><span class="line"><span class="cl"><span class="c1"># 保存暂存区和工作区的文件改动</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git stash list
+</span></span><span class="line"><span class="cl"><span class="c1"># 显示入栈暂存的情况</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git stash pop
+</span></span><span class="line"><span class="cl"><span class="c1"># 恢复已入栈的文件改动到工作区，默认会把工作区和暂存区的改动都恢复到工作区</span>
+</span></span><span class="line"><span class="cl">$ git stash pop --index 
+</span></span><span class="line"><span class="cl"><span class="c1"># 在默认的基础上，除了工作区的文件改动，还会将原来暂存区的改动恢复到暂存区</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git stash drop <span class="o">[</span>&lt;stash&gt;<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除一个已入栈的工作区变动，如果不指定具体的 stash ，则默认删除最新入栈的 stash 。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git stash clear
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除所有已入栈的工作区变动</span>
+</span></span></code></pre></div><h2 id="标签管理">标签管理</h2>
 <p>标签 tag 可以认为是一个特殊的分支，我们通过给分支中的某个 commit 打上标签，用来作为代码的版本信息管理依据。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ git tag -l
-<span class="c1"># 列出历史 tag 信息</span>
-
-$ git tag v1.0
-<span class="c1"># 新增标签</span>
-
-$ git tag -d v1.0
-<span class="c1"># 删除已有标签</span>
-
-$ git push origin v1.0
-<span class="c1"># 将已有标签同步到远程仓库</span>
-
-$ git push origin :v1.0
-<span class="c1"># 将远程仓库中的标签删除</span>
-</code></pre></div><h2 id="结语">结语</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git tag -l
+</span></span><span class="line"><span class="cl"><span class="c1"># 列出历史 tag 信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git tag v1.0
+</span></span><span class="line"><span class="cl"><span class="c1"># 新增标签</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git tag -d v1.0
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除已有标签</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git push origin v1.0
+</span></span><span class="line"><span class="cl"><span class="c1"># 将已有标签同步到远程仓库</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ git push origin :v1.0
+</span></span><span class="line"><span class="cl"><span class="c1"># 将远程仓库中的标签删除</span>
+</span></span></code></pre></div><h2 id="结语">结语</h2>
 <p>这篇笔记基本覆盖了本地使用 Git 时的可能会使用的命令，它们的复杂度并不高，我们只需要记忆这些实际应用中使用率比较高的命令，更复杂的命令可以在需要时再查阅。</p></article>
               </div>
             </div>
@@ -443,7 +448,7 @@ $ git push origin :v1.0
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

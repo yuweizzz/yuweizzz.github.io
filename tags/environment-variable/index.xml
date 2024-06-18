@@ -4,17 +4,16 @@
     <title>Environment Variable on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/environment-variable/</link>
     <description>Recent content in Environment Variable on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 29 Mar 2020 20:41:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/environment-variable/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/environment-variable/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>配置 Linux 环境变量</title>
       <link>https://yuweizzz.github.io/post/tips_about_environment_variable/</link>
       <pubDate>Sun, 29 Mar 2020 20:41:45 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/tips_about_environment_variable/</guid>
       <description>&lt;p&gt;这篇笔记用来记录配置 Linux 环境变量的相关知识。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

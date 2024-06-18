@@ -4,17 +4,16 @@
     <title>Hugo on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/hugo/</link>
     <description>Recent content in Hugo on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 05 Jul 2021 21:08:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>在网页上添加 Live2D 看板娘</title>
       <link>https://yuweizzz.github.io/post/add_live2d_on_hugo_website/</link>
       <pubDate>Mon, 05 Jul 2021 21:08:45 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/add_live2d_on_hugo_website/</guid>
       <description>&lt;p&gt;在 Hugo 静态网站添加 Live2D 看板娘。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

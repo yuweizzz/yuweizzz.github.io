@@ -4,26 +4,23 @@
     <title>VictoriaMetrics on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/victoriametrics/</link>
     <description>Recent content in VictoriaMetrics on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 16 Dec 2023 10:00:00 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/victoriametrics/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/victoriametrics/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>VictoriaMetrics API 和常用的 PromQL</title>
       <link>https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/</link>
       <pubDate>Sat, 16 Dec 2023 10:00:00 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/</guid>
       <description>&lt;p&gt;这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>解决使用 VictoriaMetrics 时的连接重置问题</title>
       <link>https://yuweizzz.github.io/post/fix_connection_reset_error_when_query_from_victoriametrics/</link>
       <pubDate>Fri, 15 Dec 2023 10:00:00 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/fix_connection_reset_error_when_query_from_victoriametrics/</guid>
       <description>&lt;p&gt;这篇笔记用来记录如何解决使用 VictoriaMetrics 过程中查询端出现 connection reset by peer 报错的问题。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

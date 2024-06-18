@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="搭建 k3s 集群，同时使用 Cilium 和 APISIX Ingress Controller 。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/install_k3s_cluster/" />
 <meta property="og:site_name" content="搭建 k3s 集群" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -192,7 +199,7 @@ if (!doNotTrack) {
                         </div>
                       </div>
                     </details-menu>
-                      1552 Words
+                      1550 Words
                     
 
                   </div>
@@ -234,67 +241,66 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>搭建 k3s 集群，同时使用 Cilium 和 APISIX Ingress Controller 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="安装-k3s">安装 k3s</h2>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 使用 etcd 作为配置中心</span>
-apt install etcd-server etcd-client
-
-<span class="c1"># 安装 k3s</span>
-<span class="c1"># 禁用网络策略 --disable-network-policy</span>
-<span class="c1"># 修改配置中心 --datastore-endpoint</span>
-<span class="c1"># 启用内置 iptables 替换系统使用的版本 --prefer-bundled-bin</span>
-<span class="c1"># 禁用组件 kube-proxy, flannel, traefik, metrics-server, servicelb</span>
-<span class="nb">export</span> <span class="nv">INSTALL_K3S_EXEC</span><span class="o">=</span><span class="s1">&#39;--datastore-endpoint=http://127.0.0.1:2379 --disable-network-policy --flannel-backend=none --disable-kube-proxy --disable=traefik --disable=servicelb --disable=metrics-server --prefer-bundled-bin&#39;</span>
-
-<span class="c1"># 禁用 metrics-server 可能会导致 HPA 不可用，应该根据项目情况来禁用这一选项。</span>
-
-<span class="c1"># 执行安装</span>
-curl -sfL https://get.k3s.io <span class="p">|</span> sh -
-<span class="c1"># 中国用户可以通过以下命令加速安装，避免出现下载失败的问题</span>
-curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh <span class="p">|</span> <span class="nv">INSTALL_K3S_MIRROR</span><span class="o">=</span>cn sh -
-</code></pre></div><p>因为后续会使用 cilium 替换默认的 flannel 网络插件，需要先使用 <code>--disable-network-policy</code> 和 <code>--flannel-backend=none</code> 禁止 k3s 自动安装网络插件。同时会通过 cilium 来彻底替换 kube-proxy ，所以会使用 <code>--disable-kube-proxy</code> 禁止 k3s 启动相关的组件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="安装-k3s">安装 k3s</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 etcd 作为配置中心</span>
+</span></span><span class="line"><span class="cl">apt install etcd-server etcd-client
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 k3s</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用网络策略 --disable-network-policy</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改配置中心 --datastore-endpoint</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用内置 iptables 替换系统使用的版本 --prefer-bundled-bin</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用组件 kube-proxy, flannel, traefik, metrics-server, servicelb</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">INSTALL_K3S_EXEC</span><span class="o">=</span><span class="s1">&#39;--datastore-endpoint=http://127.0.0.1:2379 --disable-network-policy --flannel-backend=none --disable-kube-proxy --disable=traefik --disable=servicelb --disable=metrics-server --prefer-bundled-bin&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用 metrics-server 可能会导致 HPA 不可用，应该根据项目情况来禁用这一选项。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行安装</span>
+</span></span><span class="line"><span class="cl">curl -sfL https://get.k3s.io <span class="p">|</span> sh -
+</span></span><span class="line"><span class="cl"><span class="c1"># 中国用户可以通过以下命令加速安装，避免出现下载失败的问题</span>
+</span></span><span class="line"><span class="cl">curl -sfL https://rancher-mirror.rancher.cn/k3s/k3s-install.sh <span class="p">|</span> <span class="nv">INSTALL_K3S_MIRROR</span><span class="o">=</span>cn sh -
+</span></span></code></pre></div><p>因为后续会使用 cilium 替换默认的 flannel 网络插件，需要先使用 <code>--disable-network-policy</code> 和 <code>--flannel-backend=none</code> 禁止 k3s 自动安装网络插件。同时会通过 cilium 来彻底替换 kube-proxy ，所以会使用 <code>--disable-kube-proxy</code> 禁止 k3s 启动相关的组件。</p>
 <p>traefik 的功能由 Apisix Ingress 接管， servicelb 的功能则通过 cilium 的 L2 Announcement 实现。</p>
 <h2 id="安装-cilium">安装 cilium</h2>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 helm</span>
-curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 <span class="p">|</span> sh -
-
-<span class="c1"># 安装 cilium</span>
-helm repo add cilium https://helm.cilium.io/  
-helm repo update
-<span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span>/etc/rancher/k3s/k3s.yaml
-helm upgrade --install cilium cilium/cilium --version 1.15.1 <span class="se">\
-</span><span class="se"></span>    --create-namespace --namespace cilium <span class="se">\
-</span><span class="se"></span>    --set operator.replicas<span class="o">=</span><span class="m">1</span> <span class="se">\
-</span><span class="se"></span>    --set ipam.mode<span class="o">=</span>cluster-pool <span class="se">\
-</span><span class="se"></span>    --set ipam.operator.clusterPoolIPv4PodCIDRList<span class="o">=</span>10.0.0.0/16 <span class="se">\
-</span><span class="se"></span>    --set <span class="nv">routingMode</span><span class="o">=</span>native <span class="se">\
-</span><span class="se"></span>    --set <span class="nv">autoDirectNodeRoutes</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span><span class="se"></span>    --set <span class="nv">ipv4NativeRoutingCIDR</span><span class="o">=</span>10.0.0.0/16 <span class="se">\
-</span><span class="se"></span>    --set bpf.masquerade<span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span><span class="se"></span>    --set <span class="nv">kubeProxyReplacement</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span><span class="se"></span>    --set loadBalancer.mode<span class="o">=</span>dsr <span class="se">\
-</span><span class="se"></span>    --set loadBalancer.acceleration<span class="o">=</span>native <span class="se">\
-</span><span class="se"></span>    --set hubble.relay.enabled<span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span><span class="se"></span>    --set hubble.ui.enabled<span class="o">=</span><span class="nb">true</span> <span class="se">\
-</span><span class="se"></span>    --set <span class="nv">installNoConntrackIptablesRules</span><span class="o">=</span><span class="nb">true</span>
-</code></pre></div><p>cilium helm 参数可以参考以下信息：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 helm</span>
+</span></span><span class="line"><span class="cl">curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 <span class="p">|</span> sh -
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 cilium</span>
+</span></span><span class="line"><span class="cl">helm repo add cilium https://helm.cilium.io/  
+</span></span><span class="line"><span class="cl">helm repo update
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span>/etc/rancher/k3s/k3s.yaml
+</span></span><span class="line"><span class="cl">helm upgrade --install cilium cilium/cilium --version 1.15.1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --create-namespace --namespace cilium <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set operator.replicas<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set ipam.mode<span class="o">=</span>cluster-pool <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set ipam.operator.clusterPoolIPv4PodCIDRList<span class="o">=</span>10.0.0.0/16 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set <span class="nv">routingMode</span><span class="o">=</span>native <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set <span class="nv">autoDirectNodeRoutes</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set <span class="nv">ipv4NativeRoutingCIDR</span><span class="o">=</span>10.0.0.0/16 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set bpf.masquerade<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set <span class="nv">kubeProxyReplacement</span><span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set loadBalancer.mode<span class="o">=</span>dsr <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set loadBalancer.acceleration<span class="o">=</span>native <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set hubble.relay.enabled<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set hubble.ui.enabled<span class="o">=</span><span class="nb">true</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set <span class="nv">installNoConntrackIptablesRules</span><span class="o">=</span><span class="nb">true</span>
+</span></span></code></pre></div><p>cilium helm 参数可以参考以下信息：</p>
 <ul>
 <li><code>operator.replicas</code> 的默认值是 2 ，这里使用 1 个副本就足够了。</li>
 <li><code>ipam.mode</code> 默认就是 cluster-pool 模式，相应的要通过 <code>ipam.operator.clusterPoolIPv4PodCIDRList</code> 用来设置允许分配的 Pod CIDR 范围。</li>
@@ -316,84 +322,84 @@ helm upgrade --install cilium cilium/cilium --version 1.15.1 <span class="se">\
 </ul>
 <p>关于性能优化的部分可以参考<a href="https://docs.cilium.io/en/stable/operations/performance/tuning/">官方文档</a> ，关于 Host-Routing ， installNoConntrackIptablesRules 等性能优化的选项都可以找到对应说明。</p>
 <p>正常安装后通过 cilium pod 查看安装信息和配置情况。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看 cilium 状态</span>
-kubectl <span class="nb">exec</span> -it -n cilium cilium-5r2nh -- cilium status --verbose
-
-<span class="c1"># 以下是命令的输出结果，已经省略了部分内容</span>
-KubeProxyReplacement:   True   <span class="o">[</span>ens192   192.168.10.100 fe80::20c:29ff:fe89:c031 <span class="o">(</span>Direct Routing<span class="o">)]</span>
-Cilium:                 Ok   1.15.1 <span class="o">(</span>v1.15.1-a368c8f0<span class="o">)</span>
-<span class="c1"># Host Routing 在内核支持 ebpf 和使用 KubeProxyReplacement 等条件下会使用 BPF ，默认是 Legacy</span>
-Host Routing:           BPF
-<span class="c1"># bpf.masquerade 需要设置为 true ，否则此处使用 iptables</span>
-Masquerading:           BPF   <span class="o">[</span>ens192<span class="o">]</span>   10.0.0.0/16 <span class="o">[</span>IPv4: Enabled, IPv6: Disabled<span class="o">]</span>
-<span class="c1"># 开启 Hubble</span>
-Hubble:                  Ok   Current/Max Flows: 4095/4095 <span class="o">(</span>100.00%<span class="o">)</span>, Flows/s: 11.27   Metrics: Disabled
-KubeProxyReplacement Details:
-  <span class="c1"># kubeProxyReplacement 需要设置为 true</span>
-  Status:                 True
-  Socket LB:              Enabled
-  Socket LB Tracing:      Enabled
-  Socket LB Coverage:     Full
-  Devices:                ens192   192.168.10.100 fe80::20c:29ff:fe89:c031 <span class="o">(</span>Direct Routing<span class="o">)</span>
-  <span class="c1"># loadBalancer.mode 需要设置为 dsr</span>
-  Mode:                   DSR
-    DSR Dispatch Mode:    IP Option/Extension
-  Backend Selection:      Random
-  Session Affinity:       Enabled
-  Graceful Termination:   Enabled
-  NAT46/64 Support:       Disabled
-  <span class="c1"># 如果 loadBalancer.acceleration 设置为 native ，此处应该会被启用</span>
-  XDP Acceleration:       Disabled
-</code></pre></div><p>使用 cilium 的 L2 Announcement 可以在内网环境下直接实现 LoadBalancer 类型的 service 。这个功能对 cilium 的版本有一定要求，并且必须使用 kubeProxyReplacement 模式。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 可以在之前的步骤中直接开启，也可以在安装 cilium 之后重新启用</span>
-<span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span>/etc/rancher/k3s/k3s.yaml
-helm upgrade cilium cilium/cilium <span class="se">\
-</span><span class="se"></span>    --namespace cilium <span class="se">\
-</span><span class="se"></span>    --reuse-values <span class="se">\
-</span><span class="se"></span>    --set l2announcements.enabled<span class="o">=</span><span class="nb">true</span>
-</code></pre></div><p>启用相关配置后，需要新增两个 cilium crd ，其中 CiliumLoadBalancerIPPool 设定的 CIDR 范围必须是内网可以路由的网段。而 CiliumL2AnnouncementPolicy 则是用来设置 L2 Announcement 具体生效的集群节点。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yaml" data-lang="yaml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;cilium.io/v2alpha1&#34;</span><span class="w">
-</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">CiliumL2AnnouncementPolicy</span><span class="w">
-</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">policy</span><span class="w">
-</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">matchExpressions</span><span class="p">:</span><span class="w">
-</span><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">node-role.kubernetes.io/control-plane</span><span class="w">
-</span><span class="w">        </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l">Exists</span><span class="w">
-</span><span class="w">  </span><span class="nt">interfaces</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="l">ens192</span><span class="w">
-</span><span class="w">  </span><span class="nt">externalIPs</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w">  </span><span class="nt">loadBalancerIPs</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="w"></span><span class="nn">---</span><span class="w">
-</span><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;cilium.io/v2alpha1&#34;</span><span class="w">
-</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">CiliumLoadBalancerIPPool</span><span class="w">
-</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;lb-ip-pool&#34;</span><span class="w">
-</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">cidrs</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;192.168.20.0/24&#34;</span><span class="w">
-</span></code></pre></div><p>同时新增一个可供测试的 service 资源。</p>
-<div class="highlight"><pre class="chroma"><code class="language-yml" data-lang="yml"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
-</span><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
-</span><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hubble-ui</span><span class="w">
-</span><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">cilium</span><span class="w">
-</span><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">LoadBalancer</span><span class="w">
-</span><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span><span class="nt">k8s-app</span><span class="p">:</span><span class="w"> </span><span class="l">hubble-ui</span><span class="w">
-</span><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8081</span><span class="w">
-</span><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8081</span><span class="w">
-</span></code></pre></div><p>此时新增的 service 应该带有 EXTERNAL-IP 并且它处在我们赋予的 CiliumLoadBalancerIPPool 范围内，此时子网内的其他设备应该可以直接访问这个 service 。同时也会增加具体的 Lease 资源，可以通过 <code>kubectl get leases -n cilium</code> 检查。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看 cilium 状态</span>
+</span></span><span class="line"><span class="cl">kubectl <span class="nb">exec</span> -it -n cilium cilium-5r2nh -- cilium status --verbose
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 以下是命令的输出结果，已经省略了部分内容</span>
+</span></span><span class="line"><span class="cl">KubeProxyReplacement:   True   <span class="o">[</span>ens192   192.168.10.100 fe80::20c:29ff:fe89:c031 <span class="o">(</span>Direct Routing<span class="o">)]</span>
+</span></span><span class="line"><span class="cl">Cilium:                 Ok   1.15.1 <span class="o">(</span>v1.15.1-a368c8f0<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Host Routing 在内核支持 ebpf 和使用 KubeProxyReplacement 等条件下会使用 BPF ，默认是 Legacy</span>
+</span></span><span class="line"><span class="cl">Host Routing:           BPF
+</span></span><span class="line"><span class="cl"><span class="c1"># bpf.masquerade 需要设置为 true ，否则此处使用 iptables</span>
+</span></span><span class="line"><span class="cl">Masquerading:           BPF   <span class="o">[</span>ens192<span class="o">]</span>   10.0.0.0/16 <span class="o">[</span>IPv4: Enabled, IPv6: Disabled<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 开启 Hubble</span>
+</span></span><span class="line"><span class="cl">Hubble:                  Ok   Current/Max Flows: 4095/4095 <span class="o">(</span>100.00%<span class="o">)</span>, Flows/s: 11.27   Metrics: Disabled
+</span></span><span class="line"><span class="cl">KubeProxyReplacement Details:
+</span></span><span class="line"><span class="cl">  <span class="c1"># kubeProxyReplacement 需要设置为 true</span>
+</span></span><span class="line"><span class="cl">  Status:                 True
+</span></span><span class="line"><span class="cl">  Socket LB:              Enabled
+</span></span><span class="line"><span class="cl">  Socket LB Tracing:      Enabled
+</span></span><span class="line"><span class="cl">  Socket LB Coverage:     Full
+</span></span><span class="line"><span class="cl">  Devices:                ens192   192.168.10.100 fe80::20c:29ff:fe89:c031 <span class="o">(</span>Direct Routing<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># loadBalancer.mode 需要设置为 dsr</span>
+</span></span><span class="line"><span class="cl">  Mode:                   DSR
+</span></span><span class="line"><span class="cl">    DSR Dispatch Mode:    IP Option/Extension
+</span></span><span class="line"><span class="cl">  Backend Selection:      Random
+</span></span><span class="line"><span class="cl">  Session Affinity:       Enabled
+</span></span><span class="line"><span class="cl">  Graceful Termination:   Enabled
+</span></span><span class="line"><span class="cl">  NAT46/64 Support:       Disabled
+</span></span><span class="line"><span class="cl">  <span class="c1"># 如果 loadBalancer.acceleration 设置为 native ，此处应该会被启用</span>
+</span></span><span class="line"><span class="cl">  XDP Acceleration:       Disabled
+</span></span></code></pre></div><p>使用 cilium 的 L2 Announcement 可以在内网环境下直接实现 LoadBalancer 类型的 service 。这个功能对 cilium 的版本有一定要求，并且必须使用 kubeProxyReplacement 模式。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 可以在之前的步骤中直接开启，也可以在安装 cilium 之后重新启用</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">KUBECONFIG</span><span class="o">=</span>/etc/rancher/k3s/k3s.yaml
+</span></span><span class="line"><span class="cl">helm upgrade cilium cilium/cilium <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --namespace cilium <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --reuse-values <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>    --set l2announcements.enabled<span class="o">=</span><span class="nb">true</span>
+</span></span></code></pre></div><p>启用相关配置后，需要新增两个 cilium crd ，其中 CiliumLoadBalancerIPPool 设定的 CIDR 范围必须是内网可以路由的网段。而 CiliumL2AnnouncementPolicy 则是用来设置 L2 Announcement 具体生效的集群节点。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;cilium.io/v2alpha1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">CiliumL2AnnouncementPolicy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">policy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">nodeSelector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matchExpressions</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">node-role.kubernetes.io/control-plane</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">operator</span><span class="p">:</span><span class="w"> </span><span class="l">Exists</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">interfaces</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">ens192</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">externalIPs</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">loadBalancerIPs</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;cilium.io/v2alpha1&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">CiliumLoadBalancerIPPool</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;lb-ip-pool&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">cidrs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">cidr</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;192.168.20.0/24&#34;</span><span class="w">
+</span></span></span></code></pre></div><p>同时新增一个可供测试的 service 资源。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yml" data-lang="yml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">hubble-ui</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">cilium</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">LoadBalancer</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">k8s-app</span><span class="p">:</span><span class="w"> </span><span class="l">hubble-ui</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8081</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">8081</span><span class="w">
+</span></span></span></code></pre></div><p>此时新增的 service 应该带有 EXTERNAL-IP 并且它处在我们赋予的 CiliumLoadBalancerIPPool 范围内，此时子网内的其他设备应该可以直接访问这个 service 。同时也会增加具体的 Lease 资源，可以通过 <code>kubectl get leases -n cilium</code> 检查。</p>
 <h2 id="安装-apisix-ingress-controller">安装 APISIX Ingress Controller</h2>
 <p>这里使用的是无需 etcd 的集成模式。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">git clone --depth <span class="m">1</span> --branch 1.7.0 https://github.com/apache/apisix-ingress-controller.git ingress-apisix-1.7.0
-<span class="nb">cd</span> ingress-apisix-1.7.0
-kubectl apply -k samples/deploy/crd/v1/
-kubectl apply -f samples/deploy/composite.yaml 
-</code></pre></div></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git clone --depth <span class="m">1</span> --branch 1.7.0 https://github.com/apache/apisix-ingress-controller.git ingress-apisix-1.7.0
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> ingress-apisix-1.7.0
+</span></span><span class="line"><span class="cl">kubectl apply -k samples/deploy/crd/v1/
+</span></span><span class="line"><span class="cl">kubectl apply -f samples/deploy/composite.yaml 
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>
@@ -410,7 +416,7 @@ kubectl apply -f samples/deploy/composite.yaml
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

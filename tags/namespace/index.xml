@@ -4,17 +4,16 @@
     <title>Namespace on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/namespace/</link>
     <description>Recent content in Namespace on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Fri, 13 May 2022 20:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/namespace/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/namespace/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>实现容器技术的基础：Namespace 与 Cgroup</title>
       <link>https://yuweizzz.github.io/post/knowledge_about_namespace_and_cgroup/</link>
       <pubDate>Fri, 13 May 2022 20:44:45 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/knowledge_about_namespace_and_cgroup/</guid>
       <description>&lt;p&gt;这篇笔记用来记录 Namespace 与 Cgroup 的相关知识。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

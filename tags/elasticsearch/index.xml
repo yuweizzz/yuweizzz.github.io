@@ -4,17 +4,16 @@
     <title>ElasticSearch on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/elasticsearch/</link>
     <description>Recent content in ElasticSearch on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 04 Jan 2022 22:22:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/elasticsearch/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Python 知识笔记</title>
       <link>https://yuweizzz.github.io/post/knowledge_about_python/</link>
       <pubDate>Tue, 04 Jan 2022 22:22:45 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/knowledge_about_python/</guid>
       <description>&lt;p&gt;这篇笔记用来记录一些 python 编程的相关知识。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

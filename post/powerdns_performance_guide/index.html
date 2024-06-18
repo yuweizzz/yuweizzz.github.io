@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录 PowerDNS 的性能优化。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/powerdns_performance_guide/" />
 <meta property="og:site_name" content="PowerDNS 调优" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -243,25 +250,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录 PowerDNS 的性能优化。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="powerdns-的特点">PowerDNS 的特点</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="powerdns-的特点">PowerDNS 的特点</h2>
 <p>PowerDNS 和 BIND 一样，都是 DNS 服务软件。</p>
 <p>PowerDNS 比较大的特色在于它把权威解析和递归解析的能力拆解开来分为两个服务，负责权威解析的是 pdns authoritative server ，负责递归解析的是 pdns recursor server 。我认为这种拆解是有利的，它将不同的解析流量区分，排查问题时会更方便，对后续的性能瓶颈分析也是有利的。</p>
 <p>PowerDNS 支持各种各样的后端，可以是文件系统，也可以是通用关系型数据库，虽然 BIND 可以通过 DLZ 来实现关系型数据库作为记录的存储后端，但从支持的后端多样性来看，明显是 PowerDNS 更丰富。</p>
@@ -286,15 +292,15 @@ if (!doNotTrack) {
 <p>然后是配置中的 reuseport 这个特性开关，它是通过启用内核的 SO_REUSEPORT 选项来使得多个套接字可以在同个端口监听，如果内核版本过低不支持 SO_REUSEPORT ，那么不管这个选项如何设置，它都是默认关闭的。</p>
 <p>设置多个 receiver thread 和开启 reuseport 的两者组合应该是最佳性能的工作方式，这样内核会将请求均衡到各个 receiver thread 中，获取比较好的性能表现。</p>
 <p>最终的优化配置大概如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 假设是 4 核机器，单个 MySQL 作为 backend</span>
-$ cat pdns.conf
-cache-ttl<span class="o">=</span><span class="m">60</span>
-query-cache-ttl<span class="o">=</span><span class="m">60</span>
-negquery-cache-ttl<span class="o">=</span><span class="m">60</span>
-distributor-threads<span class="o">=</span><span class="m">1</span>
-receiver-threads<span class="o">=</span><span class="m">4</span>
-<span class="nv">reuseport</span><span class="o">=</span>yes
-</code></pre></div><h2 id="recursor-server-的性能调优">Recursor Server 的性能调优</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 假设是 4 核机器，单个 MySQL 作为 backend</span>
+</span></span><span class="line"><span class="cl">$ cat pdns.conf
+</span></span><span class="line"><span class="cl">cache-ttl<span class="o">=</span><span class="m">60</span>
+</span></span><span class="line"><span class="cl">query-cache-ttl<span class="o">=</span><span class="m">60</span>
+</span></span><span class="line"><span class="cl">negquery-cache-ttl<span class="o">=</span><span class="m">60</span>
+</span></span><span class="line"><span class="cl">distributor-threads<span class="o">=</span><span class="m">1</span>
+</span></span><span class="line"><span class="cl">receiver-threads<span class="o">=</span><span class="m">4</span>
+</span></span><span class="line"><span class="cl"><span class="nv">reuseport</span><span class="o">=</span>yes
+</span></span></code></pre></div><h2 id="recursor-server-的性能调优">Recursor Server 的性能调优</h2>
 <p>Recursor Server 同样有着多个缓存种类：</p>
 <ul>
 <li>Nameserver Speeds Cache ：对所有远端权威服务器的平均延迟时间的缓存。</li>
@@ -307,21 +313,21 @@ receiver-threads<span class="o">=</span><span class="m">4</span>
 <p>但在 Recursor Server 中还是有 distributor thread 的概念，它负责将请求分发到 thread 中，按照官方的说法，使用 distributor thread 可以提高缓存的命中率。但以实际测试情况来看，在原有 Packet Cache 命中率就很高的情况下，开启 distributor thread 会导致实际工作的 thread 负载不均衡，而缓存命中率只是略有提高。</p>
 <p>所以实际使用中，较好的做法是禁用 distributor thread 和开启 reuseport 特性，由内核去把请求分配到 thread 中，并且使用 cpu-map 来把 thread 和具体的 CPU 绑定，有助于缓存的就近访问，提高响应的速度。</p>
 <p>最终的优化配置大概如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 假设是 4 核机器，单个 MySQL 作为 backend</span>
-$ cat pdns.conf
-<span class="nv">threads</span><span class="o">=</span><span class="m">4</span>
-pdns-distributes-queries<span class="o">=</span>no
-<span class="nv">reuseport</span><span class="o">=</span>yes
-cpu-map<span class="o">=</span><span class="nv">0</span><span class="o">=</span><span class="m">0</span> <span class="nv">1</span><span class="o">=</span><span class="m">1</span> <span class="nv">2</span><span class="o">=</span><span class="m">2</span> <span class="nv">3</span><span class="o">=</span><span class="m">3</span>
-</code></pre></div><h2 id="recursor-server-的-lua-扩展">Recursor Server 的 lua 扩展</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 假设是 4 核机器，单个 MySQL 作为 backend</span>
+</span></span><span class="line"><span class="cl">$ cat pdns.conf
+</span></span><span class="line"><span class="cl"><span class="nv">threads</span><span class="o">=</span><span class="m">4</span>
+</span></span><span class="line"><span class="cl">pdns-distributes-queries<span class="o">=</span>no
+</span></span><span class="line"><span class="cl"><span class="nv">reuseport</span><span class="o">=</span>yes
+</span></span><span class="line"><span class="cl">cpu-map<span class="o">=</span><span class="nv">0</span><span class="o">=</span><span class="m">0</span> <span class="nv">1</span><span class="o">=</span><span class="m">1</span> <span class="nv">2</span><span class="o">=</span><span class="m">2</span> <span class="nv">3</span><span class="o">=</span><span class="m">3</span>
+</span></span></code></pre></div><h2 id="recursor-server-的-lua-扩展">Recursor Server 的 lua 扩展</h2>
 <p>powerdns 可以通过 lua 扩展脚本在查询的基础上实现更复杂的功能。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 添加 lua 脚本扩展</span>
-$ cat pdns.conf
-lua-dns-script /path/to/lua/script
-
-<span class="c1"># 动态重载 lua 脚本</span>
-rec_control reload-lua-script
-</code></pre></div><p>powerdns 提供了多个查询钩子，可以在对应的查询阶段进行请求拦截并重写对应的回答动作，有以下几个钩子：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加 lua 脚本扩展</span>
+</span></span><span class="line"><span class="cl">$ cat pdns.conf
+</span></span><span class="line"><span class="cl">lua-dns-script /path/to/lua/script
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 动态重载 lua 脚本</span>
+</span></span><span class="line"><span class="cl">rec_control reload-lua-script
+</span></span></code></pre></div><p>powerdns 提供了多个查询钩子，可以在对应的查询阶段进行请求拦截并重写对应的回答动作，有以下几个钩子：</p>
 <ul>
 <li>ipfilter ：在查询数据包开始解析之前。</li>
 <li>gettag ：在查询数据包缓存之前。</li>
@@ -334,88 +340,88 @@ rec_control reload-lua-script
 </ul>
 <p>由于存在着多阶段的钩子函数，所以实现扩展功能只需要重写对应的函数即可。</p>
 <p>以下是一些参考用例，更多详细用法可以参考官方文档。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="c1">-- 以无响应域名结果的钩子为例，来自官方实例</span>
-<span class="n">nxdomainsuffix</span> <span class="o">=</span> <span class="n">newDN</span><span class="p">(</span><span class="s2">&#34;com&#34;</span><span class="p">)</span>
-<span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
-    <span class="n">pdnslog</span><span class="p">(</span><span class="s2">&#34;nxdomain called for: &#34;</span><span class="o">..</span><span class="n">dq.qname</span><span class="p">:</span><span class="n">toString</span><span class="p">())</span>
-    <span class="kr">if</span> <span class="n">dq.qname</span><span class="p">:</span><span class="n">isPartOf</span><span class="p">(</span><span class="n">nxdomainsuffix</span><span class="p">)</span> <span class="kr">then</span>
-        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">-- 修改为正常应答</span>
-        <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.CNAME</span><span class="p">,</span> <span class="s2">&#34;www.powerdns.org&#34;</span><span class="p">)</span>
-        <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.A</span><span class="p">,</span> <span class="s2">&#34;1.2.3.4&#34;</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="s2">&#34;www.powerdns.org&#34;</span><span class="p">)</span>
-        <span class="kr">return</span> <span class="kc">true</span>  <span class="c1">-- return true 说明这个钩子函数生效，如果 return false 则这个钩子函数不生效</span>
-    <span class="kr">end</span>
-    <span class="kr">return</span> <span class="kc">false</span>
-<span class="kr">end</span>
-
-<span class="c1">-- 以查询逻辑工作开始之前的钩子为例，由官方实例改写</span>
-<span class="n">blockset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
-<span class="n">blockset</span><span class="p">:</span><span class="n">add</span><span class="p">{</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">,</span> <span class="s2">&#34;powerdns.com&#34;</span><span class="p">}</span>  <span class="c1">-- 以列表形式添加多个域名</span>
-<span class="n">dropset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
-<span class="n">dropset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;pdns.org&#34;</span><span class="p">)</span>  <span class="c1">-- 添加单个域名</span>
-<span class="kr">function</span> <span class="nf">preresolve</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
-    <span class="c1">-- 重写响应结果</span>
-    <span class="kr">if</span> <span class="n">blockset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span>
-        <span class="n">dq.variable</span> <span class="o">=</span> <span class="kc">true</span>      <span class="c1">-- disable packet cache in any case</span>
-        <span class="kr">if</span> <span class="n">dq.qtype</span> <span class="o">==</span> <span class="n">pdns.A</span> <span class="kr">then</span>
-            <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.A</span><span class="p">,</span> <span class="s2">&#34;1.2.3.4&#34;</span><span class="p">)</span>
-            <span class="kr">return</span> <span class="kc">true</span>
-        <span class="kr">end</span>
-    <span class="kr">end</span>
-    <span class="c1">-- 黑名单机制</span>
-    <span class="kr">if</span> <span class="n">dropset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span>
-        <span class="n">dq.appliedPolicy</span><span class="p">.</span><span class="n">policyKind</span> <span class="o">=</span> <span class="n">pdns.policykinds</span><span class="p">.</span><span class="n">Drop</span>  <span class="c1">-- 改写响应策略</span>
-        <span class="kr">return</span> <span class="kc">false</span> <span class="c1">-- recursor still needs to handle the policy, 后续由定义策略处理</span>
-    <span class="kr">end</span>
-
-    <span class="kr">return</span> <span class="kc">false</span>
-<span class="kr">end</span>
-
-<span class="c1">-- 比较复杂的重写行为，可以在自建权威服务器的基础上，配合递归转发配置实现 dns 的内网劫持</span>
-<span class="c1">-- 基本原理：查询请求由递归转发到自建域中，如果自建域不存在域名，再次转发到公网进行查询</span>
-<span class="n">rewriteset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
-<span class="n">rewriteset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">)</span>
-<span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
-    <span class="kr">if</span> <span class="n">rewriteset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span> 
-        <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
-        <span class="c1">-- 独立的处理函数 udpQueryResponse 允许发起新的 udp 查询，具体用法可以参考官方文档</span>
-        <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;udpQueryResponse&#34;</span>
-        <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;gotdomaindetails&#34;</span>  <span class="c1">-- 处理函数的回调函数</span>
-        <span class="n">dq.udpQueryDest</span> <span class="o">=</span> <span class="n">newCA</span><span class="p">(</span><span class="s2">&#34;114.114.114.114:53&#34;</span><span class="p">)</span>
-        <span class="c1">-- build_udp_package 需要自行实现，可以参考 lua-resty-dns ，工作内容为构建 dns 查询请求包</span>
-        <span class="n">dq.udpQuery</span> <span class="o">=</span> <span class="n">build_udp_package</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">:</span><span class="n">toString</span><span class="p">(),</span> <span class="n">dh</span><span class="p">:</span><span class="n">getID</span><span class="p">(),</span> <span class="n">dh</span><span class="p">:</span><span class="n">getRD</span><span class="p">())</span>
-        <span class="kr">return</span> <span class="kc">true</span>
-    <span class="kr">end</span>
-    <span class="kr">return</span> <span class="kc">false</span>
-<span class="kr">end</span>
-
-<span class="kr">function</span> <span class="nf">gotdomaindetails</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
-    <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
-    <span class="c1">-- 回调函数需要清除上一步的 dq 对象的赋值</span>
-    <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-    <span class="c1">-- parse_response 需要自行实现，可以参考 lua-resty-dns ，工作内容为解析 dns 响应包</span>
-    <span class="kd">local</span> <span class="n">answers</span> <span class="o">=</span> <span class="n">parse_response</span><span class="p">(</span><span class="n">dq.udpAnswer</span><span class="p">,</span> <span class="n">dh</span><span class="p">:</span><span class="n">getID</span><span class="p">())</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">answers</span> <span class="kr">then</span>
-        <span class="kr">return</span> <span class="kc">false</span>
-    <span class="kr">end</span>
-    <span class="kr">if</span> <span class="n">answers.errcode</span> <span class="kr">then</span>
-        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="n">answers.errcode</span>
-        <span class="kr">return</span> <span class="kc">true</span>
-    <span class="kr">end</span>
-    <span class="kr">if</span> <span class="n">answers</span> <span class="kr">then</span>
-        <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ans</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span> <span class="kr">do</span>
-            <span class="n">dq</span><span class="p">:</span><span class="n">addRecord</span><span class="p">(</span><span class="n">ans.type</span><span class="p">,</span> <span class="n">ans.address</span> <span class="ow">or</span> <span class="n">ans.cname</span><span class="p">,</span> <span class="n">ans.class</span><span class="p">,</span> <span class="n">ans.ttl</span><span class="p">,</span> <span class="n">ans.name</span><span class="p">)</span>
-        <span class="kr">end</span>
-        <span class="c1">-- 修改为正常应答</span>
-        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="kr">return</span> <span class="kc">true</span>
-    <span class="kr">end</span>
-<span class="kr">end</span>
-
-<span class="c1">-- 自定义 metrics</span>
-<span class="n">new_metrics</span> <span class="o">=</span> <span class="n">getMetric</span><span class="p">(</span><span class="s2">&#34;metrics&#34;</span><span class="p">)</span>  <span class="c1">-- 新增 metrics</span>
-<span class="n">metrics</span><span class="p">:</span><span class="n">inc</span><span class="p">()</span>  <span class="c1">-- 增加 metrics 计数，更多 metrics 方法可以参考官方文档</span>
-</code></pre></div><h2 id="参考文档">参考文档</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="c1">-- 以无响应域名结果的钩子为例，来自官方实例</span>
+</span></span><span class="line"><span class="cl"><span class="n">nxdomainsuffix</span> <span class="o">=</span> <span class="n">newDN</span><span class="p">(</span><span class="s2">&#34;com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">pdnslog</span><span class="p">(</span><span class="s2">&#34;nxdomain called for: &#34;</span><span class="o">..</span><span class="n">dq.qname</span><span class="p">:</span><span class="n">toString</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">dq.qname</span><span class="p">:</span><span class="n">isPartOf</span><span class="p">(</span><span class="n">nxdomainsuffix</span><span class="p">)</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1">-- 修改为正常应答</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.CNAME</span><span class="p">,</span> <span class="s2">&#34;www.powerdns.org&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.A</span><span class="p">,</span> <span class="s2">&#34;1.2.3.4&#34;</span><span class="p">,</span> <span class="mi">60</span><span class="p">,</span> <span class="s2">&#34;www.powerdns.org&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">true</span>  <span class="c1">-- return true 说明这个钩子函数生效，如果 return false 则这个钩子函数不生效</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- 以查询逻辑工作开始之前的钩子为例，由官方实例改写</span>
+</span></span><span class="line"><span class="cl"><span class="n">blockset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">blockset</span><span class="p">:</span><span class="n">add</span><span class="p">{</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">,</span> <span class="s2">&#34;powerdns.com&#34;</span><span class="p">}</span>  <span class="c1">-- 以列表形式添加多个域名</span>
+</span></span><span class="line"><span class="cl"><span class="n">dropset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">dropset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;pdns.org&#34;</span><span class="p">)</span>  <span class="c1">-- 添加单个域名</span>
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">preresolve</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 重写响应结果</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">blockset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.variable</span> <span class="o">=</span> <span class="kc">true</span>      <span class="c1">-- disable packet cache in any case</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">dq.qtype</span> <span class="o">==</span> <span class="n">pdns.A</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dq</span><span class="p">:</span><span class="n">addAnswer</span><span class="p">(</span><span class="n">pdns.A</span><span class="p">,</span> <span class="s2">&#34;1.2.3.4&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 黑名单机制</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">dropset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.appliedPolicy</span><span class="p">.</span><span class="n">policyKind</span> <span class="o">=</span> <span class="n">pdns.policykinds</span><span class="p">.</span><span class="n">Drop</span>  <span class="c1">-- 改写响应策略</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">false</span> <span class="c1">-- recursor still needs to handle the policy, 后续由定义策略处理</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- 比较复杂的重写行为，可以在自建权威服务器的基础上，配合递归转发配置实现 dns 的内网劫持</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 基本原理：查询请求由递归转发到自建域中，如果自建域不存在域名，再次转发到公网进行查询</span>
+</span></span><span class="line"><span class="cl"><span class="n">rewriteset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">rewriteset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">rewriteset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span> 
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 独立的处理函数 udpQueryResponse 允许发起新的 udp 查询，具体用法可以参考官方文档</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;udpQueryResponse&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;gotdomaindetails&#34;</span>  <span class="c1">-- 处理函数的回调函数</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.udpQueryDest</span> <span class="o">=</span> <span class="n">newCA</span><span class="p">(</span><span class="s2">&#34;114.114.114.114:53&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- build_udp_package 需要自行实现，可以参考 lua-resty-dns ，工作内容为构建 dns 查询请求包</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.udpQuery</span> <span class="o">=</span> <span class="n">build_udp_package</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">:</span><span class="n">toString</span><span class="p">(),</span> <span class="n">dh</span><span class="p">:</span><span class="n">getID</span><span class="p">(),</span> <span class="n">dh</span><span class="p">:</span><span class="n">getRD</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">gotdomaindetails</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 回调函数需要清除上一步的 dq 对象的赋值</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- parse_response 需要自行实现，可以参考 lua-resty-dns ，工作内容为解析 dns 响应包</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">answers</span> <span class="o">=</span> <span class="n">parse_response</span><span class="p">(</span><span class="n">dq.udpAnswer</span><span class="p">,</span> <span class="n">dh</span><span class="p">:</span><span class="n">getID</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">answers</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">answers.errcode</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="n">answers.errcode</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">answers</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ans</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dq</span><span class="p">:</span><span class="n">addRecord</span><span class="p">(</span><span class="n">ans.type</span><span class="p">,</span> <span class="n">ans.address</span> <span class="ow">or</span> <span class="n">ans.cname</span><span class="p">,</span> <span class="n">ans.class</span><span class="p">,</span> <span class="n">ans.ttl</span><span class="p">,</span> <span class="n">ans.name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 修改为正常应答</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- 自定义 metrics</span>
+</span></span><span class="line"><span class="cl"><span class="n">new_metrics</span> <span class="o">=</span> <span class="n">getMetric</span><span class="p">(</span><span class="s2">&#34;metrics&#34;</span><span class="p">)</span>  <span class="c1">-- 新增 metrics</span>
+</span></span><span class="line"><span class="cl"><span class="n">metrics</span><span class="p">:</span><span class="n">inc</span><span class="p">()</span>  <span class="c1">-- 增加 metrics 计数，更多 metrics 方法可以参考官方文档</span>
+</span></span></code></pre></div><h2 id="参考文档">参考文档</h2>
 <ul>
 <li><a href="https://doc.powerdns.com/authoritative/performance.html">powerdns authoritative performance</a></li>
 <li><a href="https://docs.powerdns.com/recursor/performance.html">powerdns recursor performance</a></li>
@@ -437,7 +443,7 @@ rec_control reload-lua-script
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

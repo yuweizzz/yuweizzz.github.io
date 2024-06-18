@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录一些前端项目开发过程中的常用操作。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/tips_about_javascript_project/" />
 <meta property="og:site_name" content="前端项目开发笔记" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -225,176 +232,175 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些前端项目开发过程中的常用操作。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="搭建-nodejs-环境">搭建 Node.js 环境</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="搭建-nodejs-环境">搭建 Node.js 环境</h2>
 <p>Node.js 提供了二进制预编译的安装包，在<a href="https://nodejs.org/zh-cn/download/">官网</a>直接下载到本地即可解压使用。</p>
 <p>这里以 LTS 14.15.4 为例:</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ curl -o /usr/local/src/node-v14.15.4-linux-x64.tar.xz 
-    https://nodejs.org/download/release/v14.15.4/node-v14.15.4-linux-x64.tar.xz
-$ tar -xvJf /usr/local/src/node-v14.15.4-linux-x64.tar.xz -C /usr/local/
-$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&#34;$PATH&#34;:/usr/local/node-v14.15.4-linux-x64/bin/&#39;</span> &gt;&gt; /etc/profile
-</code></pre></div><p>如果只有某个用户需要使用 Node.js，可以把 PATH 变量写入到对应用户的 bash_profile 或 bashrc 中，这样可以起到一样的效果并且不会影响其他用户的环境变量。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl -o /usr/local/src/node-v14.15.4-linux-x64.tar.xz 
+</span></span><span class="line"><span class="cl">    https://nodejs.org/download/release/v14.15.4/node-v14.15.4-linux-x64.tar.xz
+</span></span><span class="line"><span class="cl">$ tar -xvJf /usr/local/src/node-v14.15.4-linux-x64.tar.xz -C /usr/local/
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&#34;$PATH&#34;:/usr/local/node-v14.15.4-linux-x64/bin/&#39;</span> &gt;&gt; /etc/profile
+</span></span></code></pre></div><p>如果只有某个用户需要使用 Node.js，可以把 PATH 变量写入到对应用户的 bash_profile 或 bashrc 中，这样可以起到一样的效果并且不会影响其他用户的环境变量。</p>
 <h2 id="修改-npm-镜像地址">修改 npm 镜像地址</h2>
 <p>npm 是 Node.js 的依赖包管理工具，类似于 python 的 pip ， npm 在国内的网络环境会有下载速度慢的现象，可以将镜像地址修改为国内的镜像地址来解决这个问题。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 检查 npm 基本配置：</span>
-$ npm config list
-<span class="p">;</span> cli configs
-metrics-registry <span class="o">=</span> <span class="s2">&#34;https://registry.npmjs.org/&#34;</span>  <span class="c1"># 默认的源镜像</span>
-<span class="nv">scope</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
-user-agent <span class="o">=</span> <span class="s2">&#34;npm/6.14.10 node/v14.15.4 linux x64&#34;</span>
-
-<span class="p">;</span> node bin <span class="nv">location</span> <span class="o">=</span> /usr/local/node-v14.15.4-linux-x64/bin/node
-<span class="p">;</span> <span class="nv">cwd</span> <span class="o">=</span> /usr/local/node-v14.15.4-linux-x64
-<span class="p">;</span> <span class="nv">HOME</span> <span class="o">=</span> /root
-<span class="p">;</span> <span class="s2">&#34;npm config ls -l&#34;</span> to show all defaults.
-
-<span class="c1"># 修改为淘宝 npm 镜像以加快访问速度：</span>
-<span class="c1"># 只修改当前用户的配置，非全局修改会生成 $HOME/.npmrc </span>
-$ npm config <span class="nb">set</span> registry http://registry.npm.taobao.org/
-$ cat ~/.npmrc  <span class="c1"># 只影响当前用户</span>
-<span class="nv">registry</span><span class="o">=</span>http://registry.npm.taobao.org/
-
-<span class="c1"># 使用 -g 修改全局配置，全局修改会生成 $PREFIX/etc/npmrc </span>
-$ npm -g config <span class="nb">set</span> registry http://registry.npm.taobao.org/ 
-$ cat /usr/local/node-v14.15.4-linux-x64/etc/npmrc  <span class="c1"># 生成于 node 安装目录下的 etc 目录中</span>
-<span class="nv">registry</span><span class="o">=</span>http://registry.npm.taobao.org/
-</code></pre></div><h2 id="初始化项目">初始化项目</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 检查 npm 基本配置：</span>
+</span></span><span class="line"><span class="cl">$ npm config list
+</span></span><span class="line"><span class="cl"><span class="p">;</span> cli configs
+</span></span><span class="line"><span class="cl">metrics-registry <span class="o">=</span> <span class="s2">&#34;https://registry.npmjs.org/&#34;</span>  <span class="c1"># 默认的源镜像</span>
+</span></span><span class="line"><span class="cl"><span class="nv">scope</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">user-agent <span class="o">=</span> <span class="s2">&#34;npm/6.14.10 node/v14.15.4 linux x64&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">;</span> node bin <span class="nv">location</span> <span class="o">=</span> /usr/local/node-v14.15.4-linux-x64/bin/node
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="nv">cwd</span> <span class="o">=</span> /usr/local/node-v14.15.4-linux-x64
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="nv">HOME</span> <span class="o">=</span> /root
+</span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="s2">&#34;npm config ls -l&#34;</span> to show all defaults.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改为淘宝 npm 镜像以加快访问速度：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只修改当前用户的配置，非全局修改会生成 $HOME/.npmrc </span>
+</span></span><span class="line"><span class="cl">$ npm config <span class="nb">set</span> registry http://registry.npm.taobao.org/
+</span></span><span class="line"><span class="cl">$ cat ~/.npmrc  <span class="c1"># 只影响当前用户</span>
+</span></span><span class="line"><span class="cl"><span class="nv">registry</span><span class="o">=</span>http://registry.npm.taobao.org/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 -g 修改全局配置，全局修改会生成 $PREFIX/etc/npmrc </span>
+</span></span><span class="line"><span class="cl">$ npm -g config <span class="nb">set</span> registry http://registry.npm.taobao.org/ 
+</span></span><span class="line"><span class="cl">$ cat /usr/local/node-v14.15.4-linux-x64/etc/npmrc  <span class="c1"># 生成于 node 安装目录下的 etc 目录中</span>
+</span></span><span class="line"><span class="cl"><span class="nv">registry</span><span class="o">=</span>http://registry.npm.taobao.org/
+</span></span></code></pre></div><h2 id="初始化项目">初始化项目</h2>
 <p>下面简单记录了初始化前端项目的过程，可以提供后续参考。</p>
 <p>生成 package.json 是一个项目的开始，无论使用的依赖包管理工具是 npm 或是 yarn 。我选用了 npm ，实际可以按照个人喜好来选择。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ mkdir myproject
-$ <span class="nb">cd</span> myproject
-$ npm init  <span class="c1"># 交互式生成 package.json</span>
-This utility will walk you through creating a package.json file.
-It only covers the most common items, and tries to guess sensible defaults.
-
-See <span class="sb">`</span>npm <span class="nb">help</span> init<span class="sb">`</span> <span class="k">for</span> definitive documentation on these fields
-and exactly what they <span class="k">do</span>.
-
-Use <span class="sb">`</span>npm install &lt;pkg&gt;<span class="sb">`</span> afterwards to install a package and
-save it as a dependency in the package.json file.
-
-Press ^C at any <span class="nb">time</span> to quit.
-package name: <span class="o">(</span>myproject<span class="o">)</span> 
-version: <span class="o">(</span>1.0.0<span class="o">)</span> 
-description: my project
-entry point: <span class="o">(</span>index.js<span class="o">)</span> src/index.js
-<span class="nb">test</span> command: node -v<span class="p">;</span> npm -v<span class="p">;</span>  <span class="c1"># 这里是为了测试，实际使用时可以按需修改</span>
-git repository: 
-keywords: 
-author: me
-license: <span class="o">(</span>ISC<span class="o">)</span> 
-About to write to /tmp/myproject/package.json:
-
-<span class="o">{</span>
-  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;myproject&#34;</span>,
-  <span class="s2">&#34;version&#34;</span>: <span class="s2">&#34;1.0.0&#34;</span>,
-  <span class="s2">&#34;description&#34;</span>: <span class="s2">&#34;my project&#34;</span>,
-  <span class="s2">&#34;main&#34;</span>: <span class="s2">&#34;src/index.js&#34;</span>,  <span class="c1"># 通常会使用 src 来存放项目代码，实际使用时可以按需修改</span>
-  <span class="s2">&#34;scripts&#34;</span>: <span class="o">{</span>
-    <span class="s2">&#34;test&#34;</span>: <span class="s2">&#34;node -v; npm -v;&#34;</span>
-  <span class="o">}</span>,
-  <span class="s2">&#34;author&#34;</span>: <span class="s2">&#34;me&#34;</span>,
-  <span class="s2">&#34;license&#34;</span>: <span class="s2">&#34;ISC&#34;</span>
-<span class="o">}</span>
-
-
-Is this OK? <span class="o">(</span>yes<span class="o">)</span> yes
-</code></pre></div><p>生成 package.json 后，我们可以按照需要安装一些项目模块和开发模块工具。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装项目需要的模块</span>
-$ npm install &lt;dependency&gt; 
-<span class="c1"># 使用 -D 安装项目需要的开发模块工具</span>
-$ npm install -D webpack  <span class="c1"># 打包工具</span>
-$ npm install -D webpack-cli
-$ npm install -D eslint  <span class="c1"># 语法检查工具</span>
-
-<span class="c1"># 检查配置文件，可以看到新的依赖项已经被安装</span>
-$ cat package.json 
-<span class="o">{</span>
-  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;myproject&#34;</span>,
-  <span class="s2">&#34;version&#34;</span>: <span class="s2">&#34;1.0.0&#34;</span>,
-  <span class="s2">&#34;description&#34;</span>: <span class="s2">&#34;my project&#34;</span>,
-  <span class="s2">&#34;main&#34;</span>: <span class="s2">&#34;index.js&#34;</span>,
-  <span class="s2">&#34;scripts&#34;</span>: <span class="o">{</span>
-    <span class="s2">&#34;test&#34;</span>: <span class="s2">&#34;node -v; npm -v;&#34;</span>
-  <span class="o">}</span>,
-  <span class="s2">&#34;author&#34;</span>: <span class="s2">&#34;me&#34;</span>,
-  <span class="s2">&#34;license&#34;</span>: <span class="s2">&#34;ISC&#34;</span>,
-  <span class="s2">&#34;devDependencies&#34;</span>: <span class="o">{</span>
-    <span class="s2">&#34;webpack&#34;</span>: <span class="s2">&#34;^5.48.0&#34;</span>,
-    <span class="s2">&#34;eslint&#34;</span>: <span class="s2">&#34;^7.32.0&#34;</span>,
-    <span class="s2">&#34;webpack-cli&#34;</span>: <span class="s2">&#34;^4.7.2&#34;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="c1"># 安装完成后，可以在 node_modules 中找到对应模块目录</span>
-<span class="c1"># 可直接执行脚本还会产生符号链接提供给项目使用，如下例子：</span>
-./node_modules/.bin/webpack-cli -&gt; ../webpack-cli/bin/cli.js
-</code></pre></div><p>虽然可以通过指明路径调用一些可用的脚本和命令，但我们一般把这些常用的命令写入到 package.json 的 scripts 中去，方便后续使用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># package.json 中 scripts 的基本使用：</span>
-<span class="c1"># scripts 通常使用 build ， lint ， run 等常用命名来配置对应的一系列命令</span>
-<span class="c1"># npm run 可以执行这些配置好的命令</span>
-
-<span class="c1"># 测试之前已经配置的 scripts test ：</span>
-$ npm run <span class="nb">test</span>
-
-&gt; myproject@1.0.0 <span class="nb">test</span>
-&gt; node -v<span class="p">;</span> npm -v
-
-v14.15.4
-7.20.3
-
-<span class="c1"># 后续使用会配置一些新的 scripts</span>
-</code></pre></div><p>下面是一些常用的开发模块，只用到了比较简单的场景，更详细的配置需要参考官方文档和其他优秀项目的用法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir myproject
+</span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> myproject
+</span></span><span class="line"><span class="cl">$ npm init  <span class="c1"># 交互式生成 package.json</span>
+</span></span><span class="line"><span class="cl">This utility will walk you through creating a package.json file.
+</span></span><span class="line"><span class="cl">It only covers the most common items, and tries to guess sensible defaults.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">See <span class="sb">`</span>npm <span class="nb">help</span> init<span class="sb">`</span> <span class="k">for</span> definitive documentation on these fields
+</span></span><span class="line"><span class="cl">and exactly what they <span class="k">do</span>.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Use <span class="sb">`</span>npm install &lt;pkg&gt;<span class="sb">`</span> afterwards to install a package and
+</span></span><span class="line"><span class="cl">save it as a dependency in the package.json file.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Press ^C at any <span class="nb">time</span> to quit.
+</span></span><span class="line"><span class="cl">package name: <span class="o">(</span>myproject<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">version: <span class="o">(</span>1.0.0<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">description: my project
+</span></span><span class="line"><span class="cl">entry point: <span class="o">(</span>index.js<span class="o">)</span> src/index.js
+</span></span><span class="line"><span class="cl"><span class="nb">test</span> command: node -v<span class="p">;</span> npm -v<span class="p">;</span>  <span class="c1"># 这里是为了测试，实际使用时可以按需修改</span>
+</span></span><span class="line"><span class="cl">git repository: 
+</span></span><span class="line"><span class="cl">keywords: 
+</span></span><span class="line"><span class="cl">author: me
+</span></span><span class="line"><span class="cl">license: <span class="o">(</span>ISC<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">About to write to /tmp/myproject/package.json:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;myproject&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;version&#34;</span>: <span class="s2">&#34;1.0.0&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;description&#34;</span>: <span class="s2">&#34;my project&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;main&#34;</span>: <span class="s2">&#34;src/index.js&#34;</span>,  <span class="c1"># 通常会使用 src 来存放项目代码，实际使用时可以按需修改</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;scripts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;test&#34;</span>: <span class="s2">&#34;node -v; npm -v;&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;author&#34;</span>: <span class="s2">&#34;me&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;license&#34;</span>: <span class="s2">&#34;ISC&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Is this OK? <span class="o">(</span>yes<span class="o">)</span> yes
+</span></span></code></pre></div><p>生成 package.json 后，我们可以按照需要安装一些项目模块和开发模块工具。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装项目需要的模块</span>
+</span></span><span class="line"><span class="cl">$ npm install &lt;dependency&gt; 
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 -D 安装项目需要的开发模块工具</span>
+</span></span><span class="line"><span class="cl">$ npm install -D webpack  <span class="c1"># 打包工具</span>
+</span></span><span class="line"><span class="cl">$ npm install -D webpack-cli
+</span></span><span class="line"><span class="cl">$ npm install -D eslint  <span class="c1"># 语法检查工具</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查配置文件，可以看到新的依赖项已经被安装</span>
+</span></span><span class="line"><span class="cl">$ cat package.json 
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;myproject&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;version&#34;</span>: <span class="s2">&#34;1.0.0&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;description&#34;</span>: <span class="s2">&#34;my project&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;main&#34;</span>: <span class="s2">&#34;index.js&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;scripts&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;test&#34;</span>: <span class="s2">&#34;node -v; npm -v;&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;author&#34;</span>: <span class="s2">&#34;me&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;license&#34;</span>: <span class="s2">&#34;ISC&#34;</span>,
+</span></span><span class="line"><span class="cl">  <span class="s2">&#34;devDependencies&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;webpack&#34;</span>: <span class="s2">&#34;^5.48.0&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;eslint&#34;</span>: <span class="s2">&#34;^7.32.0&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;webpack-cli&#34;</span>: <span class="s2">&#34;^4.7.2&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装完成后，可以在 node_modules 中找到对应模块目录</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可直接执行脚本还会产生符号链接提供给项目使用，如下例子：</span>
+</span></span><span class="line"><span class="cl">./node_modules/.bin/webpack-cli -&gt; ../webpack-cli/bin/cli.js
+</span></span></code></pre></div><p>虽然可以通过指明路径调用一些可用的脚本和命令，但我们一般把这些常用的命令写入到 package.json 的 scripts 中去，方便后续使用。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># package.json 中 scripts 的基本使用：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># scripts 通常使用 build ， lint ， run 等常用命名来配置对应的一系列命令</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># npm run 可以执行这些配置好的命令</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 测试之前已经配置的 scripts test ：</span>
+</span></span><span class="line"><span class="cl">$ npm run <span class="nb">test</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">&gt; myproject@1.0.0 <span class="nb">test</span>
+</span></span><span class="line"><span class="cl">&gt; node -v<span class="p">;</span> npm -v
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">v14.15.4
+</span></span><span class="line"><span class="cl">7.20.3
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 后续使用会配置一些新的 scripts</span>
+</span></span></code></pre></div><p>下面是一些常用的开发模块，只用到了比较简单的场景，更详细的配置需要参考官方文档和其他优秀项目的用法。</p>
 <p>使用 webpack 作为打包工具。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 配置 webpack ：</span>
-<span class="c1"># 手工生成 webpack.config.js ，文件位于项目根目录</span>
-$ cat webpack.config.js
-// start
-const <span class="nv">webpack</span> <span class="o">=</span> require<span class="o">(</span><span class="s1">&#39;webpack&#39;</span><span class="o">)</span><span class="p">;</span>
-const <span class="nv">path</span> <span class="o">=</span> require<span class="o">(</span><span class="s1">&#39;path&#39;</span><span class="o">)</span><span class="p">;</span>
-
-const <span class="nv">config</span> <span class="o">=</span> <span class="o">{</span>
-  entry: <span class="s1">&#39;./src/index.js&#39;</span>,  // 实际使用按需修改
-  output: <span class="o">{</span>
-    path: path.resolve<span class="o">(</span>__dirname, <span class="s1">&#39;dist&#39;</span><span class="o">)</span>,
-    filename: <span class="s1">&#39;bundle.js&#39;</span>  // output 为打包输出目标
-  <span class="o">}</span>
-<span class="o">}</span><span class="p">;</span>
-
-module.exports <span class="o">=</span> config<span class="p">;</span>
-// end
-<span class="c1"># 生成 webpack.config.js 后配置 webpack 打包命令到 npm scripts </span>
-$ npm set-script <span class="s2">&#34;build&#34;</span> <span class="s2">&#34;webpack --mode production --config webpack.config.js&#34;</span>
-<span class="c1"># 添加完成后可以直接调用 npm run build 执行打包</span>
-</code></pre></div><p>使用 eslint 作为语法检查工具。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 配置 eslint ：</span>
-<span class="c1"># 直接调用可执行脚本进行语法相关的配置初始化</span>
-$ ./node_modules/.bin/eslint --init
-...
-<span class="c1"># 整个过程按照提示进行选择即可，一般会产生依赖安装，完成后会自动生成文件</span>
-Successfully created .eslintrc.json file in /tmp/myproject
-...
-<span class="c1"># 配置 eslint 检查命令到 npm scripts</span>
-$ npm set-script <span class="s2">&#34;lint&#34;</span> <span class="s2">&#34;eslint src/&#34;</span>
-<span class="c1"># 添加后可以直接调用 npm run lint 执行语法检查</span>
-</code></pre></div></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 配置 webpack ：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 手工生成 webpack.config.js ，文件位于项目根目录</span>
+</span></span><span class="line"><span class="cl">$ cat webpack.config.js
+</span></span><span class="line"><span class="cl">// start
+</span></span><span class="line"><span class="cl">const <span class="nv">webpack</span> <span class="o">=</span> require<span class="o">(</span><span class="s1">&#39;webpack&#39;</span><span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">const <span class="nv">path</span> <span class="o">=</span> require<span class="o">(</span><span class="s1">&#39;path&#39;</span><span class="o">)</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">const <span class="nv">config</span> <span class="o">=</span> <span class="o">{</span>
+</span></span><span class="line"><span class="cl">  entry: <span class="s1">&#39;./src/index.js&#39;</span>,  // 实际使用按需修改
+</span></span><span class="line"><span class="cl">  output: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    path: path.resolve<span class="o">(</span>__dirname, <span class="s1">&#39;dist&#39;</span><span class="o">)</span>,
+</span></span><span class="line"><span class="cl">    filename: <span class="s1">&#39;bundle.js&#39;</span>  // output 为打包输出目标
+</span></span><span class="line"><span class="cl">  <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">module.exports <span class="o">=</span> config<span class="p">;</span>
+</span></span><span class="line"><span class="cl">// end
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成 webpack.config.js 后配置 webpack 打包命令到 npm scripts </span>
+</span></span><span class="line"><span class="cl">$ npm set-script <span class="s2">&#34;build&#34;</span> <span class="s2">&#34;webpack --mode production --config webpack.config.js&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加完成后可以直接调用 npm run build 执行打包</span>
+</span></span></code></pre></div><p>使用 eslint 作为语法检查工具。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 配置 eslint ：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 直接调用可执行脚本进行语法相关的配置初始化</span>
+</span></span><span class="line"><span class="cl">$ ./node_modules/.bin/eslint --init
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="c1"># 整个过程按照提示进行选择即可，一般会产生依赖安装，完成后会自动生成文件</span>
+</span></span><span class="line"><span class="cl">Successfully created .eslintrc.json file in /tmp/myproject
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置 eslint 检查命令到 npm scripts</span>
+</span></span><span class="line"><span class="cl">$ npm set-script <span class="s2">&#34;lint&#34;</span> <span class="s2">&#34;eslint src/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加后可以直接调用 npm run lint 执行语法检查</span>
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>
@@ -411,7 +417,7 @@ $ npm set-script <span class="s2">&#34;lint&#34;</span> <span class="s2">&#34;es
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

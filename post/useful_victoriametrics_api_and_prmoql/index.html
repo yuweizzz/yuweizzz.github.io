@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/" />
 <meta property="og:site_name" content="VictoriaMetrics API 和常用的 PromQL" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -225,76 +232,75 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些用到的 VictoriaMetrics API 和常用的 PromQL 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="victoriametrics-api">VictoriaMetrics API</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="victoriametrics-api">VictoriaMetrics API</h2>
 <p>这里主要指的是 VictoriaMetrics 单机版所使用的 API 。</p>
 <p>后续内容均使用以下 metrics 作为例子：</p>
-<pre><code>http_requests_total{code=&quot;200&quot;,handler=&quot;query&quot;,instance=&quot;localhost:9090&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  1
-http_requests_total{code=&quot;200&quot;,handler=&quot;query_range&quot;,instance=&quot;localhost:9090&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  0
+<pre tabindex="0"><code>http_requests_total{code=&#34;200&#34;,handler=&#34;query&#34;,instance=&#34;localhost:9090&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  1
+http_requests_total{code=&#34;200&#34;,handler=&#34;query_range&#34;,instance=&#34;localhost:9090&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  0
 </code></pre><p>查询相关的 API 有即时查询和范围查询两种：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 即时查询</span>
-curl http://localhost:8428/prometheus/api/v1/query <span class="se">\
-</span><span class="se"></span>  -d <span class="s1">&#39;query=http_requests_total&#39;</span>
-
-<span class="c1"># 范围查询</span>
-curl http://localhost:8428/prometheus/api/v1/query_range <span class="se">\
-</span><span class="se"></span>  -d <span class="s1">&#39;query=http_requests_total&#39;</span> <span class="se">\
-</span><span class="se"></span>  -d <span class="s1">&#39;start=-1d&#39;</span> <span class="se">\
-</span><span class="se"></span>  -d <span class="s1">&#39;step=1h&#39;</span>
-</code></pre></div><p>即时查询一般会返回最新的数据样本，但是在指明某些时间节点时，如果没有直接命中对应的数据样本，会返回距离该时间最近的数据节点。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 即时查询</span>
+</span></span><span class="line"><span class="cl">curl http://localhost:8428/prometheus/api/v1/query <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;query=http_requests_total&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 范围查询</span>
+</span></span><span class="line"><span class="cl">curl http://localhost:8428/prometheus/api/v1/query_range <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;query=http_requests_total&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;start=-1d&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;step=1h&#39;</span>
+</span></span></code></pre></div><p>即时查询一般会返回最新的数据样本，但是在指明某些时间节点时，如果没有直接命中对应的数据样本，会返回距离该时间最近的数据节点。</p>
 <p>范围查询和即时查询相似，但是它可以返回多个数据样本，并且同样会尽量返回某些接近的数据样本来替换一些缺失数据。</p>
 <p>所以两者返回的数据都不一定是实际时间对应的数据，可能是一个替换值。</p>
 <p>删除相关的 API ：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">curl http://localhost:8428/api/v1/admin/tsdb/delete_series <span class="se">\
-</span><span class="se"></span>  -d <span class="s1">&#39;match[]=http_requests_total&#39;</span>
-</code></pre></div><p>该操作会将整个指标都直接删除，并且占用的存储空间不会立即释放。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://localhost:8428/api/v1/admin/tsdb/delete_series <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;match[]=http_requests_total&#39;</span>
+</span></span></code></pre></div><p>该操作会将整个指标都直接删除，并且占用的存储空间不会立即释放。</p>
 <h2 id="常用的-promql">常用的 PromQL</h2>
 <p>这里会介绍一些比较常用的 PromQL 。</p>
 <h3 id="label_replace">label_replace</h3>
 <p>label_replace 的具体用法可以参考这个公式： <code>label_replace(v instant-vector, dst_label string, replacement string, src_label string, regex string)</code> 。</p>
 <p>主要用来替换某些标签内容，实际用例参考：</p>
-<pre><code>before:
-http_requests_total{code=&quot;200&quot;,handler=&quot;query&quot;,instance=&quot;localhost:9090&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  1
-http_requests_total{code=&quot;200&quot;,handler=&quot;query_range&quot;,instance=&quot;localhost:9090&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  0
+<pre tabindex="0"><code>before:
+http_requests_total{code=&#34;200&#34;,handler=&#34;query&#34;,instance=&#34;localhost:9090&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  1
+http_requests_total{code=&#34;200&#34;,handler=&#34;query_range&#34;,instance=&#34;localhost:9090&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  0
 
 expr:
-label_replace(http_requests_total{instance=&quot;localhost:9090&quot;},&quot;instance&quot;,&quot;$1&quot;,&quot;job&quot;,&quot;(.*)&quot;)
+label_replace(http_requests_total{instance=&#34;localhost:9090&#34;},&#34;instance&#34;,&#34;$1&#34;,&#34;job&#34;,&#34;(.*)&#34;)
 
 after:
-http_requests_total{code=&quot;200&quot;,handler=&quot;query&quot;,instance=&quot;prometheus&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  1
-http_requests_total{code=&quot;200&quot;,handler=&quot;query_range&quot;,instance=&quot;prometheus&quot;,job=&quot;prometheus&quot;,method=&quot;get&quot;}  0
+http_requests_total{code=&#34;200&#34;,handler=&#34;query&#34;,instance=&#34;prometheus&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  1
+http_requests_total{code=&#34;200&#34;,handler=&#34;query_range&#34;,instance=&#34;prometheus&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  0
 </code></pre><h3 id="increase">increase</h3>
 <p>increase 用来计算区间向量的增长量，以区间向量的第一个元素和最后一个元素进行计算，实际用例参考：</p>
-<pre><code>before:
-http_requests_total{code=&quot;200&quot;} 100375	@1708045914.967	
-http_requests_total{code=&quot;200&quot;} 100377	@1708045924.967
-http_requests_total{code=&quot;200&quot;} 100378	@1708045934.967
-http_requests_total{code=&quot;200&quot;} 100379	@1708045944.967
-http_requests_total{code=&quot;200&quot;} 100381	@1708045954.967
-http_requests_total{code=&quot;200&quot;} 100381	@1708045964.967
+<pre tabindex="0"><code>before:
+http_requests_total{code=&#34;200&#34;} 100375	@1708045914.967	
+http_requests_total{code=&#34;200&#34;} 100377	@1708045924.967
+http_requests_total{code=&#34;200&#34;} 100378	@1708045934.967
+http_requests_total{code=&#34;200&#34;} 100379	@1708045944.967
+http_requests_total{code=&#34;200&#34;} 100381	@1708045954.967
+http_requests_total{code=&#34;200&#34;} 100381	@1708045964.967
 
 expr:
-increase(http_requests_total{code=&quot;200&quot;}[1m])
+increase(http_requests_total{code=&#34;200&#34;}[1m])
 
 after:
-http_requests_total{code=&quot;200&quot;} 7
+http_requests_total{code=&#34;200&#34;} 7
 </code></pre><p>increase 存在数据外推现象，所以实际使用的计算数据可能不是简单的区间向量的第一个元素和最后一个元素直接运算，而会通过外推后的值来平衡计算。</p>
 <h3 id="rate-和-irate">rate 和 irate</h3>
 <p>rate 和 irate 都可以用来计算区间向量中数据的增长率，但是 rate 是以区间向量的第一个元素和最后一个元素进行计算，而 irate 是以区间向量的最新两个元素进行计算： <code>rate(http_requests_total{code=&quot;200&quot;}[10m])</code> 和 <code>irate(http_requests_total{code=&quot;200&quot;}[10m])</code> 。</p>
@@ -302,52 +308,52 @@ http_requests_total{code=&quot;200&quot;} 7
 <h3 id="group_left-和-group_right">group_left 和 group_right</h3>
 <p>group_left 和 group_right 是用于向量匹配的关键字，允许不同向量之间的多对一或者一对多的匹配。</p>
 <p>参考公式：</p>
-<pre><code>&lt;vector expr&gt; &lt;bin-op&gt; ignoring(&lt;label list&gt;) group_left(&lt;label list&gt;) &lt;vector expr&gt;
+<pre tabindex="0"><code>&lt;vector expr&gt; &lt;bin-op&gt; ignoring(&lt;label list&gt;) group_left(&lt;label list&gt;) &lt;vector expr&gt;
 &lt;vector expr&gt; &lt;bin-op&gt; ignoring(&lt;label list&gt;) group_right(&lt;label list&gt;) &lt;vector expr&gt;
 &lt;vector expr&gt; &lt;bin-op&gt; on(&lt;label list&gt;) group_left(&lt;label list&gt;) &lt;vector expr&gt;
 &lt;vector expr&gt; &lt;bin-op&gt; on(&lt;label list&gt;) group_right(&lt;label list&gt;) &lt;vector expr&gt;
 </code></pre><p>实际用例参考：</p>
-<pre><code>before:
-method_code:http_errors:rate5m{method=&quot;get&quot;, code=&quot;500&quot;}  24
-method_code:http_errors:rate5m{method=&quot;get&quot;, code=&quot;404&quot;}  30
-method_code:http_errors:rate5m{method=&quot;put&quot;, code=&quot;501&quot;}  3
-method_code:http_errors:rate5m{method=&quot;post&quot;, code=&quot;500&quot;} 6
-method_code:http_errors:rate5m{method=&quot;post&quot;, code=&quot;404&quot;} 21
+<pre tabindex="0"><code>before:
+method_code:http_errors:rate5m{method=&#34;get&#34;, code=&#34;500&#34;}  24
+method_code:http_errors:rate5m{method=&#34;get&#34;, code=&#34;404&#34;}  30
+method_code:http_errors:rate5m{method=&#34;put&#34;, code=&#34;501&#34;}  3
+method_code:http_errors:rate5m{method=&#34;post&#34;, code=&#34;500&#34;} 6
+method_code:http_errors:rate5m{method=&#34;post&#34;, code=&#34;404&#34;} 21
 
-method:http_requests:rate5m{method=&quot;get&quot;}  600
-method:http_requests:rate5m{method=&quot;del&quot;}  34
-method:http_requests:rate5m{method=&quot;post&quot;} 120
+method:http_requests:rate5m{method=&#34;get&#34;}  600
+method:http_requests:rate5m{method=&#34;del&#34;}  34
+method:http_requests:rate5m{method=&#34;post&#34;} 120
 
 expr:
 method_code:http_errors:rate5m / ignoring(code) group_left method:http_requests:rate5m
 
 after:
-{method=&quot;get&quot;, code=&quot;500&quot;}  0.04            //  24 / 600
-{method=&quot;get&quot;, code=&quot;404&quot;}  0.05            //  30 / 600
-{method=&quot;post&quot;, code=&quot;500&quot;} 0.05            //   6 / 120
-{method=&quot;post&quot;, code=&quot;404&quot;} 0.175           //  21 / 120
+{method=&#34;get&#34;, code=&#34;500&#34;}  0.04            //  24 / 600
+{method=&#34;get&#34;, code=&#34;404&#34;}  0.05            //  30 / 600
+{method=&#34;post&#34;, code=&#34;500&#34;} 0.05            //   6 / 120
+{method=&#34;post&#34;, code=&#34;404&#34;} 0.175           //  21 / 120
 </code></pre><p>在上述例子中，我们需要先明确在计算表达式中，多的对象指的是 <code>method_code:http_errors:rate5m</code> ，而一的对象指的是 <code>method:http_requests:rate5m</code> 。它是由向量处于 group_left 或者 group_right 的左右位置决定的。</p>
 <p>on 或者 ignoring 是对多所指的对象而言的， ignoring 用来忽略这个标签， on 用来匹配这个标签。由于这个例子中， code 标签被忽略，所以使用 method 标签进行匹配。</p>
 <p>group_left 实际上还可以声明额外的标签，以允许使用一对象中的标签覆盖最终结果。由于这个例子中，只有单一的 method 标签，可以通过下面这里扩展例子来理解：</p>
-<pre><code>before:
-method_code:http_errors:rate5m{method=&quot;get&quot;, code=&quot;500&quot;, url=&quot;endpoint/500&quot;}  24
-method_code:http_errors:rate5m{method=&quot;get&quot;, code=&quot;404&quot;, url=&quot;endpoint/404&quot;}  30
-method_code:http_errors:rate5m{method=&quot;put&quot;, code=&quot;501&quot;, url=&quot;endpoint/501&quot;}  3
-method_code:http_errors:rate5m{method=&quot;post&quot;, code=&quot;500&quot;, url=&quot;endpoint/500&quot;} 6
-method_code:http_errors:rate5m{method=&quot;post&quot;, code=&quot;404&quot;, url=&quot;endpoint/404&quot;} 21
+<pre tabindex="0"><code>before:
+method_code:http_errors:rate5m{method=&#34;get&#34;, code=&#34;500&#34;, url=&#34;endpoint/500&#34;}  24
+method_code:http_errors:rate5m{method=&#34;get&#34;, code=&#34;404&#34;, url=&#34;endpoint/404&#34;}  30
+method_code:http_errors:rate5m{method=&#34;put&#34;, code=&#34;501&#34;, url=&#34;endpoint/501&#34;}  3
+method_code:http_errors:rate5m{method=&#34;post&#34;, code=&#34;500&#34;, url=&#34;endpoint/500&#34;} 6
+method_code:http_errors:rate5m{method=&#34;post&#34;, code=&#34;404&#34;, url=&#34;endpoint/404&#34;} 21
 
-method:http_requests:rate5m{method=&quot;get&quot;, url=&quot;endpoint&quot;}  600
-method:http_requests:rate5m{method=&quot;del&quot;, url=&quot;endpoint&quot;}  34
-method:http_requests:rate5m{method=&quot;post&quot;, url=&quot;endpoint&quot;} 120
+method:http_requests:rate5m{method=&#34;get&#34;, url=&#34;endpoint&#34;}  600
+method:http_requests:rate5m{method=&#34;del&#34;, url=&#34;endpoint&#34;}  34
+method:http_requests:rate5m{method=&#34;post&#34;, url=&#34;endpoint&#34;} 120
 
 expr:
 method_code:http_errors:rate5m / on(method) group_left(url) method:http_requests:rate5m
 
 after:
-{method=&quot;get&quot;, code=&quot;500&quot;, url=&quot;endpoint&quot;}  0.04            //  24 / 600
-{method=&quot;get&quot;, code=&quot;404&quot;, url=&quot;endpoint&quot;}  0.05            //  30 / 600
-{method=&quot;post&quot;, code=&quot;500&quot;, url=&quot;endpoint&quot;} 0.05            //   6 / 120
-{method=&quot;post&quot;, code=&quot;404&quot;, url=&quot;endpoint&quot;} 0.175           //  21 / 120
+{method=&#34;get&#34;, code=&#34;500&#34;, url=&#34;endpoint&#34;}  0.04            //  24 / 600
+{method=&#34;get&#34;, code=&#34;404&#34;, url=&#34;endpoint&#34;}  0.05            //  30 / 600
+{method=&#34;post&#34;, code=&#34;500&#34;, url=&#34;endpoint&#34;} 0.05            //   6 / 120
+{method=&#34;post&#34;, code=&#34;404&#34;, url=&#34;endpoint&#34;} 0.175           //  21 / 120
 </code></pre></article>
               </div>
             </div>
@@ -365,7 +371,7 @@ after:
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录 Debian 系统中的一些实用技巧。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/practical_tips_in_debian/" />
 <meta property="og:site_name" content="Debian 系统实用技巧笔记" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -225,304 +232,303 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录 Debian 系统中的一些实用技巧。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="配置-debian-源">配置 Debian 源</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="配置-debian-源">配置 Debian 源</h2>
 <p>dpkg 和 apt 是 Debian 系列 Linux 发行版的软件包管理器，其中 dpkg 是比较底层的软件包工具，而 apt 则是更高层级的管理工具，两者之间的关系类似于 rpm 和 yum 的关系。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 修改 Debian 10 buster 镜像源</span>
-$ <span class="nb">echo</span> <span class="s1">&#39;deb http://mirrors.ustc.edu.cn/debian buster main contrib non-free
-</span><span class="s1">deb http://mirrors.ustc.edu.cn/debian buster-updates main contrib non-free
-</span><span class="s1">deb http://mirrors.ustc.edu.cn/debian buster-backports main contrib non-free
-</span><span class="s1">deb http://mirrors.ustc.edu.cn/debian-security/ buster/updates main contrib non-free&#39;</span> <span class="se">\
-</span><span class="se"></span>  &gt; /etc/apt/sources.list
-
-<span class="c1"># 更新软件列表</span>
-$ apt update
-</code></pre></div><h3 id="配置不稳定镜像源获取最新版本软件">配置不稳定镜像源获取最新版本软件</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 修改 Debian 10 buster 镜像源</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s1">&#39;deb http://mirrors.ustc.edu.cn/debian buster main contrib non-free
+</span></span></span><span class="line"><span class="cl"><span class="s1">deb http://mirrors.ustc.edu.cn/debian buster-updates main contrib non-free
+</span></span></span><span class="line"><span class="cl"><span class="s1">deb http://mirrors.ustc.edu.cn/debian buster-backports main contrib non-free
+</span></span></span><span class="line"><span class="cl"><span class="s1">deb http://mirrors.ustc.edu.cn/debian-security/ buster/updates main contrib non-free&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  &gt; /etc/apt/sources.list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新软件列表</span>
+</span></span><span class="line"><span class="cl">$ apt update
+</span></span></code></pre></div><h3 id="配置不稳定镜像源获取最新版本软件">配置不稳定镜像源获取最新版本软件</h3>
 <p>为了能够使用一些版本比较高的软件，有时候可能需要将镜像源配置为不稳定版本，在 Debian 中不稳定版本的镜像源代号为 sid ，这个镜像源通常包括了一些最新版本但是还不稳定的软件。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 添加 Debian sid 镜像源</span>
-$ <span class="nb">echo</span> deb https://mirrors.aliyun.com/debian/ sid main contrib non-free non-free-firmware <span class="se">\
-</span><span class="se"></span>  &gt; /etc/apt/sources.list.d/sid.list
-
-<span class="c1"># 更新软件列表</span>
-$ apt update
-</code></pre></div><h3 id="配置镜像源的优先级">配置镜像源的优先级</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加 Debian sid 镜像源</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> deb https://mirrors.aliyun.com/debian/ sid main contrib non-free non-free-firmware <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  &gt; /etc/apt/sources.list.d/sid.list
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新软件列表</span>
+</span></span><span class="line"><span class="cl">$ apt update
+</span></span></code></pre></div><h3 id="配置镜像源的优先级">配置镜像源的优先级</h3>
 <p>虽然可以通过添加 sid 镜像源来获取最新软件，但是这个操作是有一定危险性的，所以在添加 sid 源后千万不要使用 <code>apt upgrade</code> 更新所有软件，最好在安装完需要的某部分软件后，把 sid 源的优先级降低。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 添加镜像源的优先级配置</span>
-$ cat /etc/apt/preferences.d/sid 
-Package: *
-Pin: release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid
-Pin-Priority: <span class="m">50</span>
-
-<span class="c1"># 更新软件列表</span>
-$ apt update
-
-<span class="c1"># 默认的镜像源优先级是 500 ，越大的优先级会被优先使用</span>
-<span class="c1"># 以下输出是一台调整过优先级的 Debian 11 系统的运行信息，可以看到 sid 源的优先级已经被降低</span>
-$ apt-cache policy
-Package files:
- <span class="m">100</span> /var/lib/dpkg/status
-     release <span class="nv">a</span><span class="o">=</span>now
-  <span class="m">50</span> https://mirrors.aliyun.com/debian sid/non-free-firmware amd64 Packages
-     release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid,l<span class="o">=</span>Debian,c<span class="o">=</span>non-free-firmware,b<span class="o">=</span>amd64
-     origin mirrors.aliyun.com
-  <span class="m">50</span> https://mirrors.aliyun.com/debian sid/non-free amd64 Packages
-     release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid,l<span class="o">=</span>Debian,c<span class="o">=</span>non-free,b<span class="o">=</span>amd64
-     origin mirrors.aliyun.com
-  <span class="m">50</span> https://mirrors.aliyun.com/debian sid/contrib amd64 Packages
-     release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid,l<span class="o">=</span>Debian,c<span class="o">=</span>contrib,b<span class="o">=</span>amd64
-     origin mirrors.aliyun.com
-  <span class="m">50</span> https://mirrors.aliyun.com/debian sid/main amd64 Packages
-     release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid,l<span class="o">=</span>Debian,c<span class="o">=</span>main,b<span class="o">=</span>amd64
-     origin mirrors.aliyun.com
- <span class="m">500</span> http://deb.debian.org/debian bullseye-updates/main amd64 Packages
-     release <span class="nv">v</span><span class="o">=</span>11-updates,o<span class="o">=</span>Debian,a<span class="o">=</span>oldstable-updates,n<span class="o">=</span>bullseye-updates,l<span class="o">=</span>Debian,c<span class="o">=</span>main,b<span class="o">=</span>amd64
-     origin deb.debian.org
- <span class="m">500</span> http://security.debian.org/debian-security bullseye-security/main amd64 Packages
-     release <span class="nv">v</span><span class="o">=</span>11,o<span class="o">=</span>Debian,a<span class="o">=</span>oldstable-security,n<span class="o">=</span>bullseye-security,l<span class="o">=</span>Debian-Security,c<span class="o">=</span>main,b<span class="o">=</span>amd64
-     origin security.debian.org
- <span class="m">500</span> http://deb.debian.org/debian bullseye/main amd64 Packages
-     release <span class="nv">v</span><span class="o">=</span>11.8,o<span class="o">=</span>Debian,a<span class="o">=</span>oldstable,n<span class="o">=</span>bullseye,l<span class="o">=</span>Debian,c<span class="o">=</span>main,b<span class="o">=</span>amd64
-     origin deb.debian.org
-</code></pre></div><h3 id="一些重要软件的独立镜像源">一些重要软件的独立镜像源</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加镜像源的优先级配置</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/apt/preferences.d/sid 
+</span></span><span class="line"><span class="cl">Package: *
+</span></span><span class="line"><span class="cl">Pin: release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid
+</span></span><span class="line"><span class="cl">Pin-Priority: <span class="m">50</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 更新软件列表</span>
+</span></span><span class="line"><span class="cl">$ apt update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 默认的镜像源优先级是 500 ，越大的优先级会被优先使用</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 以下输出是一台调整过优先级的 Debian 11 系统的运行信息，可以看到 sid 源的优先级已经被降低</span>
+</span></span><span class="line"><span class="cl">$ apt-cache policy
+</span></span><span class="line"><span class="cl">Package files:
+</span></span><span class="line"><span class="cl"> <span class="m">100</span> /var/lib/dpkg/status
+</span></span><span class="line"><span class="cl">     release <span class="nv">a</span><span class="o">=</span>now
+</span></span><span class="line"><span class="cl">  <span class="m">50</span> https://mirrors.aliyun.com/debian sid/non-free-firmware amd64 Packages
+</span></span><span class="line"><span class="cl">     release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid,l<span class="o">=</span>Debian,c<span class="o">=</span>non-free-firmware,b<span class="o">=</span>amd64
+</span></span><span class="line"><span class="cl">     origin mirrors.aliyun.com
+</span></span><span class="line"><span class="cl">  <span class="m">50</span> https://mirrors.aliyun.com/debian sid/non-free amd64 Packages
+</span></span><span class="line"><span class="cl">     release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid,l<span class="o">=</span>Debian,c<span class="o">=</span>non-free,b<span class="o">=</span>amd64
+</span></span><span class="line"><span class="cl">     origin mirrors.aliyun.com
+</span></span><span class="line"><span class="cl">  <span class="m">50</span> https://mirrors.aliyun.com/debian sid/contrib amd64 Packages
+</span></span><span class="line"><span class="cl">     release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid,l<span class="o">=</span>Debian,c<span class="o">=</span>contrib,b<span class="o">=</span>amd64
+</span></span><span class="line"><span class="cl">     origin mirrors.aliyun.com
+</span></span><span class="line"><span class="cl">  <span class="m">50</span> https://mirrors.aliyun.com/debian sid/main amd64 Packages
+</span></span><span class="line"><span class="cl">     release <span class="nv">o</span><span class="o">=</span>Debian,a<span class="o">=</span>unstable,n<span class="o">=</span>sid,l<span class="o">=</span>Debian,c<span class="o">=</span>main,b<span class="o">=</span>amd64
+</span></span><span class="line"><span class="cl">     origin mirrors.aliyun.com
+</span></span><span class="line"><span class="cl"> <span class="m">500</span> http://deb.debian.org/debian bullseye-updates/main amd64 Packages
+</span></span><span class="line"><span class="cl">     release <span class="nv">v</span><span class="o">=</span>11-updates,o<span class="o">=</span>Debian,a<span class="o">=</span>oldstable-updates,n<span class="o">=</span>bullseye-updates,l<span class="o">=</span>Debian,c<span class="o">=</span>main,b<span class="o">=</span>amd64
+</span></span><span class="line"><span class="cl">     origin deb.debian.org
+</span></span><span class="line"><span class="cl"> <span class="m">500</span> http://security.debian.org/debian-security bullseye-security/main amd64 Packages
+</span></span><span class="line"><span class="cl">     release <span class="nv">v</span><span class="o">=</span>11,o<span class="o">=</span>Debian,a<span class="o">=</span>oldstable-security,n<span class="o">=</span>bullseye-security,l<span class="o">=</span>Debian-Security,c<span class="o">=</span>main,b<span class="o">=</span>amd64
+</span></span><span class="line"><span class="cl">     origin security.debian.org
+</span></span><span class="line"><span class="cl"> <span class="m">500</span> http://deb.debian.org/debian bullseye/main amd64 Packages
+</span></span><span class="line"><span class="cl">     release <span class="nv">v</span><span class="o">=</span>11.8,o<span class="o">=</span>Debian,a<span class="o">=</span>oldstable,n<span class="o">=</span>bullseye,l<span class="o">=</span>Debian,c<span class="o">=</span>main,b<span class="o">=</span>amd64
+</span></span><span class="line"><span class="cl">     origin deb.debian.org
+</span></span></code></pre></div><h3 id="一些重要软件的独立镜像源">一些重要软件的独立镜像源</h3>
 <p>这里会记录一些重要软件的独立镜像源，以便需要时能够快速安装。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># jenkins Debian LTS release</span>
-$ curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key <span class="se">\
-</span><span class="se"></span>  &gt; /usr/share/keyrings/jenkins-keyring.asc
-$ <span class="nb">echo</span> <span class="s2">&#34;deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
-</span><span class="s2">  https://pkg.jenkins.io/debian-stable binary/&#34;</span> <span class="se">\
-</span><span class="se"></span>  &gt; /etc/apt/sources.list.d/jenkins.list
-$ apt update
-$ apt install jenkins
-
-<span class="c1"># docker-ce</span>
-$ curl -fsSL https://download.docker.com/linux/debian/gpg <span class="se">\
-</span><span class="se"></span>  &gt; /usr/share/keyrings/docker-ce-keyring.asc
-$ <span class="nb">echo</span> <span class="s2">&#34;deb [arch=&#34;</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2">&#34; signed-by=/usr/share/keyrings/docker-ce-keyring.asc] \
-</span><span class="s2">  https://download.docker.com/linux/debian &#34;</span><span class="k">$(</span>. /etc/os-release <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&#34;</span><span class="k">)</span><span class="s2">&#34; stable&#34;</span> <span class="se">\
-</span><span class="se"></span>  &gt; /etc/apt/sources.list.d/docker-ce.list
-$ apt update
-$ apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
-
-<span class="c1"># openresty</span>
-$ curl -fsSL https://openresty.org/package/pubkey.gpg <span class="se">\
-</span><span class="se"></span>  &gt; /usr/share/keyrings/openresty-keyring.asc
-$ <span class="nb">echo</span> <span class="s2">&#34;deb [signed-by=/usr/share/keyrings/openresty-keyring.asc] http://openresty.org/package/debian \
-</span><span class="s2">  &#34;</span><span class="k">$(</span>. /etc/os-release <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&#34;</span><span class="k">)</span><span class="s2">&#34; openresty&#34;</span> <span class="se">\
-</span><span class="se"></span>  &gt; /etc/apt/sources.list.d/openresty.list
-$ apt update
-$ apt install openresty
-
-<span class="c1"># mysql</span>
-$ wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
-<span class="c1"># mysql-apt-config 实际上就是安装对应的 apt 镜像源和签名信息的步骤</span>
-<span class="c1"># 0.8.15 版本的 mysql-apt-config 可以下载安装 mysql 5.7 和 mysql 8.0</span>
-<span class="c1"># 新版本的 mysql-apt-config 只能下载安装 mysql 8.0</span>
-$ dpkg -i mysql-apt-config_0.8.15-1_all.deb
-<span class="c1"># 安装完成后会跳出图形界面，可以自行选择需要的镜像源，这里选择的是 mysql 5.7</span>
-<span class="c1"># 配置完成后想要修改的话可以通过以下命令重新打开</span>
-$ dpkg-reconfigure mysql-apt-config
-<span class="c1"># 执行实际的安装步骤</span>
-$ apt update
-$ apt install mysql-community-server
-</code></pre></div><h2 id="调整网卡配置">调整网卡配置</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># jenkins Debian LTS release</span>
+</span></span><span class="line"><span class="cl">$ curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  &gt; /usr/share/keyrings/jenkins-keyring.asc
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  https://pkg.jenkins.io/debian-stable binary/&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  &gt; /etc/apt/sources.list.d/jenkins.list
+</span></span><span class="line"><span class="cl">$ apt update
+</span></span><span class="line"><span class="cl">$ apt install jenkins
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># docker-ce</span>
+</span></span><span class="line"><span class="cl">$ curl -fsSL https://download.docker.com/linux/debian/gpg <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  &gt; /usr/share/keyrings/docker-ce-keyring.asc
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;deb [arch=&#34;</span><span class="k">$(</span>dpkg --print-architecture<span class="k">)</span><span class="s2">&#34; signed-by=/usr/share/keyrings/docker-ce-keyring.asc] \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  https://download.docker.com/linux/debian &#34;</span><span class="k">$(</span>. /etc/os-release <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&#34;</span><span class="k">)</span><span class="s2">&#34; stable&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  &gt; /etc/apt/sources.list.d/docker-ce.list
+</span></span><span class="line"><span class="cl">$ apt update
+</span></span><span class="line"><span class="cl">$ apt install docker-ce docker-ce-cli containerd.io docker-compose-plugin
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># openresty</span>
+</span></span><span class="line"><span class="cl">$ curl -fsSL https://openresty.org/package/pubkey.gpg <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  &gt; /usr/share/keyrings/openresty-keyring.asc
+</span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s2">&#34;deb [signed-by=/usr/share/keyrings/openresty-keyring.asc] http://openresty.org/package/debian \
+</span></span></span><span class="line"><span class="cl"><span class="s2">  &#34;</span><span class="k">$(</span>. /etc/os-release <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;</span><span class="nv">$VERSION_CODENAME</span><span class="s2">&#34;</span><span class="k">)</span><span class="s2">&#34; openresty&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  &gt; /etc/apt/sources.list.d/openresty.list
+</span></span><span class="line"><span class="cl">$ apt update
+</span></span><span class="line"><span class="cl">$ apt install openresty
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># mysql</span>
+</span></span><span class="line"><span class="cl">$ wget https://dev.mysql.com/get/mysql-apt-config_0.8.15-1_all.deb
+</span></span><span class="line"><span class="cl"><span class="c1"># mysql-apt-config 实际上就是安装对应的 apt 镜像源和签名信息的步骤</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 0.8.15 版本的 mysql-apt-config 可以下载安装 mysql 5.7 和 mysql 8.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 新版本的 mysql-apt-config 只能下载安装 mysql 8.0</span>
+</span></span><span class="line"><span class="cl">$ dpkg -i mysql-apt-config_0.8.15-1_all.deb
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装完成后会跳出图形界面，可以自行选择需要的镜像源，这里选择的是 mysql 5.7</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置完成后想要修改的话可以通过以下命令重新打开</span>
+</span></span><span class="line"><span class="cl">$ dpkg-reconfigure mysql-apt-config
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行实际的安装步骤</span>
+</span></span><span class="line"><span class="cl">$ apt update
+</span></span><span class="line"><span class="cl">$ apt install mysql-community-server
+</span></span></code></pre></div><h2 id="调整网卡配置">调整网卡配置</h2>
 <p>Debian 系统使用的网卡配置文件是 <code>/etc/network/interfaces</code> 和 <code>/etc/network/interfaces.d/*</code> ，一般会在这里调整网卡的 IP 地址获取行为。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 默认的 /etc/network/interfaces 配置文件</span>
-$ cat /etc/network/interfaces
-<span class="c1"># This file describes the network interfaces available on your system</span>
-<span class="c1"># and how to activate them. For more information, see interfaces(5).</span>
-
-<span class="nb">source</span> /etc/network/interfaces.d/*
-
-<span class="c1"># The loopback network interface</span>
-auto lo
-iface lo inet loopback
-
-<span class="c1"># The primary network interface</span>
-allow-hotplug ens33
-iface ens33 inet dhcp
-
-<span class="c1"># 调整网卡为静态 IP 地址后的 /etc/network/interfaces 配置文件</span>
-$ cat /etc/network/interfaces
-<span class="c1"># This file describes the network interfaces available on your system</span>
-<span class="c1"># and how to activate them. For more information, see interfaces(5).</span>
-
-<span class="nb">source</span> /etc/network/interfaces.d/*
-
-<span class="c1"># The loopback network interface</span>
-auto lo
-iface lo inet loopback
-
-<span class="c1"># The primary network interface</span>
-allow-hotplug ens33
-auto ens33
-iface ens33 inet static
-address 192.168.1.2/23
-gateway 192.168.1.1
-dns-nameservers 192.168.1.1
-</code></pre></div><h2 id="vim-兼容性问题">vim 兼容性问题</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 默认的 /etc/network/interfaces 配置文件</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/network/interfaces
+</span></span><span class="line"><span class="cl"><span class="c1"># This file describes the network interfaces available on your system</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># and how to activate them. For more information, see interfaces(5).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /etc/network/interfaces.d/*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The loopback network interface</span>
+</span></span><span class="line"><span class="cl">auto lo
+</span></span><span class="line"><span class="cl">iface lo inet loopback
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The primary network interface</span>
+</span></span><span class="line"><span class="cl">allow-hotplug ens33
+</span></span><span class="line"><span class="cl">iface ens33 inet dhcp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 调整网卡为静态 IP 地址后的 /etc/network/interfaces 配置文件</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/network/interfaces
+</span></span><span class="line"><span class="cl"><span class="c1"># This file describes the network interfaces available on your system</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># and how to activate them. For more information, see interfaces(5).</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /etc/network/interfaces.d/*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The loopback network interface</span>
+</span></span><span class="line"><span class="cl">auto lo
+</span></span><span class="line"><span class="cl">iface lo inet loopback
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># The primary network interface</span>
+</span></span><span class="line"><span class="cl">allow-hotplug ens33
+</span></span><span class="line"><span class="cl">auto ens33
+</span></span><span class="line"><span class="cl">iface ens33 inet static
+</span></span><span class="line"><span class="cl">address 192.168.1.2/23
+</span></span><span class="line"><span class="cl">gateway 192.168.1.1
+</span></span><span class="line"><span class="cl">dns-nameservers 192.168.1.1
+</span></span></code></pre></div><h2 id="vim-兼容性问题">vim 兼容性问题</h2>
 <p>在 Debian 的一些版本中默认安装的编辑器是 vim-tiny ，可能会出现比如上下左右方向键变成 ABCD 的字符输入，退格键不能正常删除字符，或者文本粘贴出现异常缩进，可以通过修改 <code>vimrc</code> 来解决。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat ~/.vimrc
-<span class="s2">&#34;解决文本粘贴出现异常缩进&#34;</span>
-<span class="nb">set</span> paste
-<span class="s2">&#34;关闭兼容模式，解决上下左右方向键变成 ABCD 的字符输入&#34;</span>
-<span class="nb">set</span> nocompatible
-<span class="s2">&#34;解决退格键不能正常删除字符&#34;</span>
-<span class="nb">set</span> <span class="nv">backspace</span><span class="o">=</span><span class="m">2</span>
-</code></pre></div><h2 id="sshd-安全加固">sshd 安全加固</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat ~/.vimrc
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;解决文本粘贴出现异常缩进&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> paste
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;关闭兼容模式，解决上下左右方向键变成 ABCD 的字符输入&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> nocompatible
+</span></span><span class="line"><span class="cl"><span class="s2">&#34;解决退格键不能正常删除字符&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nb">set</span> <span class="nv">backspace</span><span class="o">=</span><span class="m">2</span>
+</span></span></code></pre></div><h2 id="sshd-安全加固">sshd 安全加固</h2>
 <p>sshd 基本上是 Linux 系统必定会运行的服务，一般会增加一些相关的安全配置。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 修改 sshd 服务的配置</span>
-$ cat /etc/ssh/sshd_config
-<span class="c1"># 禁止 root 用户登陆</span>
-PermitRootLogin no
-
-<span class="c1"># 禁用通过用户密码验证登陆</span>
-PasswordAuthentication no
-
-<span class="c1"># 启用用户私钥验证登陆</span>
-PubkeyAuthentication yes
-<span class="c1"># 验证私钥的公钥来源文件，一般不作修改</span>
-<span class="c1"># AuthorizedKeysFile .ssh/authorized_keys</span>
-
-<span class="c1"># AllowUsers 和 DenyUsers 可以限制用户登陆，其中 Deny 的优先级高于 Allow</span>
-<span class="c1"># 除了用户还可以限制登陆来源 IP ，来源 IP 可以是具体 host 或者 CIDR</span>
-AllowUsers userA@192.168.0.0/24 userA@10.0.0.1
-DenyUsers userB
-</code></pre></div><h3 id="sshd-算法禁用">sshd 算法禁用</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 修改 sshd 服务的配置</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁止 root 用户登陆</span>
+</span></span><span class="line"><span class="cl">PermitRootLogin no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用通过用户密码验证登陆</span>
+</span></span><span class="line"><span class="cl">PasswordAuthentication no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用用户私钥验证登陆</span>
+</span></span><span class="line"><span class="cl">PubkeyAuthentication yes
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证私钥的公钥来源文件，一般不作修改</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># AuthorizedKeysFile .ssh/authorized_keys</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># AllowUsers 和 DenyUsers 可以限制用户登陆，其中 Deny 的优先级高于 Allow</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 除了用户还可以限制登陆来源 IP ，来源 IP 可以是具体 host 或者 CIDR</span>
+</span></span><span class="line"><span class="cl">AllowUsers userA@192.168.0.0/24 userA@10.0.0.1
+</span></span><span class="line"><span class="cl">DenyUsers userB
+</span></span></code></pre></div><h3 id="sshd-算法禁用">sshd 算法禁用</h3>
 <p>sshd 用到的一些算法可能已经不安全，所以需要手动禁用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看默认支持的加密算法</span>
-$ ssh -Q cipher
-<span class="c1"># 查看默认支持的 mac 算法</span>
-$ ssh -Q mac
-<span class="c1"># 查看系统支持的密钥交换算法</span>
-$ ssh -Q kex
-
-<span class="c1"># 大部分情况下使用的 sshd 配置是默认的，可以先进行查询</span>
-$ sshd -T <span class="p">|</span> grep -i cipher
-$ sshd -T <span class="p">|</span> grep -i macs
-$ sshd -T <span class="p">|</span> grep -i kexalgorithms
-
-<span class="c1"># 在原有查询的基础上修改 sshd 服务的配置</span>
-<span class="c1"># 如果是禁用某些算法，直接把它去掉即可</span>
-<span class="c1"># 如果是新增某些算法，则不应该超出 ssh -Q 查询到的对应算法范围</span>
-<span class="c1"># 以下是 Debian 11 的默认 sshd 服务配置，可以在这个基础上修改</span>
-$ cat /etc/ssh/sshd_config
-Ciphers chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
-MACs macs umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
-KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
-
-<span class="c1"># 一些已知的弱算法</span>
-Ciphers:
-3des-cbc
-aes128-cbc
-aes192-cbc
-aes256-cbc
-blowfish-cbc
-cast128-cbc
-
-MACs:
-hmac-md5
-hmac-md5-96
-hmac-md5-etm@openssh.com
-hmac-md5-96-etm@openssh.com
-umac-64-etm@openssh.com
-umac-64@openssh.com
-
-KexAlgorithms:
-diffie-hellman-group-exchange-sha1
-diffie-hellman-group1-sha1
-
-<span class="c1"># 修改后需要重启 sshd 服务，可以通过命令来验证是否成功</span>
-$ nmap --script ssh2-enum-algos -sV -p <span class="m">22</span> 127.0.0.1
-$ ssh -o <span class="nv">Ciphers</span><span class="o">=</span>aes128-cbc root@127.0.0.1
-$ ssh -o <span class="nv">KexAlgorithms</span><span class="o">=</span>diffie-hellman-group-exchange-sha1 root@127.0.0.1
-</code></pre></div><h3 id="解决-rsa-密钥无法登陆的问题">解决 rsa 密钥无法登陆的问题</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看默认支持的加密算法</span>
+</span></span><span class="line"><span class="cl">$ ssh -Q cipher
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看默认支持的 mac 算法</span>
+</span></span><span class="line"><span class="cl">$ ssh -Q mac
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看系统支持的密钥交换算法</span>
+</span></span><span class="line"><span class="cl">$ ssh -Q kex
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 大部分情况下使用的 sshd 配置是默认的，可以先进行查询</span>
+</span></span><span class="line"><span class="cl">$ sshd -T <span class="p">|</span> grep -i cipher
+</span></span><span class="line"><span class="cl">$ sshd -T <span class="p">|</span> grep -i macs
+</span></span><span class="line"><span class="cl">$ sshd -T <span class="p">|</span> grep -i kexalgorithms
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在原有查询的基础上修改 sshd 服务的配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果是禁用某些算法，直接把它去掉即可</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果是新增某些算法，则不应该超出 ssh -Q 查询到的对应算法范围</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 以下是 Debian 11 的默认 sshd 服务配置，可以在这个基础上修改</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">Ciphers chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com
+</span></span><span class="line"><span class="cl">MACs macs umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1
+</span></span><span class="line"><span class="cl">KexAlgorithms curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 一些已知的弱算法</span>
+</span></span><span class="line"><span class="cl">Ciphers:
+</span></span><span class="line"><span class="cl">3des-cbc
+</span></span><span class="line"><span class="cl">aes128-cbc
+</span></span><span class="line"><span class="cl">aes192-cbc
+</span></span><span class="line"><span class="cl">aes256-cbc
+</span></span><span class="line"><span class="cl">blowfish-cbc
+</span></span><span class="line"><span class="cl">cast128-cbc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">MACs:
+</span></span><span class="line"><span class="cl">hmac-md5
+</span></span><span class="line"><span class="cl">hmac-md5-96
+</span></span><span class="line"><span class="cl">hmac-md5-etm@openssh.com
+</span></span><span class="line"><span class="cl">hmac-md5-96-etm@openssh.com
+</span></span><span class="line"><span class="cl">umac-64-etm@openssh.com
+</span></span><span class="line"><span class="cl">umac-64@openssh.com
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">KexAlgorithms:
+</span></span><span class="line"><span class="cl">diffie-hellman-group-exchange-sha1
+</span></span><span class="line"><span class="cl">diffie-hellman-group1-sha1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改后需要重启 sshd 服务，可以通过命令来验证是否成功</span>
+</span></span><span class="line"><span class="cl">$ nmap --script ssh2-enum-algos -sV -p <span class="m">22</span> 127.0.0.1
+</span></span><span class="line"><span class="cl">$ ssh -o <span class="nv">Ciphers</span><span class="o">=</span>aes128-cbc root@127.0.0.1
+</span></span><span class="line"><span class="cl">$ ssh -o <span class="nv">KexAlgorithms</span><span class="o">=</span>diffie-hellman-group-exchange-sha1 root@127.0.0.1
+</span></span></code></pre></div><h3 id="解决-rsa-密钥无法登陆的问题">解决 rsa 密钥无法登陆的问题</h3>
 <p>在较新版本的 OpenSSH 中，使用 RSA 密钥登陆时可能会产生 <code>userauth_pubkey: signature algorithm ssh-rsa not in pubkeyacceptedalgorithms</code> 的登陆错误日志，这是因为新版本的 OpenSSH 对一些不安全算法进行了禁用，可以通过修改配置解决。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 修改配置</span>
-$ cat /etc/ssh/sshd_config
-PubkeyAcceptedAlgorithms +ssh-rsa
-
-<span class="c1"># 通过测试命令确认无误后就可以重启服务</span>
-$ sshd -T <span class="p">|</span> grep pubkeyacceptedalgorithms
-</code></pre></div><h3 id="启用-sftp">启用 sftp</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 修改配置</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">PubkeyAcceptedAlgorithms +ssh-rsa
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过测试命令确认无误后就可以重启服务</span>
+</span></span><span class="line"><span class="cl">$ sshd -T <span class="p">|</span> grep pubkeyacceptedalgorithms
+</span></span></code></pre></div><h3 id="启用-sftp">启用 sftp</h3>
 <p>sshd 服务默认就会启动 sftp 服务，这里主要是对某些用户做一些额外的 sftp 适配。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 增加 sftp 用户并修改密码</span>
-$ useradd sftp -s /sbin/nologin -M
-$ passwd sftp
-
-<span class="c1"># 修改 sshd 服务的配置</span>
-$ cat /etc/ssh/sshd_config
-Subsystem sftp internal-sftp
-Match User sftp
-ForceCommand internal-sftp
-X11Forwarding no
-AllowTcpForwarding no
-PasswordAuthentication yes
-ChrootDirectory /data/sftp
-
-<span class="c1"># 创建 sftp 数据目录</span>
-$ mkdir -p /data/sftp
-$ chown root:root /data/sftp
-$ mkdir -p /data/sftp/sftp
-$ chown sftp:sftp /data/sftp/sftp
-$ chmod <span class="m">750</span> /data/sftp/sftp
-<span class="c1"># 使用 sftp 用户登陆后会被限制在 /data/sftp 中，并且只能修改 /data/sftp/sftp 下的文件</span>
-</code></pre></div><h2 id="增加-history-时间戳">增加 history 时间戳</h2>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 追加环境变量到 /etc/profile.d/history_timestamp.sh 文件中</span>
-$ cat /etc/profile.d/history_timestamp.sh
-<span class="nb">export</span> <span class="nv">HISTTIMEFORMAT</span><span class="o">=</span><span class="s2">&#34;%F %T `whoami` &#34;</span>
-</code></pre></div><h2 id="修改-linux-进程数限制">修改 Linux 进程数限制</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 增加 sftp 用户并修改密码</span>
+</span></span><span class="line"><span class="cl">$ useradd sftp -s /sbin/nologin -M
+</span></span><span class="line"><span class="cl">$ passwd sftp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改 sshd 服务的配置</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/ssh/sshd_config
+</span></span><span class="line"><span class="cl">Subsystem sftp internal-sftp
+</span></span><span class="line"><span class="cl">Match User sftp
+</span></span><span class="line"><span class="cl">ForceCommand internal-sftp
+</span></span><span class="line"><span class="cl">X11Forwarding no
+</span></span><span class="line"><span class="cl">AllowTcpForwarding no
+</span></span><span class="line"><span class="cl">PasswordAuthentication yes
+</span></span><span class="line"><span class="cl">ChrootDirectory /data/sftp
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 sftp 数据目录</span>
+</span></span><span class="line"><span class="cl">$ mkdir -p /data/sftp
+</span></span><span class="line"><span class="cl">$ chown root:root /data/sftp
+</span></span><span class="line"><span class="cl">$ mkdir -p /data/sftp/sftp
+</span></span><span class="line"><span class="cl">$ chown sftp:sftp /data/sftp/sftp
+</span></span><span class="line"><span class="cl">$ chmod <span class="m">750</span> /data/sftp/sftp
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 sftp 用户登陆后会被限制在 /data/sftp 中，并且只能修改 /data/sftp/sftp 下的文件</span>
+</span></span></code></pre></div><h2 id="增加-history-时间戳">增加 history 时间戳</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 追加环境变量到 /etc/profile.d/history_timestamp.sh 文件中</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/profile.d/history_timestamp.sh
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">HISTTIMEFORMAT</span><span class="o">=</span><span class="s2">&#34;%F %T `whoami` &#34;</span>
+</span></span></code></pre></div><h2 id="修改-linux-进程数限制">修改 Linux 进程数限制</h2>
 <p>用户直接执行 <code>ulimit -a</code> 就可以看到对应的自身受到的进程相关限制，可以通过修改 <code>/etc/security/limits.conf</code> 来改变这个设置。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ cat /etc/security/limits.conf
-<span class="c1"># nproc 代表进程数量限制</span>
-<span class="c1"># nofile 代表打开文件数量限制</span>
-user soft nproc <span class="m">65536</span>
-user hard nproc <span class="m">65536</span>
-user soft nofile <span class="m">65536</span>
-user hard nofile <span class="m">65536</span>
-
-<span class="c1"># /etc/security/limits.conf 修改后需要确认 pam_limits.so 动态库正常加载</span>
-<span class="c1"># 确认以下两个配置存在 required pam_limits.so</span>
-$ cat /etc/pam.d/sshd
-$ cat /etc/pam.d/login
-session required pam_limits.so
-</code></pre></div><h2 id="启用时间同步服务">启用时间同步服务</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ cat /etc/security/limits.conf
+</span></span><span class="line"><span class="cl"><span class="c1"># nproc 代表进程数量限制</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># nofile 代表打开文件数量限制</span>
+</span></span><span class="line"><span class="cl">user soft nproc <span class="m">65536</span>
+</span></span><span class="line"><span class="cl">user hard nproc <span class="m">65536</span>
+</span></span><span class="line"><span class="cl">user soft nofile <span class="m">65536</span>
+</span></span><span class="line"><span class="cl">user hard nofile <span class="m">65536</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># /etc/security/limits.conf 修改后需要确认 pam_limits.so 动态库正常加载</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 确认以下两个配置存在 required pam_limits.so</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/pam.d/sshd
+</span></span><span class="line"><span class="cl">$ cat /etc/pam.d/login
+</span></span><span class="line"><span class="cl">session required pam_limits.so
+</span></span></code></pre></div><h2 id="启用时间同步服务">启用时间同步服务</h2>
 <p>Debian 一般会默认启用这个服务，这里的主要是为了修改 ntp 服务器地址。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">$ vi /etc/systemd/timesyncd.conf
-<span class="o">[</span>Time<span class="o">]</span>
-<span class="nv">NTP</span><span class="o">=</span>ntp.aliyun.com ntp1.aliyun.com
-<span class="nv">FallbackNTP</span><span class="o">=</span>0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
-
-<span class="c1"># 配置检查</span>
-$ timedatectl show-timesync --all
-<span class="c1"># 重启服务</span>
-$ systemctl restart systemd-timesyncd.service
-</code></pre></div><h2 id="通过-dpkg-查询文件">通过 dpkg 查询文件</h2>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查询系统已经安装的 deb 软件包，对标 redhat 系列的 rpm -qa</span>
-$ dpkg -l
-
-<span class="c1"># 查询 deb 软件包安装的所有文件，对标 redhat 系列的 rpm -ql &lt;package_name&gt;</span>
-$ dpkg -L &lt;package_name&gt;
-
-<span class="c1"># 查询文件的 deb 软件包归属，对标 redhat 系列的 rpm -qf &lt;filename&gt;</span>
-$ dpkg -S &lt;filename&gt;
-</code></pre></div></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ vi /etc/systemd/timesyncd.conf
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Time<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">NTP</span><span class="o">=</span>ntp.aliyun.com ntp1.aliyun.com
+</span></span><span class="line"><span class="cl"><span class="nv">FallbackNTP</span><span class="o">=</span>0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置检查</span>
+</span></span><span class="line"><span class="cl">$ timedatectl show-timesync --all
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
+</span></span><span class="line"><span class="cl">$ systemctl restart systemd-timesyncd.service
+</span></span></code></pre></div><h2 id="通过-dpkg-查询文件">通过 dpkg 查询文件</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询系统已经安装的 deb 软件包，对标 redhat 系列的 rpm -qa</span>
+</span></span><span class="line"><span class="cl">$ dpkg -l
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询 deb 软件包安装的所有文件，对标 redhat 系列的 rpm -ql &lt;package_name&gt;</span>
+</span></span><span class="line"><span class="cl">$ dpkg -L &lt;package_name&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询文件的 deb 软件包归属，对标 redhat 系列的 rpm -qf &lt;filename&gt;</span>
+</span></span><span class="line"><span class="cl">$ dpkg -S &lt;filename&gt;
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>
@@ -539,7 +545,7 @@ $ dpkg -S &lt;filename&gt;
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

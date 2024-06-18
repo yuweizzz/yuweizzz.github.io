@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>openresty on Wei&#39;s blog</title>
+    <title>Openresty on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/openresty/</link>
-    <description>Recent content in openresty on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <description>Recent content in Openresty on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 03 Apr 2024 19:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/openresty/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/openresty/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>openresty 学习笔记</title>
       <link>https://yuweizzz.github.io/post/study_notes_about_openresty/</link>
       <pubDate>Wed, 03 Apr 2024 19:44:45 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/study_notes_about_openresty/</guid>
       <description>&lt;p&gt;这篇笔记用来记录一些 Openresty 开发的相关知识。&lt;/p&gt;</description>
     </item>
-    
     <item>
       <title>Apisix 的负载均衡实现</title>
       <link>https://yuweizzz.github.io/post/how_apisix_implements_load_balancing/</link>
       <pubDate>Thu, 03 Aug 2023 21:16:45 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/how_apisix_implements_load_balancing/</guid>
       <description>&lt;p&gt;这篇笔记用来分析 Apisix 是如何实现负载均衡的。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

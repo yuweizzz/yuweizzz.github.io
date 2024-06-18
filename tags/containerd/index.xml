@@ -4,17 +4,16 @@
     <title>Containerd on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/containerd/</link>
     <description>Recent content in Containerd on Wei&#39;s blog</description>
-    <generator>Hugo -- gohugo.io</generator>
+    <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 07 Jun 2022 19:44:45 +0000</lastBuildDate><atom:link href="https://yuweizzz.github.io/tags/containerd/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/containerd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>符合容器化标准的容器运行时：Containerd</title>
       <link>https://yuweizzz.github.io/post/knowledge_about_containerd/</link>
       <pubDate>Tue, 07 Jun 2022 19:44:45 +0000</pubDate>
-      
       <guid>https://yuweizzz.github.io/post/knowledge_about_containerd/</guid>
       <description>&lt;p&gt;这篇笔记用来记录 Containerd 的相关知识。&lt;/p&gt;</description>
     </item>
-    
   </channel>
 </rss>

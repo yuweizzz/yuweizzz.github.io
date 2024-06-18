@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录硬件测试工具 fio 和 stream 的使用。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/" />
 <meta property="og:site_name" content="硬件测试工具使用笔记" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -225,25 +232,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录硬件测试工具 fio 和 stream 的使用。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="硬盘性能测试工具-fio">硬盘性能测试工具 fio</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="硬盘性能测试工具-fio">硬盘性能测试工具 fio</h2>
 <p>fio 是比较常用的硬盘性能测试工具，它可以模拟不同读写场景并得到对应的 IOPS 和硬盘带宽，延迟等性能参数。</p>
 <h3 id="io-engine">io engine</h3>
 <p>使用 fio 需要指定 io engine ，实际上就是指定读写存储设备需要使用到的系统调用库，测试硬盘性能一般会使用 sync 或者 libaio ，其中 sync 使用的是 Linux 中基本的 IO 系统调用库，而 libaio 是 Linux 原生异步 IO 库。</p>
@@ -276,96 +282,96 @@ if (!doNotTrack) {
 <li><code>-numjobs</code> 和 <code>-thread</code> 是控制测试任务的并发方式，如果使用 <code>-thread</code> 则使用单进程多线程的方式来运行，如果不使用 <code>-thread</code> 则使用多进程的方式来运行，而 <code>-numjobs</code> 则用来控制线程数量，在使用并发的情况下，可以使用 <code>-group_reporting</code> 来综合所有执行结果以输出测试报告。</li>
 </ul>
 <p>参考命令如下：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 顺序读</span>
-$ fio -name<span class="o">=</span><span class="nb">read</span> -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span><span class="nb">read</span> -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>256k -size<span class="o">=</span>8G <span class="se">\
-</span><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
-
-<span class="c1"># 顺序写</span>
-$ fio -name<span class="o">=</span>write -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>write -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>256k -size<span class="o">=</span>8G <span class="se">\
-</span><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
-
-<span class="c1"># 随机写</span>
-$ fio -name<span class="o">=</span>randwrite -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>randwrite -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>4k -size<span class="o">=</span>8G <span class="se">\
-</span><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
-
-<span class="c1"># 随机读</span>
-$ fio -name<span class="o">=</span>randread -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>randread -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>4k -size<span class="o">=</span>8G <span class="se">\
-</span><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
-</code></pre></div><h2 id="内存性能测试工具-stream">内存性能测试工具 stream</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 顺序读</span>
+</span></span><span class="line"><span class="cl">$ fio -name<span class="o">=</span><span class="nb">read</span> -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span><span class="nb">read</span> -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>256k -size<span class="o">=</span>8G <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 顺序写</span>
+</span></span><span class="line"><span class="cl">$ fio -name<span class="o">=</span>write -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>write -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>256k -size<span class="o">=</span>8G <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 随机写</span>
+</span></span><span class="line"><span class="cl">$ fio -name<span class="o">=</span>randwrite -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>randwrite -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>4k -size<span class="o">=</span>8G <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 随机读</span>
+</span></span><span class="line"><span class="cl">$ fio -name<span class="o">=</span>randread -filename<span class="o">=</span>/dev/sdb -rw<span class="o">=</span>randread -ioengine<span class="o">=</span>libaio -direct<span class="o">=</span><span class="m">1</span> -iodepth<span class="o">=</span><span class="m">32</span> -bs<span class="o">=</span>4k -size<span class="o">=</span>8G <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -numjobs<span class="o">=</span><span class="m">4</span> -thread -group_reporting
+</span></span></code></pre></div><h2 id="内存性能测试工具-stream">内存性能测试工具 stream</h2>
 <p>stream 是内存带宽性能的测试工具，主要通过内存运算操作来计算出机器的内存带宽性能。</p>
 <p>它的原理是通过在内存中划定三个数组，通过函数对不同数组内数据进行计算来得出内存的带宽性能，根据 stream 的设计，我们可以自行指定这三个数组的大小，并且这个大小应该超过 CPU 的三级缓存大小，这样测试时才不会受到 CPU 缓存的影响，推荐是 4 倍的三级缓存大小。</p>
 <p>实际使用可以参考下面的过程：</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 获取机器的 CPU 信息</span>
-$ lscpu <span class="p">|</span> grep -E <span class="s1">&#39;Socket|L3&#39;</span>
-Socket<span class="o">(</span>s<span class="o">)</span>:           <span class="m">1</span>
-L3 cache:            16384K
-<span class="c1"># Socket(s) 可以得到机器有多少个物理 CPU ，一般服务器是单个，两个或者四个 CPU</span>
-<span class="c1"># L3 cache 可以得到单个物理 CPU 的三级缓存大小，整台机器的三级缓存大小应该是 Socket(s) * L3 cache Size</span>
-
-<span class="c1"># 下载源代码</span>
-$ wget http://www.cs.virginia.edu/stream/FTP/Code/stream.c
-
-<span class="c1"># 编译需要确定 STREAM_ARRAY_SIZE 编译参数</span>
-$ gcc -O3 -fopenmp -DSTREAM_ARRAY_SIZE<span class="o">=</span><span class="m">8500000</span> -DNTIMES<span class="o">=</span><span class="m">10</span> stream.c -o stream
-<span class="c1"># -O3 指定编译优化级别为最高</span>
-<span class="c1"># -fopenmp 启用多核支持，这样 stream 会默认以核心数量来启动线程</span>
-<span class="c1"># -DNTIMES 用来改变 stream 的运行次数， stream 默认会多次执行计算并取出最好的运行结果，默认值为 10</span>
-<span class="c1"># -DSTREAM_ARRAY_SIZE 就是我们需要指定的数组大小，默认值为 10000000 </span>
-<span class="c1"># 如果 STREAM_ARRAY_SIZE 默认值已经大于通过机器的三级缓存总和计算的结果，则可以直接保持这个默认值</span>
-
-<span class="c1"># 源代码部分参考：</span>
-/* -------------------------------------------------- */
-<span class="c1">#ifndef STREAM_TYPE</span>
-<span class="c1">#define STREAM_TYPE double</span>
-<span class="c1">#endif</span>
-
-static STREAM_TYPE      a<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span>,
-                        b<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span>,
-                        c<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span><span class="p">;</span>
-/* -------------------------------------------------- */
-<span class="c1"># 可以看到 STREAM_ARRAY_SIZE 默认使用 double 类型</span>
-<span class="c1"># 假设 Socket(s)=1 和 L3 cache Size=16384K ，则 STREAM_ARRAY_SIZE 的计算公式为：</span>
-<span class="c1"># 16384(KB) * 1024 * 1 * 4 / 8(B) = 8388608 -&gt; 8500000</span>
-<span class="c1"># 假设 Socket(s)=1 和 L3 cache Size=40M ，则 STREAM_ARRAY_SIZE 的计算公式为：</span>
-<span class="c1"># 40(MB) * 1024 * 1024 * 1 * 4 / 8(B) = 20971520 -&gt; 21000000</span>
-
-<span class="c1"># 执行 stream</span>
-$ ./stream
-<span class="c1"># 以下是在一台云服务器上的运行结果：</span>
--------------------------------------------------------------
-STREAM version <span class="nv">$Revision</span>: 5.10 $
--------------------------------------------------------------
-This system uses <span class="m">8</span> bytes per array element.
--------------------------------------------------------------
-Array <span class="nv">size</span> <span class="o">=</span> <span class="m">8500000</span> <span class="o">(</span>elements<span class="o">)</span>, <span class="nv">Offset</span> <span class="o">=</span> <span class="m">0</span> <span class="o">(</span>elements<span class="o">)</span>
-Memory per <span class="nv">array</span> <span class="o">=</span> 64.8 MiB <span class="o">(=</span> 0.1 GiB<span class="o">)</span>.
-Total memory <span class="nv">required</span> <span class="o">=</span> 194.5 MiB <span class="o">(=</span> 0.2 GiB<span class="o">)</span>.
-Each kernel will be executed <span class="m">10</span> times.
- The *best* <span class="nb">time</span> <span class="k">for</span> each kernel <span class="o">(</span>excluding the first iteration<span class="o">)</span>
- will be used to compute the reported bandwidth.
--------------------------------------------------------------
-Number of Threads <span class="nv">requested</span> <span class="o">=</span> <span class="m">4</span>
-Number of Threads <span class="nv">counted</span> <span class="o">=</span> <span class="m">4</span>
--------------------------------------------------------------
-Your clock granularity/precision appears to be <span class="m">1</span> microseconds.
-Each <span class="nb">test</span> below will take on the order of <span class="m">3318</span> microseconds.
-   <span class="o">(=</span> <span class="m">3318</span> clock ticks<span class="o">)</span>
-Increase the size of the arrays <span class="k">if</span> this shows that
-you are not getting at least <span class="m">20</span> clock ticks per test.
--------------------------------------------------------------
-WARNING -- The above is only a rough guideline.
-For best results, please be sure you know the
-precision of your system timer.
--------------------------------------------------------------
-Function    Best Rate MB/s  Avg <span class="nb">time</span>     Min <span class="nb">time</span>     Max <span class="nb">time</span>
-Copy:           28577.0     0.005012     0.004759     0.005315
-Scale:          28416.1     0.004947     0.004786     0.005157
-Add:            29771.7     0.007201     0.006852     0.007542
-Triad:          29348.9     0.007279     0.006951     0.007677
--------------------------------------------------------------
-Solution Validates: avg error less than 1.000000e-13 on all three arrays
--------------------------------------------------------------
-</code></pre></div></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 获取机器的 CPU 信息</span>
+</span></span><span class="line"><span class="cl">$ lscpu <span class="p">|</span> grep -E <span class="s1">&#39;Socket|L3&#39;</span>
+</span></span><span class="line"><span class="cl">Socket<span class="o">(</span>s<span class="o">)</span>:           <span class="m">1</span>
+</span></span><span class="line"><span class="cl">L3 cache:            16384K
+</span></span><span class="line"><span class="cl"><span class="c1"># Socket(s) 可以得到机器有多少个物理 CPU ，一般服务器是单个，两个或者四个 CPU</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># L3 cache 可以得到单个物理 CPU 的三级缓存大小，整台机器的三级缓存大小应该是 Socket(s) * L3 cache Size</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载源代码</span>
+</span></span><span class="line"><span class="cl">$ wget http://www.cs.virginia.edu/stream/FTP/Code/stream.c
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 编译需要确定 STREAM_ARRAY_SIZE 编译参数</span>
+</span></span><span class="line"><span class="cl">$ gcc -O3 -fopenmp -DSTREAM_ARRAY_SIZE<span class="o">=</span><span class="m">8500000</span> -DNTIMES<span class="o">=</span><span class="m">10</span> stream.c -o stream
+</span></span><span class="line"><span class="cl"><span class="c1"># -O3 指定编译优化级别为最高</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -fopenmp 启用多核支持，这样 stream 会默认以核心数量来启动线程</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -DNTIMES 用来改变 stream 的运行次数， stream 默认会多次执行计算并取出最好的运行结果，默认值为 10</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -DSTREAM_ARRAY_SIZE 就是我们需要指定的数组大小，默认值为 10000000 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果 STREAM_ARRAY_SIZE 默认值已经大于通过机器的三级缓存总和计算的结果，则可以直接保持这个默认值</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 源代码部分参考：</span>
+</span></span><span class="line"><span class="cl">/* -------------------------------------------------- */
+</span></span><span class="line"><span class="cl"><span class="c1">#ifndef STREAM_TYPE</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#define STREAM_TYPE double</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#endif</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">static STREAM_TYPE      a<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span>,
+</span></span><span class="line"><span class="cl">                        b<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span>,
+</span></span><span class="line"><span class="cl">                        c<span class="o">[</span>STREAM_ARRAY_SIZE+OFFSET<span class="o">]</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">/* -------------------------------------------------- */
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以看到 STREAM_ARRAY_SIZE 默认使用 double 类型</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 假设 Socket(s)=1 和 L3 cache Size=16384K ，则 STREAM_ARRAY_SIZE 的计算公式为：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 16384(KB) * 1024 * 1 * 4 / 8(B) = 8388608 -&gt; 8500000</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 假设 Socket(s)=1 和 L3 cache Size=40M ，则 STREAM_ARRAY_SIZE 的计算公式为：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 40(MB) * 1024 * 1024 * 1 * 4 / 8(B) = 20971520 -&gt; 21000000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行 stream</span>
+</span></span><span class="line"><span class="cl">$ ./stream
+</span></span><span class="line"><span class="cl"><span class="c1"># 以下是在一台云服务器上的运行结果：</span>
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span><span class="line"><span class="cl">STREAM version <span class="nv">$Revision</span>: 5.10 $
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span><span class="line"><span class="cl">This system uses <span class="m">8</span> bytes per array element.
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span><span class="line"><span class="cl">Array <span class="nv">size</span> <span class="o">=</span> <span class="m">8500000</span> <span class="o">(</span>elements<span class="o">)</span>, <span class="nv">Offset</span> <span class="o">=</span> <span class="m">0</span> <span class="o">(</span>elements<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Memory per <span class="nv">array</span> <span class="o">=</span> 64.8 MiB <span class="o">(=</span> 0.1 GiB<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Total memory <span class="nv">required</span> <span class="o">=</span> 194.5 MiB <span class="o">(=</span> 0.2 GiB<span class="o">)</span>.
+</span></span><span class="line"><span class="cl">Each kernel will be executed <span class="m">10</span> times.
+</span></span><span class="line"><span class="cl"> The *best* <span class="nb">time</span> <span class="k">for</span> each kernel <span class="o">(</span>excluding the first iteration<span class="o">)</span>
+</span></span><span class="line"><span class="cl"> will be used to compute the reported bandwidth.
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span><span class="line"><span class="cl">Number of Threads <span class="nv">requested</span> <span class="o">=</span> <span class="m">4</span>
+</span></span><span class="line"><span class="cl">Number of Threads <span class="nv">counted</span> <span class="o">=</span> <span class="m">4</span>
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span><span class="line"><span class="cl">Your clock granularity/precision appears to be <span class="m">1</span> microseconds.
+</span></span><span class="line"><span class="cl">Each <span class="nb">test</span> below will take on the order of <span class="m">3318</span> microseconds.
+</span></span><span class="line"><span class="cl">   <span class="o">(=</span> <span class="m">3318</span> clock ticks<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Increase the size of the arrays <span class="k">if</span> this shows that
+</span></span><span class="line"><span class="cl">you are not getting at least <span class="m">20</span> clock ticks per test.
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span><span class="line"><span class="cl">WARNING -- The above is only a rough guideline.
+</span></span><span class="line"><span class="cl">For best results, please be sure you know the
+</span></span><span class="line"><span class="cl">precision of your system timer.
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span><span class="line"><span class="cl">Function    Best Rate MB/s  Avg <span class="nb">time</span>     Min <span class="nb">time</span>     Max <span class="nb">time</span>
+</span></span><span class="line"><span class="cl">Copy:           28577.0     0.005012     0.004759     0.005315
+</span></span><span class="line"><span class="cl">Scale:          28416.1     0.004947     0.004786     0.005157
+</span></span><span class="line"><span class="cl">Add:            29771.7     0.007201     0.006852     0.007542
+</span></span><span class="line"><span class="cl">Triad:          29348.9     0.007279     0.006951     0.007677
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span><span class="line"><span class="cl">Solution Validates: avg error less than 1.000000e-13 on all three arrays
+</span></span><span class="line"><span class="cl">-------------------------------------------------------------
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>
@@ -382,7 +388,7 @@ Solution Validates: avg error less than 1.000000e-13 on all three arrays
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

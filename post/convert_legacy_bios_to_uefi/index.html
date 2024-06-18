@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="将 MBR&#43;BIOS 启动的硬盘转换为 GPT&#43;UEFI 启动。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/" />
 <meta property="og:site_name" content="由 BIOS 传统启动向 UEFI 启动迁移" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -225,92 +232,91 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="前言">前言</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="前言">前言</h2>
 <p>现代设备中，采用 UEFI 启动的机器越来越多了，虽然在服务器中可以通过 CSM 来提供 Legacy BIOS 的支持，但是 UEFI 将会是未来使用的主流方式，所以有必要开始尝试使用 UEFI 启动。</p>
 <h2 id="将-mbr-转换为-gpt">将 MBR 转换为 GPT</h2>
 <p>和 UEFI 启动模式紧密配合的分区方式是 GPT ，原有的 MBR 分区方式存在一定的局限性。而 GPT 为了保持兼容，使用了 LBA 0 扇区作为 MBR 保护扇区，这也使得 MBR 分区方式迁移到 GPT 分区方式成为可能。</p>
 <p>将 MBR+BIOS 启动的硬盘转换为 GPT+UEFI 启动的第一步工作就是将 MBR 转换为 GPT 。</p>
 <p><strong>进行分区操作时，一定要小心谨慎，做好数据备份，对根分区的错误操作可能是无法挽救的。</strong></p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 首先观察根分区情况，这时可以使用 fdisk 或 parted</span>
-<span class="c1"># 这个硬盘来自我的虚拟机</span>
-
-$ fdisk /dev/sda
-...
-Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
-
-Disk /dev/sda: 10.7 GB, <span class="m">10737418240</span> bytes, <span class="m">20971520</span> sectors
-<span class="nv">Units</span> <span class="o">=</span> sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
-Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
-Disk label type: dos
-Disk identifier: 0x0004dcb6
-
-   Device Boot      Start         End      Blocks   Id  System
-/dev/sda1   *        <span class="m">2048</span>     <span class="m">1026047</span>      <span class="m">512000</span>   <span class="m">83</span>  Linux
-/dev/sda2         <span class="m">1026048</span>     <span class="m">3123199</span>     <span class="m">1048576</span>   <span class="m">83</span>  Linux
-/dev/sda3         <span class="m">3123200</span>    <span class="m">20971519</span>     <span class="m">8924160</span>   <span class="m">83</span>  Linux
-
-$ parted -l
-Model: VMware, VMware Virtual S <span class="o">(</span>scsi<span class="o">)</span>
-Disk /dev/sda: 10.7GB
-Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
-Partition Table: msdos
-Disk Flags: 
-
-Number  Start   End     Size    Type     File system     Flags
- <span class="m">1</span>      1049kB  525MB   524MB   primary  xfs             boot
- <span class="m">2</span>      525MB   1599MB  1074MB  primary  linux-swap<span class="o">(</span>v1<span class="o">)</span>
- <span class="m">3</span>      1599MB  10.7GB  9138MB  primary  xfs
-</code></pre></div><p>如果你的系统盘如上面展示的一样，最后一个分区用尽了所有剩余的硬盘扇区，这种情况下不建议进行分区方式的转换，因为根据 GPT 分区格式的定义， GPT 比 MBR 使用到了更多的硬盘起始扇区存放分区信息 (Primary GPT) ，而且还占用了硬盘末尾的部分扇区作为分区信息的备份 (Secondary GPT) 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 首先观察根分区情况，这时可以使用 fdisk 或 parted</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 这个硬盘来自我的虚拟机</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ fdisk /dev/sda
+</span></span><span class="line"><span class="cl">...
+</span></span><span class="line"><span class="cl">Command <span class="o">(</span>m <span class="k">for</span> <span class="nb">help</span><span class="o">)</span>: p
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Disk /dev/sda: 10.7 GB, <span class="m">10737418240</span> bytes, <span class="m">20971520</span> sectors
+</span></span><span class="line"><span class="cl"><span class="nv">Units</span> <span class="o">=</span> sectors of <span class="m">1</span> * <span class="nv">512</span> <span class="o">=</span> <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">I/O size <span class="o">(</span>minimum/optimal<span class="o">)</span>: <span class="m">512</span> bytes / <span class="m">512</span> bytes
+</span></span><span class="line"><span class="cl">Disk label type: dos
+</span></span><span class="line"><span class="cl">Disk identifier: 0x0004dcb6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   Device Boot      Start         End      Blocks   Id  System
+</span></span><span class="line"><span class="cl">/dev/sda1   *        <span class="m">2048</span>     <span class="m">1026047</span>      <span class="m">512000</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">/dev/sda2         <span class="m">1026048</span>     <span class="m">3123199</span>     <span class="m">1048576</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">/dev/sda3         <span class="m">3123200</span>    <span class="m">20971519</span>     <span class="m">8924160</span>   <span class="m">83</span>  Linux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ parted -l
+</span></span><span class="line"><span class="cl">Model: VMware, VMware Virtual S <span class="o">(</span>scsi<span class="o">)</span>
+</span></span><span class="line"><span class="cl">Disk /dev/sda: 10.7GB
+</span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
+</span></span><span class="line"><span class="cl">Partition Table: msdos
+</span></span><span class="line"><span class="cl">Disk Flags: 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Number  Start   End     Size    Type     File system     Flags
+</span></span><span class="line"><span class="cl"> <span class="m">1</span>      1049kB  525MB   524MB   primary  xfs             boot
+</span></span><span class="line"><span class="cl"> <span class="m">2</span>      525MB   1599MB  1074MB  primary  linux-swap<span class="o">(</span>v1<span class="o">)</span>
+</span></span><span class="line"><span class="cl"> <span class="m">3</span>      1599MB  10.7GB  9138MB  primary  xfs
+</span></span></code></pre></div><p>如果你的系统盘如上面展示的一样，最后一个分区用尽了所有剩余的硬盘扇区，这种情况下不建议进行分区方式的转换，因为根据 GPT 分区格式的定义， GPT 比 MBR 使用到了更多的硬盘起始扇区存放分区信息 (Primary GPT) ，而且还占用了硬盘末尾的部分扇区作为分区信息的备份 (Secondary GPT) 。</p>
 <p>虽然很多分区工具在操作 msdos 硬盘时会保留一些起始扇区，默认从 1 MB 开始分区，以便后续兼容 GPT 格式，但一般不会对末尾扇区做保留。所以在转换 GPT 时，处于硬盘头部的分区通常可以无损转换，而处于硬盘尾部的分区会遭遇文件系统受损。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 尝试对这个无法无损转换的硬盘进行操作</span>
-$ gdisk /dev/sda
-GPT fdisk <span class="o">(</span>gdisk<span class="o">)</span> version 0.8.10
-
-Partition table scan:
-  MBR: MBR only
-  BSD: not present
-  APM: not present
-  GPT: not present
-
-
-***************************************************************
-Found invalid GPT and valid MBR<span class="p">;</span> converting MBR to GPT format
-in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
-typing <span class="s1">&#39;q&#39;</span> <span class="k">if</span> you don<span class="err">&#39;</span>t want to convert your MBR partitions
-to GPT format!
-***************************************************************
-
-
-Warning! Secondary partition table overlaps the last partition by
-<span class="m">33</span> blocks!
-You will need to delete this partition or resize it in another utility.
-
-<span class="c1"># 这里已经给出分区告警：检测到无效的 GPT 和有效的 MBR ，</span>
-<span class="c1"># 分区工具将分区表自动转换为 GPT 格式，并且最后一个分区需要重新划分，</span>
-<span class="c1"># 在退出分区工具时可以按 q 来取消这次转换</span>
-
-<span class="c1"># 为了文件系统安全，记得通过按下 q 来退出。</span>
-</code></pre></div><p>虽然在我的虚拟机硬盘上无法直接实现转换，但是如果你的系统盘没有用尽所有的空间，或者最后一个分区用作交换分区时，分区方式就可以实现完美转换。</p>
-<pre><code># 对可以无损转换的硬盘进行操作，原有分区信息大概如下
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 尝试对这个无法无损转换的硬盘进行操作</span>
+</span></span><span class="line"><span class="cl">$ gdisk /dev/sda
+</span></span><span class="line"><span class="cl">GPT fdisk <span class="o">(</span>gdisk<span class="o">)</span> version 0.8.10
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Partition table scan:
+</span></span><span class="line"><span class="cl">  MBR: MBR only
+</span></span><span class="line"><span class="cl">  BSD: not present
+</span></span><span class="line"><span class="cl">  APM: not present
+</span></span><span class="line"><span class="cl">  GPT: not present
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">***************************************************************
+</span></span><span class="line"><span class="cl">Found invalid GPT and valid MBR<span class="p">;</span> converting MBR to GPT format
+</span></span><span class="line"><span class="cl">in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
+</span></span><span class="line"><span class="cl">typing <span class="s1">&#39;q&#39;</span> <span class="k">if</span> you don<span class="err">&#39;</span>t want to convert your MBR partitions
+</span></span><span class="line"><span class="cl">to GPT format!
+</span></span><span class="line"><span class="cl">***************************************************************
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Warning! Secondary partition table overlaps the last partition by
+</span></span><span class="line"><span class="cl"><span class="m">33</span> blocks!
+</span></span><span class="line"><span class="cl">You will need to delete this partition or resize it in another utility.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里已经给出分区告警：检测到无效的 GPT 和有效的 MBR ，</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 分区工具将分区表自动转换为 GPT 格式，并且最后一个分区需要重新划分，</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在退出分区工具时可以按 q 来取消这次转换</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 为了文件系统安全，记得通过按下 q 来退出。</span>
+</span></span></code></pre></div><p>虽然在我的虚拟机硬盘上无法直接实现转换，但是如果你的系统盘没有用尽所有的空间，或者最后一个分区用作交换分区时，分区方式就可以实现完美转换。</p>
+<pre tabindex="0"><code># 对可以无损转换的硬盘进行操作，原有分区信息大概如下
 # 这是一块 msdos 分区的硬盘，未用尽所有扇区
 # 这里为了实验删除了 swap 分区，实际上这一步可以省去，直接建立新分区和直接转换是没问题的
 ...
@@ -334,7 +340,7 @@ Partition table scan:
 ***************************************************************
 Found invalid GPT and valid MBR; converting MBR to GPT format
 in memory. THIS OPERATION IS POTENTIALLY DESTRUCTIVE! Exit by
-typing 'q' if you don't want to convert your MBR partitions
+typing &#39;q&#39; if you don&#39;t want to convert your MBR partitions
 to GPT format!
 ***************************************************************
 
@@ -346,17 +352,17 @@ Command (? for help): n
 Partition number (3-128, default 3): 3
 First sector (34-976773168, default = 904110080) or {+-}size{KMGTP}: 34
 Last sector (34-2047, default = 2047) or {+-}size{KMGTP}: 
-Current type is 'Linux filesystem'
+Current type is &#39;Linux filesystem&#39;
 Hex code or GUID (L to show codes, Enter = 8300): ef02
-Changed type of partition to 'BIOS boot partition'
+Changed type of partition to &#39;BIOS boot partition&#39;
 
 Command (? for help): n
 Partition number (4-128, default 4): 4
 First sector (904110080-976773168, default = 904110080) or {+-}size{KMGTP}: 
 Last sector (904110080-976773168, default = 976773168) or {+-}size{KMGTP}: +500M
-Current type is 'Linux filesystem'
+Current type is &#39;Linux filesystem&#39;
 Hex code or GUID (L to show codes, Enter = 8300): ef00
-Changed type of partition to 'EFI System'
+Changed type of partition to &#39;EFI System&#39;
 
 Command (? for help): w
 
@@ -381,66 +387,66 @@ Number  Start (sector)    End (sector)  Size       Code  Name
 </code></pre><p>相比原有的三个分区，只需要新增 BIOS boot partition 和 EFI System 两个新分区即可，它们会在后续派上用场。</p>
 <h2 id="挂载-esp">挂载 ESP</h2>
 <p>接下来需要挂载 ESP ，也就是刚才新增的 EFI System 分区，它的全称是 EFI System Partition ，是预留给 UEFI 启动存放引导文件的分区。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 格式化 ESP ，注意它的文件系统是 FAT 格式</span>
-$ mkfs.vfat /dev/sda4
-<span class="c1"># 如果命令不存在，安装新的软件包后重试</span>
-$ yum install dosfstools
-
-<span class="c1"># /boot 分区已经预留了 efi 目录以供 UEFI 启动分区挂载</span>
-<span class="c1"># 但我们现在使用的是 BIOS 启动，这个目录应该为空且没有挂载</span>
-$ mount /dev/sda4 /boot/efi
-<span class="c1"># 为了后续使用，这一步完成后应该手动更新到 fstab 中</span>
-</code></pre></div><h2 id="重新安装-bootloader">重新安装 BootLoader</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 格式化 ESP ，注意它的文件系统是 FAT 格式</span>
+</span></span><span class="line"><span class="cl">$ mkfs.vfat /dev/sda4
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果命令不存在，安装新的软件包后重试</span>
+</span></span><span class="line"><span class="cl">$ yum install dosfstools
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># /boot 分区已经预留了 efi 目录以供 UEFI 启动分区挂载</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 但我们现在使用的是 BIOS 启动，这个目录应该为空且没有挂载</span>
+</span></span><span class="line"><span class="cl">$ mount /dev/sda4 /boot/efi
+</span></span><span class="line"><span class="cl"><span class="c1"># 为了后续使用，这一步完成后应该手动更新到 fstab 中</span>
+</span></span></code></pre></div><h2 id="重新安装-bootloader">重新安装 BootLoader</h2>
 <p>由于我们转换了分区方式，原有的 BootLoader 也需要重新安装，现代 Liunx 系统基本都使用 grub2 作为 BootLoader 。</p>
 <p>grub2 在安装时有两个重要镜像 boot.img 和 core.img ，它们协作完成系统的引导工作，其中 boot.img 会安装在 MBR 分区硬盘的第一个扇区中，它主要负责把程序执行权转交给 core.img 。</p>
 <p>而 core.img 包含了基本功能和必要的模块，承担了引导系统内核的核心工作，一般会安装 MBR 分区硬盘的第一个扇区和第一个分区之间的空隙，这个位置通常称为 MBR gap ，这部分信息可以在 grub2 的<a href="https://www.gnu.org/software/grub/manual/grub/grub.html#BIOS-installation">官方文档</a>找到。</p>
 <p>由于我们将 MBR 转换为 GPT 格式，原有的 MBR gap 的位置会被 GPT 头所占据，按照 grub2 官方文档对 GPT 分区格式的使用指引，我们需要新的分区来替代 MBR gap ，这就是之前在分区时额外划分 BIOS Boot Partition 的原因。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 1.以 UEFI 引导为目标重装 grub2 ，需要提前挂载 ESP 分区</span>
-$ grub2-install --target<span class="o">=</span>x86_64-efi --efi-directory<span class="o">=</span>/boot/efi /dev/sda
-<span class="c1"># 此时应该可以在 ESP 分区， /boot/efi 子目录下找到 grubx64.efi 文件</span>
-<span class="c1"># 如果执行有类似模块信息丢失的报错，安装新的软件包后重试</span>
-$ yum install grub2-efi-x64-modules
-
-<span class="c1"># 2.生成 grub.cfg</span>
-$ grub2-mkconfig -o /boot/grub2/grub.cfg
-<span class="c1"># 如果对比观察新生成的 grub.cfg 和原有的 grub.cfg ，</span>
-<span class="c1"># 可以发现主要区别在于处理 MBR 的模块已经转换为处理 GPT 的模块。</span>
-
-<span class="c1"># 3.值得注意的是，我们目前的系统并不处在 UEFI 启动模式，系统下没有 UEFI 变量</span>
-<span class="c1"># 所以 grub2-mkconfig 还不能完全生成正确结果，需要手动修改一次</span>
-$ sed -i <span class="s1">&#39;s/linux16/linuxefi/g&#39;</span> /boot/grub2/grub.cfg
-$ sed -i <span class="s1">&#39;s/initrd16/initrdefi/g&#39;</span> /boot/grub2/grub.cfg
-<span class="c1"># 如果没有对 grub.cfg 进行修改，系统仍然可以从 BIOS 模式启动，但无法从 UEFI 模式启动</span>
-</code></pre></div><p>到这里系统下的工作基本完成，下一步需要重启机器进入 BIOS setup 来修改启动模式。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 1.以 UEFI 引导为目标重装 grub2 ，需要提前挂载 ESP 分区</span>
+</span></span><span class="line"><span class="cl">$ grub2-install --target<span class="o">=</span>x86_64-efi --efi-directory<span class="o">=</span>/boot/efi /dev/sda
+</span></span><span class="line"><span class="cl"><span class="c1"># 此时应该可以在 ESP 分区， /boot/efi 子目录下找到 grubx64.efi 文件</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果执行有类似模块信息丢失的报错，安装新的软件包后重试</span>
+</span></span><span class="line"><span class="cl">$ yum install grub2-efi-x64-modules
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2.生成 grub.cfg</span>
+</span></span><span class="line"><span class="cl">$ grub2-mkconfig -o /boot/grub2/grub.cfg
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果对比观察新生成的 grub.cfg 和原有的 grub.cfg ，</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以发现主要区别在于处理 MBR 的模块已经转换为处理 GPT 的模块。</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3.值得注意的是，我们目前的系统并不处在 UEFI 启动模式，系统下没有 UEFI 变量</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 所以 grub2-mkconfig 还不能完全生成正确结果，需要手动修改一次</span>
+</span></span><span class="line"><span class="cl">$ sed -i <span class="s1">&#39;s/linux16/linuxefi/g&#39;</span> /boot/grub2/grub.cfg
+</span></span><span class="line"><span class="cl">$ sed -i <span class="s1">&#39;s/initrd16/initrdefi/g&#39;</span> /boot/grub2/grub.cfg
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果没有对 grub.cfg 进行修改，系统仍然可以从 BIOS 模式启动，但无法从 UEFI 模式启动</span>
+</span></span></code></pre></div><p>到这里系统下的工作基本完成，下一步需要重启机器进入 BIOS setup 来修改启动模式。</p>
 <h2 id="修改启动模式和-uefi-启动项">修改启动模式和 UEFI 启动项</h2>
 <p>在机器重启自检过程中，根据提示按下按键就能进入 BIOS setup ，这个按键一般会是 Del 或者 F2 。</p>
 <p>进入到 BIOS setup ，常规主板会在 Boot Mode 选项设置启动模式，在服务器平台这个设置可能在 CSM 选项中，我们只需要将 Legacy BIOS 修改为 UEFI ，然后保存退出即可。</p>
 <p>第一次 UEFI 启动可能需要手动从 Boot Manager 引导，通过 Boot from File ，进入 ESP 选择对应的 efi 引导文件 grubx64.efi ，选择 efi 文件之后的界面会是熟悉的 grub2 内核选择界面，我们就可以正常进入系统了。</p>
 <p>为了后续的使用方便，进入系统后我们还要修改 UEFI 启动项。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 efibootmgr</span>
-$ yum install efibootmgr
-
-<span class="c1"># 查看系统启动项</span>
-$ efibootmgr <span class="o">[</span>-v<span class="o">]</span>
-<span class="c1"># -v 可以看到更详细的信息</span>
-
-<span class="c1"># 禁用一些无用的启动项</span>
-$ efibootmgr -B -b <span class="o">[</span>number<span class="o">]</span>
-<span class="c1"># 启用需要的启动项目</span>
-$ efibootmgr -a -b <span class="o">[</span>number<span class="o">]</span>
-<span class="c1"># 修改启动顺序</span>
-$ efibootmgr -o <span class="o">[</span>number,number,number...<span class="o">]</span>
-
-<span class="c1"># 将系统添加到独立的启动项</span>
-$ efibootmgr -c -d /dev/sda -p <span class="m">4</span> -L Grub2 -l /EFI/centos/grubx64.efi
-<span class="c1"># -c | --create  create new variable bootnum and add to bootorder</span>
-<span class="c1"># -d | --disk disk  (defaults to /dev/sda) containing loader</span>
-<span class="c1"># -l | --loader name  (defaults to &#34;\EFI\centos\grub.efi&#34;)</span>
-<span class="c1"># -L | --label label  Boot manager display label (defaults to &#34;Linux&#34;)</span>
-<span class="c1"># -p | --part part  partition containing loader (defaults to 1 on partitioned devices)</span>
-<span class="c1"># 大概的用法如上，比较值得注意的是 -L 选项，使用 \ 会有异常，无法指向正确的路径</span>
-<span class="c1"># 添加选项后最好要使用 efibootmgr -o 检查引导文件路径是否正确</span>
-</code></pre></div><p>到这里我们的系统已经完成由 MBR+BIOS 向 GPT+UEFI 的迁移工作。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 efibootmgr</span>
+</span></span><span class="line"><span class="cl">$ yum install efibootmgr
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看系统启动项</span>
+</span></span><span class="line"><span class="cl">$ efibootmgr <span class="o">[</span>-v<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -v 可以看到更详细的信息</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 禁用一些无用的启动项</span>
+</span></span><span class="line"><span class="cl">$ efibootmgr -B -b <span class="o">[</span>number<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用需要的启动项目</span>
+</span></span><span class="line"><span class="cl">$ efibootmgr -a -b <span class="o">[</span>number<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改启动顺序</span>
+</span></span><span class="line"><span class="cl">$ efibootmgr -o <span class="o">[</span>number,number,number...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将系统添加到独立的启动项</span>
+</span></span><span class="line"><span class="cl">$ efibootmgr -c -d /dev/sda -p <span class="m">4</span> -L Grub2 -l /EFI/centos/grubx64.efi
+</span></span><span class="line"><span class="cl"><span class="c1"># -c | --create  create new variable bootnum and add to bootorder</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -d | --disk disk  (defaults to /dev/sda) containing loader</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -l | --loader name  (defaults to &#34;\EFI\centos\grub.efi&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -L | --label label  Boot manager display label (defaults to &#34;Linux&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -p | --part part  partition containing loader (defaults to 1 on partitioned devices)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 大概的用法如上，比较值得注意的是 -L 选项，使用 \ 会有异常，无法指向正确的路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加选项后最好要使用 efibootmgr -o 检查引导文件路径是否正确</span>
+</span></span></code></pre></div><p>到这里我们的系统已经完成由 MBR+BIOS 向 GPT+UEFI 的迁移工作。</p>
 <h2 id="总结">总结</h2>
 <p>转换启动模式直接应用于生产环境的场景可能比较少，即使我们修改了启动模式可能也没有带来特别大的收益，不过这个过程可以让我们比较详细地了解 UEFI 和传统的 BIOS 启动模式的不同之处，扩展一下系统引导的相关知识，并且未来 UEFI 的使用场景可能会越来越多，提前接触也是好事。</p>
 <p>这次实验还引出一个比较重要的问题：对于系统盘的分区划分，我个人觉得应该考虑把根分区安排在中间， swap 分区放在最后，这样分区的好处是遇到根分区扩容的场景或者类似于这次分区格式转换的场景会比较方便操作。</p></article>
@@ -460,7 +466,7 @@ $ efibootmgr -c -d /dev/sda -p <span class="m">4</span> -L Grub2 -l /EFI/centos/
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

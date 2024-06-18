@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录一些服务器磁盘管理的相关知识。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_raid_and_hba/" />
 <meta property="og:site_name" content="硬盘知识拓展：总线适配器和磁盘阵列" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -234,25 +241,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录一些服务器磁盘管理的相关知识。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="服务器磁盘管理">服务器磁盘管理</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="服务器磁盘管理">服务器磁盘管理</h2>
 <p>如今的家用计算机可能很多已经使用了 NVMe 协议的固态硬盘，但是一般情况下你仍然可以看到用于接入 SATA 硬盘的接口，它们是通过直接接入到主板南桥中的 SATA 控制器来扩展额外硬盘的。</p>
 <p>服务器上的情况会略微不同，因为一般的 SATA 控制器只能接入有限数量的硬盘，通常是两个到四个这一量级。服务器动辄十几个以上的硬盘数量，只靠主板集成的 SATA 控制器是远远不够的，这时就需要用到 HBA 卡。</p>
 <p>关于磁盘的总线控制芯片，市场上很多使用的是 Broadcom 的芯片和对应的扩展卡，如果是 Broadcom 生产的扩展卡，一般可以通过 <code>lspci</code> 查看到 <code>LSI</code> ， <code>AVAGO</code> 相关的字样，这是由于这家公司经过了多次并购的原因。</p>
@@ -302,88 +308,88 @@ if (!doNotTrack) {
 <p>至于 IO 策略一般都是禁用 RAID 缓存和磁盘缓存，禁用 RAID 缓存是由于操作系统已经拥有缓存机制，禁用磁盘缓存是由于它不像 RAID 卡缓存一样拥有自己的掉电保护机制。</p>
 <h2 id="raid-卡命令行工具使用">RAID 卡命令行工具使用</h2>
 <p>这里介绍用于 HBA 卡的 <code>sas3ircu</code> 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 查看所有控制器</span>
-$ sas3ircu list
-<span class="c1"># 会输出所有可识别的扩展卡信息和对应 Index</span>
-
-<span class="c1"># 根据 Index 查看某个控制器的磁盘信息和 RAID 信息</span>
-$ sas3ircu <span class="m">0</span> display
-<span class="c1"># Enclosure 用来索引不同的 backplane</span>
-<span class="c1"># Slot 用来索引 backplane 中的槽位</span>
-
-<span class="c1"># IR 模式的 HBA 卡可以设置 RAID 组， IT 模式的无法使用 RAID 功能</span>
-<span class="c1"># 假设 Enclosure Id 为 2 ，使用两块硬盘创建 RAID1 组</span>
-$ sas3ircu <span class="m">0</span> create RAID1 max 2:0 2:1 noprompt
-<span class="c1"># 通过 volumeid 删除 RAID 组，假设 volumeid 为 100 ，实际可以使用 display 看到 volumeid</span>
-$ sas3ircu <span class="m">0</span> deletevolume <span class="m">100</span> noprompt
-
-<span class="c1"># 点亮指定硬盘的指示灯，在替换故障盘时非常有用，可能需要手动关闭</span>
-$ sas3ircu <span class="m">0</span> locate 2:0 on
-$ sas3ircu <span class="m">0</span> locate 2:0 off
-
-<span class="c1"># 混合使用 RAID 组和直接使用物理盘可能会导致启动异常，可以根据需要指定启动设备</span>
-<span class="c1"># 通过 volumeid 设置 RAID 组作为主启动项</span>
-$ sas3ircu <span class="m">0</span> bootir <span class="m">100</span>
-<span class="c1"># 通过 volumeid 设置 RAID 组作为备选启动项</span>
-$ sas3ircu <span class="m">0</span> altbootir <span class="m">100</span>
-
-<span class="c1"># 设置单盘作为主启动项</span>
-$ sas3ircu <span class="m">0</span> bootencl 2:0
-<span class="c1"># 设置单盘作为备选启动项</span>
-$ sas3ircu <span class="m">0</span> altbootencl 2:0
-</code></pre></div><p>这里介绍用于 RAID 卡的 <code>megacli</code> 。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 获取 RAID 卡的版本信息和型号</span>
-$ MegaCli64 -AdpALLInfo -a0
-
-<span class="c1"># 查看服务器 backplane 信息</span>
-$ MegaCli64 -EncInfo -a0
-<span class="c1"># 可以获取 Enclosure Device ID 和对应的可容纳磁盘数量 Number of Slots</span>
-
-<span class="c1"># 查看 RAID 卡下属的磁盘信息和 RAID 组信息</span>
-$ MegaCli64 -PDList -a0
-$ MegaCli64 -LDInfo -Lall -a0
-$ MegaCli64 -CfgDsply -a0
-
-<span class="c1"># RAID 卡中的 PD 通常是以下的状态：</span>
-<span class="c1"># Unconfigured Good ：新接入 RAID 卡的全新磁盘，可直接进行 RAID 配置</span>
-<span class="c1"># Online ：已经被配置到 RAID 组中的正常磁盘</span>
-<span class="c1"># Unconfigured Bad ：不能直接进行 RAID 配置的磁盘，不一定是故障的硬盘</span>
-<span class="c1"># Offline ：已经被配置到 RAID 组中的离线磁盘，可能是手动下线或者磁盘故障导致</span>
-<span class="c1"># Unconfigured Good (Foreign) ：带有未知 RAID 信息的磁盘</span>
-<span class="c1"># JBOD ：不使用 RAID 功能的磁盘，使用和常规 HBA 卡一样的直通模式</span>
-
-<span class="c1"># 由 Unconfigured Bad 或者 JBOD 转换到 Unconfigured Good</span>
-$ MegaCli64 -PDMakeGood -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
-<span class="c1"># 类似于 HBA 卡，使用 Enclosure:Slot 来索引磁盘</span>
-
-<span class="c1"># 使用 JBOD 模式，除了单盘直通外，还可以将多个磁盘合并为同一逻辑盘，不使用 RAID 条带化能力</span>
-$ MegaCli64 -PDMakeJBOD -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
-$ MegaCli64 -PDMakeJBOD -PhysDrv<span class="o">[</span>2:0,2:1<span class="o">]</span> -a0
-
-<span class="c1"># Foreign 意味着磁盘原先就带有 RAID 信息，可以选择导入或者删除</span>
-$ MegaCli64 -CfgForeign -Import -a0
-$ MegaCli64 -CfgForeign -Clear -a0
-
-<span class="c1"># 添加 RAID 组</span>
-$ MegaCli64 -CfgLdAdd -r1 -PhysDrv<span class="o">[</span>2:0,2:1<span class="o">]</span> -Hsp<span class="o">[</span>2:2<span class="o">]</span> -a0
-<span class="c1"># -r 代表阵列等级，比如 -r0 代表 RAID0 ， -r5 代表 RAID5</span>
-<span class="c1"># -Hsp 用来指定热备盘，它会在 RAID 组中某个磁盘故障时自动替换故障盘，实际中用得非常少</span>
-
-<span class="c1"># 删除 RAID 组</span>
-$ MegaCli64 -CfgLdDel -L0 -a0
-<span class="c1"># -L 代表 RAID 组的 id</span>
-
-<span class="c1"># 下线和上线 RAID 组中的某个磁盘</span>
-$ MegaCli64 -PDOffline -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0 
-$ MegaCli64 -PDOnline -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
-
-<span class="c1"># 点亮指定硬盘的指示灯</span>
-$ MegaCli64 -PdLocate -start -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
-$ MegaCli64 -PdLocate -stop -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
-
-<span class="c1"># 用于 RAID 组替换故障磁盘后，查看 RAID 组重建进度</span>
-$ MegaCli64 -PDRbld -ShowProg -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0 
-</code></pre></div></article>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看所有控制器</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu list
+</span></span><span class="line"><span class="cl"><span class="c1"># 会输出所有可识别的扩展卡信息和对应 Index</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据 Index 查看某个控制器的磁盘信息和 RAID 信息</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> display
+</span></span><span class="line"><span class="cl"><span class="c1"># Enclosure 用来索引不同的 backplane</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Slot 用来索引 backplane 中的槽位</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># IR 模式的 HBA 卡可以设置 RAID 组， IT 模式的无法使用 RAID 功能</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 假设 Enclosure Id 为 2 ，使用两块硬盘创建 RAID1 组</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> create RAID1 max 2:0 2:1 noprompt
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 volumeid 删除 RAID 组，假设 volumeid 为 100 ，实际可以使用 display 看到 volumeid</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> deletevolume <span class="m">100</span> noprompt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 点亮指定硬盘的指示灯，在替换故障盘时非常有用，可能需要手动关闭</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> locate 2:0 on
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> locate 2:0 off
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 混合使用 RAID 组和直接使用物理盘可能会导致启动异常，可以根据需要指定启动设备</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 volumeid 设置 RAID 组作为主启动项</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> bootir <span class="m">100</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 volumeid 设置 RAID 组作为备选启动项</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> altbootir <span class="m">100</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置单盘作为主启动项</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> bootencl 2:0
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置单盘作为备选启动项</span>
+</span></span><span class="line"><span class="cl">$ sas3ircu <span class="m">0</span> altbootencl 2:0
+</span></span></code></pre></div><p>这里介绍用于 RAID 卡的 <code>megacli</code> 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 获取 RAID 卡的版本信息和型号</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -AdpALLInfo -a0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看服务器 backplane 信息</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -EncInfo -a0
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以获取 Enclosure Device ID 和对应的可容纳磁盘数量 Number of Slots</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看 RAID 卡下属的磁盘信息和 RAID 组信息</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PDList -a0
+</span></span><span class="line"><span class="cl">$ MegaCli64 -LDInfo -Lall -a0
+</span></span><span class="line"><span class="cl">$ MegaCli64 -CfgDsply -a0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># RAID 卡中的 PD 通常是以下的状态：</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Unconfigured Good ：新接入 RAID 卡的全新磁盘，可直接进行 RAID 配置</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Online ：已经被配置到 RAID 组中的正常磁盘</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Unconfigured Bad ：不能直接进行 RAID 配置的磁盘，不一定是故障的硬盘</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Offline ：已经被配置到 RAID 组中的离线磁盘，可能是手动下线或者磁盘故障导致</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Unconfigured Good (Foreign) ：带有未知 RAID 信息的磁盘</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># JBOD ：不使用 RAID 功能的磁盘，使用和常规 HBA 卡一样的直通模式</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 由 Unconfigured Bad 或者 JBOD 转换到 Unconfigured Good</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PDMakeGood -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
+</span></span><span class="line"><span class="cl"><span class="c1"># 类似于 HBA 卡，使用 Enclosure:Slot 来索引磁盘</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 JBOD 模式，除了单盘直通外，还可以将多个磁盘合并为同一逻辑盘，不使用 RAID 条带化能力</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PDMakeJBOD -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PDMakeJBOD -PhysDrv<span class="o">[</span>2:0,2:1<span class="o">]</span> -a0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Foreign 意味着磁盘原先就带有 RAID 信息，可以选择导入或者删除</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -CfgForeign -Import -a0
+</span></span><span class="line"><span class="cl">$ MegaCli64 -CfgForeign -Clear -a0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加 RAID 组</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -CfgLdAdd -r1 -PhysDrv<span class="o">[</span>2:0,2:1<span class="o">]</span> -Hsp<span class="o">[</span>2:2<span class="o">]</span> -a0
+</span></span><span class="line"><span class="cl"><span class="c1"># -r 代表阵列等级，比如 -r0 代表 RAID0 ， -r5 代表 RAID5</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -Hsp 用来指定热备盘，它会在 RAID 组中某个磁盘故障时自动替换故障盘，实际中用得非常少</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 删除 RAID 组</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -CfgLdDel -L0 -a0
+</span></span><span class="line"><span class="cl"><span class="c1"># -L 代表 RAID 组的 id</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下线和上线 RAID 组中的某个磁盘</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PDOffline -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0 
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PDOnline -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 点亮指定硬盘的指示灯</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PdLocate -start -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PdLocate -stop -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 用于 RAID 组替换故障磁盘后，查看 RAID 组重建进度</span>
+</span></span><span class="line"><span class="cl">$ MegaCli64 -PDRbld -ShowProg -PhysDrv<span class="o">[</span>2:0<span class="o">]</span> -a0 
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>
@@ -400,7 +406,7 @@ $ MegaCli64 -PDRbld -ShowProg -PhysDrv<span class="o">[</span>2:0<span class="o"
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

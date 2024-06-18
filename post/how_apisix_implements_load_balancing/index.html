@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来分析 Apisix 是如何实现负载均衡的。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/how_apisix_implements_load_balancing/" />
 <meta property="og:site_name" content="Apisix 的负载均衡实现" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -234,25 +241,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来分析 Apisix 是如何实现负载均衡的。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="route-和-upstream">Route 和 Upstream</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="route-和-upstream">Route 和 Upstream</h2>
 <p>在 Apisix 中， <code>Route</code> 是最基础的资源对象，我们通过它来定义不同类型的请求，而 <code>Upstream</code> 是 <code>Route</code> 中请求的实际处理者， Apisix 会根据 <code>Upstream</code> 中的定义，对服务节点进行负载均衡，这一步也是这里想要分析的内容。</p>
 <h2 id="源码解析">源码解析</h2>
 <p>熟悉 Openresty 的都应该知道它是根据请求的不同阶段来进行逻辑处理，同样地我们将 Apisix 中的 <code>access_by_lua_block</code> 和 <code>balancer_by_lua_block</code> 作为我们的分析入口。根据 <code>apisix/cli/ngx_tpl.lua</code> 可以找到这两个 block 分别对应了 <code>apisix.http_access_phase()</code> 和 <code>apisix.http_balancer_phase()</code> 这两个函数，所以我们需要在 <code>apisix/init.lua</code> 中的代码寻找这两个函数的定义。</p>
@@ -271,190 +277,190 @@ if (!doNotTrack) {
 <p>在 <code>handle_upstream()</code> 的最后阶段，选中的上游节点会写入到上下文 <code>api_ctx.picked_server</code> 之中，整个 <code>apisix.http_access_phase()</code> 过程也就基本结束了。</p>
 <p>而 <code>apisix.http_balancer_phase()</code> 需要做的事情比较简单，因为它直接对应 <code>balancer_by_lua_block</code> 阶段，所以它的主要工作就是调用 <code>load_balancer.run()</code> ，也就是 <code>apisix/balancer.lua</code> 中的 <code>run()</code> 。</p>
 <p>下面是 <code>apisix/balancer.lua</code> 的代码片段，主要有 <code>create_server_picker()</code> ， <code>pick_server()</code> 和 <code>run()</code> 三个函数的具体内容。</p>
-<div class="highlight"><pre class="chroma"><code class="language-lua" data-lang="lua"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">create_server_picker</span><span class="p">(</span><span class="n">upstream</span><span class="p">,</span> <span class="n">checker</span><span class="p">)</span>
-    <span class="c1">-- 根据 upstream 中定义的 type 选择具体的负载均衡算法</span>
-    <span class="kd">local</span> <span class="n">picker</span> <span class="o">=</span> <span class="n">pickers</span><span class="p">[</span><span class="n">upstream.type</span><span class="p">]</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">picker</span> <span class="kr">then</span>
-        <span class="n">pickers</span><span class="p">[</span><span class="n">upstream.type</span><span class="p">]</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;apisix.balancer.&#34;</span> <span class="o">..</span> <span class="n">upstream.type</span><span class="p">)</span>
-        <span class="n">picker</span> <span class="o">=</span> <span class="n">pickers</span><span class="p">[</span><span class="n">upstream.type</span><span class="p">]</span>
-    <span class="kr">end</span>
-
-    <span class="kr">if</span> <span class="n">picker</span> <span class="kr">then</span>
-        <span class="kd">local</span> <span class="n">nodes</span> <span class="o">=</span> <span class="n">upstream.nodes</span>
-        <span class="kd">local</span> <span class="n">addr_to_domain</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">node</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="kr">do</span>
-            <span class="kr">if</span> <span class="n">node.domain</span> <span class="kr">then</span>
-                <span class="kd">local</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">node.host</span> <span class="o">..</span> <span class="s2">&#34;:&#34;</span> <span class="o">..</span> <span class="n">node.port</span>
-                <span class="n">addr_to_domain</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="n">node.domain</span>
-            <span class="kr">end</span>
-        <span class="kr">end</span>
-
-        <span class="kd">local</span> <span class="n">up_nodes</span> <span class="o">=</span> <span class="n">fetch_health_nodes</span><span class="p">(</span><span class="n">upstream</span><span class="p">,</span> <span class="n">checker</span><span class="p">)</span>
-
-        <span class="c1">-- _priority_index 和 upstream 中定义的 priority 有关 </span>
-        <span class="kr">if</span> <span class="o">#</span><span class="n">up_nodes._priority_index</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="kr">then</span>
-            <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;upstream nodes: &#34;</span><span class="p">,</span> <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">))</span>
-            <span class="c1">-- 这里的 priority_balancer 就是 apisix/balancer/priority.lua</span>
-            <span class="kd">local</span> <span class="n">server_picker</span> <span class="o">=</span> <span class="n">priority_balancer.new</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">,</span> <span class="n">upstream</span><span class="p">,</span> <span class="n">picker</span><span class="p">)</span>
-            <span class="n">server_picker.addr_to_domain</span> <span class="o">=</span> <span class="n">addr_to_domain</span>
-            <span class="kr">return</span> <span class="n">server_picker</span>
-        <span class="kr">end</span>
-
-        <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;upstream nodes: &#34;</span><span class="p">,</span>
-                      <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">[</span><span class="n">up_nodes._priority_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]]))</span>
-        <span class="kd">local</span> <span class="n">server_picker</span> <span class="o">=</span> <span class="n">picker.new</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">[</span><span class="n">up_nodes._priority_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">upstream</span><span class="p">)</span>
-        <span class="n">server_picker.addr_to_domain</span> <span class="o">=</span> <span class="n">addr_to_domain</span>
-        <span class="kr">return</span> <span class="n">server_picker</span>
-    <span class="kr">end</span>
-
-    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;invalid balancer type: &#34;</span> <span class="o">..</span> <span class="n">upstream.type</span><span class="p">,</span> <span class="mi">0</span>
-<span class="kr">end</span>
-
-<span class="c1">-- pick_server will be called:</span>
-<span class="c1">-- 1. in the access phase so that we can set headers according to the picked server</span>
-<span class="c1">-- 2. each time we need to retry upstream</span>
-<span class="kd">local</span> <span class="kr">function</span> <span class="nf">pick_server</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
-    <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;route: &#34;</span><span class="p">,</span> <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span>
-    <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;ctx: &#34;</span><span class="p">,</span> <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span>
-    <span class="kd">local</span> <span class="n">up_conf</span> <span class="o">=</span> <span class="n">ctx.upstream_conf</span>
-
-    <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">node</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">up_conf.nodes</span><span class="p">)</span> <span class="kr">do</span>
-        <span class="kr">if</span> <span class="n">core.utils</span><span class="p">.</span><span class="n">parse_ipv6</span><span class="p">(</span><span class="n">node.host</span><span class="p">)</span> <span class="ow">and</span> <span class="n">str_byte</span><span class="p">(</span><span class="n">node.host</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">~=</span> <span class="n">str_byte</span><span class="p">(</span><span class="s2">&#34;[&#34;</span><span class="p">)</span> <span class="kr">then</span>
-            <span class="n">node.host</span> <span class="o">=</span> <span class="s1">&#39;[&#39;</span> <span class="o">..</span> <span class="n">node.host</span> <span class="o">..</span> <span class="s1">&#39;]&#39;</span>
-        <span class="kr">end</span>
-    <span class="kr">end</span>
-
-    <span class="kd">local</span> <span class="n">nodes_count</span> <span class="o">=</span> <span class="o">#</span><span class="n">up_conf.nodes</span>
-    <span class="kr">if</span> <span class="n">nodes_count</span> <span class="o">==</span> <span class="mi">1</span> <span class="kr">then</span>
-        <span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">up_conf.nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-        <span class="n">ctx.balancer_ip</span> <span class="o">=</span> <span class="n">node.host</span>
-        <span class="n">ctx.balancer_port</span> <span class="o">=</span> <span class="n">node.port</span>
-        <span class="n">node.upstream_host</span> <span class="o">=</span> <span class="n">parse_server_for_upstream_host</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ctx.upstream_scheme</span><span class="p">)</span>
-        <span class="kr">return</span> <span class="n">node</span>
-    <span class="kr">end</span>
-
-    <span class="kd">local</span> <span class="n">version</span> <span class="o">=</span> <span class="n">ctx.upstream_version</span>
-    <span class="kd">local</span> <span class="n">key</span> <span class="o">=</span> <span class="n">ctx.upstream_key</span>
-    <span class="kd">local</span> <span class="n">checker</span> <span class="o">=</span> <span class="n">ctx.up_checker</span>
-
-    <span class="n">ctx.balancer_try_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctx.balancer_try_count</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
-    <span class="kr">if</span> <span class="n">ctx.balancer_try_count</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="kr">then</span>
-        <span class="kr">if</span> <span class="n">ctx.server_picker</span> <span class="ow">and</span> <span class="n">ctx.server_picker</span><span class="p">.</span><span class="n">after_balance</span> <span class="kr">then</span>
-            <span class="n">ctx.server_picker</span><span class="p">.</span><span class="n">after_balance</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
-        <span class="kr">end</span>
-
-        <span class="kr">if</span> <span class="n">checker</span> <span class="kr">then</span>
-            <span class="kd">local</span> <span class="n">state</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="n">get_last_failure</span><span class="p">()</span>
-            <span class="kd">local</span> <span class="n">host</span> <span class="o">=</span> <span class="n">up_conf.checks</span> <span class="ow">and</span> <span class="n">up_conf.checks</span><span class="p">.</span><span class="n">active</span> <span class="ow">and</span> <span class="n">up_conf.checks</span><span class="p">.</span><span class="n">active.host</span>
-            <span class="kd">local</span> <span class="n">port</span> <span class="o">=</span> <span class="n">up_conf.checks</span> <span class="ow">and</span> <span class="n">up_conf.checks</span><span class="p">.</span><span class="n">active</span> <span class="ow">and</span> <span class="n">up_conf.checks</span><span class="p">.</span><span class="n">active.port</span>
-            <span class="kr">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&#34;failed&#34;</span> <span class="kr">then</span>
-                <span class="kr">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">504</span> <span class="kr">then</span>
-                    <span class="n">checker</span><span class="p">:</span><span class="n">report_timeout</span><span class="p">(</span><span class="n">ctx.balancer_ip</span><span class="p">,</span> <span class="n">port</span> <span class="ow">or</span> <span class="n">ctx.balancer_port</span><span class="p">,</span> <span class="n">host</span><span class="p">)</span>
-                <span class="kr">else</span>
-                    <span class="n">checker</span><span class="p">:</span><span class="n">report_tcp_failure</span><span class="p">(</span><span class="n">ctx.balancer_ip</span><span class="p">,</span> <span class="n">port</span> <span class="ow">or</span> <span class="n">ctx.balancer_port</span><span class="p">,</span> <span class="n">host</span><span class="p">)</span>
-                <span class="kr">end</span>
-            <span class="kr">else</span>
-                <span class="n">checker</span><span class="p">:</span><span class="n">report_http_status</span><span class="p">(</span><span class="n">ctx.balancer_ip</span><span class="p">,</span> <span class="n">port</span> <span class="ow">or</span> <span class="n">ctx.balancer_port</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
-            <span class="kr">end</span>
-        <span class="kr">end</span>
-    <span class="kr">end</span>
-
-    <span class="kr">if</span> <span class="n">checker</span> <span class="kr">then</span>
-        <span class="n">version</span> <span class="o">=</span> <span class="n">version</span> <span class="o">..</span> <span class="s2">&#34;#&#34;</span> <span class="o">..</span> <span class="n">checker.status_ver</span>
-    <span class="kr">end</span>
-
-    <span class="c1">-- the same picker will be used in the whole request, especially during the retry</span>
-    <span class="c1">-- 这里使用了 LRU 缓存，通过 server_picker 的复用达到节省资源的目的</span>
-    <span class="kd">local</span> <span class="n">server_picker</span> <span class="o">=</span> <span class="n">ctx.server_picker</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">server_picker</span> <span class="kr">then</span>
-        <span class="n">server_picker</span> <span class="o">=</span> <span class="n">lrucache_server_picker</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span>
-                                               <span class="n">create_server_picker</span><span class="p">,</span> <span class="n">up_conf</span><span class="p">,</span> <span class="n">checker</span><span class="p">)</span>
-    <span class="kr">end</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">server_picker</span> <span class="kr">then</span>
-        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;failed to fetch server picker&#34;</span>
-    <span class="kr">end</span>
-
-    <span class="c1">-- 每个实现具体算法的 balancer 都具有 get() 方法</span>
-    <span class="kd">local</span> <span class="n">server</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">server_picker.get</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">server</span> <span class="kr">then</span>
-        <span class="n">err</span> <span class="o">=</span> <span class="n">err</span> <span class="ow">or</span> <span class="s2">&#34;no valid upstream node&#34;</span>
-        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;failed to find valid upstream server, &#34;</span> <span class="o">..</span> <span class="n">err</span>
-    <span class="kr">end</span>
-    <span class="n">ctx.balancer_server</span> <span class="o">=</span> <span class="n">server</span>
-
-    <span class="kd">local</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">server_picker.addr_to_domain</span><span class="p">[</span><span class="n">server</span><span class="p">]</span>
-    <span class="kd">local</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">lrucache_addr</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">parse_addr</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
-    <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
-        <span class="n">core.log</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;failed to parse server addr: &#34;</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s2">&#34; err: &#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-        <span class="kr">return</span> <span class="n">core.response</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">502</span><span class="p">)</span>
-    <span class="kr">end</span>
-
-    <span class="n">res.domain</span> <span class="o">=</span> <span class="n">domain</span>
-    <span class="n">ctx.balancer_ip</span> <span class="o">=</span> <span class="n">res.host</span>
-    <span class="n">ctx.balancer_port</span> <span class="o">=</span> <span class="n">res.port</span>
-    <span class="n">ctx.server_picker</span> <span class="o">=</span> <span class="n">server_picker</span>
-    <span class="n">res.upstream_host</span> <span class="o">=</span> <span class="n">parse_server_for_upstream_host</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">ctx.upstream_scheme</span><span class="p">)</span>
-
-    <span class="kr">return</span> <span class="n">res</span>
-<span class="kr">end</span>
-
-<span class="c1">-- run 函数应该只用于 balancer_by_lua_block 阶段</span>
-<span class="kr">function</span> <span class="nc">_M</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">plugin_funcs</span><span class="p">)</span>
-    <span class="kd">local</span> <span class="n">server</span><span class="p">,</span> <span class="n">err</span>
-
-    <span class="c1">-- 理论上在 access_by_lua_block 阶段已经拿到具体的上游节点</span>
-    <span class="kr">if</span> <span class="n">ctx.picked_server</span> <span class="kr">then</span>
-        <span class="c1">-- use the server picked in the access phase</span>
-        <span class="n">server</span> <span class="o">=</span> <span class="n">ctx.picked_server</span>
-        <span class="n">ctx.picked_server</span> <span class="o">=</span> <span class="kc">nil</span>
-
-        <span class="n">set_balancer_opts</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
-
-    <span class="kr">else</span>
-        <span class="kr">if</span> <span class="n">ctx.proxy_retry_deadline</span> <span class="ow">and</span> <span class="n">ctx.proxy_retry_deadline</span> <span class="o">&lt;</span> <span class="n">ngx_now</span><span class="p">()</span> <span class="kr">then</span>
-            <span class="c1">-- retry count is (try count - 1)</span>
-            <span class="n">core.log</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;proxy retry timeout, retry count: &#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">ctx.balancer_try_count</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
-                           <span class="s2">&#34;, deadline: &#34;</span><span class="p">,</span> <span class="n">ctx.proxy_retry_deadline</span><span class="p">,</span> <span class="s2">&#34; now: &#34;</span><span class="p">,</span> <span class="n">ngx_now</span><span class="p">())</span>
-            <span class="kr">return</span> <span class="n">core.response</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">502</span><span class="p">)</span>
-        <span class="kr">end</span>
-        <span class="c1">-- retry</span>
-        <span class="c1">-- 如果在 access_by_lua_block 阶段获取上游节点失败，在这里显式调用 pick_server 重试</span>
-        <span class="n">server</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">pick_server</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
-        <span class="kr">if</span> <span class="ow">not</span> <span class="n">server</span> <span class="kr">then</span>
-            <span class="n">core.log</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;failed to pick server: &#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-            <span class="kr">return</span> <span class="n">core.response</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">502</span><span class="p">)</span>
-        <span class="kr">end</span>
-
-        <span class="kd">local</span> <span class="n">header_changed</span>
-        <span class="kd">local</span> <span class="n">pass_host</span> <span class="o">=</span> <span class="n">ctx.pass_host</span>
-        <span class="kr">if</span> <span class="n">pass_host</span> <span class="o">==</span> <span class="s2">&#34;node&#34;</span> <span class="kr">then</span>
-            <span class="kd">local</span> <span class="n">host</span> <span class="o">=</span> <span class="n">server.upstream_host</span>
-            <span class="kr">if</span> <span class="n">host</span> <span class="o">~=</span> <span class="n">ctx.var</span><span class="p">.</span><span class="n">upstream_host</span> <span class="kr">then</span>
-                <span class="c1">-- retried node has a different host</span>
-                <span class="n">ctx.var</span><span class="p">.</span><span class="n">upstream_host</span> <span class="o">=</span> <span class="n">host</span>
-                <span class="n">header_changed</span> <span class="o">=</span> <span class="kc">true</span>
-            <span class="kr">end</span>
-        <span class="kr">end</span>
-
-        <span class="kd">local</span> <span class="n">_</span><span class="p">,</span> <span class="n">run</span> <span class="o">=</span> <span class="n">plugin_funcs</span><span class="p">(</span><span class="s2">&#34;before_proxy&#34;</span><span class="p">)</span>
-        <span class="c1">-- always recreate request as the request may be changed by plugins</span>
-        <span class="kr">if</span> <span class="n">run</span> <span class="ow">or</span> <span class="n">header_changed</span> <span class="kr">then</span>
-            <span class="n">balancer.recreate_request</span><span class="p">()</span>
-        <span class="kr">end</span>
-    <span class="kr">end</span>
-
-    <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;proxy request to &#34;</span><span class="p">,</span> <span class="n">server.host</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="n">server.port</span><span class="p">)</span>
-
-    <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">set_current_peer</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
-    <span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
-        <span class="n">core.log</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;failed to set server peer [&#34;</span><span class="p">,</span> <span class="n">server.host</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">,</span>
-                       <span class="n">server.port</span><span class="p">,</span> <span class="s2">&#34;] err: &#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
-        <span class="kr">return</span> <span class="n">core.response</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">502</span><span class="p">)</span>
-    <span class="kr">end</span>
-
-    <span class="n">ctx.proxy_passed</span> <span class="o">=</span> <span class="kc">true</span>
-<span class="kr">end</span>
-</code></pre></div><p><code>create_server_picker()</code> 用于生成具体的 <code>balancer</code> 并将它返回，可以看到它是以 <code>Upstream</code> 信息作为参数的，其中 <code>type</code> 则是具体指明需要调用哪个算法来生成 <code>balancer</code> ； <code>run()</code> 函数则是根据 <code>access_by_lua_block</code> 和 <code>balancer_by_lua_block</code> 的具体情况来执行连接到上游的动作；而 <code>pick_server()</code> 更是贯穿整个过程，不止在 <code>access_by_lua_block</code> 过程中被调用，也在 <code>run()</code> 中在重试阶段被调用，它的具体工作内容是这样的：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">create_server_picker</span><span class="p">(</span><span class="n">upstream</span><span class="p">,</span> <span class="n">checker</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 根据 upstream 中定义的 type 选择具体的负载均衡算法</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">picker</span> <span class="o">=</span> <span class="n">pickers</span><span class="p">[</span><span class="n">upstream.type</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">picker</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">pickers</span><span class="p">[</span><span class="n">upstream.type</span><span class="p">]</span> <span class="o">=</span> <span class="n">require</span><span class="p">(</span><span class="s2">&#34;apisix.balancer.&#34;</span> <span class="o">..</span> <span class="n">upstream.type</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">picker</span> <span class="o">=</span> <span class="n">pickers</span><span class="p">[</span><span class="n">upstream.type</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">picker</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">nodes</span> <span class="o">=</span> <span class="n">upstream.nodes</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">addr_to_domain</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">node</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">nodes</span><span class="p">)</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">node.domain</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">local</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">node.host</span> <span class="o">..</span> <span class="s2">&#34;:&#34;</span> <span class="o">..</span> <span class="n">node.port</span>
+</span></span><span class="line"><span class="cl">                <span class="n">addr_to_domain</span><span class="p">[</span><span class="n">addr</span><span class="p">]</span> <span class="o">=</span> <span class="n">node.domain</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">up_nodes</span> <span class="o">=</span> <span class="n">fetch_health_nodes</span><span class="p">(</span><span class="n">upstream</span><span class="p">,</span> <span class="n">checker</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- _priority_index 和 upstream 中定义的 priority 有关 </span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="o">#</span><span class="n">up_nodes._priority_index</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;upstream nodes: &#34;</span><span class="p">,</span> <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- 这里的 priority_balancer 就是 apisix/balancer/priority.lua</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">server_picker</span> <span class="o">=</span> <span class="n">priority_balancer.new</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">,</span> <span class="n">upstream</span><span class="p">,</span> <span class="n">picker</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">server_picker.addr_to_domain</span> <span class="o">=</span> <span class="n">addr_to_domain</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span> <span class="n">server_picker</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;upstream nodes: &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">[</span><span class="n">up_nodes._priority_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]]))</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">server_picker</span> <span class="o">=</span> <span class="n">picker.new</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">[</span><span class="n">up_nodes._priority_index</span><span class="p">[</span><span class="mi">1</span><span class="p">]],</span> <span class="n">upstream</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">server_picker.addr_to_domain</span> <span class="o">=</span> <span class="n">addr_to_domain</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="n">server_picker</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;invalid balancer type: &#34;</span> <span class="o">..</span> <span class="n">upstream.type</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- pick_server will be called:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 1. in the access phase so that we can set headers according to the picked server</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 2. each time we need to retry upstream</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">pick_server</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;route: &#34;</span><span class="p">,</span> <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;ctx: &#34;</span><span class="p">,</span> <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">up_conf</span> <span class="o">=</span> <span class="n">ctx.upstream_conf</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">node</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">up_conf.nodes</span><span class="p">)</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">core.utils</span><span class="p">.</span><span class="n">parse_ipv6</span><span class="p">(</span><span class="n">node.host</span><span class="p">)</span> <span class="ow">and</span> <span class="n">str_byte</span><span class="p">(</span><span class="n">node.host</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">~=</span> <span class="n">str_byte</span><span class="p">(</span><span class="s2">&#34;[&#34;</span><span class="p">)</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">node.host</span> <span class="o">=</span> <span class="s1">&#39;[&#39;</span> <span class="o">..</span> <span class="n">node.host</span> <span class="o">..</span> <span class="s1">&#39;]&#39;</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nodes_count</span> <span class="o">=</span> <span class="o">#</span><span class="n">up_conf.nodes</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">nodes_count</span> <span class="o">==</span> <span class="mi">1</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">node</span> <span class="o">=</span> <span class="n">up_conf.nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ctx.balancer_ip</span> <span class="o">=</span> <span class="n">node.host</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ctx.balancer_port</span> <span class="o">=</span> <span class="n">node.port</span>
+</span></span><span class="line"><span class="cl">        <span class="n">node.upstream_host</span> <span class="o">=</span> <span class="n">parse_server_for_upstream_host</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">ctx.upstream_scheme</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="n">node</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">version</span> <span class="o">=</span> <span class="n">ctx.upstream_version</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">key</span> <span class="o">=</span> <span class="n">ctx.upstream_key</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">checker</span> <span class="o">=</span> <span class="n">ctx.up_checker</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ctx.balancer_try_count</span> <span class="o">=</span> <span class="p">(</span><span class="n">ctx.balancer_try_count</span> <span class="ow">or</span> <span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">ctx.balancer_try_count</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">ctx.server_picker</span> <span class="ow">and</span> <span class="n">ctx.server_picker</span><span class="p">.</span><span class="n">after_balance</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ctx.server_picker</span><span class="p">.</span><span class="n">after_balance</span><span class="p">(</span><span class="n">ctx</span><span class="p">,</span> <span class="kc">true</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">checker</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">state</span><span class="p">,</span> <span class="n">code</span> <span class="o">=</span> <span class="n">get_last_failure</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">host</span> <span class="o">=</span> <span class="n">up_conf.checks</span> <span class="ow">and</span> <span class="n">up_conf.checks</span><span class="p">.</span><span class="n">active</span> <span class="ow">and</span> <span class="n">up_conf.checks</span><span class="p">.</span><span class="n">active.host</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">port</span> <span class="o">=</span> <span class="n">up_conf.checks</span> <span class="ow">and</span> <span class="n">up_conf.checks</span><span class="p">.</span><span class="n">active</span> <span class="ow">and</span> <span class="n">up_conf.checks</span><span class="p">.</span><span class="n">active.port</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">state</span> <span class="o">==</span> <span class="s2">&#34;failed&#34;</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">if</span> <span class="n">code</span> <span class="o">==</span> <span class="mi">504</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">checker</span><span class="p">:</span><span class="n">report_timeout</span><span class="p">(</span><span class="n">ctx.balancer_ip</span><span class="p">,</span> <span class="n">port</span> <span class="ow">or</span> <span class="n">ctx.balancer_port</span><span class="p">,</span> <span class="n">host</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">checker</span><span class="p">:</span><span class="n">report_tcp_failure</span><span class="p">(</span><span class="n">ctx.balancer_ip</span><span class="p">,</span> <span class="n">port</span> <span class="ow">or</span> <span class="n">ctx.balancer_port</span><span class="p">,</span> <span class="n">host</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                <span class="n">checker</span><span class="p">:</span><span class="n">report_http_status</span><span class="p">(</span><span class="n">ctx.balancer_ip</span><span class="p">,</span> <span class="n">port</span> <span class="ow">or</span> <span class="n">ctx.balancer_port</span><span class="p">,</span> <span class="n">host</span><span class="p">,</span> <span class="n">code</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">checker</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">version</span> <span class="o">=</span> <span class="n">version</span> <span class="o">..</span> <span class="s2">&#34;#&#34;</span> <span class="o">..</span> <span class="n">checker.status_ver</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- the same picker will be used in the whole request, especially during the retry</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 这里使用了 LRU 缓存，通过 server_picker 的复用达到节省资源的目的</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">server_picker</span> <span class="o">=</span> <span class="n">ctx.server_picker</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">server_picker</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">server_picker</span> <span class="o">=</span> <span class="n">lrucache_server_picker</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">version</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                               <span class="n">create_server_picker</span><span class="p">,</span> <span class="n">up_conf</span><span class="p">,</span> <span class="n">checker</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">server_picker</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;failed to fetch server picker&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 每个实现具体算法的 balancer 都具有 get() 方法</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">server</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">server_picker.get</span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">server</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">err</span> <span class="o">=</span> <span class="n">err</span> <span class="ow">or</span> <span class="s2">&#34;no valid upstream node&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;failed to find valid upstream server, &#34;</span> <span class="o">..</span> <span class="n">err</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ctx.balancer_server</span> <span class="o">=</span> <span class="n">server</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">domain</span> <span class="o">=</span> <span class="n">server_picker.addr_to_domain</span><span class="p">[</span><span class="n">server</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">res</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">lrucache_addr</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">parse_addr</span><span class="p">,</span> <span class="n">server</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">err</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">core.log</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;failed to parse server addr: &#34;</span><span class="p">,</span> <span class="n">server</span><span class="p">,</span> <span class="s2">&#34; err: &#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="n">core.response</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">502</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">res.domain</span> <span class="o">=</span> <span class="n">domain</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ctx.balancer_ip</span> <span class="o">=</span> <span class="n">res.host</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ctx.balancer_port</span> <span class="o">=</span> <span class="n">res.port</span>
+</span></span><span class="line"><span class="cl">    <span class="n">ctx.server_picker</span> <span class="o">=</span> <span class="n">server_picker</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res.upstream_host</span> <span class="o">=</span> <span class="n">parse_server_for_upstream_host</span><span class="p">(</span><span class="n">res</span><span class="p">,</span> <span class="n">ctx.upstream_scheme</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">res</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">-- run 函数应该只用于 balancer_by_lua_block 阶段</span>
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nc">_M</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">ctx</span><span class="p">,</span> <span class="n">plugin_funcs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">server</span><span class="p">,</span> <span class="n">err</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- 理论上在 access_by_lua_block 阶段已经拿到具体的上游节点</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">ctx.picked_server</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- use the server picked in the access phase</span>
+</span></span><span class="line"><span class="cl">        <span class="n">server</span> <span class="o">=</span> <span class="n">ctx.picked_server</span>
+</span></span><span class="line"><span class="cl">        <span class="n">ctx.picked_server</span> <span class="o">=</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">set_balancer_opts</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">ctx.proxy_retry_deadline</span> <span class="ow">and</span> <span class="n">ctx.proxy_retry_deadline</span> <span class="o">&lt;</span> <span class="n">ngx_now</span><span class="p">()</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- retry count is (try count - 1)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">core.log</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;proxy retry timeout, retry count: &#34;</span><span class="p">,</span> <span class="p">(</span><span class="n">ctx.balancer_try_count</span> <span class="ow">or</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                           <span class="s2">&#34;, deadline: &#34;</span><span class="p">,</span> <span class="n">ctx.proxy_retry_deadline</span><span class="p">,</span> <span class="s2">&#34; now: &#34;</span><span class="p">,</span> <span class="n">ngx_now</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span> <span class="n">core.response</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">502</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- retry</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- 如果在 access_by_lua_block 阶段获取上游节点失败，在这里显式调用 pick_server 重试</span>
+</span></span><span class="line"><span class="cl">        <span class="n">server</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">pick_server</span><span class="p">(</span><span class="n">route</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="ow">not</span> <span class="n">server</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">core.log</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;failed to pick server: &#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span> <span class="n">core.response</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">502</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">header_changed</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">pass_host</span> <span class="o">=</span> <span class="n">ctx.pass_host</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">pass_host</span> <span class="o">==</span> <span class="s2">&#34;node&#34;</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">host</span> <span class="o">=</span> <span class="n">server.upstream_host</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">host</span> <span class="o">~=</span> <span class="n">ctx.var</span><span class="p">.</span><span class="n">upstream_host</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- retried node has a different host</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ctx.var</span><span class="p">.</span><span class="n">upstream_host</span> <span class="o">=</span> <span class="n">host</span>
+</span></span><span class="line"><span class="cl">                <span class="n">header_changed</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">_</span><span class="p">,</span> <span class="n">run</span> <span class="o">=</span> <span class="n">plugin_funcs</span><span class="p">(</span><span class="s2">&#34;before_proxy&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- always recreate request as the request may be changed by plugins</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">run</span> <span class="ow">or</span> <span class="n">header_changed</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">balancer.recreate_request</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;proxy request to &#34;</span><span class="p">,</span> <span class="n">server.host</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">,</span> <span class="n">server.port</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">ok</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">set_current_peer</span><span class="p">(</span><span class="n">server</span><span class="p">,</span> <span class="n">ctx</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">ok</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">core.log</span><span class="p">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&#34;failed to set server peer [&#34;</span><span class="p">,</span> <span class="n">server.host</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">server.port</span><span class="p">,</span> <span class="s2">&#34;] err: &#34;</span><span class="p">,</span> <span class="n">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="n">core.response</span><span class="p">.</span><span class="n">exit</span><span class="p">(</span><span class="mi">502</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">ctx.proxy_passed</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></div><p><code>create_server_picker()</code> 用于生成具体的 <code>balancer</code> 并将它返回，可以看到它是以 <code>Upstream</code> 信息作为参数的，其中 <code>type</code> 则是具体指明需要调用哪个算法来生成 <code>balancer</code> ； <code>run()</code> 函数则是根据 <code>access_by_lua_block</code> 和 <code>balancer_by_lua_block</code> 的具体情况来执行连接到上游的动作；而 <code>pick_server()</code> 更是贯穿整个过程，不止在 <code>access_by_lua_block</code> 过程中被调用，也在 <code>run()</code> 中在重试阶段被调用，它的具体工作内容是这样的：</p>
 <ol>
 <li>拿到 <code>Route</code> 中的 <code>Upstream</code> ，并执行相关的上下文写入。</li>
 <li>如果 <code>Upstream</code> 中只定义一个上游节点，则直接返回，否则将检查请求的重试情况和各个上游节点的健康状态。</li>
@@ -492,7 +498,7 @@ if (!doNotTrack) {
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">

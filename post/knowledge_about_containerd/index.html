@@ -31,10 +31,10 @@
 <meta name="twitter:description"
   content="这篇笔记用来记录 Containerd 的相关知识。
 " />
-<meta name="twitter:site" content="https://yuweizzz.github.io" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
 <meta name="twitter:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 
 
 <meta property="og:type" content="article" />
@@ -45,7 +45,7 @@
 <meta property="og:url" content="https://yuweizzz.github.io/post/knowledge_about_containerd/" />
 <meta property="og:site_name" content="符合容器化标准的容器运行时：Containerd" />
 <meta property="og:image"
-  content="https://yuweizzz.github.io">
+  content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
 <meta property="og:image:height" content="1024">
 
@@ -61,18 +61,25 @@
 
 
 
-<script type="application/javascript">
-var doNotTrack = false;
-if (!doNotTrack) {
-	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-	ga('create', 'G-RFSQDKSFR1', 'auto');
-	
-	ga('send', 'pageview');
-}
-</script>
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
 
 
 
@@ -82,7 +89,7 @@ if (!doNotTrack) {
   <div style="position: relative">
   <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
     <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
-      <a class="Header-link" href="https://yuweizzz.github.io">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
         <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -104,7 +111,7 @@ if (!doNotTrack) {
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io">
+              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
         </div>
@@ -112,7 +119,7 @@ if (!doNotTrack) {
     </div>
 
     <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
-      <a class="Header-link " href="https://yuweizzz.github.io">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
         <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
       </a>
     </div>
@@ -138,7 +145,7 @@ if (!doNotTrack) {
           <div class="flex-auto min-width-0 width-fit mr-3">
             <div class="d-flex">
               <div class="d-none d-md-block">
-                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
                   <img class=" avatar-user"
                     src="https://yuweizzz.github.io/images/avatar.png"
                     width="32" height="32"></a>
@@ -146,7 +153,7 @@ if (!doNotTrack) {
               <div class="d-flex flex-column">
                 <h1 class="break-word f3 text-normal mb-md-0 mb-1">
                   <span class="author">
-                    <a href="https://yuweizzz.github.io">Wei</a>
+                    <a href="https://yuweizzz.github.io/">Wei</a>
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
@@ -160,9 +167,9 @@ if (!doNotTrack) {
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:19:50 &#43;0000"
+                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:19:50 &#43;0000</relative-time>
+                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -225,25 +232,24 @@ if (!doNotTrack) {
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
                 <article class="markdown-body entry-content container-lg"><p>这篇笔记用来记录 Containerd 的相关知识。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">
-                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
-                                  <span class="o">(</span>   <span class="o">)</span>
-                              <span class="o">(</span>@@@@<span class="o">)</span>
-                           <span class="o">(</span>    <span class="o">)</span>
-
-                         <span class="o">(</span>@@@<span class="o">)</span>
-                       <span class="o">====</span>        ________                ___________
-                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
-                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
-                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
-                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
-                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
-                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
-                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
-                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-
-</code></pre></div><h2 id="前言">前言</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="前言">前言</h2>
 <p>containerd 是由 docker 公司贡献，符合 OCI 标准的容器进行时。</p>
 <h2 id="containerd-和-docker-的关系">containerd 和 docker 的关系</h2>
 <p>首先我们需要了解 <a href="https://opencontainers.org/">OCI</a> 是什么，它的全称为 Open Container Initiative ，也就是开放容器提案，目前主要有 Runtime Spec 和 Image Spec ，Distribution Spec 几个定制标准，标准化使得各种第三方组件不再限定于某种容器运行时，而是可以自由运行在任何符合 OCI 标准的容器进行时，可以说 OCI 促进了容器技术的生态发展。</p>
@@ -251,7 +257,7 @@ if (!doNotTrack) {
 <p>containerd 也属于高层级的容器进行时，但相比于 docker 它更加精简，最关键地保留了管控容器生命周期的核心功能，在较新版本的 docker 中，管控容器生命周期的功能已经完全由 containerd 承担， docker 守护进程和 containerd 守护进程之间使用 grpc 进行通信。</p>
 <p>containerd 守护进程管理着运行中的容器，与容器具体的交互功能则是由 runc 负责的， runc 是低底层的容器运行时接口，只要是符合 OCI 标准的容器镜像，就可以直接调用 runc 运行这个镜像。</p>
 <p>但是 containerd 并不是直接调用 runc ，而是采用了垫片的方式，由 containerd-shim 去调用 runc ，而 containerd 只需要和 shim 交互，无需直接和更底层的 runc 交互，垫片机制在容器技术中很常见， Kubernetes 使用 dokcer 作为容器运行时也是通过 shim 来实现的。</p>
-<pre><code>#    containerd 和 docker 的关系
+<pre tabindex="0"><code>#    containerd 和 docker 的关系
 
           docker daemon
                 | grpc
@@ -263,31 +269,30 @@ if (!doNotTrack) {
                 |
                 v
             container
-
 </code></pre><h2 id="直接通过-containerd-cli-运行容器">直接通过 containerd cli 运行容器</h2>
 <p>由于 containerd 具备完善的容器生命周期能力，我们可以不再使用 docker cli ，直接使用 containerd 的 cli 工具 ctr 直接运行容器。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 安装 containerd </span>
-$ yum install containerd
-$ systemctl <span class="nb">enable</span> containerd
-$ systemctl start containerd
-
-<span class="c1"># 拉取镜像</span>
-$ ctr i pull docker.io/library/busybox:latest
-$ ctr i pull docker.io/library/nginx:alpine
-
-<span class="c1"># 生成容器</span>
-$ ctr c create docker.io/library/busybox:latest mybusybox 
-$ ctr c ls
-CONTAINER    IMAGE                               RUNTIME                           
-mybusybox    docker.io/library/busybox:latest    io.containerd.runtime.v1.linux
-
-<span class="c1"># 启动容器</span>
-$ ctr t start -d mybusybox
-$ ctr t ls
-TASK         PID     STATUS    
-mybusybox    <span class="m">2973</span>    RUNNING
-</code></pre></div><p>根据 OCI Runtime Spec ，正常的容器会经过以下几种运行状态：</p>
-<pre><code># OCI Runtime Spec 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 containerd </span>
+</span></span><span class="line"><span class="cl">$ yum install containerd
+</span></span><span class="line"><span class="cl">$ systemctl <span class="nb">enable</span> containerd
+</span></span><span class="line"><span class="cl">$ systemctl start containerd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 拉取镜像</span>
+</span></span><span class="line"><span class="cl">$ ctr i pull docker.io/library/busybox:latest
+</span></span><span class="line"><span class="cl">$ ctr i pull docker.io/library/nginx:alpine
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成容器</span>
+</span></span><span class="line"><span class="cl">$ ctr c create docker.io/library/busybox:latest mybusybox 
+</span></span><span class="line"><span class="cl">$ ctr c ls
+</span></span><span class="line"><span class="cl">CONTAINER    IMAGE                               RUNTIME                           
+</span></span><span class="line"><span class="cl">mybusybox    docker.io/library/busybox:latest    io.containerd.runtime.v1.linux
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启动容器</span>
+</span></span><span class="line"><span class="cl">$ ctr t start -d mybusybox
+</span></span><span class="line"><span class="cl">$ ctr t ls
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    RUNNING
+</span></span></code></pre></div><p>根据 OCI Runtime Spec ，正常的容器会经过以下几种运行状态：</p>
+<pre tabindex="0"><code># OCI Runtime Spec 
 
           init     -&gt;    creating
                             |
@@ -297,146 +302,145 @@ mybusybox    <span class="m">2973</span>    RUNNING
                             v
          stopped   &lt;-    running        &lt;-&gt;      paused
                   kill             pause/resume
-
 </code></pre><p>在 containerd 中，除了 container ，还引入了 task 的概念， start ， kill 和 delete 等动作是使用在 task 上的，对应 OCI Runtime Spec 定义的容器状态。而 container 只有 create 和 delete 两个动作，从表象上来看 task 在 containerd 中是实际运行的容器进程，而 container 是容器信息的声明。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># task 支持多种动作</span>
-<span class="c1"># pause 和 resume 就是冻结和恢复</span>
-$ ctr t ls
-TASK         PID     STATUS    
-mybusybox    <span class="m">2973</span>    RUNNING
-
-$ ctr t pause mybusybox
-$ ctr t ls
-TASK         PID     STATUS    
-mybusybox    <span class="m">2973</span>    PAUSED
-
-$ ctr t resume mybusybox
-$ ctr t ls
-TASK         PID     STATUS    
-mybusybox    <span class="m">2973</span>    RUNNING
-
-<span class="c1"># kill 就是发送进程 signal ，一般用来发送终结信号</span>
-$ ctr t <span class="nb">kill</span> -s <span class="m">9</span> mybusybox
-<span class="c1"># 2: SIGINT</span>
-<span class="c1"># 9: SIGKILL</span>
-<span class="c1"># 15: SIGTERM</span>
-$ ctr t ls
-TASK         PID     STATUS    
-mybusybox    <span class="m">2973</span>    STOPPED
-
-<span class="c1"># 只有处于 STOPPED 状态才能被删除</span>
-$ ctr t delete mybusybox
-$ ctr t ls
-TASK    PID    STATUS
-
-<span class="c1"># exec 则是在容器中执行命令</span>
-$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
-<span class="c1"># -t 选项要求命令执行时分配终端</span>
-<span class="c1"># --exec-id 选项用于命名这个 exec 进程</span>
-<span class="c1"># 执行上述命令会生成基于 mybusybox task 的 sh 进程</span>
-</code></pre></div><h2 id="增强-containerd-运行的容器">增强 containerd 运行的容器</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># task 支持多种动作</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pause 和 resume 就是冻结和恢复</span>
+</span></span><span class="line"><span class="cl">$ ctr t ls
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    RUNNING
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ ctr t pause mybusybox
+</span></span><span class="line"><span class="cl">$ ctr t ls
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    PAUSED
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ ctr t resume mybusybox
+</span></span><span class="line"><span class="cl">$ ctr t ls
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    RUNNING
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># kill 就是发送进程 signal ，一般用来发送终结信号</span>
+</span></span><span class="line"><span class="cl">$ ctr t <span class="nb">kill</span> -s <span class="m">9</span> mybusybox
+</span></span><span class="line"><span class="cl"><span class="c1"># 2: SIGINT</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 9: SIGKILL</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 15: SIGTERM</span>
+</span></span><span class="line"><span class="cl">$ ctr t ls
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    STOPPED
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 只有处于 STOPPED 状态才能被删除</span>
+</span></span><span class="line"><span class="cl">$ ctr t delete mybusybox
+</span></span><span class="line"><span class="cl">$ ctr t ls
+</span></span><span class="line"><span class="cl">TASK    PID    STATUS
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># exec 则是在容器中执行命令</span>
+</span></span><span class="line"><span class="cl">$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
+</span></span><span class="line"><span class="cl"><span class="c1"># -t 选项要求命令执行时分配终端</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --exec-id 选项用于命名这个 exec 进程</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行上述命令会生成基于 mybusybox task 的 sh 进程</span>
+</span></span></code></pre></div><h2 id="增强-containerd-运行的容器">增强 containerd 运行的容器</h2>
 <h3 id="声明持久化挂载点">声明持久化挂载点</h3>
 <p>虽然 containerd 不具备 docker volumes 的功能，但是可以基于 mount 命名空间将宿主机上的某些文件目录映射到容器中。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 需要在 container creater 阶段声明 mount 信息</span>
-$ ctr c create docker.io/library/busybox:latest mybusybox --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/home/busybox,dst<span class="o">=</span>/mnt,options<span class="o">=</span>rbind:ro
-
-$ ls /home/busybox/
-fileA  fileB  fileC
-$ ctr start -d mybusybox
-<span class="c1"># 进入容器并查询挂载目录</span>
-$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
-/ <span class="c1"># ls -l /mnt/</span>
-total <span class="m">0</span>
--rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileA
--rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileB
--rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileC
-</code></pre></div><h3 id="使用-cni-扩展网络能力">使用 cni 扩展网络能力</h3>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 需要在 container creater 阶段声明 mount 信息</span>
+</span></span><span class="line"><span class="cl">$ ctr c create docker.io/library/busybox:latest mybusybox --mount <span class="nv">type</span><span class="o">=</span>bind,src<span class="o">=</span>/home/busybox,dst<span class="o">=</span>/mnt,options<span class="o">=</span>rbind:ro
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">$ ls /home/busybox/
+</span></span><span class="line"><span class="cl">fileA  fileB  fileC
+</span></span><span class="line"><span class="cl">$ ctr start -d mybusybox
+</span></span><span class="line"><span class="cl"><span class="c1"># 进入容器并查询挂载目录</span>
+</span></span><span class="line"><span class="cl">$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
+</span></span><span class="line"><span class="cl">/ <span class="c1"># ls -l /mnt/</span>
+</span></span><span class="line"><span class="cl">total <span class="m">0</span>
+</span></span><span class="line"><span class="cl">-rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileA
+</span></span><span class="line"><span class="cl">-rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileB
+</span></span><span class="line"><span class="cl">-rw-r--r--    <span class="m">1</span> root     root             <span class="m">0</span> Jun  <span class="m">6</span> 13:23 fileC
+</span></span></code></pre></div><h3 id="使用-cni-扩展网络能力">使用 cni 扩展网络能力</h3>
 <p>containerd 可以基于 net 命名空间，配合 cni 工具构建网络模型。</p>
 <p>cni 工具由 cnitool 和各个网络插件组成，一般使用 cnitool 读取定义了各种参数和插件的配置文件来生成网络接口，再将它们附加到 net 命名空间中。</p>
-<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1"># 直接与宿主机共享网络栈</span>
-$ ctr c create --net-host docker.io/library/busybox:latest mybusybox
-<span class="c1"># 这样设置使得容器完全使用宿主机的网络，包括本地回环等所有网络接口</span>
-<span class="c1"># --net-host 用于声明容器共享主机网络</span>
-
-<span class="c1"># 使用 cni 扩展工具构建网络模型</span>
-<span class="c1"># 使用 yum 安装 cni</span>
-$ yum install containernetworking-plugins
-
-<span class="c1"># cni 严重依赖环境变量提供运行时信息</span>
-<span class="c1"># 配置文件路径声明，这一步通常可以省去，因为默认值就是 /etc/cni/net.d</span>
-$ <span class="nb">export</span> <span class="nv">NETCONFPATH</span><span class="o">=</span>/etc/cni/net.d
-<span class="c1"># 插件所在路径声明，如果 cnitool 执行失败，通常是没有指定这个路径导致的</span>
-$ ls /usr/libexec/cni/
-bandwidth  firewall     host-local  macvlan  sample  tuning
-bridge     flannel      ipvlan      portmap  sbr     vlan
-dhcp       host-device  loopback    ptp      static
-$ <span class="nb">export</span> <span class="nv">CNI_PATH</span><span class="o">=</span>/usr/libexec/cni/
-
-<span class="c1"># 使用 iproute2 创建 net 命名空间</span>
-$ ip netns add container-net
-
-<span class="c1"># 通过 conf 文件创建网络接口</span>
-$ cat /etc/cni/net.d/cni.conf
-<span class="o">{</span>
-    <span class="s2">&#34;cniVersion&#34;</span>: <span class="s2">&#34;0.4.0&#34;</span>,
-    <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;cni&#34;</span>,
-    <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;bridge&#34;</span>,
-    <span class="s2">&#34;bridge&#34;</span>: <span class="s2">&#34;cni0&#34;</span>,
-    <span class="s2">&#34;isDefaultGateway&#34;</span>: true,
-    <span class="s2">&#34;forceAddress&#34;</span>: false,
-    <span class="s2">&#34;ipMasq&#34;</span>: true,
-    <span class="s2">&#34;hairpinMode&#34;</span>: true,
-    <span class="s2">&#34;ipam&#34;</span>: <span class="o">{</span>
-        <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;host-local&#34;</span>,
-        <span class="s2">&#34;subnet&#34;</span>: <span class="s2">&#34;10.88.0.0/16&#34;</span>
-    <span class="o">}</span>
-<span class="o">}</span>
-<span class="c1"># 创建这个网络接口并附加到命名空间中</span>
-$ /usr/libexec/cnitool add cni /var/run/netns/container-net
-<span class="c1"># 查看已经生成的 cni0 网桥</span>
-$ ip a
-1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-    inet 127.0.0.1/8 scope host lo
-       valid_lft forever preferred_lft forever
-    inet6 ::1/128 scope host 
-       valid_lft forever preferred_lft forever
-2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc pfifo_fast state UP group default qlen <span class="m">1000</span>
-    link/ether 00:0c:29:0a:69:d0 brd ff:ff:ff:ff:ff:ff
-    inet 192.168.0.7/24 brd 192.168.0.255 scope global dynamic ens33
-       valid_lft 84564sec preferred_lft 84564sec
-    inet6 fe80::20c:29ff:fe0a:69d0/64 scope link 
-       valid_lft forever preferred_lft forever
-3: cni0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue state UP group default qlen <span class="m">1000</span>
-    link/ether b2:51:ec:c7:b0:39 brd ff:ff:ff:ff:ff:ff
-    inet 10.88.0.1/16 brd 10.88.255.255 scope global cni0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::b051:ecff:fec7:b039/64 scope link 
-       valid_lft forever preferred_lft forever
-4: veth3adfd297@if3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue master cni0 state UP group default 
-    link/ether 96:4e:da:cb:0b:27 brd ff:ff:ff:ff:ff:ff link-netnsid <span class="m">0</span>
-    inet6 fe80::944e:daff:fecb:b27/64 scope link 
-       valid_lft forever preferred_lft forever
-
-<span class="c1"># 声明并启动容器，查看容器内的网络信息</span>
-$ ctr c create docker.io/library/busybox:latest mybusybox --with-ns<span class="o">=</span>network:/var/run/netns/container-net
-$ ctr t start -d mybusybox
-$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
-/ <span class="c1"># ip a</span>
-1: lo: &lt;LOOPBACK&gt; mtu <span class="m">65536</span> qdisc noop qlen <span class="m">1000</span>
-    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-3: eth0@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu <span class="m">1500</span> qdisc noqueue 
-    link/ether ee:0f:03:a0:22:b7 brd ff:ff:ff:ff:ff:ff
-    inet 10.88.0.2/16 brd 10.88.255.255 scope global eth0
-       valid_lft forever preferred_lft forever
-    inet6 fe80::ec0f:3ff:fea0:22b7/64 scope link 
-       valid_lft forever preferred_lft forever
-
-<span class="c1"># 清除接口</span>
-$ /usr/libexec/cnitool del cni /var/run/netns/container-net
-$ ip link delete cni0
-$ ip netns delete container-net
-</code></pre></div><p>以上信息描述了两种容器网络的实现方法，第一种非常简单，直接和主机共享网络栈，第二种网络模式则是由 cni 提供支持，和 docker 默认的网桥模式类似，更复杂的 cni 网络模式可以参阅<a href="https://github.com/containernetworking/cni/blob/spec-v1.0.0/SPEC.md">官方文档</a>和各插件的<a href="https://www.cni.dev/plugins/current/main/">详细说明</a>。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 直接与宿主机共享网络栈</span>
+</span></span><span class="line"><span class="cl">$ ctr c create --net-host docker.io/library/busybox:latest mybusybox
+</span></span><span class="line"><span class="cl"><span class="c1"># 这样设置使得容器完全使用宿主机的网络，包括本地回环等所有网络接口</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --net-host 用于声明容器共享主机网络</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 cni 扩展工具构建网络模型</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 yum 安装 cni</span>
+</span></span><span class="line"><span class="cl">$ yum install containernetworking-plugins
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># cni 严重依赖环境变量提供运行时信息</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 配置文件路径声明，这一步通常可以省去，因为默认值就是 /etc/cni/net.d</span>
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">NETCONFPATH</span><span class="o">=</span>/etc/cni/net.d
+</span></span><span class="line"><span class="cl"><span class="c1"># 插件所在路径声明，如果 cnitool 执行失败，通常是没有指定这个路径导致的</span>
+</span></span><span class="line"><span class="cl">$ ls /usr/libexec/cni/
+</span></span><span class="line"><span class="cl">bandwidth  firewall     host-local  macvlan  sample  tuning
+</span></span><span class="line"><span class="cl">bridge     flannel      ipvlan      portmap  sbr     vlan
+</span></span><span class="line"><span class="cl">dhcp       host-device  loopback    ptp      static
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">CNI_PATH</span><span class="o">=</span>/usr/libexec/cni/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 iproute2 创建 net 命名空间</span>
+</span></span><span class="line"><span class="cl">$ ip netns add container-net
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 conf 文件创建网络接口</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/cni/net.d/cni.conf
+</span></span><span class="line"><span class="cl"><span class="o">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;cniVersion&#34;</span>: <span class="s2">&#34;0.4.0&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;cni&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;bridge&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;bridge&#34;</span>: <span class="s2">&#34;cni0&#34;</span>,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;isDefaultGateway&#34;</span>: true,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;forceAddress&#34;</span>: false,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ipMasq&#34;</span>: true,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;hairpinMode&#34;</span>: true,
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;ipam&#34;</span>: <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;type&#34;</span>: <span class="s2">&#34;host-local&#34;</span>,
+</span></span><span class="line"><span class="cl">        <span class="s2">&#34;subnet&#34;</span>: <span class="s2">&#34;10.88.0.0/16&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建这个网络接口并附加到命名空间中</span>
+</span></span><span class="line"><span class="cl">$ /usr/libexec/cnitool add cni /var/run/netns/container-net
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看已经生成的 cni0 网桥</span>
+</span></span><span class="line"><span class="cl">$ ip a
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu <span class="m">65536</span> qdisc noqueue state UNKNOWN group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">    inet 127.0.0.1/8 scope host lo
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 ::1/128 scope host 
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc pfifo_fast state UP group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether 00:0c:29:0a:69:d0 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">    inet 192.168.0.7/24 brd 192.168.0.255 scope global dynamic ens33
+</span></span><span class="line"><span class="cl">       valid_lft 84564sec preferred_lft 84564sec
+</span></span><span class="line"><span class="cl">    inet6 fe80::20c:29ff:fe0a:69d0/64 scope link 
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">3: cni0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue state UP group default qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/ether b2:51:ec:c7:b0:39 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">    inet 10.88.0.1/16 brd 10.88.255.255 scope global cni0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 fe80::b051:ecff:fec7:b039/64 scope link 
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">4: veth3adfd297@if3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue master cni0 state UP group default 
+</span></span><span class="line"><span class="cl">    link/ether 96:4e:da:cb:0b:27 brd ff:ff:ff:ff:ff:ff link-netnsid <span class="m">0</span>
+</span></span><span class="line"><span class="cl">    inet6 fe80::944e:daff:fecb:b27/64 scope link 
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 声明并启动容器，查看容器内的网络信息</span>
+</span></span><span class="line"><span class="cl">$ ctr c create docker.io/library/busybox:latest mybusybox --with-ns<span class="o">=</span>network:/var/run/netns/container-net
+</span></span><span class="line"><span class="cl">$ ctr t start -d mybusybox
+</span></span><span class="line"><span class="cl">$ ctr t <span class="nb">exec</span> -t --exec-id busybox-sh mybusybox sh
+</span></span><span class="line"><span class="cl">/ <span class="c1"># ip a</span>
+</span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK&gt; mtu <span class="m">65536</span> qdisc noop qlen <span class="m">1000</span>
+</span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+</span></span><span class="line"><span class="cl">3: eth0@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu <span class="m">1500</span> qdisc noqueue 
+</span></span><span class="line"><span class="cl">    link/ether ee:0f:03:a0:22:b7 brd ff:ff:ff:ff:ff:ff
+</span></span><span class="line"><span class="cl">    inet 10.88.0.2/16 brd 10.88.255.255 scope global eth0
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">    inet6 fe80::ec0f:3ff:fea0:22b7/64 scope link 
+</span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 清除接口</span>
+</span></span><span class="line"><span class="cl">$ /usr/libexec/cnitool del cni /var/run/netns/container-net
+</span></span><span class="line"><span class="cl">$ ip link delete cni0
+</span></span><span class="line"><span class="cl">$ ip netns delete container-net
+</span></span></code></pre></div><p>以上信息描述了两种容器网络的实现方法，第一种非常简单，直接和主机共享网络栈，第二种网络模式则是由 cni 提供支持，和 docker 默认的网桥模式类似，更复杂的 cni 网络模式可以参阅<a href="https://github.com/containernetworking/cni/blob/spec-v1.0.0/SPEC.md">官方文档</a>和各插件的<a href="https://www.cni.dev/plugins/current/main/">详细说明</a>。</p>
 <h2 id="总结">总结</h2>
 <p>目前 contained 已经可以直接作为 Kubernetes 的容器进行时，并且后续 Kubernetes 会减弱对 docker 的支持，在容器集群环境可以尝试直接使用 contained 替代 docker ，如果是单机环境则 docker 依旧是较好的选择。</p></article>
               </div>
@@ -455,7 +459,7 @@ $ ip netns delete container-net
   <div class="footer container-xl width-full p-responsive">
   <div
     class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
-    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
       <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
         <path fill-rule="evenodd"
           d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
