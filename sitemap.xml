@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://yuweizzz.github.io/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/readme/</loc>
@@ -10,195 +10,195 @@
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/use_tekton_to_run_pipelines_in_kubernetes_cluster/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/install_k3s_cluster/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/study_notes_about_openresty/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/example_of_prometheus_exporter/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/update_dns_record_via_cloudflare_api/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/hello_2024/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/practical_tips_in_debian/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/useful_victoriametrics_api_and_prmoql/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/fix_connection_reset_error_when_query_from_victoriametrics/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_linux_network/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/use_kaniko_to_build_images_in_kubernetes_cluster/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/study_notes_about_character_encoding_formats/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/how_apisix_implements_load_balancing/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/detail_about_filebeat_config_file/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/useful_command_about_ffmpeg/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_hardware_benchmark_tool/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/practice_notes_about_kubernetes/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/study_notes_about_lua/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/using_s3_plugin_in_logstash/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/build_a_lightweight_server/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_kubernetes/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/practical_tips_in_nginx/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_containerd/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_namespace_and_cgroup/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/study_notes_about_go/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_tls/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/powerdns_performance_guide/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/using_ldap_in_python_project/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_django/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_python/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/review_of_2021/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_raid_and_hba/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_hdd/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/tips_about_javascript_project/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/practical_tips_in_linux/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/add_live2d_on_hugo_website/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_nginx/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/install_gui_in_linux/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/using_github_actions_to_deploy_applications/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/more_tips_about_git/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/share_folder_in_vmware_workstation/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/tips_about_git/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/authenticating_to_github/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/tips_about_environment_variable/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_dns/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/post/knowledge_about_iptables/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/tags/</loc>
-    <lastmod>2024-06-07T15:32:17+00:00</lastmod>
+    <lastmod>2024-06-18T09:19:50+00:00</lastmod>
   </url>
   <url>
     <loc>https://yuweizzz.github.io/categories/</loc>
