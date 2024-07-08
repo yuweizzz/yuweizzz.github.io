@@ -6,7 +6,7 @@
     <description>Recent content in Tekton on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2024 13:36:33 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/tekton/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 tekton 在 kubernetes 集群中运行流水线</title>

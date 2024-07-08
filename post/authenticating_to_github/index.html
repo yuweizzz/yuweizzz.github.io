@@ -10,7 +10,7 @@
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
     <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
-    <title>配置 GitHub SSH Key - Wei&#39;s blog</title>
+    <title>配置 GitHub 认证密钥 - Wei&#39;s blog</title>
     
     <link rel="icon" type="image/x-icon" href='/images/favicon.svg'>
     
@@ -18,7 +18,7 @@
 
     
     <meta name="description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
@@ -27,9 +27,9 @@
 
 
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="配置 GitHub SSH Key - Wei&#39;s blog" />
+<meta name="twitter:title" content="配置 GitHub 认证密钥 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
@@ -38,12 +38,12 @@
 
 
 <meta property="og:type" content="article" />
-<meta property="og:title" content="配置 GitHub SSH Key - Wei&#39;s blog">
+<meta property="og:title" content="配置 GitHub 认证密钥 - Wei&#39;s blog">
 <meta property="og:description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送。
+  content="通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
 " />
 <meta property="og:url" content="https://yuweizzz.github.io/post/authenticating_to_github/" />
-<meta property="og:site_name" content="配置 GitHub SSH Key" />
+<meta property="og:site_name" content="配置 GitHub 认证密钥" />
 <meta property="og:image"
   content="https://yuweizzz.github.io/">
 <meta property="og:image:width" content="2048">
@@ -157,7 +157,7 @@
                   </span>
                   <span class="path-divider">/</span>
                   <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
-                    <a href="https://yuweizzz.github.io/post/authenticating_to_github/">配置 GitHub SSH Key</a>
+                    <a href="https://yuweizzz.github.io/post/authenticating_to_github/">配置 GitHub 认证密钥</a>
                   </strong>
                 </h1>
                 <div class="note m-0">
@@ -167,9 +167,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
+                  Modified <relative-time datetime="Mon, 08 Jul 2024 13:36:33 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
+                    Mon, 08 Jul 2024 13:36:33 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -199,7 +199,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      954 Words
+                      1096 Words
                     
 
                   </div>
@@ -240,7 +240,7 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>通过配置 Github SSH Key 实现 GitHub 免密推送。</p>
+                <article class="markdown-body entry-content container-lg"><p>通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
 </span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
@@ -303,7 +303,23 @@
 </span></span><span class="line"><span class="cl">Hi yuweizzz! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
 </span></span><span class="line"><span class="cl">Connection to github.com closed.
 </span></span></code></pre></div><p>其实从这部分可以得出 Github 推送仓库是基于 OpenSSH 来实现的。</p>
-<p>更多信息可以参考 GitHub 的<a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">官方文档</a>。</p></article>
+<p>更多信息可以参考 GitHub 的<a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">官方文档</a>。</p>
+<h2 id="利用-gpg-密钥对-commit-进行签名">利用 GPG 密钥对 commit 进行签名</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成 GPG 密钥</span>
+</span></span><span class="line"><span class="cl">$ gpg --full-generate-key
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看生成后的密钥信息</span>
+</span></span><span class="line"><span class="cl">$ gpg --list-keys
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 导出对应的公钥，并将它添加到对应的 Github 账户中</span>
+</span></span><span class="line"><span class="cl">$ gpg --armor --export &lt;key-id&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 在对应仓库中设置 signingkey 后，就可以在 commit 时进行签名</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># GPG_TTY 用于交互式获取 GPG 密钥的 passphrase ，没有正常设置时可能会无法进行签名</span>
+</span></span><span class="line"><span class="cl">$ git config user.signingkey &lt;key-id&gt;
+</span></span><span class="line"><span class="cl">$ <span class="nb">export</span> <span class="nv">GPG_TTY</span><span class="o">=</span><span class="k">$(</span>tty<span class="k">)</span>
+</span></span><span class="line"><span class="cl">$ git commit -S -m <span class="s2">&#34;...&#34;</span>
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>

@@ -6,8 +6,15 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2024 13:36:33 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>今夜我在德令哈</title>
+      <link>https://yuweizzz.github.io/post/tonight_i_am_in_delingha/</link>
+      <pubDate>Tue, 25 Jun 2024 21:44:45 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/tonight_i_am_in_delingha/</guid>
+      <description></description>
+    </item>
     <item>
       <title>使用 tekton 在 kubernetes 集群中运行流水线</title>
       <link>https://yuweizzz.github.io/post/use_tekton_to_run_pipelines_in_kubernetes_cluster/</link>
@@ -310,11 +317,11 @@
       <description>&lt;p&gt;这篇笔记用来记录一些常用的 Git 命令。&lt;/p&gt;</description>
     </item>
     <item>
-      <title>配置 GitHub SSH Key</title>
+      <title>配置 GitHub 认证密钥</title>
       <link>https://yuweizzz.github.io/post/authenticating_to_github/</link>
       <pubDate>Mon, 20 Jul 2020 23:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/post/authenticating_to_github/</guid>
-      <description>&lt;p&gt;通过配置 Github SSH Key 实现 GitHub 免密推送。&lt;/p&gt;</description>
+      <description>&lt;p&gt;通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。&lt;/p&gt;</description>
     </item>
     <item>
       <title>配置 Linux 环境变量</title>

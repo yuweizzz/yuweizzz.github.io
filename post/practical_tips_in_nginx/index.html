@@ -167,9 +167,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 18 Jun 2024 09:26:18 &#43;0000"
+                  Modified <relative-time datetime="Mon, 08 Jul 2024 13:36:33 &#43;0000"
                     class="no-wrap">
-                    Tue, 18 Jun 2024 09:26:18 &#43;0000</relative-time>
+                    Mon, 08 Jul 2024 13:36:33 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -199,7 +199,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4138 Words
+                      4280 Words
                     
 
                   </div>
@@ -240,6 +240,15 @@
                         </path>
                       </svg>
                       CORS
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/acme">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      acme
                     </a>
                     
                     
@@ -704,7 +713,10 @@
 </span></span></code></pre></div><p>修改完 nginx 配置后，参考的执行命令如下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 acme.sh</span>
 </span></span><span class="line"><span class="cl">$ curl https://get.acme.sh <span class="p">|</span> sh
-</span></span><span class="line"><span class="cl"><span class="c1"># 选择 CA 登陆账号</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 Webroot 模式自动签发证书</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置 letsencrypt 作为签发机构，同时设置对应的账号</span>
 </span></span><span class="line"><span class="cl">$ acme.sh --register-account --server letsencrypt -m your_email@email.com
 </span></span><span class="line"><span class="cl"><span class="c1"># 通过 webroot 模式签发证书</span>
 </span></span><span class="line"><span class="cl">$ acme.sh --issue -d your.domain.com -w /var/www/ --server letsencrypt
@@ -714,6 +726,23 @@
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --key-file /path/to/cert.key <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --fullchain-file /path/to/cert.pem <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  --reloadcmd <span class="s2">&#34;systemctl reload nginx&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 DNS 模式手动签发证书</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 Google Trust Services 作为签发机构</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 首先通过 https://console.cloud.google.com/apis/library/publicca.googleapis.com 启用 api ，同时需要创建 project</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 在 project 中通过 Google Cloud Shell 执行 gcloud beta publicca external-account-keys create 获取 eab-kid 和 hmac-key</span>
+</span></span><span class="line"><span class="cl">$ acme.sh --register-account --server https://dv.acme-v02.api.pki.goog/directory <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --accountemail your_email@email.com <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --eab-kid &lt;eab-kid&gt; <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --eab-hmac-key &lt;eab-hmac-key&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 dns 模式签发证书</span>
+</span></span><span class="line"><span class="cl">$ acme.sh --server https://dv.acme-v02.api.pki.goog/directory <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --issue --dns -d *.domain.com --yes-I-know-dns-manual-mode-enough-go-ahead-please
+</span></span><span class="line"><span class="cl"><span class="c1"># 手动添加 DNS 记录后执行验证</span>
+</span></span><span class="line"><span class="cl">$ acme.sh --server https://dv.acme-v02.api.pki.goog/directory <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --renew -d *.domain.com --yes-I-know-dns-manual-mode-enough-go-ahead-please
 </span></span></code></pre></div></article>
               </div>
             </div>

@@ -6,8 +6,15 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 18 Jun 2024 09:26:18 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 08 Jul 2024 13:36:33 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Life</title>
+      <link>https://yuweizzz.github.io/tags/life/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/life/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Kubernetes</title>
       <link>https://yuweizzz.github.io/tags/kubernetes/</link>
@@ -233,6 +240,13 @@
       <description></description>
     </item>
     <item>
+      <title>Acme</title>
+      <link>https://yuweizzz.github.io/tags/acme/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/acme/</guid>
+      <description></description>
+    </item>
+    <item>
       <title>CORS</title>
       <link>https://yuweizzz.github.io/tags/cors/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -321,13 +335,6 @@
       <link>https://yuweizzz.github.io/tags/elasticsearch/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/tags/elasticsearch/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Life</title>
-      <link>https://yuweizzz.github.io/tags/life/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yuweizzz.github.io/tags/life/</guid>
       <description></description>
     </item>
     <item>
