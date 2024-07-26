@@ -170,9 +170,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 09 Jul 2024 12:31:41 &#43;0000"
+                  Modified <relative-time datetime="Fri, 26 Jul 2024 08:32:16 &#43;0000"
                     class="no-wrap">
-                    Tue, 09 Jul 2024 12:31:41 &#43;0000</relative-time>
+                    Fri, 26 Jul 2024 08:32:16 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -202,7 +202,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1531 Words
+                      1984 Words
                     
 
                   </div>
@@ -225,6 +225,15 @@
                         </path>
                       </svg>
                       Openresty
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/apisix">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Apisix
                     </a>
                     
                     
@@ -503,6 +512,109 @@
 </span></span><span class="line"><span class="cl">        <span class="n">ngx.say</span><span class="p">(</span><span class="n">replaced</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></div><h2 id="运行-apisix-测试用例">运行 apisix 测试用例</h2>
+<p>关于如何搭建测试环境，这里引用 apisix 仓库文档 <code>docs/en/latest/building-apisix.md</code> 作为参考：</p>
+<blockquote>
+<ol>
+<li>
+<p>安装 <code>perl</code> 的包管理器 <a href="https://metacpan.org/pod/App::cpanminus#INSTALLATION">cpanminus</a>。</p>
+</li>
+<li>
+<p>通过 <code>cpanm</code> 来安装 <a href="https://github.com/openresty/test-nginx">test-nginx</a> 的依赖：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">sudo cpanm --notest Test::Nginx IPC::Run &gt; build.log 2&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">||</span> <span class="o">(</span>cat build.log <span class="o">&amp;&amp;</span> <span class="nb">exit</span> 1<span class="o">)</span>
+</span></span></code></pre></div></li>
+<li>
+<p>将 <code>test-nginx</code> 源码克隆到本地：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">git clone https://github.com/openresty/test-nginx.git
+</span></span></code></pre></div></li>
+<li>
+<p>运行以下命令将当前目录添加到 Perl 的模块目录：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PERL5LIB</span><span class="o">=</span>.:<span class="nv">$PERL5LIB</span>
+</span></span></code></pre></div><p>你可以通过运行以下命令指定 NGINX 二进制路径：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="nv">TEST_NGINX_BINARY</span><span class="o">=</span>/usr/local/bin/openresty prove -Itest-nginx/lib -r t
+</span></span></code></pre></div></li>
+<li>
+<p>运行测试：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">make <span class="nb">test</span>
+</span></span></code></pre></div></li>
+</ol>
+</blockquote>
+<p>正常设置环境变量后，可以通过 <code>prove -Itest-nginx/lib -r t/plugin/file.t</code> 指定要运行的测试文件。其中 <code>TEST_NGINX_BINARY=/usr/local/bin/openresty</code> 可以通过主动声明 openresty 的可执行路径 <code>export PATH=/usr/local/openresty/nginx/sbin:$PATH</code> 替换，无须每次运行时再次声明。</p>
+<p>测试过程经常会涉及一些资源创建和变更，以下是控制平面的一些常用的 api 收集：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 admin key 不再使用默认值，而是运行时生成后，需要使用这个命令获取</span>
+</span></span><span class="line"><span class="cl"><span class="nv">admin_key</span><span class="o">=</span><span class="k">$(</span>yq <span class="s1">&#39;.deployment.admin.admin_key[0].key&#39;</span> conf/config.yaml <span class="p">|</span> sed <span class="s1">&#39;s/&#34;//g&#39;</span><span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 ssl 资源</span>
+</span></span><span class="line"><span class="cl">curl http://localhost:9180/apisix/admin/ssls/1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-H <span class="s2">&#34;X-API-KEY: </span><span class="nv">$admin_key</span><span class="s2">&#34;</span> -X PUT -d <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;cert&#34; : &#34;&#39;</span><span class="s2">&#34;</span><span class="k">$(</span>cat t/certs/apisix.crt<span class="k">)</span><span class="s2">&#34;</span><span class="s1">&#39;&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;key&#34;: &#34;&#39;</span><span class="s2">&#34;</span><span class="k">$(</span>cat t/certs/apisix.key<span class="k">)</span><span class="s2">&#34;</span><span class="s1">&#39;&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;sni&#34;: &#34;test.com&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;client&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;ca&#34;: &#34;&#39;</span><span class="s2">&#34;</span><span class="k">$(</span>cat t/certs/apisix.crt<span class="k">)</span><span class="s2">&#34;</span><span class="s1">&#39;&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;depth&#34;: 1
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }
+</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 route 资源</span>
+</span></span><span class="line"><span class="cl">curl http://localhost:9180/apisix/admin/routes/1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-H <span class="s2">&#34;X-API-KEY: </span><span class="nv">$admin_key</span><span class="s2">&#34;</span> -X PUT -d <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;uri&#34;: &#34;/*&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;plugins&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;gzip&#34;: {}
+</span></span></span><span class="line"><span class="cl"><span class="s1">    },
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;upstream&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;nodes&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;httpbin.org&#34;: 1
+</span></span></span><span class="line"><span class="cl"><span class="s1">        },
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;type&#34;: &#34;roundrobin&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }
+</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 stream route 资源</span>
+</span></span><span class="line"><span class="cl">curl http://localhost:9180/apisix/admin/stream_routes/1 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-H <span class="s2">&#34;X-API-KEY: </span><span class="nv">$admin_key</span><span class="s2">&#34;</span> -X PUT -d <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;server_addr&#34;: &#34;192.168.1.88&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;server_port&#34;: 9200,
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;upstream&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;nodes&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;192.168.1.99:9200&#34;: 1
+</span></span></span><span class="line"><span class="cl"><span class="s1">        },
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;type&#34;: &#34;roundrobin&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }
+</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 consumer 资源</span>
+</span></span><span class="line"><span class="cl">curl http://localhost:9180/apisix/admin/consumers <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-H <span class="s2">&#34;X-API-KEY: </span><span class="nv">$admin_key</span><span class="s2">&#34;</span> -X PUT -d <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;username&#34;: &#34;foo&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;plugins&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;basic-auth&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;username&#34;: &#34;foo&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;password&#34;: &#34;bar&#34;
+</span></span></span><span class="line"><span class="cl"><span class="s1">        }
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }
+</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建关联 consumer 的 route 资源</span>
+</span></span><span class="line"><span class="cl">curl http://localhost:9180/apisix/admin/routes/2 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>-H <span class="s2">&#34;X-API-KEY: </span><span class="nv">$admin_key</span><span class="s2">&#34;</span> -X PUT -d <span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">{
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;uri&#34;: &#34;/*&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;plugins&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">       &#34;basic-auth&#34;: {}
+</span></span></span><span class="line"><span class="cl"><span class="s1">    },
+</span></span></span><span class="line"><span class="cl"><span class="s1">    &#34;upstream&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;type&#34;: &#34;roundrobin&#34;,
+</span></span></span><span class="line"><span class="cl"><span class="s1">        &#34;nodes&#34;: {
+</span></span></span><span class="line"><span class="cl"><span class="s1">            &#34;httpbin.org&#34;: 1
+</span></span></span><span class="line"><span class="cl"><span class="s1">        }
+</span></span></span><span class="line"><span class="cl"><span class="s1">    }
+</span></span></span><span class="line"><span class="cl"><span class="s1">}&#39;</span>
 </span></span></code></pre></div></article>
               </div>
             </div>

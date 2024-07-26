@@ -6,8 +6,15 @@
     <description>Recent content in Kubernetes on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 09 Jul 2024 12:31:41 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 26 Jul 2024 08:32:16 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过 OAuth2 进行授权</title>
+      <link>https://yuweizzz.github.io/post/using_oauth2_for_authorization/</link>
+      <pubDate>Thu, 11 Jul 2024 11:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_oauth2_for_authorization/</guid>
+      <description>&lt;p&gt;通过 OAuth2 实现单点登陆和应用授权。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>使用 tekton 在 kubernetes 集群中运行流水线</title>
       <link>https://yuweizzz.github.io/post/use_tekton_to_run_pipelines_in_kubernetes_cluster/</link>
