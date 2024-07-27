@@ -170,9 +170,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 26 Jul 2024 08:32:16 &#43;0000"
+                  Modified <relative-time datetime="Sat, 27 Jul 2024 15:02:10 &#43;0000"
                     class="no-wrap">
-                    Fri, 26 Jul 2024 08:32:16 &#43;0000</relative-time>
+                    Sat, 27 Jul 2024 15:02:10 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -202,7 +202,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2653 Words
+                      4634 Words
                     
 
                   </div>
@@ -424,7 +424,625 @@
 </span></span><span class="line"><span class="cl"><span class="c1">-- 自定义 metrics</span>
 </span></span><span class="line"><span class="cl"><span class="n">new_metrics</span> <span class="o">=</span> <span class="n">getMetric</span><span class="p">(</span><span class="s2">&#34;metrics&#34;</span><span class="p">)</span>  <span class="c1">-- 新增 metrics</span>
 </span></span><span class="line"><span class="cl"><span class="n">metrics</span><span class="p">:</span><span class="n">inc</span><span class="p">()</span>  <span class="c1">-- 增加 metrics 计数，更多 metrics 方法可以参考官方文档</span>
-</span></span></code></pre></div><h2 id="参考文档">参考文档</h2>
+</span></span></code></pre></div><p>以下是附带了 <code>build_udp_package</code> 和 <code>parse_response</code> 函数实现的文件参考：</p>
+<details>
+  <summary>完整的 <code>lua</code> 文件参考</summary>
+  <p></p>
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">sub</span> <span class="o">=</span> <span class="n">string.sub</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">char</span> <span class="o">=</span> <span class="n">string.char</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">rshift</span> <span class="o">=</span> <span class="n">bit.rshift</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">lshift</span> <span class="o">=</span> <span class="n">bit.lshift</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">byte</span> <span class="o">=</span> <span class="n">string.byte</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">band</span> <span class="o">=</span> <span class="n">bit.band</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">gsub</span> <span class="o">=</span> <span class="n">string.gsub</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">find</span> <span class="o">=</span> <span class="n">string.find</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">match</span> <span class="o">=</span> <span class="n">string.match</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">insert</span> <span class="o">=</span> <span class="n">table.insert</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">concat</span> <span class="o">=</span> <span class="n">table.concat</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">DOT_CHAR</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">ZERO_CHAR</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="s2">&#34;0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">COLON_CHAR</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="s2">&#34;:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">IP6_ARPA</span> <span class="o">=</span> <span class="s2">&#34;ip6.arpa&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_A</span>      <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_NS</span>     <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_CNAME</span>  <span class="o">=</span> <span class="mi">5</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_SOA</span>    <span class="o">=</span> <span class="mi">6</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_PTR</span>    <span class="o">=</span> <span class="mi">12</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_MX</span>     <span class="o">=</span> <span class="mi">15</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_TXT</span>    <span class="o">=</span> <span class="mi">16</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_AAAA</span>   <span class="o">=</span> <span class="mi">28</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_SRV</span>    <span class="o">=</span> <span class="mi">33</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">TYPE_SPF</span>    <span class="o">=</span> <span class="mi">99</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">CLASS_IN</span>    <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">SECTION_AN</span>  <span class="o">=</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">SECTION_NS</span>  <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">SECTION_AR</span>  <span class="o">=</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="n">resolver_errstrs</span> <span class="o">=</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;format error&#34;</span><span class="p">,</span>     <span class="c1">-- 1</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;server failure&#34;</span><span class="p">,</span>   <span class="c1">-- 2</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;name error&#34;</span><span class="p">,</span>       <span class="c1">-- 3</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;not implemented&#34;</span><span class="p">,</span>  <span class="c1">-- 4</span>
+</span></span><span class="line"><span class="cl">    <span class="s2">&#34;refused&#34;</span><span class="p">,</span>          <span class="c1">-- 5</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">_encode_name</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">char</span><span class="p">(</span><span class="o">#</span><span class="n">s</span><span class="p">)</span> <span class="o">..</span> <span class="n">s</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">build_udp_package</span><span class="p">(</span><span class="n">qname</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">no_recurse</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">qtype</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">opts</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">qtype</span> <span class="o">=</span> <span class="n">opts.qtype</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">qtype</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">qtype</span> <span class="o">=</span> <span class="n">TYPE_A</span>  <span class="c1">-- A record</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">ident_hi</span> <span class="o">=</span> <span class="n">char</span><span class="p">(</span><span class="n">rshift</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">ident_lo</span> <span class="o">=</span> <span class="n">char</span><span class="p">(</span><span class="n">band</span><span class="p">(</span><span class="n">id</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">flags</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">no_recurse</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(&#34;found no recurse&#34;)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flags</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\0\0</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">        <span class="n">flags</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\1\0</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nqs</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\0\1</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nan</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\0\0</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nns</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\0\0</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nar</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\0\0</span><span class="s2">&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">typ</span> <span class="o">=</span> <span class="n">char</span><span class="p">(</span><span class="n">rshift</span><span class="p">(</span><span class="n">qtype</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">band</span><span class="p">(</span><span class="n">qtype</span><span class="p">,</span> <span class="mh">0xff</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">class</span> <span class="o">=</span> <span class="s2">&#34;</span><span class="se">\0\1</span><span class="s2">&#34;</span>    <span class="c1">-- the Internet class</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">name</span> <span class="o">=</span> <span class="n">gsub</span><span class="p">(</span><span class="n">qname</span><span class="p">,</span> <span class="s2">&#34;([^.]+)%.?&#34;</span><span class="p">,</span> <span class="n">_encode_name</span><span class="p">)</span> <span class="o">..</span> <span class="s1">&#39;</span><span class="se">\0</span><span class="s1">&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">byte</span><span class="p">(</span><span class="n">qname</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="n">DOT_CHAR</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;bad name&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span>  <span class="n">ident_hi</span> <span class="o">..</span> <span class="n">ident_lo</span> <span class="o">..</span> <span class="n">flags</span> <span class="o">..</span> <span class="n">nqs</span> <span class="o">..</span> <span class="n">nan</span> <span class="o">..</span> <span class="n">nns</span> <span class="o">..</span> <span class="n">nar</span> <span class="o">..</span> <span class="n">name</span> <span class="o">..</span> <span class="n">typ</span> <span class="o">..</span> <span class="n">class</span>
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">labels</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nptrs</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">p</span> <span class="o">=</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">while</span> <span class="n">nptrs</span> <span class="o">&lt;</span> <span class="mi">128</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">fst</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="ow">not</span> <span class="n">fst</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s1">&#39;truncated&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(&#34;fst at &#34;, p, &#34;: &#34;, fst)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">fst</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">nptrs</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">break</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">band</span><span class="p">(</span><span class="n">fst</span><span class="p">,</span> <span class="mh">0xc0</span><span class="p">)</span> <span class="o">~=</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- being a pointer</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">nptrs</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">nptrs</span> <span class="o">=</span> <span class="n">nptrs</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">snd</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">snd</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s1">&#39;truncated&#39;</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">band</span><span class="p">(</span><span class="n">fst</span><span class="p">,</span> <span class="mh">0x3f</span><span class="p">),</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">snd</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- print(&#34;resolving ptr &#34;, p, &#34;: &#34;, byte(buf, p))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- being a label</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">label</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="n">fst</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">insert</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="n">label</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- print(&#34;resolved label &#34;, label)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="n">fst</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">nptrs</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">concat</span><span class="p">(</span><span class="n">labels</span><span class="p">,</span> <span class="s2">&#34;.&#34;</span><span class="p">),</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">parse_section</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">section</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">start_pos</span><span class="p">,</span> <span class="n">size</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                             <span class="n">should_skip</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">start_pos</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">for</span> <span class="n">_</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="n">size</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(format(&#34;ans %d: qtype:%d qclass:%d&#34;, i, qtype, qclass))</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">ans</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="ow">not</span> <span class="n">should_skip</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">insert</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">ans</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ans.section</span> <span class="o">=</span> <span class="n">section</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">        <span class="n">name</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ans.name</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(&#34;name: &#34;, name)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">type_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">type_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">typ</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">type_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">type_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ans.type</span> <span class="o">=</span> <span class="n">typ</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(&#34;type: &#34;, typ)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">class_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">class_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">class</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">class_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">class_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ans.class</span> <span class="o">=</span> <span class="n">class</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(&#34;class: &#34;, class)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">byte_1</span><span class="p">,</span> <span class="n">byte_2</span><span class="p">,</span> <span class="n">byte_3</span><span class="p">,</span> <span class="n">byte_4</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">4</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">ttl</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">byte_1</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span> <span class="o">+</span> <span class="n">lshift</span><span class="p">(</span><span class="n">byte_2</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="o">+</span> <span class="n">lshift</span><span class="p">(</span><span class="n">byte_3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">byte_4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(&#34;ttl: &#34;, ttl)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">ans.ttl</span> <span class="o">=</span> <span class="n">ttl</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">len_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">len_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">len</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">len_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">len_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(&#34;record len: &#34;, len)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">10</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_A</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">len</span> <span class="o">~=</span> <span class="mi">4</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;bad A record value length: &#34;</span> <span class="o">..</span> <span class="n">len</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">addr_bytes</span> <span class="o">=</span> <span class="p">{</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">addr</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span><span class="n">addr_bytes</span><span class="p">,</span> <span class="s2">&#34;.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- print(&#34;ipv4 address: &#34;, addr)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.address</span> <span class="o">=</span> <span class="n">addr</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">elseif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_CNAME</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">cname</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">cname</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span> <span class="o">~=</span> <span class="n">len</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;bad cname record length: %d ~= %d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- print(&#34;cname: &#34;, cname)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.cname</span> <span class="o">=</span> <span class="n">cname</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">elseif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_AAAA</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">len</span> <span class="o">~=</span> <span class="mi">16</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;bad AAAA record value length: &#34;</span> <span class="o">..</span> <span class="n">len</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">addr_bytes</span> <span class="o">=</span> <span class="p">{</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">15</span><span class="p">)</span> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">flds</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">for</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">16</span><span class="p">,</span> <span class="mi">2</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">local</span> <span class="n">a</span> <span class="o">=</span> <span class="n">addr_bytes</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">local</span> <span class="n">b</span> <span class="o">=</span> <span class="n">addr_bytes</span><span class="p">[</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">if</span> <span class="n">a</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">insert</span><span class="p">(</span><span class="n">flds</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;%x&#34;</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">insert</span><span class="p">(</span><span class="n">flds</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;%x%02x&#34;</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- we do not compress the IPv6 addresses by default</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">--  due to performance considerations</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.address</span> <span class="o">=</span> <span class="n">concat</span><span class="p">(</span><span class="n">flds</span><span class="p">,</span> <span class="s2">&#34;:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">16</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">elseif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_MX</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- print(&#34;len = &#34;, len)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">len</span> <span class="o">&lt;</span> <span class="mi">3</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;bad MX record value length: &#34;</span> <span class="o">..</span> <span class="n">len</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">pref_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">pref_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.preference</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">pref_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">pref_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">host</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">host</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span> <span class="o">~=</span> <span class="n">len</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;bad cname record length: %d ~= %d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.exchange</span> <span class="o">=</span> <span class="n">host</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">elseif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_SRV</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">len</span> <span class="o">&lt;</span> <span class="mi">7</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;bad SRV record value length: &#34;</span> <span class="o">..</span> <span class="n">len</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">prio_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">prio_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans.priority</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">prio_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">prio_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">weight_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">weight_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans.weight</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">weight_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">weight_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">port_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">port_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans.port</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">port_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">port_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">name</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span> <span class="o">~=</span> <span class="n">len</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;bad srv record length: %d ~= %d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.target</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">elseif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_NS</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">name</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span> <span class="o">~=</span> <span class="n">len</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;bad cname record length: %d ~= %d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- print(&#34;name: &#34;, name)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.nsdname</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">elseif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_TXT</span> <span class="ow">or</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_SPF</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">key</span> <span class="o">=</span> <span class="p">(</span><span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_TXT</span><span class="p">)</span> <span class="ow">and</span> <span class="s2">&#34;txt&#34;</span> <span class="ow">or</span> <span class="s2">&#34;spf&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">slen</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">slen</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">len</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- truncate the over-run TXT record data</span>
+</span></span><span class="line"><span class="cl">                <span class="n">slen</span> <span class="o">=</span> <span class="n">len</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- print(&#34;slen: &#34;, len)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">val</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">slen</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">last</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">len</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">slen</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">pos</span> <span class="o">&lt;</span> <span class="n">last</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- more strings to be processed</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- this code path is usually cold, so we do not</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- merge the following loop on this code path</span>
+</span></span><span class="line"><span class="cl">                <span class="c1">-- with the processing logic above.</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="n">val</span> <span class="o">=</span> <span class="p">{</span><span class="n">val</span><span class="p">}</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">local</span> <span class="n">idx</span> <span class="o">=</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">repeat</span>
+</span></span><span class="line"><span class="cl">                    <span class="kd">local</span> <span class="n">slen</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="kr">if</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">slen</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&gt;</span> <span class="n">last</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                        <span class="c1">-- truncate the over-run TXT record data</span>
+</span></span><span class="line"><span class="cl">                        <span class="n">slen</span> <span class="o">=</span> <span class="n">last</span> <span class="o">-</span> <span class="n">pos</span> <span class="o">-</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                    <span class="n">val</span><span class="p">[</span><span class="n">idx</span><span class="p">]</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">slen</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">idx</span> <span class="o">=</span> <span class="n">idx</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">slen</span> <span class="o">+</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="kr">until</span> <span class="n">pos</span> <span class="o">&gt;=</span> <span class="n">last</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="n">val</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">elseif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_PTR</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">name</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span> <span class="o">~=</span> <span class="n">len</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;bad cname record length: %d ~= %d&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                                   <span class="n">p</span> <span class="o">-</span> <span class="n">pos</span><span class="p">,</span> <span class="n">len</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="c1">-- print(&#34;name: &#34;, name)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.ptrdname</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">elseif</span> <span class="n">typ</span> <span class="o">==</span> <span class="n">TYPE_SOA</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="kd">local</span> <span class="n">name</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans.mname</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">            <span class="n">name</span><span class="p">,</span> <span class="n">p</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">if</span> <span class="ow">not</span> <span class="n">name</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">                <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">            <span class="n">ans.rname</span> <span class="o">=</span> <span class="n">name</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">field</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">soa_int32_fields</span><span class="p">)</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">                <span class="kd">local</span> <span class="n">byte_1</span><span class="p">,</span> <span class="n">byte_2</span><span class="p">,</span> <span class="n">byte_3</span><span class="p">,</span> <span class="n">byte_4</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="n">ans</span><span class="p">[</span><span class="n">field</span><span class="p">]</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">byte_1</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span> <span class="o">+</span> <span class="n">lshift</span><span class="p">(</span><span class="n">byte_2</span><span class="p">,</span> <span class="mi">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                            <span class="o">+</span> <span class="n">lshift</span><span class="p">(</span><span class="n">byte_3</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">byte_4</span>
+</span></span><span class="line"><span class="cl">                <span class="n">p</span> <span class="o">=</span> <span class="n">p</span> <span class="o">+</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">            <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">p</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="kr">else</span>
+</span></span><span class="line"><span class="cl">            <span class="c1">-- for unknown types, just forward the raw value</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            <span class="n">ans.rdata</span> <span class="o">=</span> <span class="n">sub</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">len</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="n">len</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">parse_response</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">id</span><span class="p">,</span> <span class="n">opts</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">n</span> <span class="o">=</span> <span class="o">#</span><span class="n">buf</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">12</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s1">&#39;truncated&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- header layout: ident flags nqs nan nns nar</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">ident_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">ident_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">ans_id</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">ident_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">ident_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(&#34;id: &#34;, id, &#34;, ans id: &#34;, ans_id)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">ans_id</span> <span class="o">~=</span> <span class="n">id</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- identifier mismatch and throw it away</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;id mismatch&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">flags_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">flags_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">flags</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">flags_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">flags_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(format(&#34;flags: 0x%x&#34;, flags))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">band</span><span class="p">(</span><span class="n">flags</span><span class="p">,</span> <span class="mh">0x8000</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;bad QR flag in the DNS response&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">band</span><span class="p">(</span><span class="n">flags</span><span class="p">,</span> <span class="mh">0x200</span><span class="p">)</span> <span class="o">~=</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s2">&#34;truncated&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">code</span> <span class="o">=</span> <span class="n">band</span><span class="p">(</span><span class="n">flags</span><span class="p">,</span> <span class="mh">0xf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(format(&#34;code: %d&#34;, code))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nqs_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nqs_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nqs</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">nqs_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">nqs_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(&#34;nqs: &#34;, nqs)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">nqs</span> <span class="o">~=</span> <span class="mi">1</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;bad number of questions in DNS response: %d&#34;</span><span class="p">,</span> <span class="n">nqs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nan_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nan_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nan</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">nan_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">nan_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(&#34;nan: &#34;, nan)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nns_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nns_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nns</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">nns_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">nns_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nar_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nar_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">12</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">nar</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">nar_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">nar_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- skip the question part</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">ans_qname</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="n">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">ans_qname</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">pos</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(&#34;qname in reply: &#34;, ans_qname)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(&#34;question: &#34;, sub(buf, 13, pos))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">+</span> <span class="n">nan</span> <span class="o">*</span> <span class="mi">12</span> <span class="o">&gt;</span> <span class="n">n</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- print(format(&#34;%d &gt; %d&#34;, pos + 3 + nan * 12, n))</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="s1">&#39;truncated&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- question section layout: qname qtype(2) qclass(2)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="cm">--[[
+</span></span></span><span class="line"><span class="cl"><span class="cm">    local type_hi = byte(buf, pos)
+</span></span></span><span class="line"><span class="cl"><span class="cm">    local type_lo = byte(buf, pos + 1)
+</span></span></span><span class="line"><span class="cl"><span class="cm">    local ans_type = lshift(type_hi, 8) + type_lo
+</span></span></span><span class="line"><span class="cl"><span class="cm">    ]]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(&#34;ans qtype: &#34;, ans_type)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">class_hi</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">class_lo</span> <span class="o">=</span> <span class="n">byte</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">qclass</span> <span class="o">=</span> <span class="n">lshift</span><span class="p">(</span><span class="n">class_hi</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span> <span class="o">+</span> <span class="n">class_lo</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="c1">-- print(&#34;ans qclass: &#34;, qclass)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">qclass</span> <span class="o">~=</span> <span class="mi">1</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">format</span><span class="p">(</span><span class="s2">&#34;unknown query class %d in DNS response&#34;</span><span class="p">,</span> <span class="n">qclass</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pos</span> <span class="o">=</span> <span class="n">pos</span> <span class="o">+</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">answers</span> <span class="o">=</span> <span class="p">{}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">code</span> <span class="o">~=</span> <span class="mi">0</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">answers.errcode</span> <span class="o">=</span> <span class="n">code</span>
+</span></span><span class="line"><span class="cl">        <span class="n">answers.errstr</span> <span class="o">=</span> <span class="n">resolver_errstrs</span><span class="p">[</span><span class="n">code</span><span class="p">]</span> <span class="ow">or</span> <span class="s2">&#34;unknown&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">authority_section</span><span class="p">,</span> <span class="n">additional_section</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">opts</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">authority_section</span> <span class="o">=</span> <span class="n">opts.authority_section</span>
+</span></span><span class="line"><span class="cl">        <span class="n">additional_section</span> <span class="o">=</span> <span class="n">opts.additional_section</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="n">opts.qtype</span> <span class="o">==</span> <span class="n">TYPE_SOA</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">            <span class="n">authority_section</span> <span class="o">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">err</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pos</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">parse_section</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">SECTION_AN</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nan</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">pos</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">err</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">authority_section</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">additional_section</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="n">answers</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pos</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">parse_section</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">SECTION_NS</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nns</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                             <span class="ow">not</span> <span class="n">authority_section</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">pos</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">err</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">additional_section</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="n">answers</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="n">pos</span><span class="p">,</span> <span class="n">err</span> <span class="o">=</span> <span class="n">parse_section</span><span class="p">(</span><span class="n">answers</span><span class="p">,</span> <span class="n">SECTION_AR</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">,</span> <span class="n">nar</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">pos</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="n">err</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="n">answers</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">rewriteset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">rewriteset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">rewriteset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span> 
+</span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;udpQueryResponse&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;gotdomaindetails&#34;</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.udpQueryDest</span> <span class="o">=</span> <span class="n">newCA</span><span class="p">(</span><span class="s2">&#34;114.114.114.114:53&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.udpQuery</span> <span class="o">=</span> <span class="n">build_udp_package</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">:</span><span class="n">toString</span><span class="p">(),</span> <span class="n">dh</span><span class="p">:</span><span class="n">getID</span><span class="p">(),</span> <span class="n">dh</span><span class="p">:</span><span class="n">getRD</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">gotdomaindetails</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="kd">local</span> <span class="n">answers</span> <span class="o">=</span> <span class="n">parse_response</span><span class="p">(</span><span class="n">dq.udpAnswer</span><span class="p">,</span> <span class="n">dh</span><span class="p">:</span><span class="n">getID</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="ow">not</span> <span class="n">answers</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">answers.errcode</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="n">answers.errcode</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">answers</span> <span class="kr">then</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ans</span> <span class="kr">in</span> <span class="n">ipairs</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span> <span class="kr">do</span>
+</span></span><span class="line"><span class="cl">            <span class="n">dq</span><span class="p">:</span><span class="n">addRecord</span><span class="p">(</span><span class="n">ans.type</span><span class="p">,</span> <span class="n">ans.address</span> <span class="ow">or</span> <span class="n">ans.cname</span><span class="p">,</span> <span class="n">ans.class</span><span class="p">,</span> <span class="n">ans.ttl</span><span class="p">,</span> <span class="n">ans.name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">end</span>
+</span></span><span class="line"><span class="cl">        <span class="n">dq.rcode</span> <span class="o">=</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl">        <span class="kr">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">end</span>
+</span></span><span class="line"><span class="cl"><span class="kr">end</span>
+</span></span></code></pre></div>
+  <p></p>
+</details>
+
+<h2 id="参考文档">参考文档</h2>
 <ul>
 <li><a href="https://doc.powerdns.com/authoritative/performance.html">powerdns authoritative performance</a></li>
 <li><a href="https://docs.powerdns.com/recursor/performance.html">powerdns recursor performance</a></li>

@@ -170,9 +170,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 26 Jul 2024 08:32:16 &#43;0000"
+                  Modified <relative-time datetime="Sat, 27 Jul 2024 15:02:10 &#43;0000"
                     class="no-wrap">
-                    Fri, 26 Jul 2024 08:32:16 &#43;0000</relative-time>
+                    Sat, 27 Jul 2024 15:02:10 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -202,7 +202,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      5725 Words
+                      5824 Words
                     
 
                   </div>
@@ -319,6 +319,10 @@
 </span></span><span class="line"><span class="cl">$ parted /dev/sda -s mkpart primary 0% 100%  <span class="c1"># 这里的 primary 为分区命名，可以自行定义</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># -s 用来屏蔽 parted 的交互信息</span>
 </span></span><span class="line"><span class="cl">$ mkfs.xfs /dev/sda1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 备份和还原 xfs 文件系统目录</span>
+</span></span><span class="line"><span class="cl">$ xfsdump -f ~/home.img /home
+</span></span><span class="line"><span class="cl">$ xfsrestore -f ~/home.img /home
 </span></span></code></pre></div><h2 id="curl-的基本使用">curl 的基本使用</h2>
 <p>curl 在 Linux 代替了浏览器的工作，经常用来调试接口。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 经典 curl 用例</span>
@@ -730,6 +734,17 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 具体用户可以查看已经允许的命令</span>
 </span></span><span class="line"><span class="cl">$ sudo -l
+</span></span></code></pre></div><h2 id="journal-日志清理">journal 日志清理</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看当前日志占用的磁盘空间</span>
+</span></span><span class="line"><span class="cl">$ journalctl --disk-usage
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 保留最近两天的日志，删除其他日志</span>
+</span></span><span class="line"><span class="cl">$ journalctl --vacuum-time<span class="o">=</span>2d
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 保留最近 500M 大小的日志文件，删除其他日志</span>
+</span></span><span class="line"><span class="cl">$ journalctl --vacuum-size<span class="o">=</span>500M
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以通过 /etc/systemd/journald.conf 持久化参数</span>
 </span></span></code></pre></div><h2 id="rsyslog-日志重定向">rsyslog 日志重定向</h2>
 <p>使用 systemd 的 Linux 系统中，如果不明确指定 systemd service 的日志输出，也就是在 <code>/etc/systemd/system/*.service</code> 文件中配置 <code>[Service]</code> 部分的 <code>StandardOutput</code> ，那么默认的输出对象应该是 <code>journal</code> ，一般所有的 systemd service 都可以使用 <code>journalctl</code> 获取到日志信息。</p>
 <p>在 CentOS 中经常可以看到 <code>StandardOutput=syslog</code> 和 <code>StandardError=syslog</code> 的用法，此时一般可以在 <code>/var/log/messages</code> 中找到对应服务的日志信息，这里是由 syslog/rsyslog 所完成的工作，你可以在 <code>/etc/rsyslog.conf</code> 中找到 <code>$ModLoad imjournal</code> 和 <code>*.info;mail.none;authpriv.none;cron.none</code> 这两个相关的配置选项。</p>
