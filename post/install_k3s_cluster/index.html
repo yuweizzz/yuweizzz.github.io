@@ -170,9 +170,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Fri, 02 Aug 2024 08:54:52 &#43;0000"
+                  Modified <relative-time datetime="Thu, 15 Aug 2024 08:34:42 &#43;0000"
                     class="no-wrap">
-                    Fri, 02 Aug 2024 08:54:52 &#43;0000</relative-time>
+                    Thu, 15 Aug 2024 08:34:42 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -202,7 +202,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1581 Words
+                      1624 Words
                     
 
                   </div>
@@ -281,7 +281,17 @@
 </span></span></code></pre></div><p>因为后续会使用 cilium 替换默认的 flannel 网络插件，需要先使用 <code>--disable-network-policy</code> 和 <code>--flannel-backend=none</code> 禁止 k3s 自动安装网络插件。同时会通过 cilium 来彻底替换 kube-proxy ，所以会使用 <code>--disable-kube-proxy</code> 禁止 k3s 启动相关的组件。</p>
 <p>traefik 的功能由 Apisix Ingress 接管， servicelb 的功能则通过 cilium 的 L2 Announcement 实现。</p>
 <p>相应的 <code>--datastore-endpoint</code> 具体信息记录在 <code>/var/lib/rancher/k3s/server/db</code> ，而 k3s 集群创建的 local-path 类型的 PVC 则存储在 <code>/var/lib/rancher/k3s/storage</code> 。</p>
-<h2 id="安装-cilium">安装 cilium</h2>
+<p>通过修改 k3s registries 配置来解决 docker 被墙后的镜像拉取错误问题。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加 /etc/rancher/k3s/registries.yaml</span>
+</span></span><span class="line"><span class="cl">cat /etc/rancher/k3s/registries.yaml
+</span></span><span class="line"><span class="cl">mirrors:
+</span></span><span class="line"><span class="cl">  docker.io:
+</span></span><span class="line"><span class="cl">    endpoint:
+</span></span><span class="line"><span class="cl">      - <span class="s2">&#34;https://docker.m.daocloud.io&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 重启 k3s</span>
+</span></span><span class="line"><span class="cl">systemctl restart k3s
+</span></span></code></pre></div><h2 id="安装-cilium">安装 cilium</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 helm</span>
 </span></span><span class="line"><span class="cl">curl -fsSL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 <span class="p">|</span> sh -
 </span></span><span class="line"><span class="cl">
