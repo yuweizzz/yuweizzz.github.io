@@ -6,7 +6,7 @@
     <description>Recent content in Go on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Wed, 04 Sep 2024 14:10:27 +0000</lastBuildDate>
+    <lastBuildDate>Wed, 04 Sep 2024 14:13:35 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prometheus exporter 代码参考</title>
