@@ -107,16 +107,17 @@
       <div
         class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
         <div class="position-relative">
-          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+          
+          <form target="_blank" id="search-form" action="" accept-charset="UTF-8" method="get"
             autocomplete="off">
             <label
               class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
+          
         </div>
       </div>
     </div>
@@ -139,8 +140,12 @@
   </header>
 </div>
 
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
   
-<div>
+<div class="application-main">
+  <div>
   <main>
     <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
       <div class="px-0">
@@ -170,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Thu, 15 Aug 2024 08:34:42 &#43;0000"
+                  Modified <relative-time datetime="Wed, 04 Sep 2024 14:10:27 &#43;0000"
                     class="no-wrap">
-                    Thu, 15 Aug 2024 08:34:42 &#43;0000</relative-time>
+                    Wed, 04 Sep 2024 14:10:27 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -491,7 +496,8 @@
 <script type="application/javascript" src='https://yuweizzz.github.io/js/toc.js'></script>
 <link rel="stylesheet" href='https://yuweizzz.github.io/css/toc.css' />
 
-
+  
+</div>
 
   <div class="footer container-xl width-full p-responsive">
   <div
@@ -518,6 +524,13 @@
 </body>
 
 <script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/search.js'></script>
 
 
 <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>

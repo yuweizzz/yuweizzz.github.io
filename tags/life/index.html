@@ -104,16 +104,17 @@
       <div
         class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
         <div class="position-relative">
-          <form target="_blank" action="https://www.google.com/search" accept-charset="UTF-8" method="get"
+          
+          <form target="_blank" id="search-form" action="" accept-charset="UTF-8" method="get"
             autocomplete="off">
             <label
               class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
               <input type="text"
                 class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
                 name="q" value="" placeholder="Search" autocomplete="off">
-              <input type="hidden" name="q" value="site:https://yuweizzz.github.io/">
             </label>
           </form>
+          
         </div>
       </div>
     </div>
@@ -136,10 +137,12 @@
   </header>
 </div>
 
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
   
 <div class="application-main">
-  <main>
-    
+  
 
 
 <div class="mt-4 position-sticky top-0 d-none d-md-block bg-white width-full border-bottom color-border-secondary"
@@ -587,8 +590,7 @@ else {
 }
 </script>
 
-
-    
+  
 
 </div>
 
@@ -617,6 +619,13 @@ else {
 </body>
 
 <script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/search.js'></script>
 
 
 <script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
