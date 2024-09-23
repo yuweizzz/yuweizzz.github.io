@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Wed, 04 Sep 2024 14:13:35 &#43;0000"
+                  Modified <relative-time datetime="Mon, 23 Sep 2024 07:21:40 &#43;0000"
                     class="no-wrap">
-                    Wed, 04 Sep 2024 14:13:35 &#43;0000</relative-time>
+                    Mon, 23 Sep 2024 07:21:40 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      5824 Words
+                      5904 Words
                     
 
                   </div>
@@ -727,6 +727,20 @@
 </span></span><span class="line"><span class="cl"><span class="k">do</span>
 </span></span><span class="line"><span class="cl">    mysqldump -h <span class="nv">$endpoint</span> -P <span class="nv">$port</span> -u <span class="nv">$user</span> <span class="nv">$i</span> <span class="p">|</span> gzip &gt; <span class="nv">$i</span>-<span class="nv">$date_detail</span>.sql.gz
 </span></span><span class="line"><span class="cl"><span class="k">done</span>
+</span></span></code></pre></div><p>一些用户授权相关的 SQL ：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># create database</span>
+</span></span><span class="line"><span class="cl">CREATE DATABASE dbname CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># create user and grant privileges</span>
+</span></span><span class="line"><span class="cl">CREATE USER <span class="s1">&#39;user&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">GRANT ALL PRIVILEGES ON dbname.* TO <span class="s1">&#39;user&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">FLUSH PRIVILEGES<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># alter user and grant privileges</span>
+</span></span><span class="line"><span class="cl">ALTER USER <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">GRANT ALL PRIVILEGES ON *.* TO <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;localhost&#39;</span> IDENTIFIED BY <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">GRANT ALL PRIVILEGES ON *.* TO <span class="s1">&#39;root&#39;</span>@<span class="s1">&#39;%&#39;</span> IDENTIFIED BY <span class="s1">&#39;password&#39;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">FLUSH PRIVILEGES<span class="p">;</span>
 </span></span></code></pre></div><h2 id="添加-sudo-命令">添加 sudo 命令</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 通过 visudo 去编辑 /etc/sudoers 文件</span>
 </span></span><span class="line"><span class="cl">$ visudo
