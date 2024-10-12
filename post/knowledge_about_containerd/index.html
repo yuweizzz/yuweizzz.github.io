@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:23:29 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:23:29 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -265,19 +265,19 @@
 <p>containerd 也属于高层级的容器进行时，但相比于 docker 它更加精简，最关键地保留了管控容器生命周期的核心功能，在较新版本的 docker 中，管控容器生命周期的功能已经完全由 containerd 承担， docker 守护进程和 containerd 守护进程之间使用 grpc 进行通信。</p>
 <p>containerd 守护进程管理着运行中的容器，与容器具体的交互功能则是由 runc 负责的， runc 是低底层的容器运行时接口，只要是符合 OCI 标准的容器镜像，就可以直接调用 runc 运行这个镜像。</p>
 <p>但是 containerd 并不是直接调用 runc ，而是采用了垫片的方式，由 containerd-shim 去调用 runc ，而 containerd 只需要和 shim 交互，无需直接和更底层的 runc 交互，垫片机制在容器技术中很常见， Kubernetes 使用 dokcer 作为容器运行时也是通过 shim 来实现的。</p>
-<pre tabindex="0"><code>#    containerd 和 docker 的关系
-
-          docker daemon
-                | grpc
-                v
-        containerd daemon
-                | shim
-                v
-               runc
-                |
-                v
-            container
-</code></pre><h2 id="直接通过-containerd-cli-运行容器">直接通过 containerd cli 运行容器</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">#    containerd 和 docker 的关系
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          docker daemon
+</span></span><span class="line"><span class="cl">                | grpc
+</span></span><span class="line"><span class="cl">                v
+</span></span><span class="line"><span class="cl">        containerd daemon
+</span></span><span class="line"><span class="cl">                | shim
+</span></span><span class="line"><span class="cl">                v
+</span></span><span class="line"><span class="cl">               runc
+</span></span><span class="line"><span class="cl">                |
+</span></span><span class="line"><span class="cl">                v
+</span></span><span class="line"><span class="cl">            container
+</span></span></code></pre></div><h2 id="直接通过-containerd-cli-运行容器">直接通过 containerd cli 运行容器</h2>
 <p>由于 containerd 具备完善的容器生命周期能力，我们可以不再使用 docker cli ，直接使用 containerd 的 cli 工具 ctr 直接运行容器。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 containerd</span>
 </span></span><span class="line"><span class="cl">$ yum install containerd
@@ -300,17 +300,17 @@
 </span></span><span class="line"><span class="cl">TASK         PID     STATUS
 </span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    RUNNING
 </span></span></code></pre></div><p>根据 OCI Runtime Spec ，正常的容器会经过以下几种运行状态：</p>
-<pre tabindex="0"><code># OCI Runtime Spec
-
-          init     -&gt;    creating
-                            |
-            ^               v
-     delete |            created
-                            | start
-                            v
-         stopped   &lt;-    running        &lt;-&gt;      paused
-                  kill             pause/resume
-</code></pre><p>在 containerd 中，除了 container ，还引入了 task 的概念， start ， kill 和 delete 等动作是使用在 task 上的，对应 OCI Runtime Spec 定义的容器状态。而 container 只有 create 和 delete 两个动作，从表象上来看 task 在 containerd 中是实际运行的容器进程，而 container 是容器信息的声明。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl"># OCI Runtime Spec
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">          init     -&gt;    creating
+</span></span><span class="line"><span class="cl">                            |
+</span></span><span class="line"><span class="cl">            ^               v
+</span></span><span class="line"><span class="cl">     delete |            created
+</span></span><span class="line"><span class="cl">                            | start
+</span></span><span class="line"><span class="cl">                            v
+</span></span><span class="line"><span class="cl">         stopped   &lt;-    running        &lt;-&gt;      paused
+</span></span><span class="line"><span class="cl">                  kill             pause/resume
+</span></span></code></pre></div><p>在 containerd 中，除了 container ，还引入了 task 的概念， start ， kill 和 delete 等动作是使用在 task 上的，对应 OCI Runtime Spec 定义的容器状态。而 container 只有 create 和 delete 两个动作，从表象上来看 task 在 containerd 中是实际运行的容器进程，而 container 是容器信息的声明。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># task 支持多种动作</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># pause 和 resume 就是冻结和恢复</span>
 </span></span><span class="line"><span class="cl">$ ctr t ls

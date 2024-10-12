@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:23:29 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:23:29 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -261,25 +261,25 @@
 <p>在 Linux 的网络协议栈中，通过内核组件 netfilter 来控制网络数据包的来往，对主机进行网络防护。而 iptables 是用来配置 netfilter 内核组件规则的用户层工具。</p>
 <p>在 iptables 中，将所有网络数据包抽象为几条规则链，首先数据包会从外界流入，内核也会发出数据包，它们就区分两条规则链 <code>INPUT</code> 和 <code>OUTPUT</code> 。这里考虑的情况比较简单，相当于认为系统只是局域网络下的一个普通用户，但如果系统作为了局域网的网关时，两条规则链的管理能力是明显不够的。这时 <code>INPUT</code> 之前会诞生两条新的规则链 <code>PREROUTING</code> 和 <code>FORWORD</code> ，其中 <code>PREROUTING</code> 作用于路由前的数据包，即未分辨数据包发往何处， <code>FORWORD</code> 作用于需要转发的数据包，其实在 <code>PREROUTING</code> 中的数据包一般就只有进入内核，被转发或者丢弃这几种处理办法，正好对应了 <code>INPUT</code> 和 <code>FORWORD</code> 。</p>
 <p>由于 <code>FORWORD</code> 的诞生，会额外在 <code>OUTPUT</code> 延申新的规则链 <code>POSTROUTING</code> ，从 <code>FORWARD</code> 中流出的数据包可以直接进入 <code>POSTROUTING</code> ，并且内核中 <code>OUTPUT</code> 的数据包也要经过 <code>POSTROUTING</code> 。</p>
-<pre tabindex="0"><code>+---------------+                             +---------------+
-|               |                             |               |
-|    INPUT      |                             |    OUTPUT     |
-|               |                             |               |
-+------+--------+                             +------+--------+
-       ^                                             |
-       |                                             |
-       |                                             |
-       |                +---------------+            |
-       | ROUTING        |               |            |
-       +---------------&gt;+    FORWARD    +------------+
-       |                |               |            |
-       |                +---------------+            v
-+------+--------+                             +------+--------+
-|               |                             |               |
-|  PREROUTING   |                             |  POSTROUTING  |
-|               |                             |               |
-+---------------+                             +---------------+
-</code></pre><p>所以一共有 <code>INPUT</code> ， <code>OUTPUT</code> ， <code>PREROUTING</code> ， <code>FORWORD</code> ， <code>POSTROUTING</code> 五条规则链控制进出的网络数据包。在作为局域网络内单一主机时， <code>PREROUTING</code> ， <code>FORWORD</code> 和 <code>POSTROUTING</code> 是不起作用的，只由 <code>INPUT</code> 和 <code>OUTPUT</code> 负责本机的数据包管控。在作为网络入口或中转设备时， <code>PREROUTING</code> ， <code>FORWORD</code> 和 <code>POSTROUTING</code> 起到主要作用，<code>INPUT</code> 和 <code>OUTPUT</code> 起到辅助作用，如果想要将 Linux 作为网关来使用，还需要通过 <code>echo 1 &gt; /proc/sys/net/ipv4/ip_forword</code> 启动内核的路由转发功能，这样上述的对应规则链才有意义。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">+---------------+                             +---------------+
+</span></span><span class="line"><span class="cl">|               |                             |               |
+</span></span><span class="line"><span class="cl">|    INPUT      |                             |    OUTPUT     |
+</span></span><span class="line"><span class="cl">|               |                             |               |
+</span></span><span class="line"><span class="cl">+------+--------+                             +------+--------+
+</span></span><span class="line"><span class="cl">       ^                                             |
+</span></span><span class="line"><span class="cl">       |                                             |
+</span></span><span class="line"><span class="cl">       |                                             |
+</span></span><span class="line"><span class="cl">       |                +---------------+            |
+</span></span><span class="line"><span class="cl">       | ROUTING        |               |            |
+</span></span><span class="line"><span class="cl">       +---------------&gt;+    FORWARD    +------------+
+</span></span><span class="line"><span class="cl">       |                |               |            |
+</span></span><span class="line"><span class="cl">       |                +---------------+            v
+</span></span><span class="line"><span class="cl">+------+--------+                             +------+--------+
+</span></span><span class="line"><span class="cl">|               |                             |               |
+</span></span><span class="line"><span class="cl">|  PREROUTING   |                             |  POSTROUTING  |
+</span></span><span class="line"><span class="cl">|               |                             |               |
+</span></span><span class="line"><span class="cl">+---------------+                             +---------------+
+</span></span></code></pre></div><p>所以一共有 <code>INPUT</code> ， <code>OUTPUT</code> ， <code>PREROUTING</code> ， <code>FORWORD</code> ， <code>POSTROUTING</code> 五条规则链控制进出的网络数据包。在作为局域网络内单一主机时， <code>PREROUTING</code> ， <code>FORWORD</code> 和 <code>POSTROUTING</code> 是不起作用的，只由 <code>INPUT</code> 和 <code>OUTPUT</code> 负责本机的数据包管控。在作为网络入口或中转设备时， <code>PREROUTING</code> ， <code>FORWORD</code> 和 <code>POSTROUTING</code> 起到主要作用，<code>INPUT</code> 和 <code>OUTPUT</code> 起到辅助作用，如果想要将 Linux 作为网关来使用，还需要通过 <code>echo 1 &gt; /proc/sys/net/ipv4/ip_forword</code> 启动内核的路由转发功能，这样上述的对应规则链才有意义。</p>
 <h2 id="iptables-的规则表">Iptables 的规则表</h2>
 <p>在前面的五条规则链的基础上，每条规则链之中具有相同功能的规则会划分到四张表中，四个表分别是 <code>filter</code> ， <code>mangle</code> ， <code>nat</code> 和 <code>raw</code> 。并且四个表有优先级之分，从高到低依次是 <code>raw</code> ， <code>mangle</code> ， <code>nat</code> ， <code>filter</code> ：</p>
 <ul>
@@ -380,7 +380,8 @@
 <p>connlimit 模块可以限制 IP 地址到本机的连接数量，比如 <code>-m connlimit --connlimit-above 3 -p tcp --dport 22</code> 可以限制单个 IP 地址到本机的 SSH 链接只能在 3 个以内，如果不指定 IP ，对所有 IP 都会进行限制； <code>-m connlimit --connlimit-above 3  --connlimit-mask 24</code> 会限制整个网段的连接数量， 24 代表掩码的位数，可以把一个网段内所有 IP 连接限制在 3 个以下。</p>
 </li>
 <li>
-<p>state 模块可以监控数据包的状态，通过状态进行对应匹配动作。这个状态并不是 tcp 协议的连接状态，而是独有的一种状态分类，对各种协议均有效。它一共有 <code>NEW</code> ， <code>ESTABLISHED</code> ， <code>INVALID</code> ， <code>RELATED</code> ， <code>UNTRACKED</code> 五种状态。其中 <code>NEW</code> 用来代表第一次到达本机的数据包； <code>ESTABLISHED</code> 用来代表已经通过一次 iptables 的数据包，比如本机向外发出请求，外部响应发回的数据包； <code>RELATED</code> 用来代表数据包不是主动入站或出站，而是通过其他连接发起的数据包，有时我们连接一项服务，这些服务主动发起新连接就属于这种状态； <code>INVALID</code> 用来代表无法确定状态的数据包，一般会被直接丢弃； <code>UNTRACKED</code> 用来代表无法追踪的数据包。具体用例为 <code>-m state --state NEW,ESTABLISHED</code> 。</p>
+<p>state 模块可以监控数据包的状态，通过状态进行对应匹配动作。这个状态并不是 tcp 协议的连接状态，而是独有的一种状态分类，对各种协议均有效。它一共有 <code>NEW</code> ， <code>ESTABLISHED</code> ， <code>INVALID</code> ， <code>RELATED</code> ， <code>UNTRACKED</code> 五种状态：
+其中 <code>NEW</code> 用来代表第一次到达本机的数据包； <code>ESTABLISHED</code> 用来代表已经通过一次 iptables 的数据包，比如本机向外发出请求，外部响应发回的数据包； <code>RELATED</code> 用来代表数据包不是主动入站或出站，而是通过其他连接发起的数据包，有时我们连接一项服务，这些服务主动发起新连接就属于这种状态； <code>INVALID</code> 用来代表无法确定状态的数据包，一般会被直接丢弃； <code>UNTRACKED</code> 用来代表无法追踪的数据包。具体用例为 <code>-m state --state NEW,ESTABLISHED</code> 。</p>
 </li>
 <li>
 <p>tcp 模块可以专门处理 tcp 协议的数据包，可以通过 &ndash;tcp-flags 来筛选 tcp 报头一些特有的标志位，比如发起连接的 SYN ，断开连接的 FIN 。具体用例 <code>-m tcp --tcp-flags ALL SYN</code> 可以用来匹配发起 tcp 连接的报文，即第一次握手。而 <code>-m tcp --tcp-flags ALL SYN,ACK</code> 可以用来匹配第二次握手的报文，它以筛选出报文中同时带有 SYN 和 ACK 的标志为匹配条件。</p>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:23:29 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:23:29 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -264,14 +264,14 @@
 <p>Jekyll ， Hexo 和 Hugo 这一类静态网站生成器的工作方式都是类似的，它们大都是以 Markdown 语法编写网页的主体，通过不同的模板组合来渲染静态页面，这种工作方式使得自定义非常方便，一般只需要修改或者添加模板就可以达到自定义的效果了。</p>
 <p>自定义过程中为了避免修改过多的模板，把需要进行的工作全部放在 JavaScript 中是个不错的选择。本次自定义也遵循这样的做法，基本上只需要额外引用 JavaScript 文件就可以了，在 Hugo 中，负责加载 JavaScript 的部分一般存放在 Partial Templates 中。</p>
 <p>以下片段出自 Hugo 的<a href="https://gohugo.io/templates/partials/%5D">官方文档</a>：</p>
-<pre tabindex="0"><code>Partial templates—like single page templates and list page templates—have a specific lookup order.
-However, partials are simpler in that Hugo will only check in two places:
-
-1.layouts/partials/*&lt;PARTIALNAME&gt;.html
-2.themes/&lt;THEME&gt;/layouts/partials/*&lt;PARTIALNAME&gt;.html
-
-This allows a theme’s end user to copy a partial’s contents into a file of the same name for further customization.
-</code></pre><p>根据上述文档，我们可以复制并修改主题中的 Partial Templates 来达到自定义的效果，并且可以不改动主题原有的模板文件。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">Partial templates—like single page templates and list page templates—have a specific lookup order.
+</span></span><span class="line"><span class="cl">However, partials are simpler in that Hugo will only check in two places:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1.layouts/partials/*&lt;PARTIALNAME&gt;.html
+</span></span><span class="line"><span class="cl">2.themes/&lt;THEME&gt;/layouts/partials/*&lt;PARTIALNAME&gt;.html
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">This allows a theme’s end user to copy a partial’s contents into a file of the same name for further customization.
+</span></span></code></pre></div><p>根据上述文档，我们可以复制并修改主题中的 Partial Templates 来达到自定义的效果，并且可以不改动主题原有的模板文件。</p>
 <p>以下是具体的操作步骤：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 修改 config.toml</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 使用变量控制自定义部分</span>

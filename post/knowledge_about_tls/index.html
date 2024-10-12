@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:23:29 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:23:29 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -450,63 +450,63 @@
 </span></span></code></pre></div><h2 id="tls-协议握手过程">TLS 协议握手过程</h2>
 <p>在 HTTP 通信之前，先在通信双方之间通过 TLS 协议建立一条安全通道，后续的 HTTP 通信内容就不再是明文的，只有通信双方才能解读这些信息，这也就是常说的 HTTPS 协议。</p>
 <p>现有的主流 TLS 版本是 TLS v1.2 和 TLS v1.3 ，低于这两个版本的协议安全性比较低，不建议使用。</p>
-<pre tabindex="0"><code>TLS v1.2 的握手过程:
-
-      Client                                               Server
-
-      ClientHello                  --------&gt;
-                                                      ServerHello
-                                                     Certificate*
-                                               ServerKeyExchange*
-                                              CertificateRequest*
-                                   &lt;--------      ServerHelloDone
-      Certificate*
-      ClientKeyExchange
-      CertificateVerify*
-      [ChangeCipherSpec]
-      Finished                     --------&gt;
-                                               [ChangeCipherSpec]
-                                   &lt;--------             Finished
-      Application Data             &lt;-------&gt;     Application Data
-
-   * Indicates optional or situation-dependent messages that are not
-   always sent.
-
-TLS v1.3 的握手过程:
-
-       Client                                           Server
-
-Key  ^ ClientHello
-Exch | + key_share*
-     | + signature_algorithms*
-     | + psk_key_exchange_modes*
-     v + pre_shared_key*       --------&gt;
-                                                  ServerHello  ^ Key
-                                                 + key_share*  | Exch
-                                            + pre_shared_key*  v
-                                        {EncryptedExtensions}  ^  Server
-                                        {CertificateRequest*}  v  Params
-                                               {Certificate*}  ^
-                                         {CertificateVerify*}  | Auth
-                                                   {Finished}  v
-                               &lt;--------  [Application Data*]
-     ^ {Certificate*}
-Auth | {CertificateVerify*}
-     v {Finished}              --------&gt;
-       [Application Data]      &lt;-------&gt;  [Application Data]
-
-         +  Indicates noteworthy extensions sent in the
-            previously noted message.
-
-         *  Indicates optional or situation-dependent
-            messages/extensions that are not always sent.
-
-         {} Indicates messages protected using keys
-            derived from a [sender]_handshake_traffic_secret.
-
-         [] Indicates messages protected using keys
-            derived from [sender]_application_traffic_secret_N.
-</code></pre><p>虽然两个主流 TLS 版本的握手过程是略有差异的，但它们的核心过程是一致的，我们可以通过 TLS v1.2 的握手过程来学习：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">TLS v1.2 的握手过程:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      Client                                               Server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">      ClientHello                  --------&gt;
+</span></span><span class="line"><span class="cl">                                                      ServerHello
+</span></span><span class="line"><span class="cl">                                                     Certificate*
+</span></span><span class="line"><span class="cl">                                               ServerKeyExchange*
+</span></span><span class="line"><span class="cl">                                              CertificateRequest*
+</span></span><span class="line"><span class="cl">                                   &lt;--------      ServerHelloDone
+</span></span><span class="line"><span class="cl">      Certificate*
+</span></span><span class="line"><span class="cl">      ClientKeyExchange
+</span></span><span class="line"><span class="cl">      CertificateVerify*
+</span></span><span class="line"><span class="cl">      [ChangeCipherSpec]
+</span></span><span class="line"><span class="cl">      Finished                     --------&gt;
+</span></span><span class="line"><span class="cl">                                               [ChangeCipherSpec]
+</span></span><span class="line"><span class="cl">                                   &lt;--------             Finished
+</span></span><span class="line"><span class="cl">      Application Data             &lt;-------&gt;     Application Data
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">   * Indicates optional or situation-dependent messages that are not
+</span></span><span class="line"><span class="cl">   always sent.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">TLS v1.3 的握手过程:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       Client                                           Server
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Key  ^ ClientHello
+</span></span><span class="line"><span class="cl">Exch | + key_share*
+</span></span><span class="line"><span class="cl">     | + signature_algorithms*
+</span></span><span class="line"><span class="cl">     | + psk_key_exchange_modes*
+</span></span><span class="line"><span class="cl">     v + pre_shared_key*       --------&gt;
+</span></span><span class="line"><span class="cl">                                                  ServerHello  ^ Key
+</span></span><span class="line"><span class="cl">                                                 + key_share*  | Exch
+</span></span><span class="line"><span class="cl">                                            + pre_shared_key*  v
+</span></span><span class="line"><span class="cl">                                        {EncryptedExtensions}  ^  Server
+</span></span><span class="line"><span class="cl">                                        {CertificateRequest*}  v  Params
+</span></span><span class="line"><span class="cl">                                               {Certificate*}  ^
+</span></span><span class="line"><span class="cl">                                         {CertificateVerify*}  | Auth
+</span></span><span class="line"><span class="cl">                                                   {Finished}  v
+</span></span><span class="line"><span class="cl">                               &lt;--------  [Application Data*]
+</span></span><span class="line"><span class="cl">     ^ {Certificate*}
+</span></span><span class="line"><span class="cl">Auth | {CertificateVerify*}
+</span></span><span class="line"><span class="cl">     v {Finished}              --------&gt;
+</span></span><span class="line"><span class="cl">       [Application Data]      &lt;-------&gt;  [Application Data]
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         +  Indicates noteworthy extensions sent in the
+</span></span><span class="line"><span class="cl">            previously noted message.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         *  Indicates optional or situation-dependent
+</span></span><span class="line"><span class="cl">            messages/extensions that are not always sent.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         {} Indicates messages protected using keys
+</span></span><span class="line"><span class="cl">            derived from a [sender]_handshake_traffic_secret.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">         [] Indicates messages protected using keys
+</span></span><span class="line"><span class="cl">            derived from [sender]_application_traffic_secret_N.
+</span></span></code></pre></div><p>虽然两个主流 TLS 版本的握手过程是略有差异的，但它们的核心过程是一致的，我们可以通过 TLS v1.2 的握手过程来学习：</p>
 <ol>
 <li>客户端发起 ClientHello ， ClientHello 主要内容是时间戳，随机数，算法协议簇等握手需要的信息。</li>
 <li>服务端接收 ClientHello 后，会返回 ServerHello ，主要内容是时间戳，随机数，确定使用的算法协议等信息。</li>
