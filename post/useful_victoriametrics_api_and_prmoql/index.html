@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -297,12 +297,12 @@ http_requests_total{code=&#34;200&#34;,handler=&#34;query_range&#34;,instance=&#
 </code></pre><h3 id="increase">increase</h3>
 <p>increase 用来计算区间向量的增长量，以区间向量的第一个元素和最后一个元素进行计算，实际用例参考：</p>
 <pre tabindex="0"><code>before:
-http_requests_total{code=&#34;200&#34;} 100375	@1708045914.967	
-http_requests_total{code=&#34;200&#34;} 100377	@1708045924.967
-http_requests_total{code=&#34;200&#34;} 100378	@1708045934.967
-http_requests_total{code=&#34;200&#34;} 100379	@1708045944.967
-http_requests_total{code=&#34;200&#34;} 100381	@1708045954.967
-http_requests_total{code=&#34;200&#34;} 100381	@1708045964.967
+http_requests_total{code=&#34;200&#34;} 100375 @1708045914.967
+http_requests_total{code=&#34;200&#34;} 100377 @1708045924.967
+http_requests_total{code=&#34;200&#34;} 100378 @1708045934.967
+http_requests_total{code=&#34;200&#34;} 100379 @1708045944.967
+http_requests_total{code=&#34;200&#34;} 100381 @1708045954.967
+http_requests_total{code=&#34;200&#34;} 100381 @1708045964.967
 
 expr:
 increase(http_requests_total{code=&#34;200&#34;}[1m])

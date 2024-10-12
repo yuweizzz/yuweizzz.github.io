@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -272,13 +272,13 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-lua" data-lang="lua"><span class="line"><span class="cl"><span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">string.gsub</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;z&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- output:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">-- zbcde	1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- zbcde 1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- 返回值分别是 gsub 执行后的字符串和具体发生替换的次数，可以根据第二个参数判断是否已经执行替换</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;aaaae&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">string.gsub</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">,</span> <span class="s2">&#34;z&#34;</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- output:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">-- zzaae	2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- zzaae 2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- 可以通过传进第四个参数限制替换次数</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde&#34;</span>
@@ -298,19 +298,19 @@
 </span></span><span class="line"><span class="cl"><span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">string.find</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;a&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- output:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">-- 1	1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 1 1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- 成功则返回匹配字符的起止位置索引，失败则返回 nil</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">-- 带有特殊字符的字符串搜索</span>
 </span></span><span class="line"><span class="cl"><span class="n">strings</span> <span class="o">=</span> <span class="s2">&#34;abcde.*&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">string.find</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;.*&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- output:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">-- 1	7</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 1 7</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- 默认以正则模式进行搜索</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">print</span><span class="p">(</span><span class="n">string.find</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">&#34;.*&#34;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">true</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- output:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">-- 6	7</span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 6 7</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- 指定为 plain 模式，不再以正则模式进行搜索</span>
 </span></span></code></pre></div><h3 id="string-match">string match</h3>
 <p>匹配取值有 match 和 gmatch 两种，前者用于直接匹配结果，后者可以返回迭代器函数，用于循环场景。</p>
@@ -364,7 +364,7 @@
 </span></span><span class="line"><span class="cl">$ luarocks install luasql-mysql --server https://luarocks.cn <span class="nv">MYSQL_INCDIR</span><span class="o">=</span>/usr/include/mysql/ <span class="nv">MYSQL_LIBDIR</span><span class="o">=</span>/usr/lib64/mysql
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 编译过程可能需要指定一些依赖路径，可以通过环境变量来指定，具体变量信息可以在对应模块的 rockspec 查找</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># luasql-mysql rockspec </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># luasql-mysql rockspec</span>
 </span></span><span class="line"><span class="cl"><span class="nv">package</span> <span class="o">=</span> <span class="s2">&#34;LuaSQL-MySQL&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nv">version</span> <span class="o">=</span> <span class="s2">&#34;2.3.5-1&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nb">source</span> <span class="o">=</span> <span class="o">{</span>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2975 Words
+                      2973 Words
                     
 
                   </div>
@@ -284,7 +284,7 @@
                                        +-&gt;+ tree object |--&gt;+ blob object |
                                           +-------------+   +-------------+
 </code></pre><p>每一次 commit 会产生新的 commit object ，通过各自的 parent commit object 可以形成一条 commit 链。</p>
-<pre tabindex="0"><code>     father              children             children              
+<pre tabindex="0"><code>     father              children             children
 +---------------+    +---------------+    +---------------+
 | commit object +&lt;---+ commit object +&lt;---+ commit object |
 +---------------+    +---------------+    +---------------+
@@ -329,10 +329,10 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看 refs 指向的 object 的具体内容</span>
 </span></span><span class="line"><span class="cl">$ git cat-file -p <span class="sb">`</span>cat .git/refs/heads/main<span class="sb">`</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 命令应该会输出某个 commit 的具体信息，我们可以通过对比 git log 得到它是当前分支的最新 commit </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 命令应该会输出某个 commit 的具体信息，我们可以通过对比 git log 得到它是当前分支的最新 commit</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看 HEAD 的内容</span>
-</span></span><span class="line"><span class="cl">$ cat .git/HEAD 
+</span></span><span class="line"><span class="cl">$ cat .git/HEAD
 </span></span><span class="line"><span class="cl">ref: refs/heads/branchA
 </span></span><span class="line"><span class="cl"><span class="c1"># 可以看到它是 refs 的符号引用</span>
 </span></span></code></pre></div><p>branch ， refs ， HEAD 三者之间有一个共同点，那就是它们的本质都是用来指向 commit object ， refs 是 branch 的低级原语，而 HEAD 是 refs 的符号引用，它是为了使用方便引出的概念，每次进行 branch 切换， HEAD 也会自动更新。</p>
@@ -351,7 +351,7 @@
 
 # for existing repository:
 
-     new commit        push       
+     new commit        push
 +------------------+---------&gt;+-------------------+
 | local repository |          | remote repository |
 +------------------+&lt;---------+-------------------+
@@ -373,7 +373,7 @@
 </span></span><span class="line"><span class="cl">$ git remote -v
 </span></span><span class="line"><span class="cl">origin  git@github.com:username/repository.git <span class="o">(</span>fetch<span class="o">)</span>
 </span></span><span class="line"><span class="cl">origin  git@github.com:username/repository.git <span class="o">(</span>push<span class="o">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 每个本地仓库允许配置多个远程仓库，默认的远程仓库会是 origin </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 每个本地仓库允许配置多个远程仓库，默认的远程仓库会是 origin</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 将远端仓库下载到本地</span>
@@ -388,7 +388,7 @@
 </span></span><span class="line"><span class="cl">$ git remote add origin git@github.com:username/repository.git
 </span></span><span class="line"><span class="cl"><span class="c1"># 设置分支关联并推送本地仓库的 commit 到远端仓库中</span>
 </span></span><span class="line"><span class="cl">$ git push -u origin master
-</span></span><span class="line"><span class="cl"><span class="c1"># -u 是关键的参数，它将 origin/master 分支和本地的 master 分支关联，它们才能使用 pull 和 push </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># -u 是关键的参数，它将 origin/master 分支和本地的 master 分支关联，它们才能使用 pull 和 push</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 这一步可以根据情况使用下面命令进行替代</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 使用 checkout 创建全新分支并设置上游分支</span>
 </span></span><span class="line"><span class="cl">$ git checkout -b mybranch origin/mybranch
@@ -412,16 +412,16 @@
 </span></span><span class="line"><span class="cl">$ git fetch origin master
 </span></span><span class="line"><span class="cl"><span class="c1"># 将 origin/master 分支 merge 到当前分支，也就是 master 分支</span>
 </span></span><span class="line"><span class="cl">$ git merge origin/master
-</span></span></code></pre></div><h2 id="解决-git-clone-超时的问题">解决 git clone 超时的问题</h2>
-<p>由于众所周知的网络原因，有时候从 Github 直接 clone 或者 pull 代码可能会出现超时问题，这个问题在我使用 luarocks 出现了几次，经过查阅资料后发现应该是 <code>git://</code> 被封锁导致的，应对这种情况的一种做法是将 git 协议修改为 https 协议并使用代理服务器。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git config --global url.<span class="s2">&#34;https://&#34;</span>.insteadOf git://
-</span></span><span class="line"><span class="cl">$ git config --global https.proxy http://127.0.0.1:4396
+</span></span></code></pre></div><h2 id="解决-git-clone-超时的问题">解决 Git clone 超时的问题</h2>
+<p>由于众所周知的网络原因，有时候从 GitHub 直接 clone 或者 pull 代码可能会出现超时问题，这个问题在我使用 luarocks 出现了几次，经过查阅资料后发现应该是 <code>git://</code> 被封锁导致的，应对这种情况的一种做法是将 Git 协议修改为 https 协议并使用代理服务器。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">git config --global url.<span class="s2">&#34;https://&#34;</span>.insteadOf git://
+</span></span><span class="line"><span class="cl">git config --global https.proxy http://127.0.0.1:4396
 </span></span></code></pre></div><h2 id="使用-submodule-功能">使用 submodule 功能</h2>
 <p>submodule 可以让你的代码仓库使用其他现有的仓库作为子模块，这样我们可以轻松引用别人的仓库作为我们自己代码仓库的一部分。</p>
-<p>它的特色在于二者的文件管控是分离的，子模块在父仓库的 git 管控中显示为一个对象，但是它拥有独立的 git 目录。这样父仓库和子仓库就可以拥有各自 commit ，但同时又可以正确地关联二者之间的从属关系。</p>
+<p>它的特色在于二者的文件管控是分离的，子模块在父仓库的 Git 管控中显示为一个对象，但是它拥有独立的 Git 目录。这样父仓库和子仓库就可以拥有各自 commit ，但同时又可以正确地关联二者之间的从属关系。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 为现有仓库添加子模块</span>
 </span></span><span class="line"><span class="cl">$ git submodule add git@github.com:username/repository.git subrepository
-</span></span><span class="line"><span class="cl"><span class="c1"># add 会将远端仓库 repository 克隆到本地 subrepository 目录中，并命名子模块为 subrepository </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># add 会将远端仓库 repository 克隆到本地 subrepository 目录中，并命名子模块为 subrepository</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 在父仓库的管控域查看新增的子模块</span>
 </span></span><span class="line"><span class="cl">$ git status
@@ -470,7 +470,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 此时我们的子模块已经被自行修改过一次，但是源仓库有了新的 commit ，我们需要把它同步过来</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 直接拉取来源仓库并直接合并，这个过程有可能需要修复版本冲突</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 如果不需要修复冲突，这个命令会自动 merge 成为新的 commit </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 如果不需要修复冲突，这个命令会自动 merge 成为新的 commit</span>
 </span></span><span class="line"><span class="cl">$ git pull <span class="nb">source</span> master
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 将新的变动同步到自己的 fork 仓库中，这一步不是必须的，可以按情况执行</span>

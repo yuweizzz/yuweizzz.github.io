@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -437,11 +437,11 @@
 <h2 id="使用-supervisor-值守-python-进程">使用 supervisor 值守 python 进程</h2>
 <p>使用 python 作为后台服务的时候，如果希望它可以起到类似于 systemd 具体服务的效果，可以使用 supervisor 。</p>
 <p>supervisor 是 python 编写的进程管理服务，使用 client/server 架构，可以方便监测进程状态，并提供值守功能，其中 server 是 supervisord ，它负责监听挂载的进程状态和客户端的请求信号， client 是 supervisorctl ，用于向服务端发送控制信号，使用 supervisor 的好处在于程序的启动变得简洁，并且自带值守功能，不用担心进程意外死亡导致的服务停摆。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 推荐使用 yum 安装 supervisor </span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 推荐使用 yum 安装 supervisor</span>
 </span></span><span class="line"><span class="cl">$ yum install supervisor
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># supervisord 部分没有具体需要可以保持不变</span>
-</span></span><span class="line"><span class="cl">$ cat /etc/supervisord.conf 
+</span></span><span class="line"><span class="cl">$ cat /etc/supervisord.conf
 </span></span><span class="line"><span class="cl"><span class="c1"># 这里是具体进程的配置目录</span>
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl"><span class="o">[</span>include<span class="o">]</span>
@@ -549,7 +549,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;http://</span><span class="si">{</span><span class="n">user</span><span class="si">}</span><span class="s1">:</span><span class="si">{</span><span class="n">password</span><span class="si">}</span><span class="s1">@</span><span class="si">{</span><span class="n">host</span><span class="si">}</span><span class="s1">:9200/_search/scroll/&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="n">body</span> <span class="o">=</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="s1">&#39;scroll&#39;</span><span class="p">:</span> <span class="s1">&#39;1m&#39;</span><span class="p">,</span> 
+</span></span><span class="line"><span class="cl">    <span class="s1">&#39;scroll&#39;</span><span class="p">:</span> <span class="s1">&#39;1m&#39;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="s1">&#39;scroll_id&#39;</span><span class="p">:</span> <span class="n">scroll_id</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">

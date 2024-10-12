@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -276,7 +276,7 @@
 <li>在整个项目的根预留 <code>main.go</code> 作为总入口，使用子目录来区分各个功能模块。</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 整体的项目结构如下</span>
-</span></span><span class="line"><span class="cl">$ tree 
+</span></span><span class="line"><span class="cl">$ tree
 </span></span><span class="line"><span class="cl">.
 </span></span><span class="line"><span class="cl">├── submoduleA
 </span></span><span class="line"><span class="cl">│   └── a.go
@@ -304,7 +304,7 @@
 <li>将整个项目视为模块，额外创建目录用于制作 <code>main.go</code> 总入口。</li>
 </ul>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 整体的项目结构如下</span>
-</span></span><span class="line"><span class="cl">$ tree 
+</span></span><span class="line"><span class="cl">$ tree
 </span></span><span class="line"><span class="cl">.
 </span></span><span class="line"><span class="cl">├── submoduleA
 </span></span><span class="line"><span class="cl">│   └── a.go
@@ -428,81 +428,81 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;io/fs&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;log&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;net/http&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;strings&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;io/fs&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;log&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;net/http&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;strings&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// containsDotFile reports whether name contains a path element starting with a period.
 </span></span></span><span class="line"><span class="cl"><span class="c1">// The name is assumed to be a delimited by forward slashes, as guaranteed
 </span></span></span><span class="line"><span class="cl"><span class="c1">// by the http.FileSystem interface.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">containsDotFile</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">parts</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">part</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">parts</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">part</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">true</span>
-</span></span><span class="line"><span class="cl">		<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">parts</span> <span class="o">:=</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">name</span><span class="p">,</span> <span class="s">&#34;/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">part</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">parts</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">part</span><span class="p">,</span> <span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="kc">false</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// dotFileHidingFile is the http.File use in dotFileHidingFileSystem.
 </span></span></span><span class="line"><span class="cl"><span class="c1">// It is used to wrap the Readdir method of http.File so that we can
 </span></span></span><span class="line"><span class="cl"><span class="c1">// remove files and directories that start with a period from its output.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">dotFileHidingFile</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">http</span><span class="p">.</span><span class="nx">File</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">http</span><span class="p">.</span><span class="nx">File</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Readdir is a wrapper around the Readdir method of the embedded File
 </span></span></span><span class="line"><span class="cl"><span class="c1">// that filters out all files that start with a period in their name.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">f</span> <span class="nx">dotFileHidingFile</span><span class="p">)</span> <span class="nf">Readdir</span><span class="p">(</span><span class="nx">n</span> <span class="kt">int</span><span class="p">)</span> <span class="p">(</span><span class="nx">fis</span> <span class="p">[]</span><span class="nx">fs</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="nx">err</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">files</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nx">File</span><span class="p">.</span><span class="nf">Readdir</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">file</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">files</span> <span class="p">{</span> <span class="c1">// Filters out the dot files
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">if</span> <span class="p">!</span><span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nf">Name</span><span class="p">(),</span> <span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">fis</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">fis</span><span class="p">,</span> <span class="nx">file</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">files</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">f</span><span class="p">.</span><span class="nx">File</span><span class="p">.</span><span class="nf">Readdir</span><span class="p">(</span><span class="nx">n</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">file</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">files</span> <span class="p">{</span> <span class="c1">// Filters out the dot files
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">if</span> <span class="p">!</span><span class="nx">strings</span><span class="p">.</span><span class="nf">HasPrefix</span><span class="p">(</span><span class="nx">file</span><span class="p">.</span><span class="nf">Name</span><span class="p">(),</span> <span class="s">&#34;.&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">fis</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">fis</span><span class="p">,</span> <span class="nx">file</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">return</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// dotFileHidingFileSystem is an http.FileSystem that hides
 </span></span></span><span class="line"><span class="cl"><span class="c1">// hidden &#34;dot files&#34; from being served.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">type</span> <span class="nx">dotFileHidingFileSystem</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">http</span><span class="p">.</span><span class="nx">FileSystem</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">http</span><span class="p">.</span><span class="nx">FileSystem</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">// Open is a wrapper around the Open method of the embedded FileSystem
 </span></span></span><span class="line"><span class="cl"><span class="c1">// that serves a 403 permission error when name has a file or directory
 </span></span></span><span class="line"><span class="cl"><span class="c1">// with whose name starts with a period in its path.
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="p">(</span><span class="nx">fsys</span> <span class="nx">dotFileHidingFileSystem</span><span class="p">)</span> <span class="nf">Open</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nx">File</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nf">containsDotFile</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// If dot file, return 403 response
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">ErrPermission</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nf">containsDotFile</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span> <span class="c1">// If dot file, return 403 response
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">ErrPermission</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fsys</span><span class="p">.</span><span class="nx">FileSystem</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">dotFileHidingFile</span><span class="p">{</span><span class="nx">file</span><span class="p">},</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">fsys</span><span class="p">.</span><span class="nx">FileSystem</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="nx">err</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="nx">dotFileHidingFile</span><span class="p">{</span><span class="nx">file</span><span class="p">},</span> <span class="nx">err</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">fsys</span> <span class="o">:=</span> <span class="nx">dotFileHidingFileSystem</span><span class="p">{</span><span class="nx">http</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">fsys</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">fsys</span> <span class="o">:=</span> <span class="nx">dotFileHidingFileSystem</span><span class="p">{</span><span class="nx">http</span><span class="p">.</span><span class="nf">Dir</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="nx">http</span><span class="p">.</span><span class="nf">FileServer</span><span class="p">(</span><span class="nx">fsys</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">log</span><span class="p">.</span><span class="nf">Fatal</span><span class="p">(</span><span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>其中 <code>dotFileHidingFile</code> 和 <code>dotFileHidingFileSystem</code> 就是 struct 嵌入 interface 的实例。以下是对应的接口信息：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">File</span> <span class="kd">interface</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nx">Closer</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">io</span><span class="p">.</span><span class="nx">Seeker</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">Readdir</span><span class="p">(</span><span class="nx">count</span> <span class="kt">int</span><span class="p">)</span> <span class="p">([]</span><span class="nx">fs</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">Stat</span><span class="p">()</span> <span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">io</span><span class="p">.</span><span class="nx">Closer</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">io</span><span class="p">.</span><span class="nx">Reader</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">io</span><span class="p">.</span><span class="nx">Seeker</span>
+</span></span><span class="line"><span class="cl"> <span class="nf">Readdir</span><span class="p">(</span><span class="nx">count</span> <span class="kt">int</span><span class="p">)</span> <span class="p">([]</span><span class="nx">fs</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nf">Stat</span><span class="p">()</span> <span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">FileInfo</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">FileSystem</span> <span class="kd">interface</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nf">Open</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">File</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nf">Open</span><span class="p">(</span><span class="nx">name</span> <span class="kt">string</span><span class="p">)</span> <span class="p">(</span><span class="nx">File</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>可以看到， <code>File</code> 实际上也是多个 interface 组成的，但拥有两个独有的方法，而前面的 <code>dotFileHidingFile</code> 只重写了 <code>Readdir()</code> 这个方法，而 <code>Stat()</code> 没有重新实现，这里有别于常规 struct ，如果 struct 没有实现 interface 定义的方法，是无法直接调用这个方法的。但是 <code>dotFileHidingFile</code> 是可以正常调用 <code>Stat()</code> 的，这就是 struct 直接嵌入 interface 的特殊之处。</p>
 <p>这里的理解方式类似于 Python 中的子类继承， <code>dotFileHidingFile</code> 完全继承了 <code>File</code> 的所有方法，但是对其中某些方法做了重写。由于 golang 中并没有类的概念，都是通过接口来实现的。</p>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -260,7 +260,7 @@
 </span></span></code></pre></div><h2 id="搭建-nodejs-环境">搭建 Node.js 环境</h2>
 <p>Node.js 提供了二进制预编译的安装包，在<a href="https://nodejs.org/zh-cn/download/">官网</a>直接下载到本地即可解压使用。</p>
 <p>这里以 LTS 14.15.4 为例:</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl -o /usr/local/src/node-v14.15.4-linux-x64.tar.xz 
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ curl -o /usr/local/src/node-v14.15.4-linux-x64.tar.xz
 </span></span><span class="line"><span class="cl">    https://nodejs.org/download/release/v14.15.4/node-v14.15.4-linux-x64.tar.xz
 </span></span><span class="line"><span class="cl">$ tar -xvJf /usr/local/src/node-v14.15.4-linux-x64.tar.xz -C /usr/local/
 </span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="s1">&#39;export PATH=&#34;$PATH&#34;:/usr/local/node-v14.15.4-linux-x64/bin/&#39;</span> &gt;&gt; /etc/profile
@@ -280,18 +280,18 @@
 </span></span><span class="line"><span class="cl"><span class="p">;</span> <span class="s2">&#34;npm config ls -l&#34;</span> to show all defaults.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 修改为淘宝 npm 镜像以加快访问速度：</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 只修改当前用户的配置，非全局修改会生成 $HOME/.npmrc </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 只修改当前用户的配置，非全局修改会生成 $HOME/.npmrc</span>
 </span></span><span class="line"><span class="cl">$ npm config <span class="nb">set</span> registry http://registry.npm.taobao.org/
 </span></span><span class="line"><span class="cl">$ cat ~/.npmrc  <span class="c1"># 只影响当前用户</span>
 </span></span><span class="line"><span class="cl"><span class="nv">registry</span><span class="o">=</span>http://registry.npm.taobao.org/
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 使用 -g 修改全局配置，全局修改会生成 $PREFIX/etc/npmrc </span>
-</span></span><span class="line"><span class="cl">$ npm -g config <span class="nb">set</span> registry http://registry.npm.taobao.org/ 
+</span></span><span class="line"><span class="cl"><span class="c1"># 使用 -g 修改全局配置，全局修改会生成 $PREFIX/etc/npmrc</span>
+</span></span><span class="line"><span class="cl">$ npm -g config <span class="nb">set</span> registry http://registry.npm.taobao.org/
 </span></span><span class="line"><span class="cl">$ cat /usr/local/node-v14.15.4-linux-x64/etc/npmrc  <span class="c1"># 生成于 node 安装目录下的 etc 目录中</span>
 </span></span><span class="line"><span class="cl"><span class="nv">registry</span><span class="o">=</span>http://registry.npm.taobao.org/
 </span></span></code></pre></div><h2 id="初始化项目">初始化项目</h2>
 <p>下面简单记录了初始化前端项目的过程，可以提供后续参考。</p>
-<p>生成 package.json 是一个项目的开始，无论使用的依赖包管理工具是 npm 或是 yarn 。我选用了 npm ，实际可以按照个人喜好来选择。</p>
+<p>生成 package.json 是一个项目的开始，无论使用的依赖包管理工具是 npm 或是 Yarn 。我选用了 npm ，实际可以按照个人喜好来选择。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ mkdir myproject
 </span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> myproject
 </span></span><span class="line"><span class="cl">$ npm init  <span class="c1"># 交互式生成 package.json</span>
@@ -305,15 +305,15 @@
 </span></span><span class="line"><span class="cl">save it as a dependency in the package.json file.
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Press ^C at any <span class="nb">time</span> to quit.
-</span></span><span class="line"><span class="cl">package name: <span class="o">(</span>myproject<span class="o">)</span> 
-</span></span><span class="line"><span class="cl">version: <span class="o">(</span>1.0.0<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">package name: <span class="o">(</span>myproject<span class="o">)</span>
+</span></span><span class="line"><span class="cl">version: <span class="o">(</span>1.0.0<span class="o">)</span>
 </span></span><span class="line"><span class="cl">description: my project
 </span></span><span class="line"><span class="cl">entry point: <span class="o">(</span>index.js<span class="o">)</span> src/index.js
 </span></span><span class="line"><span class="cl"><span class="nb">test</span> command: node -v<span class="p">;</span> npm -v<span class="p">;</span>  <span class="c1"># 这里是为了测试，实际使用时可以按需修改</span>
-</span></span><span class="line"><span class="cl">git repository: 
-</span></span><span class="line"><span class="cl">keywords: 
+</span></span><span class="line"><span class="cl">git repository:
+</span></span><span class="line"><span class="cl">keywords:
 </span></span><span class="line"><span class="cl">author: me
-</span></span><span class="line"><span class="cl">license: <span class="o">(</span>ISC<span class="o">)</span> 
+</span></span><span class="line"><span class="cl">license: <span class="o">(</span>ISC<span class="o">)</span>
 </span></span><span class="line"><span class="cl">About to write to /tmp/myproject/package.json:
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
@@ -332,14 +332,14 @@
 </span></span><span class="line"><span class="cl">Is this OK? <span class="o">(</span>yes<span class="o">)</span> yes
 </span></span></code></pre></div><p>生成 package.json 后，我们可以按照需要安装一些项目模块和开发模块工具。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装项目需要的模块</span>
-</span></span><span class="line"><span class="cl">$ npm install &lt;dependency&gt; 
+</span></span><span class="line"><span class="cl">$ npm install &lt;dependency&gt;
 </span></span><span class="line"><span class="cl"><span class="c1"># 使用 -D 安装项目需要的开发模块工具</span>
 </span></span><span class="line"><span class="cl">$ npm install -D webpack  <span class="c1"># 打包工具</span>
 </span></span><span class="line"><span class="cl">$ npm install -D webpack-cli
 </span></span><span class="line"><span class="cl">$ npm install -D eslint  <span class="c1"># 语法检查工具</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 检查配置文件，可以看到新的依赖项已经被安装</span>
-</span></span><span class="line"><span class="cl">$ cat package.json 
+</span></span><span class="line"><span class="cl">$ cat package.json
 </span></span><span class="line"><span class="cl"><span class="o">{</span>
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;name&#34;</span>: <span class="s2">&#34;myproject&#34;</span>,
 </span></span><span class="line"><span class="cl">  <span class="s2">&#34;version&#34;</span>: <span class="s2">&#34;1.0.0&#34;</span>,
@@ -394,10 +394,10 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">module.exports <span class="o">=</span> config<span class="p">;</span>
 </span></span><span class="line"><span class="cl">// end
-</span></span><span class="line"><span class="cl"><span class="c1"># 生成 webpack.config.js 后配置 webpack 打包命令到 npm scripts </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 生成 webpack.config.js 后配置 webpack 打包命令到 npm scripts</span>
 </span></span><span class="line"><span class="cl">$ npm set-script <span class="s2">&#34;build&#34;</span> <span class="s2">&#34;webpack --mode production --config webpack.config.js&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 添加完成后可以直接调用 npm run build 执行打包</span>
-</span></span></code></pre></div><p>使用 eslint 作为语法检查工具。</p>
+</span></span></code></pre></div><p>使用 ESLint 作为语法检查工具。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 配置 eslint ：</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 直接调用可执行脚本进行语法相关的配置初始化</span>
 </span></span><span class="line"><span class="cl">$ ./node_modules/.bin/eslint --init

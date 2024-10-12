@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4454 Words
+                      4455 Words
                     
 
                   </div>
@@ -262,7 +262,7 @@
 <p>Nginx 源码包使用 autoconf 生成 configure 脚本，这种源码包的使用方式一般都是通过 configure 文件配置编译选项并生成 Makefile ，再通过 Makefile 进行编译和安装。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 由 autoconf 生成配置脚本的源码包编译时的一般步骤</span>
 </span></span><span class="line"><span class="cl">$ ./configure
-</span></span><span class="line"><span class="cl">$ make 
+</span></span><span class="line"><span class="cl">$ make
 </span></span><span class="line"><span class="cl">$ make install
 </span></span></code></pre></div><p>在 configure 执行时，我们可以选择是否编译某些功能特性，使用了 autoconf 的源码包都有这一特点。</p>
 <p>在 Nginx 的编译安装时，我们可以选择编译某个模块来开启某个功能特性。其中， HTTP 服务模块是默认支持的，而邮件服务模块和传输层服务模块并不会默认支持，需要在编译时额外指定。</p>
@@ -273,7 +273,7 @@
 <li>ngx_http_autoindex_module : 常用于下载服务器，启用这个模块可以自动建立下载目录页面。</li>
 <li>ngx_http_fastcgi_module/ngx_http_uwsgi_module/ngx_http_scgi_module : 对各类通用网关接口协议的支持模块，启用这些模块后可以对接其他程序的接口。</li>
 <li>ngx_http_gzip_module : 用于压缩响应结果，可以减小传输数据的体积。</li>
-<li>ngx_http_rewrite_module : 用于 url 重写和返回重定向。</li>
+<li>ngx_http_rewrite_module : 用于 URL 重写和返回重定向。</li>
 <li>ngx_http_proxy_module : 用于设置代理。</li>
 <li>ngx_http_upstream_module : 用于设置负载均衡。</li>
 </ul>
@@ -296,7 +296,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 执行编译并安装</span>
 </span></span><span class="line"><span class="cl">$ make <span class="o">&amp;&amp;</span> make install
 </span></span><span class="line"><span class="cl"><span class="c1"># 直接启动服务</span>
-</span></span><span class="line"><span class="cl">$ /opt/nginx/sbin/nginx 
+</span></span><span class="line"><span class="cl">$ /opt/nginx/sbin/nginx
 </span></span></code></pre></div><h2 id="使用-nginx">使用 Nginx</h2>
 <p>Nginx 通过 nginx.conf 文件来配置各项服务。</p>
 <h3 id="基本配置实例">基本配置实例</h3>
@@ -327,26 +327,26 @@
 </span></span></code></pre></div><p>Nginx 是通过 master process 和 worker process 协同工作的，其中 master process 承担管控工作， worker process 承担具体请求处理工作。一般会设置多个 worker process 提高工作效率，数量通常是机器的硬件 CPU 核数。</p>
 <p>在 conf 文件中的 worker_processes 是需要启动的 worker process 的数量， worker_connections 则是单个 worker process 负责承载的连接数量。</p>
 <p>在 conf 文件中的 http 域用来配置具体的 HTTP 服务，它的下一级主要是通过 server 来划分不同的作用域。 http 域可以设置 HTTP 一些共有的服务配置，比如列出的 default_type 和 include ，它们主要定义 HTTP 服务的支持传输的类型相关内容， keepalive_timeout 设置长连接的超时时间。</p>
-<p>单个 Nginx http 域可以配置多个 server ，这些 server 甚至可以使用相同的 listen 端口，但需要至少保持不同 server_name 。 server_name 用来配置域名， loaction 用来匹配 url ，它们共同组合定位资源。</p>
+<p>单个 Nginx http 域可以配置多个 server ，这些 server 甚至可以使用相同的 listen 端口，但需要至少保持不同 server_name 。 server_name 用来配置域名， loaction 用来匹配 URL ，它们共同组合定位资源。</p>
 <p>error_page 用来导向 http 响应错误的返回页面，如果它放在 server 域中，则所有的 location 都会受到它的影响。</p>
 <p>除了 HTTP 服务， Nginx 还支持邮件服务和传输层服务，可以在 conf 中配置 mail 域和 stream 域来定义相关服务细节，但这些服务需要额外编译对应的模块。</p>
 <h3 id="loaction-实现资源匹配">loaction 实现资源匹配</h3>
-<p>location 通过 url 来匹配目标资源。</p>
+<p>location 通过 URL 来匹配目标资源。</p>
 <p>具体的匹配方式有 prefix string 和 regular expression ，也就是前缀匹配和正则匹配，还有比较特殊的完整匹配，可以参考 location 的语法规则。</p>
 <blockquote>
 <p>Syntax: <code>location [ = | ~ | ~* | ^~ ] url { ... }</code></p>
 </blockquote>
 <p>各个匹配符号的含义如下：</p>
 <ul>
-<li><code>=</code> 用来代表完整匹配，只有 url 完全一致才会被这个 location 所匹配，这是最高优先级的规则。</li>
+<li><code>=</code> 用来代表完整匹配，只有 URL 完全一致才会被这个 location 所匹配，这是最高优先级的规则。</li>
 <li><code>^~</code> 表示从头开始匹配，开头的符号和普通正则的符号一致，这是前缀匹配的一种。</li>
 <li>不带任何修饰符也是一种前缀匹配。</li>
 <li><code>~</code> 和 <code>~*</code> 代表 location 采用正则匹配，带 <code>*</code> 不区分大小写，不带 <code>*</code> 则需要匹配大小写。</li>
 </ul>
 <p>一个请求到达 Nginx 时的具体匹配过程由 server 中所有的 location 共同参与，一般的匹配规则如下：</p>
 <ol>
-<li>拿到请求 url ，进行解码，去除重复的 <code>/</code> 符号等规范化处理。</li>
-<li>对 url 进行精准匹配，如果匹配成功，立即返回结果并结束匹配过程。</li>
+<li>拿到请求 URL ，进行解码，去除重复的 <code>/</code> 符号等规范化处理。</li>
+<li>对 URL 进行精准匹配，如果匹配成功，立即返回结果并结束匹配过程。</li>
 <li>进行前缀匹配，如果成功匹配到带 <code>^~</code> 修饰符的最长匹配，立即返回结果并结束匹配过程。</li>
 <li>在第二步没有直接结束匹配的情况下，继续寻找最长匹配的前缀匹配，并临时存储这个匹配。</li>
 <li>由上至下逐一进行正则匹配。</li>
@@ -356,24 +356,23 @@
 <p>整个匹配过程主要复杂的地方在于前缀匹配，在第三个步骤时，带修饰符和不带任何修饰符两者没有优先之分，都会倾向寻找最长的匹配，但如果这个最长匹配是由 <code>^~</code> 修饰的，则直接返回这个匹配。不带修饰符的写法和带 <code>^~</code> 的写法的目标不能完全相同， Nginx 的配置检查将会无法通过，可以把一些更为详细的前缀匹配使用 <code>^~</code> 修饰，可以加快解析速度。</p>
 <p>在匹配进入到某个 location 中后，匹配资源的工作就由关键字 alias 和 root 来定义，它们用来指向资源在服务器中的位置，一直以来，网上对 alias 和 root 的说法有很多，这里给出一些我的测试过的结论以供参考：</p>
 <ul>
-<li>root 和 index 已经被隐式定义在整个 server 域中，默认位置和前面给出的默认配置实例一致，如果不进行覆写，隐式地址为 Nginx 安装后自带的 html 目录， index 默认为目录下的 index.html 。</li>
-</ul>
+<li>root 和 index 已经被隐式定义在整个 server 域中，默认位置和前面给出的默认配置实例一致，如果不进行覆写，隐式地址为 Nginx 安装后自带的 HTML 目录， index 默认为目录下的 index.html 。
 <blockquote>
 <p>这个结果可以通过去除所有 location 和 server 的关键字定义，并在 html 下随意写入一个 index.html 文件得出。</p>
 </blockquote>
-<ul>
+</li>
 <li>在不配置任何错误定向页面时， Nginx 会使用默认的 404 和 50x 的页面。</li>
-<li>如果你在 location 中重定义 root ，则这个 root 只能在当前 location 域中生效。这种配置方式除了要匹配 location ，还需要 url 在配置的 root 中准确命中资源才不会返回 404 错误。</li>
-</ul>
+<li>如果你在 location 中重定义 root ，则这个 root 只能在当前 location 域中生效。这种配置方式除了要匹配 location ，还需要 URL 在配置的 root 中准确命中资源才不会返回 404 错误。
 <blockquote>
 <p>使用这类配置的常见情况是 url 匹配了 location ，但是无法找到正确的资源路径，比如 <code>location /cn { root country/cn; }</code> 这种写法的寻找目录实际为 <code>country/cn/cn/</code> ，这是我个人在一开始使用 Nginx 时经常犯的错误，如果要在 location 中使用 root ，最好在 root 这个目录下拥有和 location 匹配条件一致的同名子目录。</p>
 </blockquote>
-<ul>
-<li>alias 只能位于 location 块中， root 可以放在 location 和 server 中， Nginx 自带的配置语法检查可以帮助我们避免这种错误。</li>
-</ul>
+</li>
+<li>alias 只能位于 location 块中， root 可以放在 location 和 server 中， Nginx 自带的配置语法检查可以帮助我们避免这种错误。
 <blockquote>
 <p>对比 root 和 alias ， alias 的使用会更加灵活，它不会被匹配条件限定，可以自由地指定资源目录，而 root 已经在 url 匹配时隐式限定了固有的资源目录，所以推荐在 location 中使用 alias 。</p>
 </blockquote>
+</li>
+</ul>
 <h3 id="rewrite-实现重定向功能">rewrite 实现重定向功能</h3>
 <p>rewrite 模块提供了灵活的重定向功能。</p>
 <p>rewrite 模块提高了 rewrite 关键字， rewrite 只能放在 server ， location 或者自定义的 if 中，它的语法规则如下：</p>
@@ -382,26 +381,26 @@
 </blockquote>
 <p>一个请求的重写过程一般有如下几步：</p>
 <ol>
-<li>url 按照正常流程进行 location 匹配。</li>
+<li>URL 按照正常流程进行 location 匹配。</li>
 <li>进入到某个包含了 rewrite 指令的 location 中。</li>
-<li>直接执行 rewrite ，根据定义的 regex 执行 url replace 。</li>
-<li>根据 flag 决定替换后 url 的走向。</li>
+<li>直接执行 rewrite ，根据定义的 regular expression 执行 URL replace 。</li>
+<li>根据 flag 决定替换后 URL 的走向。</li>
 </ol>
 <p>flag 定义的走向结果有以下几个：</p>
 <ul>
-<li>last ： 替换 url 之后终止后续的 rewrite 行为，直接返回替换后 url ，并使用它重新匹配 location 。</li>
-<li>break ： 替换 url 之后终止所有 rewrite 行为，包括 rewrite ， return ， if 等，然后使用替换后 url 在当前的 location 中匹配资源。</li>
+<li>last ： 替换 URL 之后终止后续的 rewrite 行为，直接返回替换后 URL ，并使用它重新匹配 location 。</li>
+<li>break ： 替换 URL 之后终止所有 rewrite 行为，包括 rewrite ， return ， if 等，然后使用替换后 URL 在当前的 location 中匹配资源。</li>
 <li>redirect ： 302 临时重定向。</li>
 <li>permanent ： 301 永久重定向。</li>
 </ul>
-<p>如果因为重写配置导致了替换后的 url 进行了多次匹配，匹配次数不能超过 10 次，否则会停止匹配并触发 500 Internal Server Error 的 http 响应。</p>
-<p>rewrite 的最常见写法是 <code>rewrite ^/(.*)$ url/$1/ last ;</code> ，利用正则匹配式的括号取出需要的部分，再根据需要以变量的形式构造新的 url 并定义 flag 。</p>
+<p>如果因为重写配置导致了替换后的 URL 进行了多次匹配，匹配次数不能超过 10 次，否则会停止匹配并触发 500 Internal Server Error 的 http 响应。</p>
+<p>rewrite 的最常见写法是 <code>rewrite ^/(.*)$ url/$1/ last ;</code> ，利用正则匹配式的括号取出需要的部分，再根据需要以变量的形式构造新的 URL 并定义 flag 。</p>
 <p>除了 rewrite 模块， try_file 关键字也提供了重定向的功能，但 try_file 是来自 ngx_http_core_module 的关键字。</p>
 <blockquote>
 <p>Syntax: try_files file &hellip; uri;</p>
 </blockquote>
 <p>try_files 用于 location 中，可以指定多个 file ，它按顺序检查文件是否存在，并使用第一个找到的文件进行请求处理。</p>
-<p>try_files 的一般写法是 <code>try_files urlA urlB urlC</code> ， urlA 将会直接在当前 location 的 root 或 alias 中寻找匹配资源，后续的 urlB 也是相似的做法，如果它们依次都无法找到资源，才会使用最后的 urlC 执行新一轮的 location 匹配，整个过程和 url 重写非常相似，可以看做是简化版本的 rewrite 。</p>
+<p>try_files 的一般写法是 <code>try_files urlA urlB urlC</code> ， urlA 将会直接在当前 location 的 root 或 alias 中寻找匹配资源，后续的 urlB 也是相似的做法，如果它们依次都无法找到资源，才会使用最后的 urlC 执行新一轮的 location 匹配，整个过程和 URL 重写非常相似，可以看做是简化版本的 rewrite 。</p>
 <h3 id="proxy-实现代理功能">proxy 实现代理功能</h3>
 <p>proxy 模块提供了代理功能，代理实际上就是对请求的转发。</p>
 <p>代理分为正向代理和反向代理，它们的工作本质是一样的，主要不同在于工作的场景，其中正向代理主要是面向用户提供代理服务，受保护的对象是用户，反向代理主要是面向服务端提供代理服务，受保护的对象是服务端。</p>

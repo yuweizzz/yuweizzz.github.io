@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -258,7 +258,7 @@
 </span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
 </span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 </span></span></code></pre></div><h2 id="linux-的归档和压缩命令">Linux 的归档和压缩命令</h2>
-<p>归档压缩是经常需要进行的操作，在 Linux 系统中基本上通过 tar 就可以应对大部分场景，某些特殊的场景可能会涉及 zip ， 7z ， rar 这些不同的压缩文件格式，它们需要使用额外的工具去操作，这里只介绍 tar 命令。</p>
+<p>归档压缩是经常需要进行的操作，在 Linux 系统中基本上通过 tar 就可以应对大部分场景，某些特殊的场景可能会涉及 ZIP ， 7z ， rar 这些不同的压缩文件格式，它们需要使用额外的工具去操作，这里只介绍 tar 命令。</p>
 <p>我们通常会使用 tar 对一系列文件进行归档打包，生成一个新的文件，但是新生成的打包文件我们可以自行决定是否压缩。所以归档打包和压缩不是同一概念，只是它们通常是紧密结合在一起的。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 归档实例：</span>
 </span></span><span class="line"><span class="cl">
@@ -291,13 +291,13 @@
 </span></span><span class="line"><span class="cl">$ tar -xvJf output.tar.xz -C /mydir
 </span></span><span class="line"><span class="cl"><span class="c1"># 可以指定对应的压缩格式</span>
 </span></span></code></pre></div><h2 id="硬盘分区和格式化">硬盘分区和格式化</h2>
-<p>硬盘需要进行分区和格式化之后才能使用，现阶段主流的硬盘分区方式是 GPT ，小容量的硬盘和系统盘还经常会使用 msdos 。常用的分区工具有 parted ， fdisk ， gdisk 这几个，文件系统格式化一般使用 mkfs 命令。</p>
+<p>硬盘需要进行分区和格式化之后才能使用，现阶段主流的硬盘分区方式是 GPT ，小容量的硬盘和系统盘还经常会使用 MS-DOS 。常用的分区工具有 parted ， fdisk ， gdisk 这几个，文件系统格式化一般使用 mkfs 命令。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># fdisk 只能支持 msdos 分区</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># gdisk 在 fdisk 的基础上扩展 gpt 的功能</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 推荐使用 parted ，它拥有更全面的功能</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 查看已有分区信息</span>
-</span></span><span class="line"><span class="cl">$ parted /dev/sda print     
+</span></span><span class="line"><span class="cl">$ parted /dev/sda print
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 以下命令具有一定危险，需要注意数据安全</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 设置分区表格式</span>
@@ -354,7 +354,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 将文件内容转换为标准输入流之后再作为请求体，这样可以多做一次处理</span>
 </span></span><span class="line"><span class="cl">$ cat data.json <span class="p">|</span> curl -X POST -H <span class="s1">&#39;Content-Type: application/json&#39;</span> --data-binary @- <span class="s1">&#39;http://....&#39;</span>
 </span></span></code></pre></div><h2 id="curl-结合-bash-变量使用">curl 结合 bash 变量使用</h2>
-<p>curl 可以结合 bash 变量，实现更灵活的 url 请求。</p>
+<p>curl 可以结合 bash 变量，实现更灵活的 URL 请求。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 结合 bash 变量的简单实例</span>
 </span></span><span class="line"><span class="cl">$ <span class="nv">keyA</span><span class="o">=</span>AAA
 </span></span><span class="line"><span class="cl">$ <span class="nv">keyB</span><span class="o">=</span>BBB
@@ -514,7 +514,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># 限制同一时间内循环的进程数量</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 总运行次数，数据源存放在 file 中</span>
-</span></span><span class="line"><span class="cl"><span class="nv">number</span><span class="o">=</span><span class="k">$(</span>cat file <span class="p">|</span> wc -l<span class="k">)</span> 
+</span></span><span class="line"><span class="cl"><span class="nv">number</span><span class="o">=</span><span class="k">$(</span>cat file <span class="p">|</span> wc -l<span class="k">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 单次并发进程数量控制</span>
 </span></span><span class="line"><span class="cl"><span class="nv">size</span><span class="o">=</span><span class="m">20</span>
 </span></span><span class="line"><span class="cl">
@@ -528,7 +528,7 @@
 </span></span><span class="line"><span class="cl">    <span class="o">{</span>
 </span></span><span class="line"><span class="cl">        <span class="c1"># 主循环体，数据取自于 file</span>
 </span></span><span class="line"><span class="cl">    <span class="o">}</span><span class="p">&amp;</span>
-</span></span><span class="line"><span class="cl">    <span class="k">done</span> 
+</span></span><span class="line"><span class="cl">    <span class="k">done</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="nv">begin</span><span class="o">=</span><span class="k">$(</span> expr <span class="nv">$end</span> + <span class="m">1</span> <span class="k">)</span>
 </span></span><span class="line"><span class="cl">    <span class="nv">end</span><span class="o">=</span><span class="k">$(</span> expr <span class="nv">$end</span> + <span class="nv">$size</span> <span class="k">)</span>
@@ -547,7 +547,7 @@
 </span></span></code></pre></div><h2 id="使用-rpm-进行软件包操作">使用 rpm 进行软件包操作</h2>
 <p>rpm 是红帽软件包工具，是红帽系发行版使用的基本软件管理工具。除了安装卸载软件，它可以提供一些额外的功能。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 直接安装已有的 rpm 包</span>
-</span></span><span class="line"><span class="cl">$ rpm -ivh package.rpm  
+</span></span><span class="line"><span class="cl">$ rpm -ivh package.rpm
 </span></span><span class="line"><span class="cl"><span class="c1"># -i 用来表示安装</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># -v 用来显示详细信息</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># -h 用来显示安装进度</span>
@@ -578,7 +578,7 @@
 </span></span></code></pre></div><h2 id="配置-yum-源">配置 yum 源</h2>
 <p>yum 是 Fedora 和 RedHat 以及 SUSE 中使用的软件包管理器，它的使用比直接使用 rpm 更加方便简单。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># yum 的全局配置</span>
-</span></span><span class="line"><span class="cl">$ cat /etc/yum.conf 
+</span></span><span class="line"><span class="cl">$ cat /etc/yum.conf
 </span></span><span class="line"><span class="cl"><span class="o">[</span>main<span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nv">cachedir</span><span class="o">=</span>/var/cache/yum/<span class="nv">$basearch</span>/<span class="nv">$releasever</span>  <span class="c1"># 指定缓存软件包和依赖信息的目录</span>
 </span></span><span class="line"><span class="cl"><span class="nv">keepcache</span><span class="o">=</span><span class="m">0</span>  <span class="c1"># 指定缓存是否会在使用后保留</span>
@@ -593,7 +593,7 @@
 </span></span></code></pre></div><p>全局配置基本上不用做修改，更多情况下只需要自行添加需要的镜像源。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 参考具体的镜像源配置</span>
 </span></span><span class="line"><span class="cl">$ <span class="nb">cd</span> /etc/yum.repos.d
-</span></span><span class="line"><span class="cl">$ cat CentOS-Base.repo 
+</span></span><span class="line"><span class="cl">$ cat CentOS-Base.repo
 </span></span><span class="line"><span class="cl"><span class="o">[</span>base<span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>CentOS-<span class="nv">$releasever</span> - Base
 </span></span><span class="line"><span class="cl"><span class="nv">mirrorlist</span><span class="o">=</span>http://mirrorlist.centos.org/?release<span class="o">=</span><span class="nv">$releasever</span><span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span><span class="p">&amp;</span><span class="nv">repo</span><span class="o">=</span>os<span class="p">&amp;</span><span class="nv">infra</span><span class="o">=</span><span class="nv">$infra</span>
@@ -601,7 +601,7 @@
 </span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
 </span></span><span class="line"><span class="cl"><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># rerpmleased updates </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># rerpmleased updates</span>
 </span></span><span class="line"><span class="cl"><span class="o">[</span>updates<span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nv">name</span><span class="o">=</span>CentOS-<span class="nv">$releasever</span> - Updates
 </span></span><span class="line"><span class="cl"><span class="nv">mirrorlist</span><span class="o">=</span>http://mirrorlist.centos.org/?release<span class="o">=</span><span class="nv">$releasever</span><span class="p">&amp;</span><span class="nv">arch</span><span class="o">=</span><span class="nv">$basearch</span><span class="p">&amp;</span><span class="nv">repo</span><span class="o">=</span>updates<span class="p">&amp;</span><span class="nv">infra</span><span class="o">=</span><span class="nv">$infra</span>
@@ -616,7 +616,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># baseurl=http://mirror.centos.org/centos/$releasever/extras/$basearch/</span>
 </span></span><span class="line"><span class="cl"><span class="nv">gpgcheck</span><span class="o">=</span><span class="m">1</span>
 </span></span><span class="line"><span class="cl"><span class="nv">gpgkey</span><span class="o">=</span>file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
-</span></span></code></pre></div><p>在 <code>/etc/yum.repos.d</code> 目录中以 repo 结尾的文件会被识别为镜像源的配置文件，一个镜像源配置文件内可以配置多个 Repository ，每个 Repository 的唯一标识用 <code>[xxxx]</code> 表示，它们的具体内容如下：</p>
+</span></span></code></pre></div><p>在 <code>/etc/yum.repos.d</code> 目录中以 repository 结尾的文件会被识别为镜像源的配置文件，一个镜像源配置文件内可以配置多个 Repository ，每个 Repository 的唯一标识用 <code>[xxxx]</code> 表示，它们的具体内容如下：</p>
 <ul>
 <li><code>name</code> 是对 Repository 的描述。</li>
 <li><code>enable</code> 规定对应 Repository 是否启用，可以使用这个选项屏蔽 Repository 。</li>
@@ -647,7 +647,7 @@
 </span></span></code></pre></div><h2 id="更新文件到-initramfs-镜像中">更新文件到 initramfs 镜像中</h2>
 <p>在 Linux 系统中，我们一般可以在 <code>/boot</code> 目录中找到 initramfs 镜像文件，它们是引导系统的必要组件。如果需要使用到的系统命令没有编译到镜像中，可以使用 dracut 命令进行镜像更新。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用 file 命令可以看到 CentOS 7.4 的 initramfs 镜像是由 gunzip 压缩的文件</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># initramfs-3.10.0-693.el7.x86_64.img: gzip compressed data, from Unix, </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># initramfs-3.10.0-693.el7.x86_64.img: gzip compressed data, from Unix,</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># last modified: Sat Mar 16 15:51:25 2019, max compression</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 以常规思路去处理这个文件</span>
@@ -693,7 +693,7 @@
 </span></span><span class="line"><span class="cl">$ mysqldump -u root -p db_name &gt; backup.sql
 </span></span></code></pre></div><p>备份完成后可以看到 backup.sql 基本都是由 <code>CREATE TABLE</code> 和 <code>INSERT INTO</code> 这些生成语句构成的，但是在表生成语句前一般都会有 <code>DROP</code> 旧表的动作，在实际操作时候应该小心。</p>
 <ol start="2">
-<li>导入到新的 mysql 服务中：</li>
+<li>导入到新的 MySQL 服务中：</li>
 </ol>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在导入 sql 语句前应该在创建新库并且显示使用这个库</span>
 </span></span><span class="line"><span class="cl">$ sed -i <span class="s1">&#39;1i create database db_name;&#39;</span> backup.sql

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -272,19 +272,19 @@
 </span></span><span class="line"><span class="cl">              The supplied names are marked <span class="k">for</span> automatic <span class="nb">export</span> to the environment of subsequently executed commands.
 </span></span><span class="line"><span class="cl">              If the -f option is given, the names refer to functions.If no names are given, or <span class="k">if</span> the -p option is
 </span></span><span class="line"><span class="cl">              supplied, a list of all names that are exported in this shell is printed.  The -n option causes the <span class="nb">export</span>
-</span></span><span class="line"><span class="cl">              property to be removed from each name.  If a variable name is followed <span class="nv">by</span> <span class="o">=</span>word, the value of the variable 
-</span></span><span class="line"><span class="cl">              is <span class="nb">set</span> to word.  <span class="nb">export</span> returns an <span class="nb">exit</span> status of <span class="m">0</span> unless an invalid option is encountered, one of the 
+</span></span><span class="line"><span class="cl">              property to be removed from each name.  If a variable name is followed <span class="nv">by</span> <span class="o">=</span>word, the value of the variable
+</span></span><span class="line"><span class="cl">              is <span class="nb">set</span> to word.  <span class="nb">export</span> returns an <span class="nb">exit</span> status of <span class="m">0</span> unless an invalid option is encountered, one of the
 </span></span><span class="line"><span class="cl">              names is not a valid shell variable name, or -f is supplied with a name that is not a <span class="k">function</span>.
 </span></span><span class="line"><span class="cl">...
 </span></span><span class="line"><span class="cl">        .  filename <span class="o">[</span>arguments<span class="o">]</span>
 </span></span><span class="line"><span class="cl">       <span class="nb">source</span> filename <span class="o">[</span>arguments<span class="o">]</span>
-</span></span><span class="line"><span class="cl">              Read and execute commands from filename in the current shell environment and <span class="k">return</span> the <span class="nb">exit</span> status of 
-</span></span><span class="line"><span class="cl">              the last <span class="nb">command</span> executed from filename.  If filename does not  contain a slash, file names in PATH are 
+</span></span><span class="line"><span class="cl">              Read and execute commands from filename in the current shell environment and <span class="k">return</span> the <span class="nb">exit</span> status of
+</span></span><span class="line"><span class="cl">              the last <span class="nb">command</span> executed from filename.  If filename does not  contain a slash, file names in PATH are
 </span></span><span class="line"><span class="cl">              used to find the directory containing filename.  The file searched <span class="k">for</span> in PATH need not be executable.
-</span></span><span class="line"><span class="cl">              When bash is not in posix mode, the current directory is searched <span class="k">if</span> no file is found in PATH.  If the 
-</span></span><span class="line"><span class="cl">              sourcepath option to the <span class="nb">shopt</span> <span class="nb">builtin</span> <span class="nb">command</span> is turned off, the  PATH is not searched.If any arguments 
-</span></span><span class="line"><span class="cl">              are  supplied, they become the positional parameters when filename is executed.  Otherwise the positional 
-</span></span><span class="line"><span class="cl">              parameters are unchanged.The <span class="k">return</span> status is the status of the last <span class="nb">command</span> exited within the script 
+</span></span><span class="line"><span class="cl">              When bash is not in posix mode, the current directory is searched <span class="k">if</span> no file is found in PATH.  If the
+</span></span><span class="line"><span class="cl">              sourcepath option to the <span class="nb">shopt</span> <span class="nb">builtin</span> <span class="nb">command</span> is turned off, the  PATH is not searched.If any arguments
+</span></span><span class="line"><span class="cl">              are  supplied, they become the positional parameters when filename is executed.  Otherwise the positional
+</span></span><span class="line"><span class="cl">              parameters are unchanged.The <span class="k">return</span> status is the status of the last <span class="nb">command</span> exited within the script
 </span></span><span class="line"><span class="cl">              <span class="o">(</span><span class="m">0</span> <span class="k">if</span> no commands are executed<span class="o">)</span>, and <span class="nb">false</span> <span class="k">if</span> filename is not found or cannot be read.
 </span></span><span class="line"><span class="cl">...
 </span></span></code></pre></div><p>从文档可以看到， <code>export</code> 被明确定位用来快速设置环境变量。而 <code>source</code> 则要特殊一些，可以看到它是对文件级进行操作的，实际上它并不明确涉及任何变量改动。但是它们有一个相同点在于它们的生效范围都是当前 shell 。所以当你使用了 <code>export</code> 设置了一些变量，或者使用 <code>source</code> 执行了某个文件，那么它们涉及的变量改动就影响了当前 shell ，起到了改变环境变量的效果。</p>
@@ -324,10 +324,10 @@
 </span></span><span class="line"><span class="cl">SHELL BUILTIN COMMANDS
 </span></span><span class="line"><span class="cl">       <span class="nb">set</span> <span class="o">[</span>--abefhkmnptuvxBCEHPT<span class="o">]</span> <span class="o">[</span>-o option-name<span class="o">]</span> <span class="o">[</span>arg ...<span class="o">]</span>
 </span></span><span class="line"><span class="cl">       <span class="nb">set</span> <span class="o">[</span>+abefhkmnptuvxBCEHPT<span class="o">]</span> <span class="o">[</span>+o option-name<span class="o">]</span> <span class="o">[</span>arg ...<span class="o">]</span>
-</span></span><span class="line"><span class="cl">              Without options, the name and value of each shell variable are displayed in a format that can be reused 
+</span></span><span class="line"><span class="cl">              Without options, the name and value of each shell variable are displayed in a format that can be reused
 </span></span><span class="line"><span class="cl">              as input <span class="k">for</span> setting or resetting the currently-set variables.Read-only variables cannot be reset.
 </span></span><span class="line"><span class="cl">              In posix mode, only shell variables are listed.  The output is sorted according to the current locale.
-</span></span><span class="line"><span class="cl">              When options are specified, they <span class="nb">set</span> or <span class="nb">unset</span> shell attributes.  Any arguments remaining after option 
+</span></span><span class="line"><span class="cl">              When options are specified, they <span class="nb">set</span> or <span class="nb">unset</span> shell attributes.  Any arguments remaining after option
 </span></span><span class="line"><span class="cl">              processing are treated as values <span class="k">for</span> the positional  parameters and are assigned,
 </span></span><span class="line"><span class="cl">              in order, to <span class="nv">$1</span>, <span class="nv">$2</span>, ...  <span class="nv">$n</span>.  Options, <span class="k">if</span> specified, have the following meanings:
 </span></span><span class="line"><span class="cl">...
@@ -336,7 +336,7 @@
 </span></span><span class="line"><span class="cl">                      <span class="c1"># 缓存执行过的二进制命令的路径，以便下次调用省去搜索时间</span>
 </span></span><span class="line"><span class="cl">              -B      The shell performs brace expansion <span class="o">(</span>see Brace Expansion above<span class="o">)</span>.  This is on by default.
 </span></span><span class="line"><span class="cl">                      <span class="c1"># 允许使用 shell 的花括号扩展</span>
-</span></span><span class="line"><span class="cl">              -m      Monitor mode.  Job control is enabled.  This option is on by default <span class="k">for</span> interactive shells on 
+</span></span><span class="line"><span class="cl">              -m      Monitor mode.  Job control is enabled.  This option is on by default <span class="k">for</span> interactive shells on
 </span></span><span class="line"><span class="cl">                      systems that support it <span class="o">(</span>see JOB CONTROL above<span class="o">)</span>.  Back‐ground processes run in a separate process
 </span></span><span class="line"><span class="cl">                      group and a line containing their <span class="nb">exit</span> status is printed upon their completion.
 </span></span><span class="line"><span class="cl">                      <span class="c1"># 允许作业控制和后台运行</span>

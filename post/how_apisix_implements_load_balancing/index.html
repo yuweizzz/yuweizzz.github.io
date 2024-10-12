@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -305,7 +305,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">up_nodes</span> <span class="o">=</span> <span class="n">fetch_health_nodes</span><span class="p">(</span><span class="n">upstream</span><span class="p">,</span> <span class="n">checker</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">        <span class="c1">-- _priority_index 和 upstream 中定义的 priority 有关 </span>
+</span></span><span class="line"><span class="cl">        <span class="c1">-- _priority_index 和 upstream 中定义的 priority 有关</span>
 </span></span><span class="line"><span class="cl">        <span class="kr">if</span> <span class="o">#</span><span class="n">up_nodes._priority_index</span> <span class="o">&gt;</span> <span class="mi">1</span> <span class="kr">then</span>
 </span></span><span class="line"><span class="cl">            <span class="n">core.log</span><span class="p">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&#34;upstream nodes: &#34;</span><span class="p">,</span> <span class="n">core.json</span><span class="p">.</span><span class="n">delay_encode</span><span class="p">(</span><span class="n">up_nodes</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">            <span class="c1">-- 这里的 priority_balancer 就是 apisix/balancer/priority.lua</span>

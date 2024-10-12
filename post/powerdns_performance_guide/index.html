@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -389,7 +389,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">rewriteset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">rewriteset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">rewriteset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span> 
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">rewriteset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span>
 </span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        <span class="c1">-- 独立的处理函数 udpQueryResponse 允许发起新的 udp 查询，具体用法可以参考官方文档</span>
 </span></span><span class="line"><span class="cl">        <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;udpQueryResponse&#34;</span>
@@ -517,7 +517,7 @@
 </span></span><span class="line"><span class="cl">    <span class="kr">end</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="kr">return</span>  <span class="n">ident_hi</span> <span class="o">..</span> <span class="n">ident_lo</span> <span class="o">..</span> <span class="n">flags</span> <span class="o">..</span> <span class="n">nqs</span> <span class="o">..</span> <span class="n">nan</span> <span class="o">..</span> <span class="n">nns</span> <span class="o">..</span> <span class="n">nar</span> <span class="o">..</span> <span class="n">name</span> <span class="o">..</span> <span class="n">typ</span> <span class="o">..</span> <span class="n">class</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kr">end</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">local</span> <span class="kr">function</span> <span class="nf">_decode_name</span><span class="p">(</span><span class="n">buf</span><span class="p">,</span> <span class="n">pos</span><span class="p">)</span>
@@ -1011,7 +1011,7 @@
 </span></span><span class="line"><span class="cl"><span class="n">rewriteset</span> <span class="o">=</span> <span class="n">newDS</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="n">rewriteset</span><span class="p">:</span><span class="n">add</span><span class="p">(</span><span class="s2">&#34;powerdns.org&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="kr">function</span> <span class="nf">nxdomain</span><span class="p">(</span><span class="n">dq</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">rewriteset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span> 
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="n">rewriteset</span><span class="p">:</span><span class="n">check</span><span class="p">(</span><span class="n">dq.qname</span><span class="p">)</span> <span class="kr">then</span>
 </span></span><span class="line"><span class="cl">        <span class="kd">local</span> <span class="n">dh</span> <span class="o">=</span> <span class="n">dq</span><span class="p">:</span><span class="n">getDH</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">        <span class="n">dq.followupFunction</span> <span class="o">=</span> <span class="s2">&#34;udpQueryResponse&#34;</span>
 </span></span><span class="line"><span class="cl">        <span class="n">dq.udpCallback</span> <span class="o">=</span> <span class="s2">&#34;gotdomaindetails&#34;</span>

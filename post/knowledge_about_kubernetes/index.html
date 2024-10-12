@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -297,11 +297,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="l">proxy</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx:stable</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">http-web-svc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">nginx:stable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ports</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">containerPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">http-web-svc</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
@@ -312,10 +312,10 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app.kubernetes.io/name</span><span class="p">:</span><span class="w"> </span><span class="l">proxy</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">ports</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">name-of-service-port</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l">http-web-svc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">name-of-service-port</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">protocol</span><span class="p">:</span><span class="w"> </span><span class="l">TCP</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="l">http-web-svc</span><span class="w">
 </span></span></span></code></pre></div><p>通常会将 Pod 或者 Deployment 资源加上 label ，然后使用 Service selector 来选中这些资源，这样的 Service 就可以将请求均衡发送到 Pod 集合中。</p>
 <h3 id="nodeport">NodePort</h3>
 <p><code>NodePort</code> 是 <code>ClusterIP</code> 的扩展类型。除了集群内部的服务 IP 地址，还会在集群中所有节点的对应端口进行监听，并代理到各自节点中的 Pod 中，实现外部访问集群内服务。</p>
@@ -331,7 +331,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">targetPort</span><span class="p">:</span><span class="w"> </span><span class="m">80</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">nodePort</span><span class="p">:</span><span class="w"> </span><span class="m">30007</span><span class="w">
-</span></span></span></code></pre></div><p>在 yaml 文件中， port 是 Pod 暴露服务的端口， targetPort 是 Service 暴露服务的端口，两者可以保持一致，由 targetPort 跟随 port 即可， nodePort 可以显式指定，也可以不进行指定并由集群自动分配，通常采取第二种方式，来避免手动指定的端口和已有的服务产生冲突。自动分配的范围由 apiServer 中的 <code>--service-node-port-range</code> 参数指定，默认值是 <code>30000-32767</code> 。</p>
+</span></span></span></code></pre></div><p>在 YAML 文件中， port 是 Pod 暴露服务的端口， targetPort 是 Service 暴露服务的端口，两者可以保持一致，由 targetPort 跟随 port 即可， nodePort 可以显式指定，也可以不进行指定并由集群自动分配，通常采取第二种方式，来避免手动指定的端口和已有的服务产生冲突。自动分配的范围由 apiServer 中的 <code>--service-node-port-range</code> 参数指定，默认值是 <code>30000-32767</code> 。</p>
 <h3 id="loadbalancer">LoadBalancer</h3>
 <p><code>LoadBalancer</code> 是基于云厂商提供服务实现的服务类型，它基于 <code>NodePort</code> 进行扩展，和云厂商的负载均衡器绑定，是更高级的外部访问集群内服务实现方式。</p>
 <p>可以认为这里 <code>NodePort</code> 是隐式实现的，并且云厂商还应该提供负载均衡器，它会对集群中所有节点代理，实现负载均衡。这样外部访问不再直接访问集群节点而是通过负载均衡器进行代理转发。</p>
@@ -351,7 +351,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">status</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">loadBalancer</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ingress</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="m">192.0.2.127</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="m">192.0.2.127</span><span class="w">
 </span></span></span></code></pre></div><p>在创建 LoadBalancer Service 时，通常只需要指定 <code>LoadBalancer</code> 作为 Service 类型即可，关于 port 的设置和 <code>nodePort</code> 类型相似。创建资源完成后会将负载均衡器信息报告在 status 中。</p>
 <h3 id="externalname">ExternalName</h3>
 <p><code>ExternalName</code> 是不直接关联 Pod 的服务类型，它实际是通过创建 CNAME 记录，来实现 Service 访问映射到其他域名。</p>
@@ -410,83 +410,83 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">namespaces</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">configmaps</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">pods</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">secrets</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">endpoints</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">services</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ingresses</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ingresses/status</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">update</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ingressclasses</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">coordination.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resourceNames</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ingress-nginx-leader</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">leases</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">update</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">coordination.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">leases</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">create</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">events</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">create</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">patch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">discovery.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">endpointslices</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">namespaces</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">configmaps</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">pods</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">secrets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">endpoints</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">services</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingresses</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingresses/status</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">update</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingressclasses</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">coordination.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resourceNames</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingress-nginx-leader</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">leases</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">update</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">coordination.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">leases</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">create</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">events</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">create</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">patch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">discovery.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">endpointslices</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
@@ -498,76 +498,76 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app.kubernetes.io/version</span><span class="p">:</span><span class="w"> </span><span class="m">1.8.2</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">configmaps</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">endpoints</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">nodes</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">pods</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">secrets</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">namespaces</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">coordination.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">leases</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">nodes</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">services</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ingresses</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">events</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">create</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">patch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ingresses/status</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">update</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">networking.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">ingressclasses</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">discovery.k8s.io</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">endpointslices</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">configmaps</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">endpoints</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">nodes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">pods</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">secrets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">namespaces</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">coordination.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">leases</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">nodes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">services</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingresses</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">events</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">create</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">patch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingresses/status</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">update</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">networking.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">ingressclasses</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">discovery.k8s.io</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">endpointslices</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
 </span></span></span></code></pre></div>
   <p></p>
 </details>
@@ -590,9 +590,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Role</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">subjects</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRoleBinding</span><span class="w">
@@ -608,9 +608,9 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">subjects</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">namespace</span><span class="p">:</span><span class="w"> </span><span class="l">ingress-nginx</span><span class="w">
 </span></span></span></code></pre></div><p>在完成上述资源的定义之后，就可以使用对应的工作负载中的 token 来和 ApiServer 进行交互，很多实际使用的云原生服务都用到了这些资源。</p></article>
               </div>
             </div>

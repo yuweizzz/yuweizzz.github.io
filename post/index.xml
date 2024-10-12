@@ -6,7 +6,7 @@
     <description>Recent content in Posts on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sat, 12 Oct 2024 09:03:57 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 12 Oct 2024 09:13:32 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>通过 OAuth2 进行授权</title>
@@ -55,7 +55,7 @@
       <link>https://yuweizzz.github.io/post/update_dns_record_via_cloudflare_api/</link>
       <pubDate>Sun, 18 Feb 2024 15:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/post/update_dns_record_via_cloudflare_api/</guid>
-      <description>&lt;p&gt;通过 cloudflare api 更新 DNS 记录的 python 脚本。&lt;/p&gt;</description>
+      <description>&lt;p&gt;通过 cloudflare API 更新 DNS 记录的 python 脚本。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Hello 2024</title>
@@ -328,7 +328,7 @@
       <link>https://yuweizzz.github.io/post/authenticating_to_github/</link>
       <pubDate>Mon, 20 Jul 2020 23:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/post/authenticating_to_github/</guid>
-      <description>&lt;p&gt;通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。&lt;/p&gt;</description>
+      <description>&lt;p&gt;通过配置 GitHub SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。&lt;/p&gt;</description>
     </item>
     <item>
       <title>配置 Linux 环境变量</title>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -268,64 +268,64 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">collector</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/prometheus/client_golang/prometheus&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;net/http&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;sync&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;time&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;github.com/prometheus/client_golang/prometheus&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;net/http&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;sync&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;time&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">StatusCollector</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">requestDesc</span> <span class="o">*</span><span class="nx">prometheus</span><span class="p">.</span><span class="nx">Desc</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">mutex</span>       <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">requestDesc</span> <span class="o">*</span><span class="nx">prometheus</span><span class="p">.</span><span class="nx">Desc</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">mutex</span>       <span class="nx">sync</span><span class="p">.</span><span class="nx">Mutex</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">NewStatusCollector</span><span class="p">()</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nx">Collector</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="o">&amp;</span><span class="nx">StatusCollector</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">requestDesc</span><span class="p">:</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nf">NewDesc</span><span class="p">(</span>
-</span></span><span class="line"><span class="cl">			<span class="s">&#34;http_request_status&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="s">&#34;The Status Code of http request&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="kc">nil</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">			<span class="nx">prometheus</span><span class="p">.</span><span class="nx">Labels</span><span class="p">{</span><span class="s">&#34;url&#34;</span><span class="p">:</span> <span class="s">&#34;https://www.baidu.com&#34;</span><span class="p">}),</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="o">&amp;</span><span class="nx">StatusCollector</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">requestDesc</span><span class="p">:</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nf">NewDesc</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;http_request_status&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="s">&#34;The Status Code of http request&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="kc">nil</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">   <span class="nx">prometheus</span><span class="p">.</span><span class="nx">Labels</span><span class="p">{</span><span class="s">&#34;url&#34;</span><span class="p">:</span> <span class="s">&#34;https://www.baidu.com&#34;</span><span class="p">}),</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">n</span> <span class="o">*</span><span class="nx">StatusCollector</span><span class="p">)</span> <span class="nf">Describe</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="o">*</span><span class="nx">prometheus</span><span class="p">.</span><span class="nx">Desc</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">n</span><span class="p">.</span><span class="nx">requestDesc</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">n</span><span class="p">.</span><span class="nx">requestDesc</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">n</span> <span class="o">*</span><span class="nx">StatusCollector</span><span class="p">)</span> <span class="nf">Collect</span><span class="p">(</span><span class="nx">ch</span> <span class="kd">chan</span><span class="o">&lt;-</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nx">Metric</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">n</span><span class="p">.</span><span class="nx">mutex</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">client</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">Timeout</span><span class="p">:</span> <span class="mi">5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Head</span><span class="p">(</span><span class="s">&#34;https://www.baidu.com&#34;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nf">MustNewConstMetric</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">requestDesc</span><span class="p">,</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nx">GaugeValue</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">n</span><span class="p">.</span><span class="nx">mutex</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nf">MustNewConstMetric</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">requestDesc</span><span class="p">,</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nx">GaugeValue</span><span class="p">,</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">StatusCode</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">n</span><span class="p">.</span><span class="nx">mutex</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">n</span><span class="p">.</span><span class="nx">mutex</span><span class="p">.</span><span class="nf">Lock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">client</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nx">Client</span><span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">Timeout</span><span class="p">:</span> <span class="mi">5</span> <span class="o">*</span> <span class="nx">time</span><span class="p">.</span><span class="nx">Second</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">resp</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">client</span><span class="p">.</span><span class="nf">Head</span><span class="p">(</span><span class="s">&#34;https://www.baidu.com&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nf">MustNewConstMetric</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">requestDesc</span><span class="p">,</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nx">GaugeValue</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">n</span><span class="p">.</span><span class="nx">mutex</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">ch</span> <span class="o">&lt;-</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nf">MustNewConstMetric</span><span class="p">(</span><span class="nx">n</span><span class="p">.</span><span class="nx">requestDesc</span><span class="p">,</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nx">GaugeValue</span><span class="p">,</span> <span class="nb">float64</span><span class="p">(</span><span class="nx">resp</span><span class="p">.</span><span class="nx">StatusCode</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">n</span><span class="p">.</span><span class="nx">mutex</span><span class="p">.</span><span class="nf">Unlock</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p><code>main.go</code> 代码内容如下：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;myexporter/collector&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;fmt&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/prometheus/client_golang/prometheus&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;github.com/prometheus/client_golang/prometheus/promhttp&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;net/http&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;myexporter/collector&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;fmt&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;github.com/prometheus/client_golang/prometheus&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;github.com/prometheus/client_golang/prometheus/promhttp&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;net/http&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">r</span> <span class="o">:=</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nf">NewRegistry</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">r</span><span class="p">.</span><span class="nf">MustRegister</span><span class="p">(</span><span class="nx">collector</span><span class="p">.</span><span class="nf">NewStatusCollector</span><span class="p">())</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">handler</span> <span class="o">:=</span> <span class="nx">promhttp</span><span class="p">.</span><span class="nf">HandlerFor</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">promhttp</span><span class="p">.</span><span class="nx">HandlerOpts</span><span class="p">{})</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/metrics&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error occur when start server %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">r</span> <span class="o">:=</span> <span class="nx">prometheus</span><span class="p">.</span><span class="nf">NewRegistry</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">r</span><span class="p">.</span><span class="nf">MustRegister</span><span class="p">(</span><span class="nx">collector</span><span class="p">.</span><span class="nf">NewStatusCollector</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">handler</span> <span class="o">:=</span> <span class="nx">promhttp</span><span class="p">.</span><span class="nf">HandlerFor</span><span class="p">(</span><span class="nx">r</span><span class="p">,</span> <span class="nx">promhttp</span><span class="p">.</span><span class="nx">HandlerOpts</span><span class="p">{})</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">http</span><span class="p">.</span><span class="nf">Handle</span><span class="p">(</span><span class="s">&#34;/metrics&#34;</span><span class="p">,</span> <span class="nx">handler</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">http</span><span class="p">.</span><span class="nf">ListenAndServe</span><span class="p">(</span><span class="s">&#34;:8080&#34;</span><span class="p">,</span> <span class="kc">nil</span><span class="p">);</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;Error occur when start server %v&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>代码编写完成后，直接通过 <code>go get</code> 和 <code>go build</code> 下载依赖模块和编译代码，就可以得到可执行文件。</p>
 <p>建议通过 <code>CGO_ENABLED=0 go build -ldflags=&quot;-w -s&quot; main.go</code> 进行编译，可以得到静态链接的可执行文件并且文件体积比较小。</p></article>

@@ -18,7 +18,7 @@
 
     
     <meta name="description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
+  content="通过配置 GitHub SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="配置 GitHub 认证密钥 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
+  content="通过配置 GitHub SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
@@ -40,7 +40,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="配置 GitHub 认证密钥 - Wei&#39;s blog">
 <meta property="og:description"
-  content="通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
+  content="通过配置 GitHub SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。
 " />
 <meta property="og:url" content="https://yuweizzz.github.io/post/authenticating_to_github/" />
 <meta property="og:site_name" content="配置 GitHub 认证密钥" />
@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1096 Words
+                      1101 Words
                     
 
                   </div>
@@ -248,7 +248,7 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>通过配置 Github SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。</p>
+                <article class="markdown-body entry-content container-lg"><p>通过配置 GitHub SSH Key 实现 GitHub 免密推送，并且使用 GPG 密钥对 commit 进行签名。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
 </span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
@@ -285,7 +285,7 @@
 </span></span></code></pre></div><p>执行完命令后，我们可以得到 id_rsa 和 id_rsa.pub 两个文件，其中 id_rsa 是私钥，id_rsa.pub 是公钥。</p>
 <h2 id="在-github-账户中添加公钥">在 GitHub 账户中添加公钥</h2>
 <p>我们需要把公钥信息上传到自己的 GitHub 账户。</p>
-<p>打开自己的<a href="https://github.com/settings/keys"> GitHub 账户</a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的需求命名，然后 Add SSH Key ，完成公钥添加。</p>
+<p>打开自己的<a href="https://github.com/settings/keys">GitHub 账户</a>，点击 New SSH key ，复制 id_rsa.pub 的内容到 Key 中，Title 按照自己的需求命名，然后 Add SSH Key ，完成公钥添加。</p>
 <h2 id="测试公钥">测试公钥</h2>
 <p>完成云端公钥信息的添加后，我们可以在本地测试公钥是否正确设置。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 使用生成秘钥的账户测试</span>
@@ -310,7 +310,7 @@
 </span></span><span class="line"><span class="cl">PTY allocation request failed on channel <span class="m">0</span>
 </span></span><span class="line"><span class="cl">Hi yuweizzz! You<span class="err">&#39;</span>ve successfully authenticated, but GitHub does not provide shell access.
 </span></span><span class="line"><span class="cl">Connection to github.com closed.
-</span></span></code></pre></div><p>其实从这部分可以得出 Github 推送仓库是基于 OpenSSH 来实现的。</p>
+</span></span></code></pre></div><p>其实从这部分可以得出 GitHub 推送仓库是基于 OpenSSH 来实现的。</p>
 <p>更多信息可以参考 GitHub 的<a href="https://docs.github.com/en/github/authenticating-to-github/connecting-to-github-with-ssh">官方文档</a>。</p>
 <h2 id="利用-gpg-密钥对-commit-进行签名">利用 GPG 密钥对 commit 进行签名</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成 GPG 密钥</span>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -279,7 +279,7 @@
             container
 </code></pre><h2 id="直接通过-containerd-cli-运行容器">直接通过 containerd cli 运行容器</h2>
 <p>由于 containerd 具备完善的容器生命周期能力，我们可以不再使用 docker cli ，直接使用 containerd 的 cli 工具 ctr 直接运行容器。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 containerd </span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 containerd</span>
 </span></span><span class="line"><span class="cl">$ yum install containerd
 </span></span><span class="line"><span class="cl">$ systemctl <span class="nb">enable</span> containerd
 </span></span><span class="line"><span class="cl">$ systemctl start containerd
@@ -289,18 +289,18 @@
 </span></span><span class="line"><span class="cl">$ ctr i pull docker.io/library/nginx:alpine
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 生成容器</span>
-</span></span><span class="line"><span class="cl">$ ctr c create docker.io/library/busybox:latest mybusybox 
+</span></span><span class="line"><span class="cl">$ ctr c create docker.io/library/busybox:latest mybusybox
 </span></span><span class="line"><span class="cl">$ ctr c ls
-</span></span><span class="line"><span class="cl">CONTAINER    IMAGE                               RUNTIME                           
+</span></span><span class="line"><span class="cl">CONTAINER    IMAGE                               RUNTIME
 </span></span><span class="line"><span class="cl">mybusybox    docker.io/library/busybox:latest    io.containerd.runtime.v1.linux
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 启动容器</span>
 </span></span><span class="line"><span class="cl">$ ctr t start -d mybusybox
 </span></span><span class="line"><span class="cl">$ ctr t ls
-</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS
 </span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    RUNNING
 </span></span></code></pre></div><p>根据 OCI Runtime Spec ，正常的容器会经过以下几种运行状态：</p>
-<pre tabindex="0"><code># OCI Runtime Spec 
+<pre tabindex="0"><code># OCI Runtime Spec
 
           init     -&gt;    creating
                             |
@@ -314,17 +314,17 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># task 支持多种动作</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># pause 和 resume 就是冻结和恢复</span>
 </span></span><span class="line"><span class="cl">$ ctr t ls
-</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS
 </span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    RUNNING
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ ctr t pause mybusybox
 </span></span><span class="line"><span class="cl">$ ctr t ls
-</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS
 </span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    PAUSED
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ ctr t resume mybusybox
 </span></span><span class="line"><span class="cl">$ ctr t ls
-</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS
 </span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    RUNNING
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># kill 就是发送进程 signal ，一般用来发送终结信号</span>
@@ -333,7 +333,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 9: SIGKILL</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 15: SIGTERM</span>
 </span></span><span class="line"><span class="cl">$ ctr t ls
-</span></span><span class="line"><span class="cl">TASK         PID     STATUS    
+</span></span><span class="line"><span class="cl">TASK         PID     STATUS
 </span></span><span class="line"><span class="cl">mybusybox    <span class="m">2973</span>    STOPPED
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 只有处于 STOPPED 状态才能被删除</span>
@@ -411,23 +411,23 @@
 </span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 </span></span><span class="line"><span class="cl">    inet 127.0.0.1/8 scope host lo
 </span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
-</span></span><span class="line"><span class="cl">    inet6 ::1/128 scope host 
+</span></span><span class="line"><span class="cl">    inet6 ::1/128 scope host
 </span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
 </span></span><span class="line"><span class="cl">2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc pfifo_fast state UP group default qlen <span class="m">1000</span>
 </span></span><span class="line"><span class="cl">    link/ether 00:0c:29:0a:69:d0 brd ff:ff:ff:ff:ff:ff
 </span></span><span class="line"><span class="cl">    inet 192.168.0.7/24 brd 192.168.0.255 scope global dynamic ens33
 </span></span><span class="line"><span class="cl">       valid_lft 84564sec preferred_lft 84564sec
-</span></span><span class="line"><span class="cl">    inet6 fe80::20c:29ff:fe0a:69d0/64 scope link 
+</span></span><span class="line"><span class="cl">    inet6 fe80::20c:29ff:fe0a:69d0/64 scope link
 </span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
 </span></span><span class="line"><span class="cl">3: cni0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue state UP group default qlen <span class="m">1000</span>
 </span></span><span class="line"><span class="cl">    link/ether b2:51:ec:c7:b0:39 brd ff:ff:ff:ff:ff:ff
 </span></span><span class="line"><span class="cl">    inet 10.88.0.1/16 brd 10.88.255.255 scope global cni0
 </span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
-</span></span><span class="line"><span class="cl">    inet6 fe80::b051:ecff:fec7:b039/64 scope link 
+</span></span><span class="line"><span class="cl">    inet6 fe80::b051:ecff:fec7:b039/64 scope link
 </span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
-</span></span><span class="line"><span class="cl">4: veth3adfd297@if3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue master cni0 state UP group default 
+</span></span><span class="line"><span class="cl">4: veth3adfd297@if3: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu <span class="m">1500</span> qdisc noqueue master cni0 state UP group default
 </span></span><span class="line"><span class="cl">    link/ether 96:4e:da:cb:0b:27 brd ff:ff:ff:ff:ff:ff link-netnsid <span class="m">0</span>
-</span></span><span class="line"><span class="cl">    inet6 fe80::944e:daff:fecb:b27/64 scope link 
+</span></span><span class="line"><span class="cl">    inet6 fe80::944e:daff:fecb:b27/64 scope link
 </span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 声明并启动容器，查看容器内的网络信息</span>
@@ -437,11 +437,11 @@
 </span></span><span class="line"><span class="cl">/ <span class="c1"># ip a</span>
 </span></span><span class="line"><span class="cl">1: lo: &lt;LOOPBACK&gt; mtu <span class="m">65536</span> qdisc noop qlen <span class="m">1000</span>
 </span></span><span class="line"><span class="cl">    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
-</span></span><span class="line"><span class="cl">3: eth0@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu <span class="m">1500</span> qdisc noqueue 
+</span></span><span class="line"><span class="cl">3: eth0@if4: &lt;BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN&gt; mtu <span class="m">1500</span> qdisc noqueue
 </span></span><span class="line"><span class="cl">    link/ether ee:0f:03:a0:22:b7 brd ff:ff:ff:ff:ff:ff
 </span></span><span class="line"><span class="cl">    inet 10.88.0.2/16 brd 10.88.255.255 scope global eth0
 </span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
-</span></span><span class="line"><span class="cl">    inet6 fe80::ec0f:3ff:fea0:22b7/64 scope link 
+</span></span><span class="line"><span class="cl">    inet6 fe80::ec0f:3ff:fea0:22b7/64 scope link
 </span></span><span class="line"><span class="cl">       valid_lft forever preferred_lft forever
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 清除接口</span>

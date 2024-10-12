@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      588 Words
+                      583 Words
                     
 
                   </div>
@@ -270,9 +270,9 @@
 <p>以下内容全部运行于 kubernetes 环境。</p>
 <h2 id="安装-openid-connect-provider">安装 OpenID Connect Provider</h2>
 <p>这里使用 dex 作为 OpenID Connect Provider 并且通过 helm 进行安装。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ helm repo add dex https://charts.dexidp.io
-</span></span><span class="line"><span class="cl">$ helm upgrade --install dex dex/dex --create-namespace --namespace dex
-</span></span><span class="line"><span class="cl">$ helm upgrade dex dex/dex --namespace dex --values dex.yaml
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">helm repo add dex https://charts.dexidp.io
+</span></span><span class="line"><span class="cl">helm upgrade --install dex dex/dex --create-namespace --namespace dex
+</span></span><span class="line"><span class="cl">helm upgrade dex dex/dex --namespace dex --values dex.yaml
 </span></span></code></pre></div><p><code>dex.yaml</code> 的主要内容是 dex 的配置文件，可以在这个文件中对资源进行更多定义。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">image</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="l">v2.38.0</span><span class="w">
@@ -284,34 +284,34 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">oauth2</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">skipApprovalScreen</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">responseTypes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s2">&#34;code&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;id_token&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;token&#34;</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">responseTypes</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;code&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;id_token&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;token&#34;</span><span class="p">]</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">alwaysShowLoginScreen</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">connectors</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ldap</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">ldap</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ldap</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">config</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">openldap-service.openldap-namespace:1389</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">insecureNoSSL</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">bindDN</span><span class="p">:</span><span class="w"> </span><span class="l">cn=users,dc=example,dc=com</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">bindPW</span><span class="p">:</span><span class="w"> </span><span class="l">password</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">usernamePrompt</span><span class="p">:</span><span class="w"> </span><span class="l">Username</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">userSearch</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">baseDN</span><span class="p">:</span><span class="w"> </span><span class="l">cn=users,dc=example,dc=com</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;(objectClass=person)&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">cn</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">idAttr</span><span class="p">:</span><span class="w"> </span><span class="l">uid</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">emailAttr</span><span class="p">:</span><span class="w"> </span><span class="l">mail</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">nameAttr</span><span class="p">:</span><span class="w"> </span><span class="l">name</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">preferredUsernameAttr</span><span class="p">:</span><span class="w"> </span><span class="l">cn</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">ldap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">ldap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ldap</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="l">openldap-service.openldap-namespace:1389</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">insecureNoSSL</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">bindDN</span><span class="p">:</span><span class="w"> </span><span class="l">cn=users,dc=example,dc=com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">bindPW</span><span class="p">:</span><span class="w"> </span><span class="l">password</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">usernamePrompt</span><span class="p">:</span><span class="w"> </span><span class="l">Username</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">userSearch</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">baseDN</span><span class="p">:</span><span class="w"> </span><span class="l">cn=users,dc=example,dc=com</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">filter</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;(objectClass=person)&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">username</span><span class="p">:</span><span class="w"> </span><span class="l">cn</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">idAttr</span><span class="p">:</span><span class="w"> </span><span class="l">uid</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">emailAttr</span><span class="p">:</span><span class="w"> </span><span class="l">mail</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">nameAttr</span><span class="p">:</span><span class="w"> </span><span class="l">name</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">preferredUsernameAttr</span><span class="p">:</span><span class="w"> </span><span class="l">cn</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">staticClients</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">oauth2-proxy</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">redirectURIs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="s1">&#39;http://app.lan/oauth2/callback&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;oauth2-proxy&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l">REDACTED</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">oauth2-proxy</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">redirectURIs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="s2">&#34;http://app.lan/oauth2/callback&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;oauth2-proxy&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">secret</span><span class="p">:</span><span class="w"> </span><span class="l">REDACTED</span><span class="w">
 </span></span></span></code></pre></div><p><code>v2.39.1</code> 版本的 dex 似乎无法正常实现 <code>skipApprovalScreen</code> 配置，降级到 <code>v2.38.0</code> 版本使用，可以参考这个 <a href="https://github.com/dexidp/dex/issues/3540">issue</a> 。</p>
 <p>具体的用户数据从 openldap 中获取，可以参考<a href="https://github.com/yuweizzz/devops-tools/tree/master/openldap">这里</a>快速搭建 openldap 。</p>
 <h2 id="安装-oauth2-proxy">安装 OAuth2 proxy</h2>

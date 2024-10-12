@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -277,7 +277,7 @@
 </span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 </span></span></code></pre></div><h2 id="使用-kaniko-构建镜像">使用 kaniko 构建镜像</h2>
 <p>kaniko 是 Google 开发的镜像构建工具，它的特点在于不需要守护进程，直接运行在容器或者 Kubernetes 集群。</p>
-<p>我们可以编写相关的 yaml 文件直接应用到 Kubernetes 集群中。</p>
+<p>我们可以编写相关的 YAML 文件直接应用到 Kubernetes 集群中。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># from https://github.com/GoogleContainerTools/kaniko</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
@@ -310,7 +310,7 @@
 </ul>
 <p>可以看到这个 pod 还额外挂载了 secret ，这部分其实是用来存放拉取源码和构建完成后推送镜像的一些认证信息。</p>
 <h3 id="通过-hostpath-进行本地构建">通过 hostPath 进行本地构建</h3>
-<p>以下是用来做本地测试时的 yaml 文件，需要注意只是用来测试 kaniko 的功能，在实际使用时应该确保 pod 可以正常调度到对应存放着源代码的节点上。</p>
+<p>以下是用来做本地测试时的 YAML 文件，需要注意只是用来测试 kaniko 的功能，在实际使用时应该确保 pod 可以正常调度到对应存放着源代码的节点上。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -339,7 +339,7 @@
 </ul>
 <p>虽然这里没有涉及 docker 镜像构建中的 <code>--build-arg</code> ，但是它在 kaniko 中同样支持，具体用法和 <code>docker build</code> 相似。</p>
 <details>
-  <summary>使用 <code>--build-arg</code> 的 yaml 文件参考</summary>
+  <summary>使用 <code>--build-arg</code> 的 YAML 文件参考</summary>
   <p></p>
   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Pod</span><span class="w">
@@ -350,7 +350,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">kaniko</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">gcr.io/kaniko-project/executor:latest</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># for build arg with space</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="c"># for build arg with space</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">IFS</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">args</span><span class="p">:</span><span class="w">
@@ -388,7 +388,7 @@
 <details>
   <summary>搭建 <code>docker registry</code> 的资源文件</summary>
   <p></p>
-  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># docker registry </span><span class="w">
+  <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># docker registry</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">apps/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Deployment</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -406,11 +406,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">registry</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">spec</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">containers</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">registry:latest</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">registry</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">configfile</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/docker/registry/</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">registry:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">registry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">volumeMounts</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">configfile</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">mountPath</span><span class="p">:</span><span class="w"> </span><span class="l">/etc/docker/registry/</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">volumes</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">configfile</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">configMap</span><span class="p">:</span><span class="w">
@@ -446,7 +446,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">Service</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">registry</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">registry</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">spec</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">selector</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app</span><span class="p">:</span><span class="w"> </span><span class="l">registry</span><span class="w">
@@ -458,7 +458,7 @@
   <p></p>
 </details>
 
-<p>docker registry 搭建完成后，我们只需要对前面的本地构建所使用的 yaml 做出一些小修改就可以，主要还是 kaniko 的运行参数：</p>
+<p>docker registry 搭建完成后，我们只需要对前面的本地构建所使用的 YAML 做出一些小修改就可以，主要还是 kaniko 的运行参数：</p>
 <ul>
 <li>不再需要 <code>&quot;--no-push&quot;</code> 。</li>
 <li>保存 tar 文件的参数 <code>&quot;--tar-path=/source/image.tar&quot;</code> 是可选项，按需选择保留或者去除。</li>
@@ -492,11 +492,11 @@
   <p></p>
 </details>
 
-<p>以下是一些可能用到的 docker registry api ：</p>
+<p>以下是一些可能用到的 docker registry API ：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查看仓库中的镜像信息</span>
 </span></span><span class="line"><span class="cl">curl <span class="s2">&#34;&lt;registry:5000&gt;/v2/_catalog&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 根据仓库给出的镜像信息，可以查到某个镜像所有的 tags </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 根据仓库给出的镜像信息，可以查到某个镜像所有的 tags</span>
 </span></span><span class="line"><span class="cl">curl <span class="s2">&#34;&lt;registry:5000&gt;/v2/&lt;project/image&gt;/tags/list&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 删除镜像时需要查询具体签名才能执行</span>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -323,7 +323,7 @@
 </span></span><span class="line"><span class="cl">root
 </span></span><span class="line"><span class="cl">$ cat /boot/config-3.10.0-1160.el7.x86_64 <span class="p">|</span> grep -i user_ns
 </span></span><span class="line"><span class="cl"><span class="nv">CONFIG_USER_NS</span><span class="o">=</span>y
-</span></span><span class="line"><span class="cl">$ cat /proc/sys/user/max_user_namespaces 
+</span></span><span class="line"><span class="cl">$ cat /proc/sys/user/max_user_namespaces
 </span></span><span class="line"><span class="cl"><span class="m">0</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 开放内核对命名空间的限制， unshare 才能正常创建 user 命名空间</span>
@@ -354,7 +354,7 @@
 </span></span><span class="line"><span class="cl">$ ctr c create docker.io/library/busybox:latest busybox
 </span></span><span class="line"><span class="cl">$ ctr t start -d busybox
 </span></span><span class="line"><span class="cl">$ ctr t ls
-</span></span><span class="line"><span class="cl">TASK         PID      STATUS    
+</span></span><span class="line"><span class="cl">TASK         PID      STATUS
 </span></span><span class="line"><span class="cl">busybox    <span class="m">61830</span>    RUNNING
 </span></span><span class="line"><span class="cl">$ lsns
 </span></span><span class="line"><span class="cl">        NS TYPE  NPROCS   PID USER   COMMAND
@@ -527,7 +527,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 不带 --runtime 会写入到独立的配置文件中，重启系统后也能生效</span>
 </span></span><span class="line"><span class="cl">$ systemctl set-property sshd <span class="nv">MemoryLimit</span><span class="o">=</span>50M
-</span></span><span class="line"><span class="cl">$ cat /etc/systemd/system/sshd.service.d/50-MemoryLimit.conf 
+</span></span><span class="line"><span class="cl">$ cat /etc/systemd/system/sshd.service.d/50-MemoryLimit.conf
 </span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nv">MemoryLimit</span><span class="o">=</span><span class="m">52428800</span>
 </span></span><span class="line"><span class="cl">

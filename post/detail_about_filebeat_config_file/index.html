@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3540 Words
+                      3544 Words
                     
 
                   </div>
@@ -248,96 +248,96 @@
 </span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
 </span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
 </span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-</span></span></code></pre></div><p>filebeat 用于收集和处理日志，是 Elastic Beats 开源组件中的关键一员，它通过 yaml 文件来控制具体的日志文件收集行为，这里会将 yaml 配置文件作为探讨的主题。</p>
+</span></span></code></pre></div><p>filebeat 用于收集和处理日志，是 Elastic Beats 开源组件中的关键一员，它通过 YAML 文件来控制具体的日志文件收集行为，这里会将 YAML 配置文件作为探讨的主题。</p>
 <p>在 Elastic 官方文件中， Beats 家族被定位为轻量级数据传输器，这里的轻量级主要是和 logstash 做比较，但它们的核心功能都是将源数据进行格式化处理后输出到目的端，所以它们的配置文件就相当于对管道进行配置，主要关心数据进入时和数据输出时的动作。</p>
 <h2 id="配置-input">配置 input</h2>
 <p>在 filebeat 中， input 来源非常丰富，可以是标准输入，具体文件，甚至是容器，网络流，对象存储等。我们这里以最常见的 <code>log</code> 为例，也就是将具体文件作为输入来进行基本配置定义。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
 </span></span></span></code></pre></div><p><code>log</code> 类型的列表项中 <code>path</code> 和 <code>exclude_files</code> 可以用来定义需要被 filebeat 收集的文件，默认会收集 <code>path</code> 中定义的所有文件路径中的文件， <code>exclude_files</code> 用来去掉通配路径中不需要的文件。</p>
 <h3 id="common-options">Common options</h3>
 <p>filebeat 将逻辑上的单条日志当作一个 event 来处理，并使用 <a href="https://www.elastic.co/guide/en/ecs/current/ecs-base.html">Elastic Common Schema</a> 来描述 event ，其中具体的日志内容的存储字段将是 <code>event.message</code> ，还会带有 <code>event.@timestamp</code> ， <code>event.tags</code> ， <code>event.labels</code> 这些元数据字段，而 inputs Common options 中的某些配置可以直接影响 event 中的字段内容。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span></code></pre></div><p><code>tags</code> 中的内容会直接出现在 <code>event.tags</code> 字段中，可以用于后续处理的重要标识。而 <code>fields</code> 和 <code>fields_under_root</code> 是关联出现的，如果 <code>fields_under_root</code> 为 false ，那么 <code>fields</code> 中的所有字段将直接出现在 <code>event.fields</code> 字段中，如果 <code>fields_under_root</code> 为 true ，那么 <code>fields</code> 中的每个子字段会成为 event 的根字段，并且遇到同名字段将以 <code>fields</code> 中定义的内容覆盖。</p>
 <h3 id="line-配置">line 配置</h3>
 <p>可以通过 <code>exclude_lines</code> 和 <code>include_lines</code> 来具体定义需要收集的内容，它们可以单独或同时出现，但是在同时出现时 <code>include_lines</code> 的优先级永远高于 <code>exclude_lines</code> 。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;^DBG&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;^ERR&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;^WARN&#34;</span><span class="p">]</span><span class="w">
 </span></span></span></code></pre></div><p>关于两者共存的逻辑，具体相关的代码部分是这样的：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">h</span> <span class="o">*</span><span class="nx">Harvester</span><span class="p">)</span> <span class="nf">shouldExportLine</span><span class="p">(</span><span class="nx">line</span> <span class="kt">string</span><span class="p">)</span> <span class="kt">bool</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">IncludeLines</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="p">!</span><span class="nx">harvester</span><span class="p">.</span><span class="nf">MatchAny</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">IncludeLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="c1">// drop line
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">return</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">		<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">ExcludeLines</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">harvester</span><span class="p">.</span><span class="nf">MatchAny</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">ExcludeLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="kc">false</span>
-</span></span><span class="line"><span class="cl">		<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">IncludeLines</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">!</span><span class="nx">harvester</span><span class="p">.</span><span class="nf">MatchAny</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">IncludeLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// drop line
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">ExcludeLines</span><span class="p">)</span> <span class="p">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">harvester</span><span class="p">.</span><span class="nf">MatchAny</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">ExcludeLines</span><span class="p">,</span> <span class="nx">line</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><h3 id="multiline-配置">multiline 配置</h3>
 <p>filebeat 还支持将多行日志聚合的功能，需要通过 multiline 相关配置来定义具体的行为。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">multiline.pattern</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;^\[&#39;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">multiline.negate</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">multiline.match</span><span class="p">:</span><span class="w"> </span><span class="l">after</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">multiline.pattern</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;^\[&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">multiline.negate</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">multiline.match</span><span class="p">:</span><span class="w"> </span><span class="l">after</span><span class="w">
 </span></span></span></code></pre></div><p><code>multiline.pattern</code> 用来定义正则表达式，用来定义需要匹配的行； <code>multiline.negate</code> 用来定义使用 <code>multiline.pattern</code> 进行匹配或者反选， <code>multiline.negate</code> 为 true 则为反选， <code>multiline.negate</code> 为 false 则为匹配； <code>multiline.match</code> 用来定义匹配值向前或者向后组合，具体值有 <code>before</code> 和 <code>after</code> 。</p>
 <p>它的具体工作模式是这样的：首先使用 <code>multiline.pattern</code> 进行逐行比较，根据 <code>multiline.negate</code> 判定该行是聚合行中的子行或者是聚合行的开始行，再根据 <code>multiline.match</code> 进行组合。</p>
 <p>示例中的表达式匹配了使用开头为 <code>[</code> 的行，由于它的 <code>multiline.negate</code> 为 true ，所以不以 <code>[</code> 开头的行被认为是聚合行中的子行，并且根据 <code>multiline.match</code> 的 <code>after</code> ，每次匹配到 <code>[</code> 之后，后续的子行会与它聚合为一行，直到下一符合 <code>[</code> 开头的行为止。</p>
 <h3 id="json-配置">json 配置</h3>
 <p><code>json</code> 配置可以使 filebeat 读取日志文件时将对应的日志内容解析为 json 格式。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;^DBG&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;^ERR&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;^WARN&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">json</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span></code></pre></div><p>它适用于日志文件本身就是单行 json 格式的场景，因为它默认的解析来源是 <code>event.message</code> 字段，不过这个来源可以通过 <code>message_key</code> 进行修改。其中参数 <code>keys_under_root</code> 和 <code>overwrite_keys</code> 的定义类似于 <code>fields_under_root</code> 的行为，如果成功解析日志，字段都会被添加到 event 中，且同名字段时也是采取覆盖操作。而 <code>add_error_key</code> 则会在解析日志失败时添加 <code>event.error</code> 字段并在其中加入报错信息。解析成功后，不会再出现 <code>event.message</code> 字段。</p>
 <h3 id="具体行为配置">具体行为配置</h3>
 <p>filebeat 可以通过某些配置项来定义对日志文件的具体操作细节：</p>
@@ -370,71 +370,71 @@
 <p>processor 可以用于处理 event 中的数据，它可以配置在各个 input 中独享，也可以在 inputs 之外配置并由所有 input 共享。 filebeat 会优先执行独享的 processors ，再执行共享配置的 processors 。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># input 独享 processors</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">processors</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;574734885120952459&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;^DBG&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;^ERR&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;^WARN&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">json</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">processors</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;574734885120952459&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># inputs 共享 processors</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">paths</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/messages</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="l">/var/log/*.log</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^DBG&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;^ERR&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;^WARN&#39;</span><span class="p">]</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">json</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/messages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">/var/log/*.log</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_files</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;\.gz$&#39;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;json&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">app_id</span><span class="p">:</span><span class="w"> </span><span class="l">query_engine_12</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">fields_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">exclude_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;^DBG&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">include_lines</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">&#34;^ERR&#34;</span><span class="p">,</span><span class="w"> </span><span class="s2">&#34;^WARN&#34;</span><span class="p">]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">json</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">add_fields</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">target</span><span class="p">:</span><span class="w"> </span><span class="l">project</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">myproject</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;574734885120952459&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;574734885120952459&#34;</span><span class="w">
 </span></span></span></code></pre></div><p>关于 processors 的运行顺序逻辑，具体相关的代码部分是这样的：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kd">type</span> <span class="nx">Processors</span> <span class="kd">struct</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">List</span> <span class="p">[]</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Processor</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">log</span>  <span class="o">*</span><span class="nx">logp</span><span class="p">.</span><span class="nx">Logger</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">List</span> <span class="p">[]</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Processor</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">log</span>  <span class="o">*</span><span class="nx">logp</span><span class="p">.</span><span class="nx">Logger</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="p">(</span><span class="nx">procs</span> <span class="o">*</span><span class="nx">Processors</span><span class="p">)</span> <span class="nf">Run</span><span class="p">(</span><span class="nx">event</span> <span class="o">*</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Event</span><span class="p">)</span> <span class="p">(</span><span class="o">*</span><span class="nx">beat</span><span class="p">.</span><span class="nx">Event</span><span class="p">,</span> <span class="kt">error</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">p</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">procs</span><span class="p">.</span><span class="nx">List</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">event</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">p</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="k">return</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed applying processor %v: %w&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="p">}</span>
-</span></span><span class="line"><span class="cl">		<span class="k">if</span> <span class="nx">event</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">			<span class="c1">// Drop.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>			<span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span>
-</span></span><span class="line"><span class="cl">		<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="k">return</span> <span class="nx">event</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl"> <span class="kd">var</span> <span class="nx">err</span> <span class="kt">error</span>
+</span></span><span class="line"><span class="cl"> <span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">p</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">procs</span><span class="p">.</span><span class="nx">List</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">event</span><span class="p">,</span> <span class="nx">err</span> <span class="p">=</span> <span class="nx">p</span><span class="p">.</span><span class="nf">Run</span><span class="p">(</span><span class="nx">event</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="k">return</span> <span class="nx">event</span><span class="p">,</span> <span class="nx">fmt</span><span class="p">.</span><span class="nf">Errorf</span><span class="p">(</span><span class="s">&#34;failed applying processor %v: %w&#34;</span><span class="p">,</span> <span class="nx">p</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="nx">event</span> <span class="o">==</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="c1">// Drop.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>   <span class="k">return</span> <span class="kc">nil</span><span class="p">,</span> <span class="kc">nil</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="nx">event</span><span class="p">,</span> <span class="kc">nil</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>以下会记录一些使用频率比较高的 processor 。</p>
 <h3 id="add_fields">add_fields</h3>
@@ -472,8 +472,8 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">processors</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">convert</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fields</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- {<span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;src_ip&#34;</span><span class="nt">, to</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;source.ip&#34;</span><span class="nt">, type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ip&#34;</span>}<span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- {<span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;src_port&#34;</span><span class="nt">, to</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;source.port&#34;</span><span class="nt">, type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;integer&#34;</span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- {<span class="w"> </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;src_ip&#34;</span><span class="nt">, to</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;source.ip&#34;</span><span class="nt">, type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;ip&#34;</span><span class="w"> </span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- {<span class="w"> </span><span class="nt">from</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;src_port&#34;</span><span class="nt">, to</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;source.port&#34;</span><span class="nt">, type</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;integer&#34;</span><span class="w"> </span>}<span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_missing</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fail_on_error</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span></code></pre></div><h3 id="dissect">dissect</h3>
@@ -493,7 +493,6 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">field</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;message&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_failure</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># final:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># {</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c">#   &#34;level&#34;: &#34;info&#34;,</span><span class="w">
@@ -505,7 +504,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># }</span><span class="w">
 </span></span></span></code></pre></div><p><code>dissect</code> 执行之后，原有的 <code>field</code> 还会保留，如果不再需要这个字段，需要显式调用 <code>drop_fields</code> 这个 processor 。</p>
 <h3 id="script">script</h3>
-<p><code>script</code> 可以使用 javascript 来处理 event ，已有的内置函数可以参考<a href="https://www.elastic.co/guide/en/beats/filebeat/current/processor-script.html">官方文档</a>。</p>
+<p><code>script</code> 可以使用 JavaScript 来处理 event ，已有的内置函数可以参考<a href="https://www.elastic.co/guide/en/beats/filebeat/current/processor-script.html">官方文档</a>。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># log_path: /var/log/info.log</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">

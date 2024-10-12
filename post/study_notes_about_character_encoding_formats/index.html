@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -283,81 +283,81 @@
 <p>utf-8 编码可以使用一到四个字节来表示单个字符，英文字符只需要用到一个字节，而中文字符一般要用到三个字节，这样看起来中文字符或者使用多字节表示的字符似乎会受到大小端问题的影响，实际上 utf-8 虽然也用到了多字节，但是不同于 utf-16 这样的编码方式， utf-16 因为用到了两个字节和四个字节来表示字符，在使用两个字节的情况下相当于直接使用类似于 <code>U+0000</code> 的 Unicode 码位，此时字节序就会明显影响读取值所指向的具体码位。而 utf-8 在多字节的情况下，则需要通过第一个字节判断出具体的使用的字节数量，然后顺序读取后续的数据将它们当作整块数据来处理。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="c1">// from Standard library unicode/utf8
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kd">func</span> <span class="nf">DecodeRune</span><span class="p">(</span><span class="nx">p</span> <span class="p">[]</span><span class="kt">byte</span><span class="p">)</span> <span class="p">(</span><span class="nx">r</span> <span class="kt">rune</span><span class="p">,</span> <span class="nx">size</span> <span class="kt">int</span><span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="mi">1</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">0</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// as 和 first 都是常量
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// const as = 0xF0
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// first 是记录了 utf-8 第一个字节编码情况的数组
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">p0</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">x</span> <span class="o">:=</span> <span class="nx">first</span><span class="p">[</span><span class="nx">p0</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 判断是否使用英文字符，即使用单个字节的情况
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="nx">as</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="c1">// The following code simulates an additional check for x == xx and
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// handling the ASCII and invalid cases accordingly. This mask-and-or
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="c1">// approach prevents an additional branch.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="nx">mask</span> <span class="o">:=</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span> <span class="c1">// Create 0x0000 or 0xFFFF.
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">&amp;^</span><span class="nx">mask</span> <span class="p">|</span> <span class="nx">RuneError</span><span class="o">&amp;</span><span class="nx">mask</span><span class="p">,</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 使用多字节的情况
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="c1">// 通过第一个字节判断具体使用的字节数量
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="nx">sz</span> <span class="o">:=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">x</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">accept</span> <span class="o">:=</span> <span class="nx">acceptRanges</span><span class="p">[</span><span class="nx">x</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="nx">sz</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">b1</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">b1</span> <span class="p">&lt;</span> <span class="nx">accept</span><span class="p">.</span><span class="nx">lo</span> <span class="o">||</span> <span class="nx">accept</span><span class="p">.</span><span class="nx">hi</span> <span class="p">&lt;</span> <span class="nx">b1</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 使用两个字节的情况
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">sz</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="p">{</span> <span class="c1">// &lt;= instead of == to help the compiler eliminate some bounds checks
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>		<span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">p0</span><span class="o">&amp;</span><span class="nx">mask2</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">6</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b1</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">),</span> <span class="mi">2</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">b2</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">b2</span> <span class="p">&lt;</span> <span class="nx">locb</span> <span class="o">||</span> <span class="nx">hicb</span> <span class="p">&lt;</span> <span class="nx">b2</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 使用三个字节的情况
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">if</span> <span class="nx">sz</span> <span class="o">&lt;=</span> <span class="mi">3</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">p0</span><span class="o">&amp;</span><span class="nx">mask3</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">12</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b1</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">6</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b2</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">),</span> <span class="mi">3</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">b3</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">b3</span> <span class="p">&lt;</span> <span class="nx">locb</span> <span class="o">||</span> <span class="nx">hicb</span> <span class="p">&lt;</span> <span class="nx">b3</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">1</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="c1">// 使用四个字节的情况
-</span></span></span><span class="line"><span class="cl"><span class="c1"></span>	<span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">p0</span><span class="o">&amp;</span><span class="nx">mask4</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">18</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b1</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">12</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b2</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">6</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b3</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">),</span> <span class="mi">4</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">n</span> <span class="o">:=</span> <span class="nb">len</span><span class="p">(</span><span class="nx">p</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="mi">1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">0</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// as 和 first 都是常量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="c1">// const as = 0xF0
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="c1">// first 是记录了 utf-8 第一个字节编码情况的数组
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nx">p0</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">x</span> <span class="o">:=</span> <span class="nx">first</span><span class="p">[</span><span class="nx">p0</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 判断是否使用英文字符，即使用单个字节的情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">if</span> <span class="nx">x</span> <span class="o">&gt;=</span> <span class="nx">as</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">// The following code simulates an additional check for x == xx and
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// handling the ASCII and invalid cases accordingly. This mask-and-or
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="c1">// approach prevents an additional branch.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="nx">mask</span> <span class="o">:=</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="mi">31</span> <span class="o">&gt;&gt;</span> <span class="mi">31</span> <span class="c1">// Create 0x0000 or 0xFFFF.
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">p</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span><span class="o">&amp;^</span><span class="nx">mask</span> <span class="p">|</span> <span class="nx">RuneError</span><span class="o">&amp;</span><span class="nx">mask</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 使用多字节的情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="c1">// 通过第一个字节判断具体使用的字节数量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="nx">sz</span> <span class="o">:=</span> <span class="nb">int</span><span class="p">(</span><span class="nx">x</span> <span class="o">&amp;</span> <span class="mi">7</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">accept</span> <span class="o">:=</span> <span class="nx">acceptRanges</span><span class="p">[</span><span class="nx">x</span><span class="o">&gt;&gt;</span><span class="mi">4</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">n</span> <span class="p">&lt;</span> <span class="nx">sz</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">b1</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">b1</span> <span class="p">&lt;</span> <span class="nx">accept</span><span class="p">.</span><span class="nx">lo</span> <span class="o">||</span> <span class="nx">accept</span><span class="p">.</span><span class="nx">hi</span> <span class="p">&lt;</span> <span class="nx">b1</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 使用两个字节的情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">if</span> <span class="nx">sz</span> <span class="o">&lt;=</span> <span class="mi">2</span> <span class="p">{</span> <span class="c1">// &lt;= instead of == to help the compiler eliminate some bounds checks
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>  <span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">p0</span><span class="o">&amp;</span><span class="nx">mask2</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">6</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b1</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">),</span> <span class="mi">2</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">b2</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">b2</span> <span class="p">&lt;</span> <span class="nx">locb</span> <span class="o">||</span> <span class="nx">hicb</span> <span class="p">&lt;</span> <span class="nx">b2</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 使用三个字节的情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">if</span> <span class="nx">sz</span> <span class="o">&lt;=</span> <span class="mi">3</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">p0</span><span class="o">&amp;</span><span class="nx">mask3</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">12</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b1</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">6</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b2</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">),</span> <span class="mi">3</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">b3</span> <span class="o">:=</span> <span class="nx">p</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">b3</span> <span class="p">&lt;</span> <span class="nx">locb</span> <span class="o">||</span> <span class="nx">hicb</span> <span class="p">&lt;</span> <span class="nx">b3</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="nx">RuneError</span><span class="p">,</span> <span class="mi">1</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="c1">// 使用四个字节的情况
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span> <span class="k">return</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">p0</span><span class="o">&amp;</span><span class="nx">mask4</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">18</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b1</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">12</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b2</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">)</span><span class="o">&lt;&lt;</span><span class="mi">6</span> <span class="p">|</span> <span class="nb">rune</span><span class="p">(</span><span class="nx">b3</span><span class="o">&amp;</span><span class="nx">maskx</span><span class="p">),</span> <span class="mi">4</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>这是用来测试的 utf-16 LE 编码转换为 utf-8 编码的代码：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-go" data-lang="go"><span class="line"><span class="cl"><span class="kn">package</span> <span class="nx">main</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kn">import</span> <span class="p">(</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;bufio&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;os&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;bufio&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;os&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;golang.org/x/text/encoding/unicode&#34;</span>
-</span></span><span class="line"><span class="cl">	<span class="s">&#34;golang.org/x/text/transform&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;golang.org/x/text/encoding/unicode&#34;</span>
+</span></span><span class="line"><span class="cl"> <span class="s">&#34;golang.org/x/text/transform&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">filename</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">filename</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nx">Args</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">file</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Open</span><span class="p">(</span><span class="nx">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nb">panic</span><span class="p">(</span><span class="nx">err</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">&#34;./convert_&#34;</span> <span class="o">+</span> <span class="nx">filename</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="k">defer</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">w</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewWriter</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">f</span><span class="p">,</span> <span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="s">&#34;./convert_&#34;</span> <span class="o">+</span> <span class="nx">filename</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="k">defer</span> <span class="nx">f</span><span class="p">.</span><span class="nf">Close</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">w</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewWriter</span><span class="p">(</span><span class="nx">f</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">	<span class="nx">scanner</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewScanner</span><span class="p">(</span><span class="nx">transform</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="nx">unicode</span><span class="p">.</span><span class="nf">UTF16</span><span class="p">(</span><span class="nx">unicode</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">,</span> <span class="nx">unicode</span><span class="p">.</span><span class="nx">UseBOM</span><span class="p">).</span><span class="nf">NewDecoder</span><span class="p">()))</span>
-</span></span><span class="line"><span class="cl">	<span class="k">for</span> <span class="nx">scanner</span><span class="p">.</span><span class="nf">Scan</span><span class="p">()</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">line</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">scanner</span><span class="p">.</span><span class="nf">Bytes</span><span class="p">(),</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">		<span class="nx">w</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">line</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl">	<span class="p">}</span>
-</span></span><span class="line"><span class="cl">	<span class="nx">w</span><span class="p">.</span><span class="nf">Flush</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">scanner</span> <span class="o">:=</span> <span class="nx">bufio</span><span class="p">.</span><span class="nf">NewScanner</span><span class="p">(</span><span class="nx">transform</span><span class="p">.</span><span class="nf">NewReader</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span> <span class="nx">unicode</span><span class="p">.</span><span class="nf">UTF16</span><span class="p">(</span><span class="nx">unicode</span><span class="p">.</span><span class="nx">LittleEndian</span><span class="p">,</span> <span class="nx">unicode</span><span class="p">.</span><span class="nx">UseBOM</span><span class="p">).</span><span class="nf">NewDecoder</span><span class="p">()))</span>
+</span></span><span class="line"><span class="cl"> <span class="k">for</span> <span class="nx">scanner</span><span class="p">.</span><span class="nf">Scan</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">line</span> <span class="o">:=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">scanner</span><span class="p">.</span><span class="nf">Bytes</span><span class="p">(),</span> <span class="p">[]</span><span class="nb">byte</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">)</span><span class="o">...</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nx">w</span><span class="p">.</span><span class="nf">Write</span><span class="p">(</span><span class="nx">line</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl"> <span class="nx">w</span><span class="p">.</span><span class="nf">Flush</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>这里其实是通过 utf-16 解码之后默认使用 utf-8 编码来实现的。如果想转换其他编码格式还需要重新定义编码器，使用新的编码器将 Scan 得到的数据转换为 string 类型写入。</p>
 <h2 id="常见语言的编码格式">常见语言的编码格式</h2>

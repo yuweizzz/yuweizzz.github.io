@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3293 Words
+                      3291 Words
                     
 
                   </div>
@@ -259,16 +259,16 @@
 <li>提交 (commit) ：可以视为整个代码仓库的不同版本，提交会推进仓库的版本更新。</li>
 </ul>
 <h2 id="创建并配置本地仓库">创建并配置本地仓库</h2>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nb">cd</span> repository
-</span></span><span class="line"><span class="cl">$ git init
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">cd</span> repository
+</span></span><span class="line"><span class="cl">git init
 </span></span></code></pre></div><p>这样 repository 目录就是一个 Git 本地仓库，后续用来添加项目代码文件。</p>
 <p>初始化仓库后，仓库会带有一些默认的配置，我们可以根据需要去查询或者修改。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># config -l用来查看仓库属性</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 如果要使用 github 的远程仓库，至少应该为仓库配置用户名和邮箱</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># --global 和 --local 可以用来设定属性是 git 全局属性还是单一仓库属性</span>
-</span></span><span class="line"><span class="cl">$ git config -l 
-</span></span><span class="line"><span class="cl">$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.name <span class="s2">&#34;your name&#34;</span> 
-</span></span><span class="line"><span class="cl">$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.email <span class="s2">&#34;your@email.com&#34;</span> 
+</span></span><span class="line"><span class="cl">$ git config -l
+</span></span><span class="line"><span class="cl">$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.name <span class="s2">&#34;your name&#34;</span>
+</span></span><span class="line"><span class="cl">$ git config <span class="o">[</span>--global<span class="p">|</span>--local<span class="o">]</span> user.email <span class="s2">&#34;your@email.com&#34;</span>
 </span></span></code></pre></div><h2 id="转换仓库中文件的状态">转换仓库中文件的状态</h2>
 <p>下面是一个 Git 仓库实例，基本覆盖了文件状态之间的转换：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git status
@@ -333,7 +333,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ git commit --amend <span class="o">[</span>&lt;msg&gt;<span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 修改上次 commit ，可以添加提交暂存区文件并修改上次 commit 说明信息</span>
-</span></span></code></pre></div><p>这样所有 staged 的文件就会被提交到一个新的版本库中了。我们还会得到一个 commit id ，这是非常重要的依据，后续版本库的管理都是基于 commit id 来实现的。</p>
+</span></span></code></pre></div><p>这样所有 staged 的文件就会被提交到一个新的版本库中了。我们还会得到一个 commit ID ，这是非常重要的依据，后续版本库的管理都是基于 commit ID 来实现的。</p>
 <p>带 &ndash;amend 的 commit 指令可以在一次提交后，追加位于暂存区的文件变动。使用这个命令后只会有一个提交，本次带 &ndash;amend 的提交将代替上一次提交的结果。如果暂存区是干净的，可以使用这个命令修改上次 commit 的说明信息。</p>
 <h2 id="对-commit-进行检查">对 commit 进行检查</h2>
 <p>在经过一定的开发时间后，仓库必然会产生很多 commit ，可以使用 log 和 diff 进行检查。</p>
@@ -342,7 +342,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ git show &lt;object&gt;
 </span></span><span class="line"><span class="cl"><span class="c1"># 用来查看 commit 的具体变动，默认为最近一次 commit 的详细信息</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 可以通过指定 commit id 来查看不同 commit </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 可以通过指定 commit id 来查看不同 commit</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ git reflog
 </span></span><span class="line"><span class="cl"><span class="c1"># 类似于 bash history，它会输出 commit 操作的历史记录，可以作为版本回退和误操作恢复的依据</span>
@@ -354,7 +354,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 除了用于 commit 外，还可以用来查看暂存区和工作区的文件变动</span>
 </span></span></code></pre></div><h2 id="回退-commit">回退 commit</h2>
 <p>如果需要撤消 commit ，恢复原有的代码版本，需要用到 reset 指令。</p>
-<p>在 reset 命令中，我们经常会看到 HEAD 的使用，它用来指向当前分支的最新 commit ，所以最新 commit 的上一个版本使用 HEAD^ 表示，上上一个版本使用 HEAD^^ 表示，这是一种便捷写法，使用对应 commit id 也是一样的效果。</p>
+<p>在 reset 命令中，我们经常会看到 HEAD 的使用，它用来指向当前分支的最新 commit ，所以最新 commit 的上一个版本使用 HEAD^ 表示，上上一个版本使用 HEAD^^ 表示，这是一种便捷写法，使用对应 commit ID 也是一样的效果。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># reset 的使用参数</span>
 </span></span><span class="line"><span class="cl">$ git reset <span class="o">[</span>--mixed <span class="p">|</span> --soft <span class="p">|</span> --hard <span class="p">|</span> --merge <span class="p">|</span> --keep<span class="o">]</span> <span class="o">[</span>-q<span class="o">]</span> <span class="o">[</span>&lt;commit&gt;<span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># --mixed               reset HEAD and index</span>
@@ -414,7 +414,7 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ git stash pop
 </span></span><span class="line"><span class="cl"><span class="c1"># 恢复已入栈的文件改动到工作区，默认会把工作区和暂存区的改动都恢复到工作区</span>
-</span></span><span class="line"><span class="cl">$ git stash pop --index 
+</span></span><span class="line"><span class="cl">$ git stash pop --index
 </span></span><span class="line"><span class="cl"><span class="c1"># 在默认的基础上，除了工作区的文件改动，还会将原来暂存区的改动恢复到暂存区</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">$ git stash drop <span class="o">[</span>&lt;stash&gt;<span class="o">]</span>

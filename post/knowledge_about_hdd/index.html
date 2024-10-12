@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -308,7 +308,7 @@
 </span></span><span class="line"><span class="cl">Disk /dev/sda: 10.7GB
 </span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B  <span class="c1"># 虚拟硬盘都是模拟的，模拟的设备一般都是原生的 512B 扇区大小</span>
 </span></span><span class="line"><span class="cl">Partition Table: msdos
-</span></span><span class="line"><span class="cl">Disk Flags: 
+</span></span><span class="line"><span class="cl">Disk Flags:
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Number  Start   End     Size    Type     File system     Flags
 </span></span><span class="line"><span class="cl"> <span class="m">1</span>      1049kB  525MB   524MB   primary  xfs             boot
@@ -316,12 +316,12 @@
 </span></span><span class="line"><span class="cl"> <span class="m">3</span>      1599MB  10.7GB  9138MB  primary  xfs
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 这是实机上运行的一块硬盘，它就是 512e 的硬盘</span>
-</span></span><span class="line"><span class="cl">$ parted -l 
+</span></span><span class="line"><span class="cl">$ parted -l
 </span></span><span class="line"><span class="cl">Model: ATA ST500LT012-9WS14 <span class="o">(</span>scsi<span class="o">)</span>
 </span></span><span class="line"><span class="cl">Disk /dev/sdb: 500GB
 </span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/4096B  <span class="c1"># 硬盘的物理扇区大小为 4096B ，逻辑扇区大小为 512B ，这是 512e 的 AF 硬盘</span>
 </span></span><span class="line"><span class="cl">Partition Table: msdos
-</span></span><span class="line"><span class="cl">Disk Flags: 
+</span></span><span class="line"><span class="cl">Disk Flags:
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Number  Start   End     Size    Type      File system  标志
 </span></span><span class="line"><span class="cl"> <span class="m">1</span>      1049kB  53.7GB  53.7GB  primary   ntfs
@@ -353,7 +353,7 @@
 </span></span><span class="line"><span class="cl">Disk /dev/sda: 10.7GB
 </span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
 </span></span><span class="line"><span class="cl">Partition Table: msdos  <span class="c1"># msdos 即为 MBR 分区格式</span>
-</span></span><span class="line"><span class="cl">Disk Flags: 
+</span></span><span class="line"><span class="cl">Disk Flags:
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Number  Start   End     Size    Type     File system     Flags
 </span></span><span class="line"><span class="cl"> <span class="m">1</span>      1049kB  525MB   524MB   primary  xfs             boot
@@ -361,12 +361,12 @@
 </span></span><span class="line"><span class="cl"> <span class="m">3</span>      1599MB  10.7GB  9138MB  primary  xfs
 </span></span><span class="line"><span class="cl"><span class="c1"># 这个硬盘由三个 primary 分区组成</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">$ parted -l 
+</span></span><span class="line"><span class="cl">$ parted -l
 </span></span><span class="line"><span class="cl">Model: ATA ST500LT012-9WS14 <span class="o">(</span>scsi<span class="o">)</span>
 </span></span><span class="line"><span class="cl">Disk /dev/sdb: 500GB
 </span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/4096B
 </span></span><span class="line"><span class="cl">Partition Table: msdos
-</span></span><span class="line"><span class="cl">Disk Flags: 
+</span></span><span class="line"><span class="cl">Disk Flags:
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Number  Start   End     Size    Type      File system  Flags
 </span></span><span class="line"><span class="cl"> <span class="m">1</span>      1049kB  53.7GB  53.7GB  primary   ntfs
@@ -386,7 +386,7 @@
 </span></span><span class="line"><span class="cl">Disk /dev/sdb: 12.9GB
 </span></span><span class="line"><span class="cl">Sector size <span class="o">(</span>logical/physical<span class="o">)</span>: 512B/512B
 </span></span><span class="line"><span class="cl">Partition Table: gpt
-</span></span><span class="line"><span class="cl">Disk Flags: 
+</span></span><span class="line"><span class="cl">Disk Flags:
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Number  Start   End     Size    File system  Name     Flags
 </span></span><span class="line"><span class="cl"> <span class="m">1</span>      1049kB  12.9GB  12.9GB               primary

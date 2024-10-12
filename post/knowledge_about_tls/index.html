@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -306,9 +306,9 @@
 </span></span><span class="line"><span class="cl">$ openssl x509 -req -sha256 -days <span class="m">365</span> -in request.csr -signkey key.pri -out ibm.crt
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 上述例子生成的证书就是 RSA 证书，下面的例子是生成 ECC 证书</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># 查看当前 openssl 版本支持的椭圆曲线 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 查看当前 openssl 版本支持的椭圆曲线</span>
 </span></span><span class="line"><span class="cl">$ openssl ecparam -list_curves
-</span></span><span class="line"><span class="cl"><span class="c1"># 一般使用 prime256v1 来生成私钥 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 一般使用 prime256v1 来生成私钥</span>
 </span></span><span class="line"><span class="cl">$ openssl ecparam -genkey -name prime256v1 -out key.pri
 </span></span><span class="line"><span class="cl">$ openssl req -new -sha256 -key key.pri <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span> -subj <span class="s2">&#34;/C=US/ST=IL/L=Chicago/O=IBM Corporation/OU=IBM Software Group/CN=www.ibm.com&#34;</span> -out request.csr
@@ -357,7 +357,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 可以看到实际的签发方式和使用 CN 的证书类似，但是使用了 x509 ext 字段，这样可以扩展证书的泛用性，匹配多个域名和 IP 地址</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 签发之后就可以在证书的 X509v3 extensions 看到这部分信息</span>
 </span></span></code></pre></div><p>通过信任上述例子中的 <code>CA.crt</code> ，后续如 <code>software.crt</code> 等由 <code>CA.crt</code> 签发的证书都是自动授信的。</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 CentOS 中添加信任 CA </span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 CentOS 中添加信任 CA</span>
 </span></span><span class="line"><span class="cl">$ mv TrustCA.crt /etc/pki/ca-trust/source/anchors/
 </span></span><span class="line"><span class="cl">$ update-ca-trust
 </span></span><span class="line"><span class="cl">
@@ -433,8 +433,8 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 字段之间使用 \t 隔开，即使某些字段不存在，比如吊销时间，也需要保留制表符</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 经过实践测试，最后的 CN 字段并不一定要与对应证书中的 CN 一致，但是在 index 中每行的 CN 都必须不同</span>
 </span></span><span class="line"><span class="cl">$ cat index.txt
-</span></span><span class="line"><span class="cl">V	340101075959Z		1	unknown	/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1
-</span></span><span class="line"><span class="cl">R	340101075959Z	240124135959Z	3	unknown	/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com2
+</span></span><span class="line"><span class="cl">V 340101075959Z  <span class="m">1</span> unknown /C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1
+</span></span><span class="line"><span class="cl">R 340101075959Z 240124135959Z <span class="m">3</span> unknown /C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com2
 </span></span><span class="line"><span class="cl"><span class="c1"># 需要注意有效证书记录中序列号字段前的制表符数量</span>
 </span></span><span class="line"><span class="cl">$ cat -T index.txt
 </span></span><span class="line"><span class="cl">V^I340101075959Z^I^I1^Iunknown^I/C<span class="o">=</span>CN/OU<span class="o">=</span>IBM Software Group/CN<span class="o">=</span>software.ibm.com1

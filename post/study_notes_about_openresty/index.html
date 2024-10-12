@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -404,7 +404,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1">-- out:</span>
 </span></span><span class="line"><span class="cl"><span class="c1">-- fghij</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1">-- 取完所有数据，后续的 get 和 tostring 都会返回 &#34;&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">-- 取完所有数据，后续的 get 和 tostring 都会返回 &#34;&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="kr">if</span> <span class="n">buffer</span><span class="p">:</span><span class="n">get</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="s2">&#34;&#34;</span> <span class="kr">then</span>
 </span></span><span class="line"><span class="cl">    <span class="n">print</span><span class="p">(</span><span class="s">[[get &#34;&#34;]]</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="c1">--- out:</span>
@@ -545,7 +545,7 @@
 </ol>
 </blockquote>
 <p>正常设置环境变量后，可以通过 <code>prove -Itest-nginx/lib -r t/plugin/file.t</code> 指定要运行的测试文件。其中 <code>TEST_NGINX_BINARY=/usr/local/bin/openresty</code> 可以通过主动声明 openresty 的可执行路径 <code>export PATH=/usr/local/openresty/nginx/sbin:$PATH</code> 替换，无须每次运行时再次声明。</p>
-<p>测试过程经常会涉及一些资源创建和变更，以下是控制平面的一些常用的 api 收集：</p>
+<p>测试过程经常会涉及一些资源创建和变更，以下是控制平面的一些常用的 API 收集：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在 admin key 不再使用默认值，而是运行时生成后，需要使用这个命令获取</span>
 </span></span><span class="line"><span class="cl"><span class="nv">admin_key</span><span class="o">=</span><span class="k">$(</span>yq <span class="s1">&#39;.deployment.admin.admin_key[0].key&#39;</span> conf/config.yaml <span class="p">|</span> sed <span class="s1">&#39;s/&#34;//g&#39;</span><span class="k">)</span>
 </span></span><span class="line"><span class="cl">

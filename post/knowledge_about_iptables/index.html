@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -304,19 +304,19 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 不指定 -t 选项，默认查询 filter 表的规则</span>
 </span></span><span class="line"><span class="cl">$ iptables -L -n --line-numbers
 </span></span><span class="line"><span class="cl">Chain INPUT <span class="o">(</span>policy ACCEPT<span class="o">)</span>
-</span></span><span class="line"><span class="cl">num  target     prot opt <span class="nb">source</span>               destination         
-</span></span><span class="line"><span class="cl"><span class="m">1</span>    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           state RELATED,ESTABLISHED 
-</span></span><span class="line"><span class="cl"><span class="m">2</span>    ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0           
-</span></span><span class="line"><span class="cl"><span class="m">3</span>    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           
-</span></span><span class="line"><span class="cl"><span class="m">4</span>    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           state NEW tcp dpt:22 
-</span></span><span class="line"><span class="cl"><span class="m">5</span>    REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited 
+</span></span><span class="line"><span class="cl">num  target     prot opt <span class="nb">source</span>               destination
+</span></span><span class="line"><span class="cl"><span class="m">1</span>    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0           state RELATED,ESTABLISHED
+</span></span><span class="line"><span class="cl"><span class="m">2</span>    ACCEPT     icmp --  0.0.0.0/0            0.0.0.0/0
+</span></span><span class="line"><span class="cl"><span class="m">3</span>    ACCEPT     all  --  0.0.0.0/0            0.0.0.0/0
+</span></span><span class="line"><span class="cl"><span class="m">4</span>    ACCEPT     tcp  --  0.0.0.0/0            0.0.0.0/0           state NEW tcp dpt:22
+</span></span><span class="line"><span class="cl"><span class="m">5</span>    REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Chain FORWARD <span class="o">(</span>policy ACCEPT<span class="o">)</span>
-</span></span><span class="line"><span class="cl">num  target     prot opt <span class="nb">source</span>               destination         
-</span></span><span class="line"><span class="cl"><span class="m">1</span>    REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited 
+</span></span><span class="line"><span class="cl">num  target     prot opt <span class="nb">source</span>               destination
+</span></span><span class="line"><span class="cl"><span class="m">1</span>    REJECT     all  --  0.0.0.0/0            0.0.0.0/0           reject-with icmp-host-prohibited
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">Chain OUTPUT <span class="o">(</span>policy ACCEPT<span class="o">)</span>
-</span></span><span class="line"><span class="cl">num  target     prot opt <span class="nb">source</span>               destination         
+</span></span><span class="line"><span class="cl">num  target     prot opt <span class="nb">source</span>               destination
 </span></span></code></pre></div><p>规则是以 IP 地址为基本匹配条件的，比较常见的响应动作有 <code>ACCEPT</code> ， <code>REJECT</code> ， <code>DROP</code> ， <code>LOG</code> ， <code>DNAT</code> ， <code>SNAT</code> ， <code>REDIRECT</code> 和 <code>MASQUERADE</code> 这几种，它们基本都出现在 <code>nat</code> 表和 <code>filter</code> 表中：</p>
 <ul>
 <li>
@@ -377,7 +377,7 @@
 <p>limit 模块可以限制报文的入站速率，通过时间单位来限制某种数据包的入站数量。一般用法是 <code>-m limit --limit 100/{ second | minute | hour | day } --limit-burst 5</code> 。这个模块使用了令牌桶算法， &ndash;limit 是令牌的生成速率， &ndash;limit-burst 是令牌桶的上限，默认为 5 ，它是用来限制峰值的数值，会在令牌被使用后按照给定的速率填充。</p>
 </li>
 <li>
-<p>connlimit 模块可以限制 IP 地址到本机的连接数量，比如 <code>-m connlimit --connlimit-above 3 -p tcp --dport 22</code> 可以限制单个 IP 地址到本机的 ssh 链接只能在 3 个以内，如果不指定 IP ，对所有 IP 都会进行限制； <code>-m connlimit --connlimit-above 3  --connlimit-mask 24</code> 会限制整个网段的连接数量， 24 代表掩码的位数，可以把一个网段内所有 IP 连接限制在 3 个以下。</p>
+<p>connlimit 模块可以限制 IP 地址到本机的连接数量，比如 <code>-m connlimit --connlimit-above 3 -p tcp --dport 22</code> 可以限制单个 IP 地址到本机的 SSH 链接只能在 3 个以内，如果不指定 IP ，对所有 IP 都会进行限制； <code>-m connlimit --connlimit-above 3  --connlimit-mask 24</code> 会限制整个网段的连接数量， 24 代表掩码的位数，可以把一个网段内所有 IP 连接限制在 3 个以下。</p>
 </li>
 <li>
 <p>state 模块可以监控数据包的状态，通过状态进行对应匹配动作。这个状态并不是 tcp 协议的连接状态，而是独有的一种状态分类，对各种协议均有效。它一共有 <code>NEW</code> ， <code>ESTABLISHED</code> ， <code>INVALID</code> ， <code>RELATED</code> ， <code>UNTRACKED</code> 五种状态。其中 <code>NEW</code> 用来代表第一次到达本机的数据包； <code>ESTABLISHED</code> 用来代表已经通过一次 iptables 的数据包，比如本机向外发出请求，外部响应发回的数据包； <code>RELATED</code> 用来代表数据包不是主动入站或出站，而是通过其他连接发起的数据包，有时我们连接一项服务，这些服务主动发起新连接就属于这种状态； <code>INVALID</code> 用来代表无法确定状态的数据包，一般会被直接丢弃； <code>UNTRACKED</code> 用来代表无法追踪的数据包。具体用例为 <code>-m state --state NEW,ESTABLISHED</code> 。</p>

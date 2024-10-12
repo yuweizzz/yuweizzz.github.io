@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -398,52 +398,52 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">clone</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.gitInitImage)&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">env</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">HOME</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.userHome)&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_URL</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.url)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_REVISION</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.revision)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_REFSPEC</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.refspec)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_SUBMODULES</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.submodules)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_DEPTH</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.depth)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_SSL_VERIFY</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.sslVerify)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_CRT_FILENAME</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.crtFileName)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_SUBDIRECTORY</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.subdirectory)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_DELETE_EXISTING</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.deleteExisting)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_HTTP_PROXY</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.httpProxy)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_HTTPS_PROXY</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.httpsProxy)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_NO_PROXY</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.noProxy)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_VERBOSE</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.verbose)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_SPARSE_CHECKOUT_DIRECTORIES</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.sparseCheckoutDirectories)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_USER_HOME</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.userHome)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_OUTPUT_PATH</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.output.path)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_SSH_DIRECTORY_BOUND</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.ssh-directory.bound)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_SSH_DIRECTORY_PATH</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.ssh-directory.path)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_BASIC_AUTH_DIRECTORY_BOUND</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.basic-auth.bound)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_BASIC_AUTH_DIRECTORY_PATH</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.basic-auth.path)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_SSL_CA_DIRECTORY_BOUND</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.ssl-ca-directory.bound)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_SSL_CA_DIRECTORY_PATH</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.ssl-ca-directory.path)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">HOME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;$(params.userHome)&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_URL</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.url)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_REVISION</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.revision)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_REFSPEC</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.refspec)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_SUBMODULES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.submodules)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_DEPTH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.depth)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_SSL_VERIFY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.sslVerify)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_CRT_FILENAME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.crtFileName)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_SUBDIRECTORY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.subdirectory)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_DELETE_EXISTING</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.deleteExisting)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_HTTP_PROXY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.httpProxy)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_HTTPS_PROXY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.httpsProxy)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_NO_PROXY</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.noProxy)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_VERBOSE</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.verbose)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_SPARSE_CHECKOUT_DIRECTORIES</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.sparseCheckoutDirectories)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">PARAM_USER_HOME</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.userHome)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_OUTPUT_PATH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.output.path)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_SSH_DIRECTORY_BOUND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.ssh-directory.bound)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_SSH_DIRECTORY_PATH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.ssh-directory.path)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_BASIC_AUTH_DIRECTORY_BOUND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.basic-auth.bound)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_BASIC_AUTH_DIRECTORY_PATH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.basic-auth.path)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_SSL_CA_DIRECTORY_BOUND</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.ssl-ca-directory.bound)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">WORKSPACE_SSL_CA_DIRECTORY_PATH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(workspaces.ssl-ca-directory.path)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        #!/usr/bin/env sh
 </span></span></span><span class="line"><span class="cl"><span class="sd">        set -eu
@@ -518,7 +518,7 @@
   <p></p>
 </details>
 
-<p>添加 task 后，需要通过 taskrun 对这个 task 进行引用，除了 taskrun 之外还需要配置其他的 resource 和 git clone 密钥。</p>
+<p>添加 task 后，需要通过 taskrun 对这个 task 进行引用，除了 taskrun 之外还需要配置其他的 resource 和 Git clone 密钥。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># taskrun.yaml</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1beta1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">TaskRun</span><span class="w">
@@ -588,25 +588,25 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-code</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ssh-directory</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">tasks</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">clone</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-clone</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">params</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.git-url)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">output</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">source-code</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ssh-directory</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">ssh-directory</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">check</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">taskSpec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">steps</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ls-file</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">cgr.dev/chainguard/busybox:latest</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">ls $(workspaces.source-code.path)</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runAfter</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">clone</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">clone</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">taskRef</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-clone</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">params</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">url</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(params.git-url)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">output</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">source-code</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ssh-directory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">workspace</span><span class="p">:</span><span class="w"> </span><span class="l">ssh-directory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">check</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">taskSpec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ls-file</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l">cgr.dev/chainguard/busybox:latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">script</span><span class="p">:</span><span class="w"> </span><span class="l">ls $(workspaces.source-code.path)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">runAfter</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">clone</span><span class="w">
 </span></span></span></code></pre></div><p>这个 pipelinerun 中的 output workspace 不再使用固定的 PersistentVolumeClaim 资源，而是声明了 Template 并在每次运行时遵循这个 Template 来创建新的 PersistentVolumeClaim 资源。而 Secret 则延用了原先的 deploy-ssh-credentials 。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">tekton.dev/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">PipelineRun</span><span class="w">
@@ -656,22 +656,22 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">pipelineRef</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-pipeline</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">params</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-url</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(tt.params.git-url)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">git-url</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">value</span><span class="p">:</span><span class="w"> </span><span class="l">$(tt.params.git-url)</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">workspaces</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-code</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">volumeClaimTemplate</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">spec</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">              </span>- <span class="l">ReadWriteOnce</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">requests</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">50Mi</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l">local-path</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">volumeMode</span><span class="p">:</span><span class="w"> </span><span class="l">Filesystem</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ssh-directory</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">secret</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">deploy-ssh-credentials</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">source-code</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">volumeClaimTemplate</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">spec</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">accessModes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span>- <span class="l">ReadWriteOnce</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                  </span><span class="nt">requests</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                    </span><span class="nt">storage</span><span class="p">:</span><span class="w"> </span><span class="l">50Mi</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">storageClassName</span><span class="p">:</span><span class="w"> </span><span class="l">local-path</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">                </span><span class="nt">volumeMode</span><span class="p">:</span><span class="w"> </span><span class="l">Filesystem</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">ssh-directory</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">            </span><span class="nt">secret</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">              </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">deploy-ssh-credentials</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">triggers.tekton.dev/v1alpha1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">TriggerBinding</span><span class="w">
@@ -690,7 +690,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">serviceAccountName</span><span class="p">:</span><span class="w"> </span><span class="l">my-tekton-triggers-sa</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">triggers</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">bindings</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l">my-triggerbinding</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l">my-triggerbinding</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">template</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l">my-triggertemplate</span><span class="w">
 </span></span></span></code></pre></div><p>因为执行过程会触发资源创建，所以需要赋予特定的 rbac 权限， tekton triggers 安装时默认生成了相关的 ClusterRole ，我们只需要创建对应的 ServiceAccount 来引用它们就可以了。</p>
@@ -704,8 +704,8 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-eventlistener-rolebinding</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">subjects</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-tekton-triggers-sa</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-tekton-triggers-sa</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">roleRef</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
@@ -716,14 +716,14 @@
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-eventlistener-clusterrolebinding</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">subjects</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-tekton-triggers-sa</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ServiceAccount</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">my-tekton-triggers-sa</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">roleRef</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">apiGroup</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">tekton-triggers-eventlistener-clusterroles</span><span class="w">
 </span></span></span></code></pre></div><details>
-  <summary>具体 ClusterRole 的 yaml 文件参考</summary>
+  <summary>具体 ClusterRole 的 YAML 文件参考</summary>
   <p></p>
   <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">metadata</span><span class="p">:</span><span class="w">
@@ -732,47 +732,47 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l">tekton-triggers</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">tekton-triggers-eventlistener-roles</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">triggers.tekton.dev</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">eventlisteners</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">triggerbindings</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">interceptors</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">triggertemplates</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">triggers</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">configmaps</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">tekton.dev</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">pipelineruns</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">pipelineresources</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">taskruns</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">create</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">serviceaccounts</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">impersonate</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">events</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">create</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">patch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">triggers.tekton.dev</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">eventlisteners</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">triggerbindings</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">interceptors</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">triggertemplates</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">triggers</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">configmaps</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">tekton.dev</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">pipelineruns</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">pipelineresources</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">taskruns</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">create</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">serviceaccounts</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">impersonate</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">events</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">create</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">patch</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">rbac.authorization.k8s.io/v1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">ClusterRole</span><span class="w">
@@ -782,23 +782,23 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">app.kubernetes.io/part-of</span><span class="p">:</span><span class="w"> </span><span class="l">tekton-triggers</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">tekton-triggers-eventlistener-clusterroles</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">rules</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">triggers.tekton.dev</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">clustertriggerbindings</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">clusterinterceptors</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w"></span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="s2">&#34;&#34;</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">resources</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">secrets</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">get</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">list</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">triggers.tekton.dev</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">clustertriggerbindings</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">clusterinterceptors</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">apiGroups</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="s2">&#34;&#34;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">resources</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">secrets</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">verbs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">get</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">list</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">watch</span><span class="w">
 </span></span></span></code></pre></div>
   <p></p>
 </details>

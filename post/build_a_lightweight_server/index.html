@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -278,48 +278,48 @@
 <p>这里涉及了一些硬件嵌入式开发的知识，但是单从 Linux 系统的角度上看， eMMC ROM 就是作为系统盘的块设备，执行 U 盘中的安装脚本只是跳过了常规的系统安装步骤，直接将完整的系统数据写入 eMMC ROM 中，后续主机就可以从 eMMC ROM 中的系统启动。</p>
 <p>最终使用的镜像为 Armbian 20.12 Buster with Linux 5.9.0-rc7-aml-s812 。</p>
 <h2 id="修改网络环境">修改网络环境</h2>
-<p>现有的环境下家庭宽带申请公网 ip 地址比较困难，最终决定直接使用 ipv6 来实现公网访问。</p>
+<p>现有的环境下家庭宽带申请公网 ip 地址比较困难，最终决定直接使用 IPv6 来实现公网访问。</p>
 <h3 id="组网方案">组网方案</h3>
 <p>原有的网络设定是光猫直接使用路由模式，路由器接入光猫千兆口作为子设备，上网设备直接接入路由器，这是比较普遍的家庭宽带组网方案。</p>
 <p>新的组网方案使用了光猫桥接和路由器拨号的组合模式。</p>
 <p>光猫桥接部分需要设置的东西比较少，只需要将光猫的因特网接口从路由模式更改为桥接模式即可，桥接后光猫主要承担光电转换的工作。</p>
-<p>路由器拨号部分需要修改路由器的 wan 口设置，使用原有光猫宽带账号进行 pppoe 拨号上网，同时启用 ipv6 wan ，并且设置 wan 口向运营商上游索取 ipv6 地址的方式，这样 wan 口就可以拿到运营商分配的 ipv6 地址，它通常是 64 位掩码的。</p>
-<p>在拿到运营商分配的 ipv6 地址之后，wan 口设置打开 prefix delegation 和 Rapid-commit ， lan 口设置关闭 DHCPv6 功能，开启 ipv6 radvd 服务。</p>
-<p>完成了上述设置后，内网的支持 ipv6 的所有设备就都拥有了理论上全球可通信的 ipv6 地址。</p>
-<h3 id="ipv6-理论知识">ipv6 理论知识</h3>
-<p>在 ipv6 中主要有 SLAAC 和 DHCPv6 两种地址获取方式，其中 DHCPv6 可以继续细分为 stateless 和 stateful 方式，以实际测试的情况来看，路由器使用任一方式都可以正常拿到 ipv6 地址。</p>
+<p>路由器拨号部分需要修改路由器的 wan 口设置，使用原有光猫宽带账号进行 pppoe 拨号上网，同时启用 IPv6 wan ，并且设置 wan 口向运营商上游索取 IPv6 地址的方式，这样 wan 口就可以拿到运营商分配的 IPv6 地址，它通常是 64 位掩码的。</p>
+<p>在拿到运营商分配的 IPv6 地址之后，wan 口设置打开 prefix delegation 和 Rapid-commit ， lan 口设置关闭 DHCPv6 功能，开启 IPv6 radvd 服务。</p>
+<p>完成了上述设置后，内网的支持 IPv6 的所有设备就都拥有了理论上全球可通信的 IPv6 地址。</p>
+<h3 id="ipv6-理论知识">IPv6 理论知识</h3>
+<p>在 IPv6 中主要有 SLAAC 和 DHCPv6 两种地址获取方式，其中 DHCPv6 可以继续细分为 stateless 和 stateful 方式，以实际测试的情况来看，路由器使用任一方式都可以正常拿到 IPv6 地址。</p>
 <p>SLAAC 的一些相关名词的详细信息如下：</p>
 <ul>
-<li>SLAAC ：全称为 Stateless Address AutoConfiguration ，也就是无状态自动地址配置，它是 ipv6 的一大特色，可以为接入 ipv6 网络的设备自动配置 ipv6 地址。</li>
+<li>SLAAC ：全称为 Stateless Address AutoConfiguration ，也就是无状态自动地址配置，它是 IPv6 的一大特色，可以为接入 IPv6 网络的设备自动配置 IPv6 地址。</li>
 <li>NDP ：全称为 Neighbor Discovery Protocol ，也就是邻居发现协议， SLAAC 就是由这个协议提供的功能实现。</li>
 <li>RA ：全称为 Router Solicitation ，也就是路由协定请求，是由 NDP 实现的报文。</li>
 <li>RS ：全称为 Router Advertisement ，也就是路由通告，同样是由 NDP 实现的报文，作为 RA 报文的响应。</li>
 </ul>
-<p>一般的 SLAAC 过程是这样的：假设我们的 ipv6 网络已经架设完成，那么新设备接入网络时会根据 NDP 协议定义向网络内的路由器发起 RS 协商请求，等待来自路由器的 RA 响应，最重要的响应信息其实是 ipv6 的子网前缀，新设备再按照这个信息生成自身的 ipv6 地址，成功接入网络，完成地址配置。</p>
-<p>DHCPv6 则是类似于传统 DHCP 服务的 ipv6 实现，同时拥有一些 ipv6 独有的功能，比如前缀代理 prefix delegation 就是 DHCPv6 的特色功能，简称为 DHCPv6-PD 。而 Rapid-commit 是 DHCPv6 的功能选项，用来支持 DHCP 地址快速分配。</p>
+<p>一般的 SLAAC 过程是这样的：假设我们的 IPv6 网络已经架设完成，那么新设备接入网络时会根据 NDP 协议定义向网络内的路由器发起 RS 协商请求，等待来自路由器的 RA 响应，最重要的响应信息其实是 IPv6 的子网前缀，新设备再按照这个信息生成自身的 IPv6 地址，成功接入网络，完成地址配置。</p>
+<p>DHCPv6 则是类似于传统 DHCP 服务的 IPv6 实现，同时拥有一些 IPv6 独有的功能，比如前缀代理 prefix delegation 就是 DHCPv6 的特色功能，简称为 DHCPv6-PD 。而 Rapid-commit 是 DHCPv6 的功能选项，用来支持 DHCP 地址快速分配。</p>
 <p>DHCPv6-PD 可以认为是划分下属子网并进行前缀下发的服务，在前述的拨号过程中，由于已经开启了 wan 口的 PD 功能，它就会作为客户端，向运营商获取子网前缀，然后在这个子网前缀允许的范围内再次划分子网，向下属的 lan 口进行派发。</p>
-<p>DHCPv6-PD 的意义在于路由自动协商，在路由器开启 PD 之后，运营商是 DHCPv6-PD 服务端，路由器是运营商服务端的直接客户端，路由器下联设备是运营商服务端的间接客户端，当路由器拿到运营商分配的子网前缀，它继续下发到设备的子网前缀信息会自动添加到运营商服务端的静态路由中，这也是子网设备能够全球访问的原因，如果路由器不开启 PD ，则 wan 口可以正常获取到 ipv6 但不进行子网前缀下发，内网设备只能通过保留回环进行 ipv6 通信，这时 lan 口的 DHCPv6 服务就显得无关紧要，因为它分配的网络只在本地局域网可用，不会通告给运营商，公网环境没有到达这个子网的路由。</p>
-<p>ipv6 radvd 服务用于辅助 SLAAC 地址获取，但是需要注意不开启这个服务设备仍然可以正常获取 ipv6 ，它的存在意义在于它会主动向网络链路中的设备广播 RA 报文，这样在 pppoe 重新拨号后， ipv6 地址的子网前缀改变，所有内网设备也会收到 RA 报文并重新配置地址，否则只能等待设备主动发起 RS 或者 DHCP 才能获取到新的 ipv6 地址。</p>
-<p>前面还讲到 DHCPv6 细分为 stateless 和 stateful 方式，实际上是这两种方法主要是网络参数的获取差异，其中 stateful 方式的 ipv6 地址， DNS 地址等网络参数都从 DHCP 服务器获取，而 stateless 方式的 ipv6 地址是从 RA 通告报文中获取子网前缀并自行生成， DNS 地址等网络参数仍然从 DHCP 服务器获取，决定使用何种获取方式完全由 RA 报文的标识决定，在使用硬件路由的情况下是很难直接改变的。</p>
+<p>DHCPv6-PD 的意义在于路由自动协商，在路由器开启 PD 之后，运营商是 DHCPv6-PD 服务端，路由器是运营商服务端的直接客户端，路由器下联设备是运营商服务端的间接客户端，当路由器拿到运营商分配的子网前缀，它继续下发到设备的子网前缀信息会自动添加到运营商服务端的静态路由中，这也是子网设备能够全球访问的原因，如果路由器不开启 PD ，则 wan 口可以正常获取到 IPv6 但不进行子网前缀下发，内网设备只能通过保留回环进行 IPv6 通信，这时 lan 口的 DHCPv6 服务就显得无关紧要，因为它分配的网络只在本地局域网可用，不会通告给运营商，公网环境没有到达这个子网的路由。</p>
+<p>IPv6 radvd 服务用于辅助 SLAAC 地址获取，但是需要注意不开启这个服务设备仍然可以正常获取 IPv6 ，它的存在意义在于它会主动向网络链路中的设备广播 RA 报文，这样在 pppoe 重新拨号后， IPv6 地址的子网前缀改变，所有内网设备也会收到 RA 报文并重新配置地址，否则只能等待设备主动发起 RS 或者 DHCP 才能获取到新的 IPv6 地址。</p>
+<p>前面还讲到 DHCPv6 细分为 stateless 和 stateful 方式，实际上是这两种方法主要是网络参数的获取差异，其中 stateful 方式的 IPv6 地址， DNS 地址等网络参数都从 DHCP 服务器获取，而 stateless 方式的 IPv6 地址是从 RA 通告报文中获取子网前缀并自行生成， DNS 地址等网络参数仍然从 DHCP 服务器获取，决定使用何种获取方式完全由 RA 报文的标识决定，在使用硬件路由的情况下是很难直接改变的。</p>
 <h3 id="实际表现">实际表现</h3>
-<p>我的个人 Win10 电脑在网络环境设置完成后，在默认设置开启了 DHCP 的情况下，拿到了三个 ipv6 地址：</p>
+<p>我的个人 Win10 电脑在网络环境设置完成后，在默认设置开启了 DHCP 的情况下，拿到了三个 IPv6 地址：</p>
 <ul>
-<li>第一个地址是通过 SLAAC 获取的地址， SLAAC 一般会使用网卡 mac 地址或者网络接口的随机 id 来组合子网前缀生成 ipv6 地址， Win10 使用了随机 id 和子网前缀来生成。</li>
-<li>第二个地址是通过 DHCP 获取的地址， DNS 服务器地址也是在这一步获取的，由于我所有的内网设备只有 Win10 开启了 DHCP ，所以这个地址是 ipv6 局域网子网前缀下的第一个 ip 。</li>
-<li>第三个地址是随机生成的临时地址，这是 ipv6 为了隐私安全设定的标准，会基于 SLAAC 的地址额外生成临时地址，用于对外主动通信，它的使用优先级是最高的。</li>
+<li>第一个地址是通过 SLAAC 获取的地址， SLAAC 一般会使用网卡 mac 地址或者网络接口的随机 ID 来组合子网前缀生成 IPv6 地址， Win10 使用了随机 ID 和子网前缀来生成。</li>
+<li>第二个地址是通过 DHCP 获取的地址， DNS 服务器地址也是在这一步获取的，由于我所有的内网设备只有 Win10 开启了 DHCP ，所以这个地址是 IPv6 局域网子网前缀下的第一个 ip 。</li>
+<li>第三个地址是随机生成的临时地址，这是 IPv6 为了隐私安全设定的标准，会基于 SLAAC 的地址额外生成临时地址，用于对外主动通信，它的使用优先级是最高的。</li>
 </ul>
-<p>我的玩客云 Linux 设备在网络环境设置完成后，拿到了一个 ipv6 地址：</p>
+<p>我的玩客云 Linux 设备在网络环境设置完成后，拿到了一个 IPv6 地址：</p>
 <ul>
 <li>唯一的地址是通过 SLAAC 获取的，使用了网卡 mac 地址和子网前缀来生成。</li>
 </ul>
-<p>在 Linux 中， ipv6 地址的生成方式是依赖于内核参数的：</p>
+<p>在 Linux 中， IPv6 地址的生成方式是依赖于内核参数的：</p>
 <ul>
 <li><code>net.ipv6.conf.eth0.autoconf</code> ：参数为 0 代表禁用 SLAAC ，参数为 1 代表启用 SLAAC 。</li>
-<li><code>net.ipv6.conf.eth0.accept_ra</code> ：参数为 0 代表不接收 RA 报文，参数为 1 代表允许接收 RA 报文，参数为 2 代表允许接收和转发 RA 报文，这个参数对软路由能否启用 ipv6 协议栈非常关键。</li>
-<li><code>net.ipv6.conf.eth0.addr_gen_mode</code> ：参数为 0 代表使用网卡 mac 地址作为 SLAAC 的地址后缀，参数为 1 代表使用网络接口的随机 id 作为 SLAAC 的地址后缀。</li>
+<li><code>net.ipv6.conf.eth0.accept_ra</code> ：参数为 0 代表不接收 RA 报文，参数为 1 代表允许接收 RA 报文，参数为 2 代表允许接收和转发 RA 报文，这个参数对软路由能否启用 IPv6 协议栈非常关键。</li>
+<li><code>net.ipv6.conf.eth0.addr_gen_mode</code> ：参数为 0 代表使用网卡 mac 地址作为 SLAAC 的地址后缀，参数为 1 代表使用网络接口的随机 ID 作为 SLAAC 的地址后缀。</li>
 <li><code>net.ipv6.conf.eth0.use_tempaddr</code> ：参数为 0 代表不生成临时地址，参数为 1 代表使用并生成临时地址。</li>
 </ul>
-<p>在我使用的 Armbian 中， <code>accept_ra</code> 参数为 1 ， <code>autoconf</code> 参数为 1 ， <code>addr_gen_mode</code> 参数为 0 ， <code>use_tempaddr</code> 参数为 0 ，所以最终只获取到一个由 SLAAC 生成的 ipv6 地址。</p>
+<p>在我使用的 Armbian 中， <code>accept_ra</code> 参数为 1 ， <code>autoconf</code> 参数为 1 ， <code>addr_gen_mode</code> 参数为 0 ， <code>use_tempaddr</code> 参数为 0 ，所以最终只获取到一个由 SLAAC 生成的 IPv6 地址。</p>
 <p>现在的 DNS 设置仍然是由 ipv4 的 DHCP 服务配置的，因为 SLAAC 并不会配置 DNS 信息，如果想要在 Linux 中使用 DHCPv6 自动配置 DNS 信息，应该使用命令 <code>dhclient -6 &lt;interface&gt;</code> 主动拉起 DHCPv6 客户端，这样 DNS 设置就会由 DHCPv6 客户端接管配置。在 Armbian 中，和 DNS 配置相关的文件是 <code>/etc/resolv.conf</code> 和 <code>/etc/resolvconf/run/resolv.conf</code> ，它们之间应该通过软链接相关联。</p>
 <h2 id="配置硬盘休眠">配置硬盘休眠</h2>
 <p>由于主机有 USB 2.0 接口，并且家里有一块闲置的西数 500GB SATA 硬盘，所以就将这块硬盘作为主机的外置存储。因为在实际使用过程中并不会经常地读写硬盘，所以我希望硬盘在平时可以处于休眠状态，并且在真正读写工作完成后继续休眠。</p>

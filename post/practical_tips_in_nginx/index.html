@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:03:57 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:13:32 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:03:57 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:13:32 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -291,22 +291,22 @@
 <ul>
 <li><code>$remote_addr</code> ：请求的来源 IP 地址，这里是指直接和当前 Nginx 交互的对端地址，所以它有可能只是源请求的一个代理地址。</li>
 <li><code>$server_name</code> ： Nginx 虚拟主机中的 <code>server_name</code> 。</li>
-<li><code>$request</code> ：原始的请求 url 。</li>
+<li><code>$request</code> ：原始的请求 URL 。</li>
 <li><code>$scheme</code> ：请求的协议，通常是 http 和 https 。</li>
 <li><code>$request_method</code> ：请求的方法，也就是 HTTP 的请求方法 GET ， POST 等。</li>
 <li><code>$request_uri</code> ：原始的请求路径和完整参数，是不可修改的。</li>
 <li><code>$uri</code> ：来自 <code>$request_uri</code> 中的路径部分，在经过重写行为后可能会与原来不同。</li>
-<li><code>$args</code> ：来自 <code>$request_uri</code> 中的参数部分。</li>
-</ul>
+<li><code>$args</code> ：来自 <code>$request_uri</code> 中的参数部分。
 <blockquote>
 <p><code>$request_uri</code> 可以拆解为 <code>$uri$is_args$args</code> ，其中 <code>$is_args</code> 就是 uri 请求中的 <code>?</code> ，在实际请求没有参数的时候， <code>$is_args</code> 和 <code>$args</code> 都为空。</p>
 </blockquote>
-<ul>
-<li><code>$host</code> ：以下出自官方文档的解释，可以看到取值优先级来源于以下三个值：请求 url 中的主机部分；请求头中 <code>Host</code> 的部分，同 <code>$http_host</code> ； Nginx 虚拟主机中匹配命中的 <code>server_name</code> 。</li>
-</ul>
+</li>
+<li><code>$host</code> ：以下出自官方文档的解释，可以看到取值优先级来源于以下三个值：请求 URL 中的主机部分；请求头中 <code>Host</code> 的部分，同 <code>$http_host</code> ； Nginx 虚拟主机中匹配命中的 <code>server_name</code> 。
 <blockquote>
 <p>$host：in this order of precedence: host name from the request line, or host name from the &ldquo;Host&rdquo; request header field, or the server name matching a request</p>
 </blockquote>
+</li>
+</ul>
 <p>和请求时间相关的变量，更多用于排查问题和性能分析：</p>
 <ul>
 <li><code>$request_time</code> ：本地响应请求所使用的时间，从客户端读取第一个字节开始计时，单位精确到毫秒，这个值计算的时间已经包括了 <code>$upstream_response_time</code> 。</li>
@@ -321,7 +321,7 @@
 </span></span><span class="line"><span class="cl">    <span class="s2">&#34;~Opera Mini&#34;</span> 1<span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 获取 HTTP 请求头 User-Agent 的值，如果使用正则匹配到 Opera Mini 则设置变量 mobile 为 1 ，其他情况默认为 0 </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取 HTTP 请求头 User-Agent 的值，如果使用正则匹配到 Opera Mini 则设置变量 mobile 为 1 ，其他情况默认为 0</span>
 </span></span></code></pre></div><h2 id="设置-json-格式日志">设置 json 格式日志</h2>
 <p>Nginx 原生的日志格式是列出了关键信息的单行文本，我们可以创建模拟 json 格式的日志写入规则。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 模拟 json 的日志格式</span>
@@ -360,7 +360,7 @@
 </span></span><span class="line"><span class="cl">    compress
 </span></span><span class="line"><span class="cl">    delaycompress            <span class="c1"># 启用日志压缩，并在下次轮转时，压缩上一份历史日志</span>
 </span></span><span class="line"><span class="cl">    notifempty               <span class="c1"># 空文件则不执行轮转</span>
-</span></span><span class="line"><span class="cl">    sharedscripts            <span class="c1"># 使用 *.log 说明目录可能存在多种日志，这个关键字用来声明所有日志都需要执行 postrotate 脚本 </span>
+</span></span><span class="line"><span class="cl">    sharedscripts            <span class="c1"># 使用 *.log 说明目录可能存在多种日志，这个关键字用来声明所有日志都需要执行 postrotate 脚本</span>
 </span></span><span class="line"><span class="cl">    postrotate               <span class="c1"># 轮转工作完成后需要执行脚本</span>
 </span></span><span class="line"><span class="cl">        <span class="o">[</span> -e /usr/local/openresty/nginx/logs/nginx.pid <span class="o">]</span> <span class="o">&amp;&amp;</span> <span class="nb">kill</span> -USR1 <span class="sb">`</span>cat /usr/local/openresty/nginx/logs/nginx.pid<span class="sb">`</span>
 </span></span><span class="line"><span class="cl">    endscript
@@ -476,7 +476,7 @@
 </span></span><span class="line"><span class="cl">    server_name <span class="nv">$ssl_server_name</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">    ssl_certificate <span class="nv">$ssl_server_name</span>.crt<span class="p">;</span>
 </span></span><span class="line"><span class="cl">    ssl_certificate_key <span class="nv">$ssl_server_name</span>.pri<span class="p">;</span>
-</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">    <span class="c1"># 使用 shared 会由所有工作进程共享 session ， 1m 代表共享空间的内存大小为 1MB</span>
 </span></span><span class="line"><span class="cl">    ssl_session_cache shared:SSL:1m<span class="p">;</span>
 </span></span><span class="line"><span class="cl">    <span class="c1"># ssl_session_tickets 是 tls 复用的另一种机制</span>
@@ -504,7 +504,7 @@
 </span></span><span class="line"><span class="cl">    listen <span class="m">443</span> ssl http2<span class="p">;</span>
 </span></span><span class="line"><span class="cl">    listen <span class="o">[</span>::<span class="o">]</span>:443 ssl http2<span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">    <span class="c1"># Enable HSTS </span>
+</span></span><span class="line"><span class="cl">    <span class="c1"># Enable HSTS</span>
 </span></span><span class="line"><span class="cl">    add_header Strict-Transport-Security <span class="s2">&#34;max-age=63072000; includeSubDomains&#34;</span> always<span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>在第一次访问 80 端口时，如果服务成功将你重定向到了 443 端口，并且添加了 <code>Strict-Transport-Security</code> 的 Header ，那么在浏览器在下次访问这个域名的服务时，会强制使用 HTTPS 进行访问，如果 Header 添加了 <code>includeSubDomains</code> 则会连同服务的子域名一起保护。</p>
@@ -614,8 +614,8 @@
 </span></span><span class="line"><span class="cl">         0c:f4:68:6d:eb:0b:ea:da:fa:63:4c:eb
 </span></span><span class="line"><span class="cl">Response verify OK
 </span></span><span class="line"><span class="cl">github.pem: good
-</span></span><span class="line"><span class="cl">	This Update: Nov <span class="m">10</span> 13:15:02 <span class="m">2022</span> GMT
-</span></span><span class="line"><span class="cl">	Next Update: Nov <span class="m">17</span> 12:30:02 <span class="m">2022</span> GMT
+</span></span><span class="line"><span class="cl"> This Update: Nov <span class="m">10</span> 13:15:02 <span class="m">2022</span> GMT
+</span></span><span class="line"><span class="cl"> Next Update: Nov <span class="m">17</span> 12:30:02 <span class="m">2022</span> GMT
 </span></span></code></pre></div><p>在 Nginx 中可以通过 ssl 模块中的相关指令来开启 OCSP 支持。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 开启 OCSP 支持</span>
 </span></span><span class="line"><span class="cl">http <span class="o">{</span>
