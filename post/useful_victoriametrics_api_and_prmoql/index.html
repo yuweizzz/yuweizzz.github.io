@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:27:46 &#43;0000"
+                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:28:36 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:27:46 &#43;0000</relative-time>
+                    Sat, 12 Oct 2024 09:28:36 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -260,9 +260,9 @@
 </span></span></code></pre></div><h2 id="victoriametrics-api">VictoriaMetrics API</h2>
 <p>这里主要指的是 VictoriaMetrics 单机版所使用的 API 。</p>
 <p>后续内容均使用以下 metrics 作为例子：</p>
-<pre tabindex="0"><code>http_requests_total{code=&#34;200&#34;,handler=&#34;query&#34;,instance=&#34;localhost:9090&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  1
-http_requests_total{code=&#34;200&#34;,handler=&#34;query_range&#34;,instance=&#34;localhost:9090&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  0
-</code></pre><p>查询相关的 API 有即时查询和范围查询两种：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-text" data-lang="text"><span class="line"><span class="cl">http_requests_total{code=&#34;200&#34;,handler=&#34;query&#34;,instance=&#34;localhost:9090&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  1
+</span></span><span class="line"><span class="cl">http_requests_total{code=&#34;200&#34;,handler=&#34;query_range&#34;,instance=&#34;localhost:9090&#34;,job=&#34;prometheus&#34;,method=&#34;get&#34;}  0
+</span></span></code></pre></div><p>查询相关的 API 有即时查询和范围查询两种：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 即时查询</span>
 </span></span><span class="line"><span class="cl">curl http://localhost:8428/prometheus/api/v1/query <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;query=http_requests_total&#39;</span>
