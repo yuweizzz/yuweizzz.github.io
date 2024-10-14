@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sat, 12 Oct 2024 09:59:49 &#43;0000"
+                  Modified <relative-time datetime="Mon, 14 Oct 2024 08:21:54 &#43;0000"
                     class="no-wrap">
-                    Sat, 12 Oct 2024 09:59:49 &#43;0000</relative-time>
+                    Mon, 14 Oct 2024 08:21:54 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2607 Words
+                      2686 Words
                     
 
                   </div>
@@ -430,7 +430,13 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">ip</span><span class="p">:</span><span class="w"> </span><span class="m">10.10.10.10</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">ports</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">8080</span><span class="w">
-</span></span></span></code></pre></div><p>这里的 service 将会是 <code>ClusterIP</code> 类型，但是它的具体 endpoints 不使用 selector 进行选取，而是自行定义到具体服务入口，适用于那些运行在集群外但是在同个内网下的服务。</p></article>
+</span></span></span></code></pre></div><p>这里的 service 将会是 <code>ClusterIP</code> 类型，但是它的具体 endpoints 不使用 selector 进行选取，而是自行定义到具体服务入口，适用于那些运行在集群外但是在同个内网下的服务。</p>
+<h2 id="删除处于-terminating-状态的-namespace">删除处于 terminating 状态的 namespace</h2>
+<p>执行了 <code>kubectl delete ns work</code> 之后，命名空间内部资源已经删除，但是 namespace 资源依然处于 terminating 状态，可以参考以下方法进行删除。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">kubectl get ns work -o json &gt; work.json
+</span></span><span class="line"><span class="cl">cat work.json <span class="p">|</span> jq <span class="s1">&#39;.spec.finalizers=[]&#39;</span> &gt; d_work.json
+</span></span><span class="line"><span class="cl">kubectl replace --raw <span class="s2">&#34;/api/v1/namespaces/work/finalize&#34;</span> -f d_work.json
+</span></span></code></pre></div></article>
               </div>
             </div>
           </div>
