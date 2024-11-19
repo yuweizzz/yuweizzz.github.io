@@ -6,8 +6,22 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 14 Oct 2024 08:21:54 +0000</lastBuildDate>
+    <lastBuildDate>Tue, 19 Nov 2024 09:28:49 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>DHCP 支持 PXE 启动的基本条件</title>
+      <link>https://yuweizzz.github.io/post/basic_required_of_how_dhcp_support_to_pxe_boot/</link>
+      <pubDate>Fri, 08 Nov 2024 17:14:10 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/basic_required_of_how_dhcp_support_to_pxe_boot/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录在虚拟机环境下，如何实现 DHCP 服务支持 PXE 启动。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>常用 Linux 内核参数配置参考</title>
+      <link>https://yuweizzz.github.io/post/reference_of_linux_kernel_parameter_configuration/</link>
+      <pubDate>Mon, 14 Oct 2024 15:14:10 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/reference_of_linux_kernel_parameter_configuration/</guid>
+      <description>&lt;p&gt;这篇笔记用来记录一些常用 Linux 内核参数配置参考。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>通过 OAuth2 进行授权</title>
       <link>https://yuweizzz.github.io/post/using_oauth2_for_authorization/</link>
@@ -356,7 +370,7 @@
       <link>https://yuweizzz.github.io/readme/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/readme/</guid>
-      <description>Hello World!&#xA;Repository Custom-live2d ：一个在 Web 页面上运行 live2D 模型的简易插件 Sidecar ：基于 mitm 的 https 代理 Go-hpts ：将 socks proxy 转换成 http proxy 的工具 Go-txtfile-viewer ：简单的文本查看工具，通过浏览器查看本地文档 </description>
+      <description>Hello World!&#xA;Repository Custom-live2d ：一个在 Web 页面上运行 live2D 模型的简易插件 Sidecar ：基于 mitm 的 https 代理 Go-hpts ：将 socks proxy 转换成 http proxy 的工具 Go-txtfile-viewer ：简单的文本查看工具，通过浏览器查看本地文档 Go-pxe-installer ：通过 PXE 启动，在虚拟机环境下快速安装 Debian 12 的工具 Pam-monitor ：阻挡弱密码爆破流量并收集对应的弱密码字典，简单的 eBPF 学习项目 </description>
     </item>
   </channel>
 </rss>
