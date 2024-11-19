@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 19 Nov 2024 09:28:49 &#43;0000"
+                  Modified <relative-time datetime="Tue, 19 Nov 2024 09:32:27 &#43;0000"
                     class="no-wrap">
-                    Tue, 19 Nov 2024 09:28:49 &#43;0000</relative-time>
+                    Tue, 19 Nov 2024 09:32:27 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -303,7 +303,7 @@
 </span></span><span class="line"><span class="cl">sysctl -p
 </span></span></code></pre></div><h2 id="kernelpid_max">kernel.pid_max</h2>
 <p>当内核分配的 pid 达到当前值时，会从最小值重新分配，并且内核不会分配大于或等于 pid_max 值的 pid 。内核的 pid_max 默认值为 32768 ，各个发行版可能会有不同的调整。</p>
-<p>如果系统运行的进程数量达到这个限制值，可能无法产生新进程，最常见的表象是系统日志大量报错 <code>fork：Cannot allocate memory</code> ，无法登陆 ssh ，但实际内存使用量可能还没有到达上限。</p>
+<p>如果系统运行的进程数量达到这个限制值，可能无法产生新进程，最常见的表象是系统日志大量报错 <code>fork：Cannot allocate memory</code> ，无法登陆 SSH ，但实际内存使用量可能还没有到达上限。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 修改进程数量上限</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> kernel.pid_max <span class="o">=</span> <span class="m">4194304</span> &gt;&gt; /etc/sysctl.conf
 </span></span><span class="line"><span class="cl">sysctl -p
