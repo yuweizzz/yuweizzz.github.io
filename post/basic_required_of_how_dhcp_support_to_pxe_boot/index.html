@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 19 Nov 2024 09:32:27 &#43;0000"
+                  Modified <relative-time datetime="Tue, 19 Nov 2024 09:35:43 &#43;0000"
                     class="no-wrap">
-                    Tue, 19 Nov 2024 09:32:27 &#43;0000</relative-time>
+                    Tue, 19 Nov 2024 09:35:43 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -295,49 +295,49 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-C" data-lang="C"><span class="line"><span class="cl"><span class="c1">// https://github.com/ipxe/ipxe/blob/master/src/net/udp/dhcp.c
 </span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">static</span> <span class="kt">int</span> <span class="nf">dhcp_has_pxeopts</span> <span class="p">(</span> <span class="k">struct</span> <span class="n">dhcp_packet</span> <span class="o">*</span><span class="n">dhcppkt</span> <span class="p">)</span> <span class="p">{</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="cm">/* Check for a next-server and boot filename */</span>
-</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span> <span class="n">dhcppkt</span><span class="o">-&gt;</span><span class="n">dhcphdr</span><span class="o">-&gt;</span><span class="n">siaddr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">&amp;&amp;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">(</span> <span class="nf">dhcppkt_fetch</span> <span class="p">(</span> <span class="n">dhcppkt</span><span class="p">,</span> <span class="n">DHCP_BOOTFILE_NAME</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Check for a next-server and boot filename */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">dhcppkt</span><span class="o">-&gt;</span><span class="n">dhcphdr</span><span class="o">-&gt;</span><span class="n">siaddr</span><span class="p">.</span><span class="n">s_addr</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span> <span class="nf">dhcppkt_fetch</span> <span class="p">(</span> <span class="n">dhcppkt</span><span class="p">,</span> <span class="n">DHCP_BOOTFILE_NAME</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="cm">/* Check for a PXE boot menu */</span>
-</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span> <span class="nf">dhcppkt_fetch</span> <span class="p">(</span> <span class="n">dhcppkt</span><span class="p">,</span> <span class="n">DHCP_PXE_BOOT_MENU</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span>
-</span></span><span class="line"><span class="cl">  <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Check for a PXE boot menu */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="nf">dhcppkt_fetch</span> <span class="p">(</span> <span class="n">dhcppkt</span><span class="p">,</span> <span class="n">DHCP_PXE_BOOT_MENU</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span> <span class="mi">0</span> <span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">)</span>
+</span></span><span class="line"><span class="cl">        <span class="k">return</span> <span class="mi">1</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="kt">void</span> <span class="nf">dhcp_request_rx</span> <span class="p">(</span> <span class="k">struct</span> <span class="n">dhcp_session</span> <span class="o">*</span><span class="n">dhcp</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">         <span class="k">struct</span> <span class="n">dhcp_packet</span> <span class="o">*</span><span class="n">dhcppkt</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">         <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="o">*</span><span class="n">peer</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">msgtype</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">         <span class="k">struct</span> <span class="n">in_addr</span> <span class="n">server_id</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">         <span class="k">struct</span> <span class="n">in_addr</span> <span class="n">pseudo_id</span> <span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">   <span class="cm">/* ............................... */</span>
-</span></span><span class="line"><span class="cl"> <span class="cm">/* Perform ProxyDHCP if applicable */</span>
-</span></span><span class="line"><span class="cl"> <span class="k">if</span> <span class="p">(</span> <span class="n">dhcp</span><span class="o">-&gt;</span><span class="n">proxy_offer</span> <span class="cm">/* Have ProxyDHCP offer */</span> <span class="o">&amp;&amp;</span>
-</span></span><span class="line"><span class="cl">      <span class="p">(</span> <span class="o">!</span> <span class="n">dhcp</span><span class="o">-&gt;</span><span class="n">no_pxedhcp</span> <span class="p">)</span> <span class="cm">/* ProxyDHCP not disabled */</span> <span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">  <span class="k">if</span> <span class="p">(</span> <span class="nf">dhcp_has_pxeopts</span> <span class="p">(</span> <span class="n">dhcp</span><span class="o">-&gt;</span><span class="n">proxy_offer</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">   <span class="cm">/* PXE options already present; register settings
-</span></span></span><span class="line"><span class="cl"><span class="cm">    * without performing a ProxyDHCPREQUEST
-</span></span></span><span class="line"><span class="cl"><span class="cm">    */</span>
-</span></span><span class="line"><span class="cl">   <span class="n">settings</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dhcp</span><span class="o">-&gt;</span><span class="n">proxy_offer</span><span class="o">-&gt;</span><span class="n">settings</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">   <span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">rc</span> <span class="o">=</span> <span class="nf">register_settings</span> <span class="p">(</span> <span class="n">settings</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">        <span class="n">PROXYDHCP_SETTINGS_NAME</span> <span class="p">)</span> <span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">DBGC</span> <span class="p">(</span> <span class="n">dhcp</span><span class="p">,</span> <span class="s">&#34;DHCP %p could not register &#34;</span>
-</span></span><span class="line"><span class="cl">           <span class="s">&#34;proxy settings: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">           <span class="n">dhcp</span><span class="p">,</span> <span class="nf">strerror</span> <span class="p">(</span> <span class="n">rc</span> <span class="p">)</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="nf">dhcp_finished</span> <span class="p">(</span> <span class="n">dhcp</span><span class="p">,</span> <span class="n">rc</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl">    <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">   <span class="p">}</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-</span></span><span class="line"><span class="cl">   <span class="cm">/* PXE options not present; use a ProxyDHCPREQUEST */</span>
-</span></span><span class="line"><span class="cl">   <span class="nf">dhcp_set_state</span> <span class="p">(</span> <span class="n">dhcp</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dhcp_state_proxy</span> <span class="p">);</span>
-</span></span><span class="line"><span class="cl">   <span class="k">return</span><span class="p">;</span>
-</span></span><span class="line"><span class="cl">  <span class="p">}</span>
-</span></span><span class="line"><span class="cl"> <span class="p">}</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">struct</span> <span class="n">dhcp_packet</span> <span class="o">*</span><span class="n">dhcppkt</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">struct</span> <span class="n">sockaddr_in</span> <span class="o">*</span><span class="n">peer</span><span class="p">,</span> <span class="kt">uint8_t</span> <span class="n">msgtype</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">struct</span> <span class="n">in_addr</span> <span class="n">server_id</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                  <span class="k">struct</span> <span class="n">in_addr</span> <span class="n">pseudo_id</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* ............................... */</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Perform ProxyDHCP if applicable */</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span> <span class="n">dhcp</span><span class="o">-&gt;</span><span class="n">proxy_offer</span> <span class="cm">/* Have ProxyDHCP offer */</span> <span class="o">&amp;&amp;</span>
+</span></span><span class="line"><span class="cl">         <span class="p">(</span> <span class="o">!</span> <span class="n">dhcp</span><span class="o">-&gt;</span><span class="n">no_pxedhcp</span> <span class="p">)</span> <span class="cm">/* ProxyDHCP not disabled */</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="k">if</span> <span class="p">(</span> <span class="nf">dhcp_has_pxeopts</span> <span class="p">(</span> <span class="n">dhcp</span><span class="o">-&gt;</span><span class="n">proxy_offer</span> <span class="p">)</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="cm">/* PXE options already present; register settings
+</span></span></span><span class="line"><span class="cl"><span class="cm">             * without performing a ProxyDHCPREQUEST
+</span></span></span><span class="line"><span class="cl"><span class="cm">             */</span>
+</span></span><span class="line"><span class="cl">            <span class="n">settings</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">dhcp</span><span class="o">-&gt;</span><span class="n">proxy_offer</span><span class="o">-&gt;</span><span class="n">settings</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="k">if</span> <span class="p">(</span> <span class="p">(</span> <span class="n">rc</span> <span class="o">=</span> <span class="nf">register_settings</span> <span class="p">(</span> <span class="n">settings</span><span class="p">,</span> <span class="nb">NULL</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">PROXYDHCP_SETTINGS_NAME</span> <span class="p">)</span> <span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">DBGC</span> <span class="p">(</span> <span class="n">dhcp</span><span class="p">,</span> <span class="s">&#34;DHCP %p could not register &#34;</span>
+</span></span><span class="line"><span class="cl">                       <span class="s">&#34;proxy settings: %s</span><span class="se">\n</span><span class="s">&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                       <span class="n">dhcp</span><span class="p">,</span> <span class="nf">strerror</span> <span class="p">(</span> <span class="n">rc</span> <span class="p">)</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">dhcp_finished</span> <span class="p">(</span> <span class="n">dhcp</span><span class="p">,</span> <span class="n">rc</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">                <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">            <span class="cm">/* PXE options not present; use a ProxyDHCPREQUEST */</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">dhcp_set_state</span> <span class="p">(</span> <span class="n">dhcp</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">dhcp_state_proxy</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">            <span class="k">return</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"> <span class="cm">/* Terminate DHCP */</span>
-</span></span><span class="line"><span class="cl"> <span class="nf">dhcp_finished</span> <span class="p">(</span> <span class="n">dhcp</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="cm">/* Terminate DHCP */</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">dhcp_finished</span> <span class="p">(</span> <span class="n">dhcp</span><span class="p">,</span> <span class="mi">0</span> <span class="p">);</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></div><p>Oracle VM VirtualBox 使用了 82540em 的网络适配器，实际上则使用的是 iPXE boot firmware ，只需要满足上述条件，无须额外监听 4011 端口就已经可以正常获取到 Bootfile 。</p>
 <p>VMware ESXi 使用的是 E1000e 的网络适配器，具体的 firmware 不甚明确，可以看到带有 VMware 和 Intel 的 Copyright 信息。这里则必须明确设置 OFFER 数据包中 <code>Option #43 Vendor-Specific Infomation, Suboption #6 PXE_DISCOVERY_CONTROL</code> 的 bit 3 为 1 ，才能正常获取到 Bootfile ，否则会有 <code>PXE-E55: ProxyDHCP service did not reply to request on port 4011</code> 的报错信息。这就说明了即使已经获取到前述条件，这里的 client 依然需要向 4011 端口发起 REQUEST 请求。</p>
