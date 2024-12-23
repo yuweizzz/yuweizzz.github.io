@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 23 Dec 2024 08:41:24 &#43;0000"
+                  Modified <relative-time datetime="Mon, 23 Dec 2024 08:46:29 &#43;0000"
                     class="no-wrap">
-                    Mon, 23 Dec 2024 08:41:24 &#43;0000</relative-time>
+                    Mon, 23 Dec 2024 08:46:29 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -324,8 +324,8 @@
 </span></span><span class="line"><span class="cl">  up /sbin/ip link <span class="nb">set</span> dev <span class="nv">$IFACE</span> up
 </span></span><span class="line"><span class="cl">  post-down /sbin/ip link del dev <span class="nv">$IFACE</span> <span class="o">||</span> <span class="nb">true</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl">auto br0 
-</span></span><span class="line"><span class="cl">iface br0 inet dhcp 
+</span></span><span class="line"><span class="cl">auto br0
+</span></span><span class="line"><span class="cl">iface br0 inet dhcp
 </span></span><span class="line"><span class="cl">  bridge_ports eth0 tap0
 </span></span><span class="line"><span class="cl">  bridge_stp off
 </span></span><span class="line"><span class="cl">  bridge_fd <span class="m">0</span>
@@ -353,7 +353,7 @@
 <li><code>-smp</code> 用来指定虚机的 CPU 核数， <code>-m</code> 用来指定虚机的内存大小。</li>
 <li><code>-device</code> 用来创建虚机中的设备， <code>-drive</code> 或者 <code>-netdev</code> 用来关联宿主机中和对应虚机的相关设备。</li>
 <li><code>-device nec-usb-xhci -device usb-kbd -device usb-tablet</code> 用来设置 USB 设备。</li>
-<li><code>-netdev tap,id=eth0,ifname=tap0,script=no,downscript=0</code> 指定了宿主机中的 tap 设备作为虚机的实际关联设备，具体的 iface 是我们前面创建的 tap0 ，而通过自定义的 id ，可以和 <code>-device virtio-net-pci,netdev=eth0,bootindex=0</code> 进行关联，在虚机中，它是一个挂载于 pci 总线上的网络设备，并且指定了启动顺序。</li>
+<li><code>-netdev tap,id=eth0,ifname=tap0,script=no,downscript=0</code> 指定了宿主机中的 tap 设备作为虚机的实际关联设备，具体的 iface 是我们前面创建的 tap0 ，而通过自定义的 ID ，可以和 <code>-device virtio-net-pci,netdev=eth0,bootindex=0</code> 进行关联，在虚机中，它是一个挂载于 pci 总线上的网络设备，并且指定了启动顺序。</li>
 <li><code>-device virtio-scsi-pci -device scsi-hd,drive=hd0,bootindex=1</code> 这里是关于硬盘设备的配置，这里使用了 <code>virtio-scsi-pci</code> 作为中间设备，具体的硬盘设备会作为 scsi 子设备连接到 scsi 总线，这样更加接近物理服务器的架构，而硬盘设备就是前面创建的 qcow2 镜像，通过 <code>-drive if=none,file=/opt/x86.qcow2,id=hd0</code> 指定。</li>
 <li><code>-nographic</code> 用来关闭图形界面，虚拟机的输出信息会自动重定向到标准输出中。</li>
 </ul>
@@ -376,7 +376,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device virtio-net-pci,netdev<span class="o">=</span>eth0,bootindex<span class="o">=</span><span class="m">0</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  -drive <span class="k">if</span><span class="o">=</span>none,file<span class="o">=</span>/opt/x86.qcow2,id<span class="o">=</span>hd0 <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device virtio-scsi-pci -device scsi-hd,drive<span class="o">=</span>hd0,bootindex<span class="o">=</span><span class="m">1</span> <span class="se">\
-</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -nographic         
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -nographic
 </span></span></code></pre></div><p>具体的执行命令和 BIOS 模式下接近，只有额外指定了 UEFI firmware 的区别。</p>
 <p>对于启动顺序，这里都设置了网络优先启动，在没有系统的情况下，需要先通过 PXE 启动安装系统，等待安装完成后可以将其改为硬盘优先，或者完全去掉关于启动顺序的配置，交由默认的 BIOS 配置决定。</p>
 <p>UEFI 模式下除了手动指定启动顺序之外，还可以交由 EFI 变量来控制。如果 EFI 变量缺失或者启动顺序异常，可以参考<a href="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/#%E4%BF%AE%E6%94%B9%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E5%92%8C-uefi-%E5%90%AF%E5%8A%A8%E9%A1%B9">这里</a>来重新修改。</p>
