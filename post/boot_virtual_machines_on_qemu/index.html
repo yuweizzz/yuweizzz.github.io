@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://yuweizzz.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
+    <title>通过 QEMU 运行虚拟实例 - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/favicon.svg'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="在 Linux 系统中通过 QEMU 运行虚拟实例。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/boot_virtual_machines_on_qemu/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="通过 QEMU 运行虚拟实例 - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="在 Linux 系统中通过 QEMU 运行虚拟实例。
+" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://yuweizzz.github.io/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="通过 QEMU 运行虚拟实例 - Wei&#39;s blog">
+<meta property="og:description"
+  content="在 Linux 系统中通过 QEMU 运行虚拟实例。
+" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/boot_virtual_machines_on_qemu/" />
+<meta property="og:site_name" content="通过 QEMU 运行虚拟实例" />
+<meta property="og:image"
+  content="https://yuweizzz.github.io/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2024-11-11 15:14:10 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
+        <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" id="search-form" action="" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
+                  <img class=" avatar-user"
+                    src="https://yuweizzz.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://yuweizzz.github.io/">Wei</a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://yuweizzz.github.io/post/boot_virtual_machines_on_qemu/">通过 QEMU 运行虚拟实例</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Mon, 11 Nov 2024 15:14:10 &#43;0000"
+                    class="no-wrap">
+                    Mon, 11 Nov 2024 15:14:10 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Mon, 23 Dec 2024 08:41:24 &#43;0000"
+                    class="no-wrap">
+                    Mon, 23 Dec 2024 08:41:24 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      1679 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/linux">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Linux
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/qemu">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      QEMU
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><p>在 Linux 系统中通过 QEMU 运行虚拟实例。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="编译-qemu">编译 QEMU</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 安装依赖</span>
+</span></span><span class="line"><span class="cl">apt install <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  gcc <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  make <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  python3-venv <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  python3-sphinx <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  python3-sphinx-rtd-theme <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  ninja-build <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  gcc-multilib <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  libglib2.0-dev <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  git <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  flex <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  bison
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载源码</span>
+</span></span><span class="line"><span class="cl">wget https://download.qemu.org/qemu-9.1.1.tar.xz
+</span></span><span class="line"><span class="cl">tar -xvf qemu-9.1.1.tar.xz
+</span></span><span class="line"><span class="cl"><span class="nb">cd</span> qemu-9.1.1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 设置编译选项，仅需要编译 aarch64-softmmu 和 x86_64-softmmu</span>
+</span></span><span class="line"><span class="cl">./configure --enable-kvm --enable-debug --enable-werror --target-list<span class="o">=</span><span class="s2">&#34;aarch64-softmmu,x86_64-softmmu&#34;</span>
+</span></span><span class="line"><span class="cl">make -j <span class="k">$(</span>nproc<span class="k">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查编译后的可执行文件</span>
+</span></span><span class="line"><span class="cl">ls build/qemu-system-*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 这里省去安装步骤，如果需要长期保留使用可以执行安装</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># make install</span>
+</span></span></code></pre></div><h2 id="搭建桥接网络">搭建桥接网络</h2>
+<p>当前 QEMU 宿主机是运行在一个 NAT 网络下的 VirtualBox 虚拟实例，在这台机器启动的 QEMU 实例，直接通过桥接连通到这个 NAT 网络，这样 NAT 网络下的 VirtualBox 虚拟实例和嵌套的 QEMU 实例就处于同一个子网下，可以直接互相通信。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 手动添加网桥</span>
+</span></span><span class="line"><span class="cl">ip link add name br0 <span class="nb">type</span> bridge
+</span></span><span class="line"><span class="cl">ip link <span class="nb">set</span> br0 up
+</span></span><span class="line"><span class="cl"><span class="c1"># 非常重要的配置步骤，如果物理网卡不打开混杂模式，数据包会被丢弃，绑定网桥后会中断网络</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># VirtualBox 则必须要在虚拟电脑中的网络配置开启混杂模式，单纯通过系统内命令行设置无效</span>
+</span></span><span class="line"><span class="cl">ip link <span class="nb">set</span> dev eth0 promisc on
+</span></span><span class="line"><span class="cl"><span class="c1"># 将物理网卡绑定到网桥上</span>
+</span></span><span class="line"><span class="cl">ip link <span class="nb">set</span> dev eth0 master br0
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 DHCP 获取网桥设备的 IP 地址</span>
+</span></span><span class="line"><span class="cl">dhclient br0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 添加 tap 设备并绑定到网桥上</span>
+</span></span><span class="line"><span class="cl">ip tuntap add dev tap0 mode tap
+</span></span><span class="line"><span class="cl">ip link <span class="nb">set</span> tap0 up
+</span></span><span class="line"><span class="cl">ip link <span class="nb">set</span> dev tap0 master br0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 持久化配置</span>
+</span></span><span class="line"><span class="cl">cat /etc/network/interfaces
+</span></span><span class="line"><span class="cl"><span class="c1"># --- START: /etc/network/interfaces ---</span>
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /etc/network/interfaces.d/*
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auto lo
+</span></span><span class="line"><span class="cl">iface lo inet loopback
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">allow-hotplug eth0
+</span></span><span class="line"><span class="cl"><span class="c1"># iface eth0 inet dhcp</span>
+</span></span><span class="line"><span class="cl">iface eth0 inet manual
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auto tap0
+</span></span><span class="line"><span class="cl">iface tap0 inet manual
+</span></span><span class="line"><span class="cl">  pre-up /sbin/ip tuntap add dev <span class="nv">$IFACE</span> mode tap <span class="o">||</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">  up /sbin/ip link <span class="nb">set</span> dev <span class="nv">$IFACE</span> up
+</span></span><span class="line"><span class="cl">  post-down /sbin/ip link del dev <span class="nv">$IFACE</span> <span class="o">||</span> <span class="nb">true</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">auto br0 
+</span></span><span class="line"><span class="cl">iface br0 inet dhcp 
+</span></span><span class="line"><span class="cl">  bridge_ports eth0 tap0
+</span></span><span class="line"><span class="cl">  bridge_stp off
+</span></span><span class="line"><span class="cl">  bridge_fd <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># --- END: /etc/network/interfaces ---</span>
+</span></span><span class="line"><span class="cl">systemctl restart networking
+</span></span></code></pre></div><h2 id="运行实例">运行实例</h2>
+<h3 id="x86">x86</h3>
+<p>因为宿主机本身就是 x86 架构，所以可以使用 kvm 运行实例。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 创建 qcow2 格式的镜像来充当系统盘</span>
+</span></span><span class="line"><span class="cl">/opt/qemu-9.1.1/build/qemu-img create -f qcow2 /opt/x86.qcow2 10G
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 x86 实例</span>
+</span></span><span class="line"><span class="cl">/opt/qemu-9.1.1/build/qemu-system-x86_64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --enable-kvm -smp <span class="m">1</span> -m 1024M <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device nec-usb-xhci -device usb-kbd -device usb-tablet <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -netdev tap,id<span class="o">=</span>eth0,ifname<span class="o">=</span>tap0,script<span class="o">=</span>no,downscript<span class="o">=</span><span class="m">0</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device virtio-net-pci,netdev<span class="o">=</span>eth0,bootindex<span class="o">=</span><span class="m">0</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -drive <span class="k">if</span><span class="o">=</span>none,file<span class="o">=</span>/opt/x86.qcow2,id<span class="o">=</span>hd0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device virtio-scsi-pci -device scsi-hd,drive<span class="o">=</span>hd0,bootindex<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -nographic
+</span></span></code></pre></div><p>成功执行命令后，搭配之前写过的 <a href="https://github.com/yuweizzz/go-pxe-installer">PXE 安装工具</a>，很快就可以得到一台全新的可用实例。</p>
+<p>具体的参数含义参考：</p>
+<ul>
+<li><code>--enable-kvm</code> 是最重要的选项，允许使用 kvm 模块进行加速，这样虚机运行速度可以接近原生系统。</li>
+<li><code>-smp</code> 用来指定虚机的 CPU 核数， <code>-m</code> 用来指定虚机的内存大小。</li>
+<li><code>-device</code> 用来创建虚机中的设备， <code>-drive</code> 或者 <code>-netdev</code> 用来关联宿主机中和对应虚机的相关设备。</li>
+<li><code>-device nec-usb-xhci -device usb-kbd -device usb-tablet</code> 用来设置 USB 设备。</li>
+<li><code>-netdev tap,id=eth0,ifname=tap0,script=no,downscript=0</code> 指定了宿主机中的 tap 设备作为虚机的实际关联设备，具体的 iface 是我们前面创建的 tap0 ，而通过自定义的 id ，可以和 <code>-device virtio-net-pci,netdev=eth0,bootindex=0</code> 进行关联，在虚机中，它是一个挂载于 pci 总线上的网络设备，并且指定了启动顺序。</li>
+<li><code>-device virtio-scsi-pci -device scsi-hd,drive=hd0,bootindex=1</code> 这里是关于硬盘设备的配置，这里使用了 <code>virtio-scsi-pci</code> 作为中间设备，具体的硬盘设备会作为 scsi 子设备连接到 scsi 总线，这样更加接近物理服务器的架构，而硬盘设备就是前面创建的 qcow2 镜像，通过 <code>-drive if=none,file=/opt/x86.qcow2,id=hd0</code> 指定。</li>
+<li><code>-nographic</code> 用来关闭图形界面，虚拟机的输出信息会自动重定向到标准输出中。</li>
+</ul>
+<p>如果想要使用 UEFI 模式则可以参考以下步骤：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 创建 qcow2 格式的镜像来充当系统盘</span>
+</span></span><span class="line"><span class="cl">/opt/qemu-9.1.1/build/qemu-img create -f qcow2 /opt/x86.qcow2 10G
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 安装 UEFI 固件，其中固件内容可以复用，而每个实例的 EFI 变量应该独立保存</span>
+</span></span><span class="line"><span class="cl">apt install ovmf
+</span></span><span class="line"><span class="cl">ls /usr/share/OVMF/OVMF_CODE.fd
+</span></span><span class="line"><span class="cl">cp /usr/share/OVMF/OVMF_VARS.fd /opt/OVMF_VARS.fd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 UEFI 模式下的 x86 实例</span>
+</span></span><span class="line"><span class="cl">/opt/qemu-9.1.1/build/qemu-system-x86_64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --enable-kvm -smp <span class="m">1</span> -m 1024M <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -drive <span class="s2">&#34;if=pflash,format=raw,readonly=on,file=/usr/share/OVMF/OVMF_CODE.fd&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -drive <span class="s2">&#34;if=pflash,format=raw,file=/opt/OVMF_VARS.fd&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device nec-usb-xhci -device usb-kbd -device usb-tablet <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -netdev tap,id<span class="o">=</span>eth0,ifname<span class="o">=</span>tap0,script<span class="o">=</span>no,downscript<span class="o">=</span><span class="m">0</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device virtio-net-pci,netdev<span class="o">=</span>eth0,bootindex<span class="o">=</span><span class="m">0</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -drive <span class="k">if</span><span class="o">=</span>none,file<span class="o">=</span>/opt/x86.qcow2,id<span class="o">=</span>hd0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device virtio-scsi-pci -device scsi-hd,drive<span class="o">=</span>hd0,bootindex<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -nographic         
+</span></span></code></pre></div><p>具体的执行命令和 BIOS 模式下接近，只有额外指定了 UEFI firmware 的区别。</p>
+<p>对于启动顺序，这里都设置了网络优先启动，在没有系统的情况下，需要先通过 PXE 启动安装系统，等待安装完成后可以将其改为硬盘优先，或者完全去掉关于启动顺序的配置，交由默认的 BIOS 配置决定。</p>
+<p>UEFI 模式下除了手动指定启动顺序之外，还可以交由 EFI 变量来控制。如果 EFI 变量缺失或者启动顺序异常，可以参考<a href="https://yuweizzz.github.io/post/convert_legacy_bios_to_uefi/#%E4%BF%AE%E6%94%B9%E5%90%AF%E5%8A%A8%E6%A8%A1%E5%BC%8F%E5%92%8C-uefi-%E5%90%AF%E5%8A%A8%E9%A1%B9">这里</a>来重新修改。</p>
+<p>此外还有一些 QEMU 运行时的错误问题，参考以下解决方法：</p>
+<ul>
+<li>运行时出现 <code>access denied</code> 的网络报错，需要执行 <code>echo allow br0 &gt; /opt/qemu-9.1.1/build/qemu-bundle/usr/local/etc/qemu/bridge.conf</code> ，如果是已经 <code>make install</code> 的情况下，则需要执行 <code>echo allow br0 &gt; /etc/qemu/bridge.conf</code> 。</li>
+<li>运行时出现 BIOS 相关文件缺失的报错，可以尝试添加 <code>-L /opt/qemu-9.1.1/pc-bios/</code> 来解决报错。</li>
+</ul>
+<h3 id="arm64">arm64</h3>
+<p>由于是异构平台，实际上是没有办法使用 kvm 进行加速的，并且没有找到 arm64 的可用 BIOS 固件，这里使用的是 UEFI 模式。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 创建 qcow2 格式的镜像来充当系统盘</span>
+</span></span><span class="line"><span class="cl">/opt/qemu-9.1.1/build/qemu-img create -f qcow2 /opt/aarch64.qcow2 10G
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 下载 UEFI 固件，使用的是 Linaro Releases 编译发布的开源 UEFI firmware</span>
+</span></span><span class="line"><span class="cl">wget https://releases.linaro.org/components/kernel/uefi-linaro/16.02/release/qemu64/QEMU_EFI.fd
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 填充 UEFI 固件，满足 qemu 的 arm64 pflash 大小限制</span>
+</span></span><span class="line"><span class="cl">truncate -s 64M /opt/arm64_vars.fd
+</span></span><span class="line"><span class="cl">truncate -s 64M /opt/arm64_code.fd
+</span></span><span class="line"><span class="cl">dd <span class="k">if</span><span class="o">=</span>/opt/QEMU_EFI.fd <span class="nv">of</span><span class="o">=</span>/opt/arm64_code.fd <span class="nv">conv</span><span class="o">=</span>notrunc
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建 UEFI 模式下的 arm64 实例</span>
+</span></span><span class="line"><span class="cl">/opt/qemu-9.1.1/build/qemu-system-aarch64 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -M virt -cpu cortex-a76 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -smp <span class="m">1</span> -m 1024M <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -drive <span class="s2">&#34;if=pflash,format=raw,readonly=on,file=/opt/arm64_code.fd&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -drive <span class="s2">&#34;if=pflash,format=raw,file=/opt/arm64_vars.fd&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device nec-usb-xhci -device usb-kbd -device usb-tablet <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -netdev tap,id<span class="o">=</span>eth0,ifname<span class="o">=</span>tap0,script<span class="o">=</span>no,downscript<span class="o">=</span><span class="m">0</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device virtio-net-pci,netdev<span class="o">=</span>eth0,bootindex<span class="o">=</span><span class="m">0</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -drive <span class="k">if</span><span class="o">=</span>none,file<span class="o">=</span>/opt/aarch64.qcow2,id<span class="o">=</span>hd0 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -device virtio-scsi-pci -device scsi-hd,drive<span class="o">=</span>hd0,bootindex<span class="o">=</span><span class="m">1</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -nographic
+</span></span></code></pre></div><p>具体的命令配置和 x86 的没有特别大的区别，这里只是使用 virt 作为 Machine type 以及 CPU model 则选用了 Cortex-A 系列的 CPU ，实际上 x86 也可以做到指定对应的 Machine type 和 CPU model ，不过一般保持默认值就足够了。</p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/toc.js'></script>
+<link rel="stylesheet" href='https://yuweizzz.github.io/css/toc.css' />
+
+  
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/search.js'></script>
+
+
+<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+<script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
+
+
+</html>

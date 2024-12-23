@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 19 Nov 2024 09:35:43 &#43;0000"
+                  Modified <relative-time datetime="Mon, 23 Dec 2024 08:41:24 &#43;0000"
                     class="no-wrap">
-                    Tue, 19 Nov 2024 09:35:43 &#43;0000</relative-time>
+                    Mon, 23 Dec 2024 08:41:24 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2270 Words
+                      2338 Words
                     
 
                   </div>
@@ -527,7 +527,7 @@
 </span></span><span class="line"><span class="cl">$ timedatectl show-timesync --all
 </span></span><span class="line"><span class="cl"><span class="c1"># 重启服务</span>
 </span></span><span class="line"><span class="cl">$ systemctl restart systemd-timesyncd.service
-</span></span></code></pre></div><h2 id="通过-dpkg-查询文件">通过 dpkg 查询文件</h2>
+</span></span></code></pre></div><h2 id="通过-dpkg-管理-deb-软件包">通过 dpkg 管理 deb 软件包</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询系统已经安装的 deb 软件包，对标 redhat 系列的 rpm -qa</span>
 </span></span><span class="line"><span class="cl">$ dpkg -l
 </span></span><span class="line"><span class="cl">
@@ -536,6 +536,13 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 查询文件的 deb 软件包归属，对标 redhat 系列的 rpm -qf &lt;filename&gt;</span>
 </span></span><span class="line"><span class="cl">$ dpkg -S &lt;filename&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 不执行安装，只下载 deb 软件包，会默认下载到 apt 的缓存目录</span>
+</span></span><span class="line"><span class="cl">$ apt install --download-only &lt;package_name&gt;
+</span></span><span class="line"><span class="cl">$ ls /var/cache/apt/archives
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 不执行安装，直接解压 deb 软件包，可以自由指定解压目录</span>
+</span></span><span class="line"><span class="cl">$ dpkg -x &lt;package_name&gt; /tmp/deb
 </span></span></code></pre></div></article>
               </div>
             </div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>PowerShell on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/powershell/</link>
+    <description>Recent content in PowerShell on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 23 Dec 2024 08:41:24 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过命令行导出 Windows 系统安装软件清单</title>
+      <link>https://yuweizzz.github.io/post/export_windows_system_installed_software_inventory/</link>
+      <pubDate>Wed, 18 Dec 2024 10:57:10 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/export_windows_system_installed_software_inventory/</guid>
+      <description>&lt;p&gt;通过 PowerShell 命令导出 Windows 系统安装软件清单。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

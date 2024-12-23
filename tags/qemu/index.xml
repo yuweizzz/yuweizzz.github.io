@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>QEMU on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/qemu/</link>
+    <description>Recent content in QEMU on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 23 Dec 2024 08:41:24 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/qemu/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过 QEMU 运行虚拟实例</title>
+      <link>https://yuweizzz.github.io/post/boot_virtual_machines_on_qemu/</link>
+      <pubDate>Mon, 11 Nov 2024 15:14:10 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/boot_virtual_machines_on_qemu/</guid>
+      <description>&lt;p&gt;在 Linux 系统中通过 QEMU 运行虚拟实例。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

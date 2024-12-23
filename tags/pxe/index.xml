@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Pxe on Wei&#39;s blog</title>
+    <title>PXE on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/pxe/</link>
-    <description>Recent content in Pxe on Wei&#39;s blog</description>
+    <description>Recent content in PXE on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 19 Nov 2024 09:35:43 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Dec 2024 08:41:24 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/pxe/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>替换 VirtualBox 内置网卡 ROM</title>
+      <link>https://yuweizzz.github.io/post/replace_virtualbox_pxe_rom/</link>
+      <pubDate>Thu, 28 Nov 2024 10:13:10 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/replace_virtualbox_pxe_rom/</guid>
+      <description>&lt;p&gt;替换 VirtualBox 内置网卡的 ROM ，解决 iPXE 功能缺失问题。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>DHCP 支持 PXE 启动的基本条件</title>
       <link>https://yuweizzz.github.io/post/basic_required_of_how_dhcp_support_to_pxe_boot/</link>

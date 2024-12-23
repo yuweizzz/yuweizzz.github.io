@@ -6,8 +6,29 @@
     <description>Recent content in Posts on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Tue, 19 Nov 2024 09:35:43 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Dec 2024 08:41:24 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>通过命令行导出 Windows 系统安装软件清单</title>
+      <link>https://yuweizzz.github.io/post/export_windows_system_installed_software_inventory/</link>
+      <pubDate>Wed, 18 Dec 2024 10:57:10 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/export_windows_system_installed_software_inventory/</guid>
+      <description>&lt;p&gt;通过 PowerShell 命令导出 Windows 系统安装软件清单。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>替换 VirtualBox 内置网卡 ROM</title>
+      <link>https://yuweizzz.github.io/post/replace_virtualbox_pxe_rom/</link>
+      <pubDate>Thu, 28 Nov 2024 10:13:10 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/replace_virtualbox_pxe_rom/</guid>
+      <description>&lt;p&gt;替换 VirtualBox 内置网卡的 ROM ，解决 iPXE 功能缺失问题。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>通过 QEMU 运行虚拟实例</title>
+      <link>https://yuweizzz.github.io/post/boot_virtual_machines_on_qemu/</link>
+      <pubDate>Mon, 11 Nov 2024 15:14:10 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/boot_virtual_machines_on_qemu/</guid>
+      <description>&lt;p&gt;在 Linux 系统中通过 QEMU 运行虚拟实例。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>DHCP 支持 PXE 启动的基本条件</title>
       <link>https://yuweizzz.github.io/post/basic_required_of_how_dhcp_support_to_pxe_boot/</link>
