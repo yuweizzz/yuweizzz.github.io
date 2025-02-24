@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 23 Dec 2024 08:46:29 &#43;0000"
+                  Modified <relative-time datetime="Mon, 24 Feb 2025 09:52:16 &#43;0000"
                     class="no-wrap">
-                    Mon, 23 Dec 2024 08:46:29 &#43;0000</relative-time>
+                    Mon, 24 Feb 2025 09:52:16 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      5904 Words
+                      6060 Words
                     
 
                   </div>
@@ -834,6 +834,38 @@
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    -D <span class="s2">&#34;cn=username,ou=users,dc=example,dc=org&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    -b <span class="s2">&#34;ou=users,dc=example,dc=org&#34;</span> <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>    <span class="s2">&#34;(&amp;(cn=username)(objectClass=Person))&#34;</span>
+</span></span></code></pre></div><h2 id="systemd-timer">systemd timer</h2>
+<p>很多的发行软件已经使用 systemd timer 替代原有的 cron 定时任务，可以大致了解一下 systemd timer 的使用方法。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 创建 service 文件</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/systemd/system/ls.service
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span><span class="o">=</span>ls
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Type</span><span class="o">=</span>oneshot
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/usr/bin/ls
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 创建对应的 timer 文件</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/systemd/system/ls.timer
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Unit<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">Description</span><span class="o">=</span>ls
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Timer<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">OnCalendar</span><span class="o">=</span>*-*-* 12:00:00 Asia/Shanghai
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 验证 systemd 文件</span>
+</span></span><span class="line"><span class="cl">$ systemd-analyze verify /etc/systemd/system/ls.timer
+</span></span><span class="line"><span class="cl">$ systemd-analyze verify /etc/systemd/system/ls.service
+</span></span><span class="line"><span class="cl">$ systemctl daemon-reload
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 模拟 Calendar 表达式的具体执行时间，当前表达式会在每天中午 12 点执行</span>
+</span></span><span class="line"><span class="cl">$ systemd-analyze calendar --iterations<span class="o">=</span><span class="m">5</span> <span class="s1">&#39;*-*-* 12:00:00 Asia/Shanghai&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 启用 timer 之后会按照所设定的 Calendar 执行对应的同名 service</span>
+</span></span><span class="line"><span class="cl">$ systemctl <span class="nb">enable</span> ls.timer
 </span></span></code></pre></div></article>
               </div>
             </div>

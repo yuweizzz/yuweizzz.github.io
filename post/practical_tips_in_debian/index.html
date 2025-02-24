@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 23 Dec 2024 08:46:29 &#43;0000"
+                  Modified <relative-time datetime="Mon, 24 Feb 2025 09:52:16 &#43;0000"
                     class="no-wrap">
-                    Mon, 23 Dec 2024 08:46:29 &#43;0000</relative-time>
+                    Mon, 24 Feb 2025 09:52:16 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2338 Words
+                      2782 Words
                     
 
                   </div>
@@ -497,7 +497,61 @@
 </span></span><span class="line"><span class="cl">$ chown sftp:sftp /data/sftp/sftp
 </span></span><span class="line"><span class="cl">$ chmod <span class="m">750</span> /data/sftp/sftp
 </span></span><span class="line"><span class="cl"><span class="c1"># 使用 sftp 用户登陆后会被限制在 /data/sftp 中，并且只能修改 /data/sftp/sftp 下的文件</span>
-</span></span></code></pre></div><h2 id="增加-history-时间戳">增加 history 时间戳</h2>
+</span></span></code></pre></div><h2 id="debian-用户安全加固">Debian 用户安全加固</h2>
+<h3 id="增加用户登陆会话超时时间">增加用户登陆会话超时时间</h3>
+<p>设置用户登陆会话的超时时间为 15 分钟，到达对应的空闲时间后会自动退出会话。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 追加环境变量到 /etc/profile.d/session_timeout.sh 文件中</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/profile.d/session_timeout.sh
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">TMOUT</span><span class="o">=</span><span class="m">900</span>
+</span></span><span class="line"><span class="cl"><span class="nb">readonly</span> TMOUT
+</span></span></code></pre></div><h3 id="增加用户密码过期时间">增加用户密码过期时间</h3>
+<p>系统默认的用户密码过期时间等同于永不过期，可以参考以下命令修改，这里的命令应该也适用于其他发行版。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 检查当前用户密码过期时间</span>
+</span></span><span class="line"><span class="cl">$ grep PASS_MAX_DAYS /etc/login.defs
+</span></span><span class="line"><span class="cl"><span class="c1"># PASS_MAX_DAYS Maximum number of days a password may be used.</span>
+</span></span><span class="line"><span class="cl">PASS_MAX_DAYS <span class="m">99999</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 将默认的过期时间修改为 7 天</span>
+</span></span><span class="line"><span class="cl">$ sed -i <span class="s1">&#39;s/PASS_MAX_DAYS.*/PASS_MAX_DAYS\t7/&#39;</span> /etc/login.defs
+</span></span></code></pre></div><h3 id="增加密码复杂度要求">增加密码复杂度要求</h3>
+<p>密码复杂度需要符合一定的安全标准，可以大致参考以下要求：</p>
+<ul>
+<li>密码长度大于等于 12 个字符。</li>
+<li>密码至少包含大写字母，小写字母，数字字符。</li>
+<li>不得与之前 5 次使用过的密码相同。</li>
+</ul>
+<p>一般借助 pam 模块来实现密码复杂度限制。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装 pwquality module</span>
+</span></span><span class="line"><span class="cl">$ apt install libpam-pwquality
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改 pwquality 配置文件</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/security/pwquality.conf
+</span></span><span class="line"><span class="cl"><span class="nv">minlen</span> <span class="o">=</span> <span class="m">12</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dcredit</span> <span class="o">=</span> -1
+</span></span><span class="line"><span class="cl"><span class="nv">ucredit</span> <span class="o">=</span> -1
+</span></span><span class="line"><span class="cl"><span class="nv">lcredit</span> <span class="o">=</span> -1
+</span></span><span class="line"><span class="cl"><span class="nv">retry</span> <span class="o">=</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl">enforce_for_root
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 增加 pwhistory 配置项</span>
+</span></span><span class="line"><span class="cl">$ cat /usr/share/pam-configs/pwhistory 
+</span></span><span class="line"><span class="cl">Name: Pwhistory
+</span></span><span class="line"><span class="cl">Default: yes
+</span></span><span class="line"><span class="cl">Priority: <span class="m">1024</span>
+</span></span><span class="line"><span class="cl">Password-Type: Primary
+</span></span><span class="line"><span class="cl">Password:
+</span></span><span class="line"><span class="cl">  required  pam_pwhistory.so enforce_for_root use_authtok <span class="nv">remember</span><span class="o">=</span><span class="m">5</span>
+</span></span><span class="line"><span class="cl">Password-Initial:
+</span></span><span class="line"><span class="cl">  required  pam_pwhistory.so enforce_for_root use_authtok <span class="nv">remember</span><span class="o">=</span><span class="m">5</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 修改 pam 配置，勾选已经创建的 Pwhistory 然后保存</span>
+</span></span><span class="line"><span class="cl">$ pam-auth-update
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查配置是否生效</span>
+</span></span><span class="line"><span class="cl">$ cat /etc/pam.d/common-password
+</span></span><span class="line"><span class="cl"><span class="c1"># pam_pwquality.so 由 libpam-pwquality 提供，安装后会自动出现在配置文件中</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># pam_pwhistory.so 由 libpam-modules 提供，不需要额外安装软件，但需要在添加默认配置项后，使用 pam-auth-update 进行配置</span>
+</span></span></code></pre></div><h3 id="增加-bash_history-时间戳">增加 bash_history 时间戳</h3>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 追加环境变量到 /etc/profile.d/history_timestamp.sh 文件中</span>
 </span></span><span class="line"><span class="cl">$ cat /etc/profile.d/history_timestamp.sh
 </span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">HISTTIMEFORMAT</span><span class="o">=</span><span class="s2">&#34;%F %T `whoami` &#34;</span>
