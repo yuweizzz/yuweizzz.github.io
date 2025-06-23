@@ -6,8 +6,50 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 24 Feb 2025 10:04:05 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Jun 2025 10:30:24 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Lua</title>
+      <link>https://yuweizzz.github.io/tags/lua/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/lua/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Openresty</title>
+      <link>https://yuweizzz.github.io/tags/openresty/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/openresty/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Zstandard</title>
+      <link>https://yuweizzz.github.io/tags/zstandard/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/zstandard/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Mfa</title>
+      <link>https://yuweizzz.github.io/tags/mfa/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/mfa/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Ocserv</title>
+      <link>https://yuweizzz.github.io/tags/ocserv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/ocserv/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Otp</title>
+      <link>https://yuweizzz.github.io/tags/otp/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/otp/</guid>
+      <description></description>
+    </item>
     <item>
       <title>PowerShell</title>
       <link>https://yuweizzz.github.io/tags/powershell/</link>
@@ -118,20 +160,6 @@
       <link>https://yuweizzz.github.io/tags/k3s/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/tags/k3s/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Lua</title>
-      <link>https://yuweizzz.github.io/tags/lua/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yuweizzz.github.io/tags/lua/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Openresty</title>
-      <link>https://yuweizzz.github.io/tags/openresty/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yuweizzz.github.io/tags/openresty/</guid>
       <description></description>
     </item>
     <item>

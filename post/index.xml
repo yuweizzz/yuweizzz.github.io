@@ -6,8 +6,29 @@
     <description>Recent content in Posts on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 24 Feb 2025 10:04:05 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 23 Jun 2025 10:30:24 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Categraf 采集日志存储到 VictoriaLogs</title>
+      <link>https://yuweizzz.github.io/post/using_categraf_to_collect_logs_and_store_in_victorialogs/</link>
+      <pubDate>Tue, 10 Jun 2025 11:14:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_categraf_to_collect_logs_and_store_in_victorialogs/</guid>
+      <description>&lt;p&gt;使用 Categraf 采集日志存储到 VictoriaLogs 。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>在 Openresty 中使用 Zstandard 算法实现 Compression dictionary transport</title>
+      <link>https://yuweizzz.github.io/post/using_zstandard_to_implement_compression_dictionary_transport_in_openresty/</link>
+      <pubDate>Sat, 10 May 2025 11:14:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_zstandard_to_implement_compression_dictionary_transport_in_openresty/</guid>
+      <description>&lt;p&gt;通过 Zstd-ffi 在 Openresty 中实现 Compression dictionary transport 。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>在 Ocserv 中使用双因素身份验证</title>
+      <link>https://yuweizzz.github.io/post/using_two_factor_authentication_in_ocserv/</link>
+      <pubDate>Sun, 23 Mar 2025 15:06:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_two_factor_authentication_in_ocserv/</guid>
+      <description>&lt;p&gt;在 Ocserv 认证过程中添加双因素身份验证。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>通过命令行导出 Windows 系统安装软件清单</title>
       <link>https://yuweizzz.github.io/post/export_windows_system_installed_software_inventory/</link>

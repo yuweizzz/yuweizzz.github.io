@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://yuweizzz.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
+    <title>在 Openresty 中使用 Zstandard 算法实现 Compression dictionary transport - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/favicon.svg'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <meta name="description"
+  content="通过 Zstd-ffi 在 Openresty 中实现 Compression dictionary transport 。
+" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/using_zstandard_to_implement_compression_dictionary_transport_in_openresty/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="在 Openresty 中使用 Zstandard 算法实现 Compression dictionary transport - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="通过 Zstd-ffi 在 Openresty 中实现 Compression dictionary transport 。
+" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://yuweizzz.github.io/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="在 Openresty 中使用 Zstandard 算法实现 Compression dictionary transport - Wei&#39;s blog">
+<meta property="og:description"
+  content="通过 Zstd-ffi 在 Openresty 中实现 Compression dictionary transport 。
+" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/using_zstandard_to_implement_compression_dictionary_transport_in_openresty/" />
+<meta property="og:site_name" content="在 Openresty 中使用 Zstandard 算法实现 Compression dictionary transport" />
+<meta property="og:image"
+  content="https://yuweizzz.github.io/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2025-05-10 11:14:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
+
+
+
+</head>
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
+        <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" id="search-form" action="" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
+                  <img class=" avatar-user"
+                    src="https://yuweizzz.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://yuweizzz.github.io/">Wei</a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://yuweizzz.github.io/post/using_zstandard_to_implement_compression_dictionary_transport_in_openresty/">在 Openresty 中使用 Zstandard 算法实现 Compression dictionary transport</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Sat, 10 May 2025 11:14:00 &#43;0000"
+                    class="no-wrap">
+                    Sat, 10 May 2025 11:14:00 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Mon, 23 Jun 2025 10:30:24 &#43;0000"
+                    class="no-wrap">
+                    Mon, 23 Jun 2025 10:30:24 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      908 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="/tags/openresty">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Openresty
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/zstandard">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Zstandard
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="/tags/lua">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      Lua
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><p>通过 Zstd-ffi 在 Openresty 中实现 Compression dictionary transport 。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><h2 id="前言">前言</h2>
+<p><a href="https://datatracker.ietf.org/doc/draft-ietf-httpbis-compression-dictionary/">Compression Dictionary Transport</a> 是一项比较新的 HTTP 传输协定，和以往的压缩传输相比，比较大的特点是使用了共享压缩字典。</p>
+<h2 id="基本实现">基本实现</h2>
+<p>目前有两种压缩算法支持共享压缩字典，分别是 Brotil 和 Zstandard 。它们都可以指定一些固定文本内容作为压缩字典进行文件压缩，解压文件时也需要通过字典进行解压。这样可以显著降低压缩后的文档大小，在网络传输过程是非常有优势的，但是对应的交换条件是字典进行需要额外传输。</p>
+<p>具体协议内容已经由 Compression Dictionary Transport 指定，包括了字典传输，和已经压缩的响应内容如何关联字典。目前 Chromium 的 version 117 及以上版本已经实现了对这个协议的支持。</p>
+<p>除了客户端之外，服务端也需要相应的支持，这里可以参考我之前的<a href="https://github.com/yuweizzz/compression-dictionary-transport">实现仓库</a>，这个例子是最小实现，在投入生产环境时应该根据具体情况进行修改。</p>
+<p>关于字典的指定，一般分为动态字典和静态字典。</p>
+<p>浏览器会根据 <code>Use-As-Dictionary</code> 的 Header 内容决定，将已响应的内容作为字典进行存储，并在向服务端请求时，是否要求服务端传输对应的字典压缩内容。</p>
+<p>这里所说的静态字典，典型应用就是响应内容的增量更新。比如某个 Javascript 脚本的版本更新。它可以把旧版本当作字典，由于旧版本已经存储到浏览器中，所以请求新版本时，字典传输过程就可以节省，只需要传输压缩后的内容。</p>
+<p>而动态字典一般需要在服务端先通过训练生成新的字典文件，当服务端的文件变动时，一般需要进行新的字典训练，所以称为动态字典，它可以充当所有文件的字典。</p>
+<p>Brotil 和 Zstandard 都有对应的字典训练工具，但是 Zstandard 提供的训练工具会生成的字典会带有 ID 和 Entropy Tables ，而 Brotil 生成的字典是纯文本，在 Compression Dictionary Transport 中使用时需要使用纯文本字典，所以 Zstandard 字典还需要进一步处理，这些工具可以在前述的实现仓库中下载。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 通过 zstd 训练字典，然后通过 zstd_dictionary_converter 去掉特定信息</span>
+</span></span><span class="line"><span class="cl">zstd --train content/* -o zstd_dict.dat
+</span></span><span class="line"><span class="cl">zstd_dictionary_converter -i zstd_dict.dat -o dict.dat
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 通过 brotli 训练字典</span>
+</span></span><span class="line"><span class="cl">brotli_dictionary_generator dict.dat content/*
+</span></span></code></pre></div><h2 id="测试">测试</h2>
+<p>这里以静态字典为例。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># base64 of sha256 sum:</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># jquery-2.2.4.min.js -&gt; :BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=:</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># sha256 sum</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># jquery-3.7.1.min.js -&gt; fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># use jquery-2.2.4.min.js as dictionary</span>
+</span></span><span class="line"><span class="cl">curl -k -H <span class="s2">&#34;sec-fetch-dest: document&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -H <span class="s2">&#34;accept-encoding: dcz&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -H <span class="s2">&#34;available-dictionary: :BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=:&#34;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  <span class="s1">&#39;https://localhost:4444/jquery-3.7.1.min.js&#39;</span> -o file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># HTTP/2 200</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># server: openresty/1.25.3.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># date: Tue, 20 May 2025 06:59:10 GMT</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># content-type: application/javascript; charset=utf-8</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># last-modified: Fri, 18 Oct 1991 12:00:00 GMT</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># etag: &#34;28feccc0-155ed&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># use-as-dictionary: match=&#34;/jquery-*.js&#34;, match-dest=(&#34;document&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># content-encoding: dcz</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># vary: Accept-Encoding, Available-Dictionary</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># decompress</span>
+</span></span><span class="line"><span class="cl">zstd -d -D /var/www/jquery-2.2.4.min.js file -o jquery-3.7.1.min.js
+</span></span><span class="line"><span class="cl">sha256sum jquery-3.7.1.min.js /var/www/jquery-3.7.1.min.js
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a  jquery-3.7.1.min.js</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># fc9a93dd241f6b045cbff0481cf4e1901becd0e12fb45166a8f17f95823f0b1a  /var/www/jquery-3.7.1.min.js</span>
+</span></span></code></pre></div></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/toc.js'></script>
+<link rel="stylesheet" href='https://yuweizzz.github.io/css/toc.css' />
+
+  
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+</body>
+
+<script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/search.js'></script>
+
+
+<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+<script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
+
+
+</html>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 24 Feb 2025 10:04:05 &#43;0000"
+                  Modified <relative-time datetime="Mon, 23 Jun 2025 10:30:24 &#43;0000"
                     class="no-wrap">
-                    Mon, 24 Feb 2025 10:04:05 &#43;0000</relative-time>
+                    Mon, 23 Jun 2025 10:30:24 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2782 Words
+                      2836 Words
                     
 
                   </div>
@@ -278,6 +278,7 @@
 </span></span><span class="line"><span class="cl">$ apt update
 </span></span></code></pre></div><h3 id="配置镜像源的优先级">配置镜像源的优先级</h3>
 <p>虽然可以通过添加 sid 镜像源来获取最新软件，但是这个操作是有一定危险性的，所以在添加 sid 源后千万不要使用 <code>apt upgrade</code> 更新所有软件，最好在安装完需要的某部分软件后，把 sid 源的优先级降低。</p>
+<p>使用 sid 镜像源可能会将你的系统版本信息标记为不稳定版本，这样会产生一些奇怪的问题，非常不建议在生产环境上使用。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 添加镜像源的优先级配置</span>
 </span></span><span class="line"><span class="cl">$ cat /etc/apt/preferences.d/sid
 </span></span><span class="line"><span class="cl">Package: *

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ocserv on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/ocserv/</link>
+    <description>Recent content in Ocserv on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 23 Jun 2025 10:30:24 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/ocserv/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>在 Ocserv 中使用双因素身份验证</title>
+      <link>https://yuweizzz.github.io/post/using_two_factor_authentication_in_ocserv/</link>
+      <pubDate>Sun, 23 Mar 2025 15:06:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_two_factor_authentication_in_ocserv/</guid>
+      <description>&lt;p&gt;在 Ocserv 认证过程中添加双因素身份验证。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

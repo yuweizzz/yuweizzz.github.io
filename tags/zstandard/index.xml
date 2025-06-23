@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Zstandard on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/zstandard/</link>
+    <description>Recent content in Zstandard on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 23 Jun 2025 10:30:24 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/zstandard/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Categraf 采集日志存储到 VictoriaLogs</title>
+      <link>https://yuweizzz.github.io/post/using_categraf_to_collect_logs_and_store_in_victorialogs/</link>
+      <pubDate>Tue, 10 Jun 2025 11:14:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_categraf_to_collect_logs_and_store_in_victorialogs/</guid>
+      <description>&lt;p&gt;使用 Categraf 采集日志存储到 VictoriaLogs 。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>在 Openresty 中使用 Zstandard 算法实现 Compression dictionary transport</title>
+      <link>https://yuweizzz.github.io/post/using_zstandard_to_implement_compression_dictionary_transport_in_openresty/</link>
+      <pubDate>Sat, 10 May 2025 11:14:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_zstandard_to_implement_compression_dictionary_transport_in_openresty/</guid>
+      <description>&lt;p&gt;通过 Zstd-ffi 在 Openresty 中实现 Compression dictionary transport 。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
