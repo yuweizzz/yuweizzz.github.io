@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 23 Jun 2025 10:30:24 &#43;0000"
+                  Modified <relative-time datetime="Mon, 23 Jun 2025 10:33:09 &#43;0000"
                     class="no-wrap">
-                    Mon, 23 Jun 2025 10:30:24 &#43;0000</relative-time>
+                    Mon, 23 Jun 2025 10:33:09 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -268,10 +268,10 @@
 </span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 </span></span></code></pre></div><p>一般的 Ocserv VPN 服务使用的是用户密码验证，可以额外添加一层双因素身份验证来增加系统安全性。</p>
 <p>使用用户密码验证的配置：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/ocserv/ocserv.conf </span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/ocserv/ocserv.conf</span>
 </span></span><span class="line"><span class="cl"><span class="nv">auth</span> <span class="o">=</span> <span class="s2">&#34;plain[passwd=/etc/ocserv/ocpasswd]&#34;</span>
 </span></span></code></pre></div><p>额外添加一层双因素身份验证非常简单，只需要修改认证配置，其他的原有配置不受影响：</p>
-<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/ocserv/ocserv.conf </span>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># /etc/ocserv/ocserv.conf</span>
 </span></span><span class="line"><span class="cl"><span class="nv">auth</span> <span class="o">=</span> <span class="s2">&#34;plain[passwd=/etc/ocserv/ocpasswd,otp=/etc/ocserv/users.oath]&#34;</span>
 </span></span></code></pre></div><p>后续的用户 otp 信息都需要添加到 <code>/etc/ocserv/users.oath</code> 文件中。以 <code>testuser</code> 用户为例，除了本身在 <code>/etc/ocserv/ocpasswd</code> 有对应的用户密码信息之外，通过以下命令来添加 otp 配置：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="nb">echo</span> <span class="s2">&#34;HOTP/T30 testuser - </span><span class="k">$(</span>head -c <span class="m">16</span> /dev/urandom <span class="p">|</span> xxd -c <span class="m">256</span> -ps<span class="k">)</span><span class="s2">&#34;</span> &gt;&gt; /etc/ocserv/users.oath
