@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categraf on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/categraf/</link>
+    <description>Recent content in Categraf on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 23 Jun 2025 10:37:26 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/categraf/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 Categraf 采集日志存储到 VictoriaLogs</title>
+      <link>https://yuweizzz.github.io/post/using_categraf_to_collect_logs_and_store_in_victorialogs/</link>
+      <pubDate>Tue, 10 Jun 2025 11:14:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_categraf_to_collect_logs_and_store_in_victorialogs/</guid>
+      <description>&lt;p&gt;使用 Categraf 采集日志存储到 VictoriaLogs 。&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
