@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 23 Jun 2025 10:37:26 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
                     class="no-wrap">
-                    Mon, 23 Jun 2025 10:37:26 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4280 Words
+                      4543 Words
                     
 
                   </div>
@@ -509,7 +509,24 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span></code></pre></div><p>在第一次访问 80 端口时，如果服务成功将你重定向到了 443 端口，并且添加了 <code>Strict-Transport-Security</code> 的 Header ，那么在浏览器在下次访问这个域名的服务时，会强制使用 HTTPS 进行访问，如果 Header 添加了 <code>includeSubDomains</code> 则会连同服务的子域名一起保护。</p>
 <p>开启了 HSTS 后想降级使用 HTTP 是比较麻烦的，可能需要修改浏览器的 HSTS 相关设置，此外 <code>Strict-Transport-Security</code> 还可以添加 <code>preload</code> 指令，这样浏览器第一次访问时会直接强制 HTTPS 而不是经过一次重定向后再强制，要正常使用 <code>preload</code> 指令需要自行将域名注册到 Chromium 项目的 HSTS preload list 并修改服务端配置，成功注册到 HSTS preload list 后如果想降级使用 HTTP 可能会导致服务无法访问。</p>
-<h2 id="开启-ocsp-stapling">开启 OCSP Stapling</h2>
+<h2 id="配置浏览器安全策略相关的-header">配置浏览器安全策略相关的 Header</h2>
+<p>除去跨域请求配置和 HSTS 配置，一般还有以下几个 Header 需要配置：</p>
+<ul>
+<li><code>X-Content-Type-Options</code> ：用于控制浏览器是否遵循在 Content-Type 响应请求头中定义的 MIME 类型，使用 nosniff 代表不允许进行嗅探，遵循原有的类型。</li>
+<li><code>X-Frame-Options</code> ：用于控制内嵌 Frame 相关标签的具体行为，一般值为 SAMEORIGIN 或者 DENY ，即允许从同源中加载 Frame 或者彻底不允许加载。应该视具体使用情况而定，如果完全不用到这个标签，直接使用 DENY 即可。</li>
+<li><code>Content-Security-Policy</code> ：用于声明资源加载策略的具体行为，主要的控制内容是控制资源的加载来源，并且可以为每一种资源做不同的限制，具体参考这里的<a href="https://content-security-policy.com/">文档</a>。</li>
+</ul>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">server <span class="o">{</span>
+</span></span><span class="line"><span class="cl">    listen <span class="m">443</span> ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">    listen <span class="o">[</span>::<span class="o">]</span>:443 ssl http2<span class="p">;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    location / <span class="o">{</span>
+</span></span><span class="line"><span class="cl">        add_header X-Content-Type-Options <span class="s2">&#34;nosniff&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        add_header X-Frame-Options <span class="s2">&#34;DENY&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">        add_header Content-Security-Policy <span class="s2">&#34;default-src &#39;self&#39;; script-src &#39;self&#39;; style-src &#39;self&#39;; img-src &#39;self&#39;;&#34;</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="o">}</span>
+</span></span><span class="line"><span class="cl"><span class="o">}</span>
+</span></span></code></pre></div><h2 id="开启-ocsp-stapling">开启 OCSP Stapling</h2>
 <p>OCSP 全称 Online Certificate Status Protocol ，也就是在线证书状态协议，在请求端浏览器获取到服务端证书后，可以向证书签发机构调用接口检验证书的时效性。</p>
 <p>OCSP Stapling 是基于 OCSP 的 TLS 协议扩展，和 OCSP 不同的是，服务端预先通过缓存 OCSP 结果，将这些信息一步到位返回给请求端浏览器，省去浏览器调用证书签发机构验证接口的时间。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以 github.com 为测试站点，首先获取证书链</span>

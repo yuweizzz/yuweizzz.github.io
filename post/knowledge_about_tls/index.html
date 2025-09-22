@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 23 Jun 2025 10:37:26 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
                     class="no-wrap">
-                    Mon, 23 Jun 2025 10:37:26 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,7 +207,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      4849 Words
+                      4960 Words
                     
 
                   </div>
@@ -414,6 +414,17 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># RSA 指的是认证算法， RSA 是非对称加密算法</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># AES128 指的是用于 session 过程中的加密算法， AES128 是 128 bit 的对称加密算法</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># SHA256 指的是摘要算法， SHA256 是 256 bit 的摘要算法</span>
+</span></span></code></pre></div><h2 id="计算公钥指纹">计算公钥指纹</h2>
+<p>在安卓开发过程中的 SSL pinning 会需要用到证书公钥指纹，可以通过私钥或者证书计算得出。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 从私钥提取对应的公钥</span>
+</span></span><span class="line"><span class="cl">$ openssl rsa -in key.pri -pubout -out key.pub
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 从证书中提取对应的公钥</span>
+</span></span><span class="line"><span class="cl">$ openssl x509 -in x509.crt -noout -pubkey -out key.pub
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 计算公钥指纹</span>
+</span></span><span class="line"><span class="cl">$ openssl asn1parse -noout -in key.pub -inform pem -out key_der.pub
+</span></span><span class="line"><span class="cl">$ openssl dgst -sha256 -binary key_der.pub <span class="p">|</span> openssl enc -base64
 </span></span></code></pre></div><h2 id="运行-ocsp-responder">运行 OCSP Responder</h2>
 <p><code>openssl</code> 可以运行一个用于响应 OCSP 请求的服务端，能够满足一些基本的测试要求，实际中 OCSP 具体如何在 Nginx 中进行应用则可以参考<a href="https://yuweizzz.github.io/post/practical_tips_in_nginx/#%E5%BC%80%E5%90%AF-ocsp-stapling">这里</a>。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 可以参照前面的例子生成证书签发请求，在具体签发 CA 证书时，需要主动声明证书用途</span>

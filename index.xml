@@ -6,8 +6,22 @@
     <description>Recent content on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 23 Jun 2025 10:37:26 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Sep 2025 07:24:47 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>设置 mysql 主从复制</title>
+      <link>https://yuweizzz.github.io/post/set_up_mysql_master_slave_replication/</link>
+      <pubDate>Tue, 22 Jul 2025 14:45:48 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/set_up_mysql_master_slave_replication/</guid>
+      <description>&lt;p&gt;基于已有运行的 mysql 主实例，搭建新的 mysql 从实例，设置主从复制。&lt;/p&gt;</description>
+    </item>
+    <item>
+      <title>使用 imapsync 迁移电子邮件</title>
+      <link>https://yuweizzz.github.io/post/using_imapsync_to_migrate_email/</link>
+      <pubDate>Mon, 07 Jul 2025 10:02:45 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_imapsync_to_migrate_email/</guid>
+      <description>&lt;p&gt;使用 imapsync 迁移电子邮件。&lt;/p&gt;</description>
+    </item>
     <item>
       <title>使用 Categraf 采集日志存储到 VictoriaLogs</title>
       <link>https://yuweizzz.github.io/post/using_categraf_to_collect_logs_and_store_in_victorialogs/</link>
