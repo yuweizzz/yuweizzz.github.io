@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -475,8 +475,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 通过测试命令确认无误后就可以重启服务</span>
 </span></span><span class="line"><span class="cl">$ sshd -T <span class="p">|</span> grep pubkeyacceptedalgorithms
-</span></span></code></pre></div><h3 id="启用-sftp">启用 sftp</h3>
-<p>sshd 服务默认就会启动 sftp 服务，这里主要是对某些用户做一些额外的 sftp 适配。</p>
+</span></span></code></pre></div><h3 id="启用-sftp">启用 SFTP</h3>
+<p>sshd 服务默认就会启动 SFTP 服务，这里主要是对某些用户做一些额外的 SFTP 适配。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 增加 sftp 用户并修改密码</span>
 </span></span><span class="line"><span class="cl">$ useradd sftp -s /sbin/nologin -M
 </span></span><span class="line"><span class="cl">$ passwd sftp

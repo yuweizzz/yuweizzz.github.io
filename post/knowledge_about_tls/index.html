@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -337,7 +337,7 @@
 </span></span></code></pre></div><blockquote>
 <p>在签发 CA 证书时最好通过 <code>-extfile &lt;(printf &quot;basicConstraints=CA:TRUE&quot;)</code> 表明自身是用作 CA 证书用途。</p>
 </blockquote>
-<p>在 golang 1.15 之后的版本，进行 tls 握手时发生报错 <code>&quot;x509: certificate relies on legacy Common Name field, use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0&quot;</code> 是因为当前使用的证书依赖于 CN 作为域名绑定，需要使用 x509 拓展字段 Subject Alternative Name 才能进行正常验证，也就是报错信息所述的 SAN 。</p>
+<p>在 Go 1.15 之后的版本，进行 tls 握手时发生报错 <code>&quot;x509: certificate relies on legacy Common Name field, use SANs or temporarily enable Common Name matching with GODEBUG=x509ignoreCN=0&quot;</code> 是因为当前使用的证书依赖于 CN 作为域名绑定，需要使用 x509 拓展字段 Subject Alternative Name 才能进行正常验证，也就是报错信息所述的 SAN 。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 生成 SAN 证书</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 前序步骤和使用 CN 的证书相似</span>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -347,7 +347,7 @@
 <li><code>--fork</code> 则可以生成子进程来运行指定程序，如果使用上面的例子，你将会得到 <code>unshare</code> 进程和作为子进程的 <code>/bin/sh</code> ，其中 <code>unshare</code> 进程属于父 pid 命名空间，子进程 <code>/bin/sh</code> 新生成的子 pid 命名空间。如果不带 <code>--fork</code> 将无法生成新的 pid 命名空间，生成的 <code>/bin/sh</code> 仍然在原有的命名空间，并且它的生命周期极短，命令运行完成后进程就不再分配内存了。</li>
 </ul>
 <p>mount 命名空间是最复杂的一种，它使用 shared subtrees 运行机制，允许在不同 mount 命名空间之间自动，受控地传播 mount 事件和 unmount 事件。简单来说，我们通过设置某个命名空间的 propagation 属性，决定这个命名空间中挂载动作和卸载动作是如何传播到其他命名空间。</p>
-<p>propagation 有 <code>private|shared|slave|unchanged</code> 这几种，最常用的是 private ，它默认从父空间继承挂载节点，后续不同空间的挂载动作和卸载动作互不影响，在 docker 的官方文档中，有这么一段话： <code>Volumes use rprivate bind propagation, and bind propagation is not configurable for volumes.</code> ，说明了卷是基于 mount 命名空间来实现挂载特性的。</p>
+<p>propagation 有 <code>private|shared|slave|unchanged</code> 这几种，最常用的是 private ，它默认从父空间继承挂载节点，后续不同空间的挂载动作和卸载动作互不影响，在 Docker 的官方文档中，有这么一段话： <code>Volumes use rprivate bind propagation, and bind propagation is not configurable for volumes.</code> ，说明了卷是基于 mount 命名空间来实现挂载特性的。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 在运行容器的情况下查看现有的命名空间</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 使用 containerd 作为容器运行时</span>
 </span></span><span class="line"><span class="cl">$ ctr i pull docker.io/library/busybox:latest
@@ -393,7 +393,7 @@
 </span></span><span class="line"><span class="cl">drwxr-xr-x. <span class="m">5</span> root root  <span class="m">0</span> Apr <span class="m">14</span> 22:13 pids
 </span></span><span class="line"><span class="cl">drwxr-xr-x. <span class="m">5</span> root root  <span class="m">0</span> Apr <span class="m">14</span> 22:13 systemd
 </span></span></code></pre></div><p>cgroup filesystem 是使用 cgroup 时内核态与用户态沟通的重要节点，默认路径一般为 <code>/sys/fs/cgroup</code> ，目前 cgroup 有 v1 和 v2 两个版本，这里使用的是 cgroup v1 ，如果想要使用 cgroup v2 ，应该通过 <code>/proc/filesystems</code> 查看当前内核是否支持。</p>
-<p>在这里我们可以看到 cgroupfs 将各种资源划分到多个子系统，主要有 cpu ， memory ， net ， blk 这几种资源，它们对应的控制器名称在后续创建 cgroup 是比较重要的。</p>
+<p>在这里我们可以看到 cgroupfs 将各种资源划分到多个子系统，主要有 CPU ， memory ， net ， blk 这几种资源，它们对应的控制器名称在后续创建 cgroup 是比较重要的。</p>
 <h3 id="使用-libcgroup-创建-cgroup">使用 libcgroup 创建 cgroup</h3>
 <p>使用 libcgroup 创建 cgroup 并不是特别推荐的做法，但是可以帮助我们深入了解如何定义和控制 cgroup 。</p>
 <p>如前文所述，我们需要通过 cgroup filesystem 来和内核沟通，虽然可以在 <code>/sys/fs/cgroup</code> 中直接创建新的 cgroup ，但是我们选择重新挂载 cgroupfs 来学习具体的工作过程。</p>
@@ -550,8 +550,8 @@
 </span></span><span class="line"><span class="cl">   Memory: 0B <span class="o">(</span>limit: 10.0M<span class="o">)</span>
 </span></span><span class="line"><span class="cl">   CGroup: /test.slice/toptest.service
 </span></span><span class="line"><span class="cl">           └─2661 /usr/bin/top -b
-</span></span></code></pre></div><p>现有常用的容器进行时中， docker 默认会在 <code>/sys/fs/cgroup</code> 的各个子系统中自行维护 cgroup ，但可以通过修改 cgroup driver 来托管到 systemd 中，而 containerd 也存在类似的驱动设置。</p>
-<p>在 docker 使用 <code>&quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;]</code> 改变 cgroup driver 的情况下，新运行的容器会作为 system.slice 中的 scope 运行，如果使用默认的 cgroupfs 的情况下，会如前面所述，在 <code>/sys/fs/cgroup</code> 的各个子系统中创建 cgroup ，而不是托管在 systemd 中。</p>
+</span></span></code></pre></div><p>现有常用的容器进行时中， Docker 默认会在 <code>/sys/fs/cgroup</code> 的各个子系统中自行维护 cgroup ，但可以通过修改 cgroup driver 来托管到 systemd 中，而 containerd 也存在类似的驱动设置。</p>
+<p>在 Docker 使用 <code>&quot;exec-opts&quot;: [&quot;native.cgroupdriver=systemd&quot;]</code> 改变 cgroup driver 的情况下，新运行的容器会作为 system.slice 中的 scope 运行，如果使用默认的 cgroupfs 的情况下，会如前面所述，在 <code>/sys/fs/cgroup</code> 的各个子系统中创建 cgroup ，而不是托管在 systemd 中。</p>
 <h2 id="结语">结语</h2>
 <p>总结来看，容器依赖内核功能来实现隔离能力， namespace 主要面向信息隔离， cgroup 主要面向资源隔离管控，在实际使用中，我们无需细致去关心它们的技术细节，但是了解它们的实现原理对后续学习是比较有帮助的。</p></article>
               </div>

@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -638,7 +638,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">secretName</span><span class="p">:</span><span class="w"> </span><span class="l">deploy-ssh-credentials</span><span class="w">
 </span></span></span></code></pre></div><h2 id="使用-trigger-触发-pipelinerun">使用 trigger 触发 pipelinerun</h2>
 <p>tekton trigger 可以提供相关的 web 接口，使得外部服务可以通过这个接口来触发对应的 pipelinerun 。</p>
-<p>具体的 tekton trigger 由 TriggerTemplate ， TriggerBinding 以及 EventListener 三个部分组成。其中 TriggerTemplate 和 pipeline 定义密切相关，基本上是在 pipeline 的基础上进行额外包装，而 TriggerBinding 则是规定了具体的 json payload 格式，应该要与 TriggerTemplate 中的参数结构对应。最终由 EventListener 对外提供 web 接口，接收来自外部的请求。</p>
+<p>具体的 tekton trigger 由 TriggerTemplate ， TriggerBinding 以及 EventListener 三个部分组成。其中 TriggerTemplate 和 pipeline 定义密切相关，基本上是在 pipeline 的基础上进行额外包装，而 TriggerBinding 则是规定了具体的 JSON payload 格式，应该要与 TriggerTemplate 中的参数结构对应。最终由 EventListener 对外提供 web 接口，接收来自外部的请求。</p>
 <p>此外还可以通过 Interceptors 对请求内容进行一些校验和转换处理，但这里暂时只用到了简单的参数映射，所以没有用上 Interceptors 。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">apiVersion</span><span class="p">:</span><span class="w"> </span><span class="l">triggers.tekton.dev/v1alpha1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l">TriggerTemplate</span><span class="w">

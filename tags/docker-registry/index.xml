@@ -6,7 +6,7 @@
     <description>Recent content in Docker Registry on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 22 Sep 2025 07:24:47 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Sep 2025 07:28:35 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/docker-registry/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>使用 Kaniko 在 Kubernetes 集群中构建镜像</title>

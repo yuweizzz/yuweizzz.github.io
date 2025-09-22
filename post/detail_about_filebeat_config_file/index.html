@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -320,8 +320,8 @@
 </span></span></span></code></pre></div><p><code>multiline.pattern</code> 用来定义正则表达式，用来定义需要匹配的行； <code>multiline.negate</code> 用来定义使用 <code>multiline.pattern</code> 进行匹配或者反选， <code>multiline.negate</code> 为 true 则为反选， <code>multiline.negate</code> 为 false 则为匹配； <code>multiline.match</code> 用来定义匹配值向前或者向后组合，具体值有 <code>before</code> 和 <code>after</code> 。</p>
 <p>它的具体工作模式是这样的：首先使用 <code>multiline.pattern</code> 进行逐行比较，根据 <code>multiline.negate</code> 判定该行是聚合行中的子行或者是聚合行的开始行，再根据 <code>multiline.match</code> 进行组合。</p>
 <p>示例中的表达式匹配了使用开头为 <code>[</code> 的行，由于它的 <code>multiline.negate</code> 为 true ，所以不以 <code>[</code> 开头的行被认为是聚合行中的子行，并且根据 <code>multiline.match</code> 的 <code>after</code> ，每次匹配到 <code>[</code> 之后，后续的子行会与它聚合为一行，直到下一符合 <code>[</code> 开头的行为止。</p>
-<h3 id="json-配置">json 配置</h3>
-<p><code>json</code> 配置可以使 filebeat 读取日志文件时将对应的日志内容解析为 json 格式。</p>
+<h3 id="json-配置">JSON 配置</h3>
+<p><code>json</code> 配置可以使 filebeat 读取日志文件时将对应的日志内容解析为 JSON 格式。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">filebeat.inputs</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">paths</span><span class="p">:</span><span class="w">
@@ -338,7 +338,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">keys_under_root</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">overwrite_keys</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">add_error_key</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span></code></pre></div><p>它适用于日志文件本身就是单行 json 格式的场景，因为它默认的解析来源是 <code>event.message</code> 字段，不过这个来源可以通过 <code>message_key</code> 进行修改。其中参数 <code>keys_under_root</code> 和 <code>overwrite_keys</code> 的定义类似于 <code>fields_under_root</code> 的行为，如果成功解析日志，字段都会被添加到 event 中，且同名字段时也是采取覆盖操作。而 <code>add_error_key</code> 则会在解析日志失败时添加 <code>event.error</code> 字段并在其中加入报错信息。解析成功后，不会再出现 <code>event.message</code> 字段。</p>
+</span></span></span></code></pre></div><p>它适用于日志文件本身就是单行 JSON 格式的场景，因为它默认的解析来源是 <code>event.message</code> 字段，不过这个来源可以通过 <code>message_key</code> 进行修改。其中参数 <code>keys_under_root</code> 和 <code>overwrite_keys</code> 的定义类似于 <code>fields_under_root</code> 的行为，如果成功解析日志，字段都会被添加到 event 中，且同名字段时也是采取覆盖操作。而 <code>add_error_key</code> 则会在解析日志失败时添加 <code>event.error</code> 字段并在其中加入报错信息。解析成功后，不会再出现 <code>event.message</code> 字段。</p>
 <h3 id="具体行为配置">具体行为配置</h3>
 <p>filebeat 可以通过某些配置项来定义对日志文件的具体操作细节：</p>
 <ul>
@@ -477,7 +477,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">ignore_missing</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fail_on_error</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
 </span></span></span></code></pre></div><h3 id="dissect">dissect</h3>
-<p><code>dissect</code> 可以通过给定匹配式截取出需要的数据并且拆分到对应的字段中，可以用于非标准 json 格式日志的信息格式化。其中 <code>target_prefix</code> 与 <code>add_fields</code> 中的 <code>target</code> 类似， <code>ignore_failure</code> 和 <code>overwrite_keys</code> 也同 <code>fields</code> 中错误处理和字段覆写用法相似。</p>
+<p><code>dissect</code> 可以通过给定匹配式截取出需要的数据并且拆分到对应的字段中，可以用于非标准 JSON 格式日志的信息格式化。其中 <code>target_prefix</code> 与 <code>add_fields</code> 中的 <code>target</code> 类似， <code>ignore_failure</code> 和 <code>overwrite_keys</code> 也同 <code>fields</code> 中错误处理和字段覆写用法相似。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># log_path: /var/log/info.log</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">
@@ -535,7 +535,7 @@
 <p>当我们处在调试阶段时，可以直接输出到控制台，如果使用 <code>systemd</code> 托管，那么使用 <code>systemctl status filebeat</code> 或者 <code>journalctl -fu filebeat</code> 就可以看到对应的输出。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">output.console</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pretty</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span></span></span></code></pre></div><p>在生产环境下，可以直接从 filebeat 把数据输出到 ElasticSearch ，也可以使用 Kafka 这类消息中间件做数据中转，再通过其他方式去消费。</p>
+</span></span></span></code></pre></div><p>在生产环境下，可以直接从 filebeat 把数据输出到 Elasticsearch ，也可以使用 Kafka 这类消息中间件做数据中转，再通过其他方式去消费。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># log_path: /var/log/info.log</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># log_message: &#34;789 - App02 - Database is will be restarted in 5 minutes&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">processors</span><span class="p">:</span><span class="w">

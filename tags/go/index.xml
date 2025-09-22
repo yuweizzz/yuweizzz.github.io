@@ -6,7 +6,7 @@
     <description>Recent content in Go on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 22 Sep 2025 07:24:47 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Sep 2025 07:28:35 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Prometheus exporter 代码参考</title>
@@ -27,7 +27,7 @@
       <link>https://yuweizzz.github.io/post/study_notes_about_go/</link>
       <pubDate>Mon, 09 May 2022 19:44:45 +0000</pubDate>
       <guid>https://yuweizzz.github.io/post/study_notes_about_go/</guid>
-      <description>&lt;p&gt;这篇笔记用来记录一些 Golang 的相关知识。&lt;/p&gt;</description>
+      <description>&lt;p&gt;这篇笔记用来记录一些 Go 的相关知识。&lt;/p&gt;</description>
     </item>
   </channel>
 </rss>

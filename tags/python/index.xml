@@ -6,14 +6,14 @@
     <description>Recent content in Python on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Mon, 22 Sep 2025 07:24:47 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 22 Sep 2025 07:28:35 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/python/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>通过 cloudflare api 更新 DNS 记录</title>
       <link>https://yuweizzz.github.io/post/update_dns_record_via_cloudflare_api/</link>
       <pubDate>Sun, 18 Feb 2024 15:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/post/update_dns_record_via_cloudflare_api/</guid>
-      <description>&lt;p&gt;通过 cloudflare API 更新 DNS 记录的 python 脚本。&lt;/p&gt;</description>
+      <description>&lt;p&gt;通过 Cloudflare API 更新 DNS 记录的 python 脚本。&lt;/p&gt;</description>
     </item>
     <item>
       <title>Python 项目接入 LDAP</title>

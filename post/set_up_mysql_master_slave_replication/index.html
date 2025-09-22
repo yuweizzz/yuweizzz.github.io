@@ -18,7 +18,7 @@
 
     
     <meta name="description"
-  content="基于已有运行的 mysql 主实例，搭建新的 mysql 从实例，设置主从复制。
+  content="基于已有运行的 MySQL 主实例，搭建新的 MySQL 从实例，设置主从复制。
 " />
 <meta name="keywords"
   content='blog, google analytics' />
@@ -29,7 +29,7 @@
 <meta name="twitter:card" content="summary" />
 <meta name="twitter:title" content="设置 mysql 主从复制 - Wei&#39;s blog" />
 <meta name="twitter:description"
-  content="基于已有运行的 mysql 主实例，搭建新的 mysql 从实例，设置主从复制。
+  content="基于已有运行的 MySQL 主实例，搭建新的 MySQL 从实例，设置主从复制。
 " />
 <meta name="twitter:site" content="https://yuweizzz.github.io/" />
 <meta name="twitter:creator" content="" />
@@ -40,7 +40,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:title" content="设置 mysql 主从复制 - Wei&#39;s blog">
 <meta property="og:description"
-  content="基于已有运行的 mysql 主实例，搭建新的 mysql 从实例，设置主从复制。
+  content="基于已有运行的 MySQL 主实例，搭建新的 MySQL 从实例，设置主从复制。
 " />
 <meta property="og:url" content="https://yuweizzz.github.io/post/set_up_mysql_master_slave_replication/" />
 <meta property="og:site_name" content="设置 mysql 主从复制" />
@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -230,7 +230,7 @@
 
 
               <div class="Box-body px-5 pb-5" style="z-index: 1">
-                <article class="markdown-body entry-content container-lg"><p>基于已有运行的 mysql 主实例，搭建新的 mysql 从实例，设置主从复制。</p>
+                <article class="markdown-body entry-content container-lg"><p>基于已有运行的 MySQL 主实例，搭建新的 MySQL 从实例，设置主从复制。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
 </span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
@@ -248,7 +248,7 @@
 </span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
 </span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
 </span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
-</span></span></code></pre></div><p>目前线上运行着一个独立的 mysql 8.0 实例，需要新增一个只读的从实例来做分担主库的压力，同时作为主库的后备实例。这个实例已经开启了 binlog 日志，但是没有使用 GTID 模式。</p>
+</span></span></code></pre></div><p>目前线上运行着一个独立的 MySQL 8.0 实例，需要新增一个只读的从实例来做分担主库的压力，同时作为主库的后备实例。这个实例已经开启了 binlog 日志，但是没有使用 GTID 模式。</p>
 <p>新建的从实例的配置文件参考：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># mysql.conf</span>
 </span></span><span class="line"><span class="cl"><span class="o">[</span>mysqld<span class="o">]</span>

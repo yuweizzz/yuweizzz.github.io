@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -328,8 +328,8 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 备份和还原 xfs 文件系统目录</span>
 </span></span><span class="line"><span class="cl">$ xfsdump -f ~/home.img /home
 </span></span><span class="line"><span class="cl">$ xfsrestore -f ~/home.img /home
-</span></span></code></pre></div><h2 id="curl-的基本使用">curl 的基本使用</h2>
-<p>curl 在 Linux 代替了浏览器的工作，经常用来调试接口。</p>
+</span></span></code></pre></div><h2 id="curl-的基本使用">cURL 的基本使用</h2>
+<p>cURL 在 Linux 代替了浏览器的工作，经常用来调试接口。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 经典 curl 用例</span>
 </span></span><span class="line"><span class="cl">$ curl -X POST -d <span class="s1">&#39;{&#34;key&#34;:&#34;value&#34;}&#39;</span> -H <span class="s1">&#39;Content-Type: application/json&#39;</span> <span class="s1">&#39;http://....&#39;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># -X HTTP 请求方法，通常有 GET,POST,PUT,DELETE</span>
@@ -353,8 +353,8 @@
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 将文件内容转换为标准输入流之后再作为请求体，这样可以多做一次处理</span>
 </span></span><span class="line"><span class="cl">$ cat data.json <span class="p">|</span> curl -X POST -H <span class="s1">&#39;Content-Type: application/json&#39;</span> --data-binary @- <span class="s1">&#39;http://....&#39;</span>
-</span></span></code></pre></div><h2 id="curl-结合-bash-变量使用">curl 结合 bash 变量使用</h2>
-<p>curl 可以结合 bash 变量，实现更灵活的 URL 请求。</p>
+</span></span></code></pre></div><h2 id="curl-结合-bash-变量使用">cURL 结合 Bash 变量使用</h2>
+<p>cURL 可以结合 Bash 变量，实现更灵活的 URL 请求。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 结合 bash 变量的简单实例</span>
 </span></span><span class="line"><span class="cl">$ <span class="nv">keyA</span><span class="o">=</span>AAA
 </span></span><span class="line"><span class="cl">$ <span class="nv">keyB</span><span class="o">=</span>BBB
@@ -367,7 +367,7 @@
 <li><code>&quot;$keyB&quot;</code></li>
 <li><code>'&quot;}'</code></li>
 </ul>
-<p>其中 <code>'</code> 包围的文本不会被 bash 转义，所以 <code>{}</code> 会以源文本的格式保留而不被转义。而变量总是以 <code>&quot;$keyA&quot;</code> 的形式出现，保证它被 bash 正确转义并获取变量内容。所以文本块就是 <code>'</code> 包围的部分和变量转义后的组合文本，注意 <code>&quot;$keyA&quot;</code> 和任意 <code>'</code> 包围的部分之间不能有空格，这样它们就会被认为是完整的 <code>-d</code> 选项的内容，发起请求时就不会报错了。</p>
+<p>其中 <code>'</code> 包围的文本不会被 Bash 转义，所以 <code>{}</code> 会以源文本的格式保留而不被转义。而变量总是以 <code>&quot;$keyA&quot;</code> 的形式出现，保证它被 Bash 正确转义并获取变量内容。所以文本块就是 <code>'</code> 包围的部分和变量转义后的组合文本，注意 <code>&quot;$keyA&quot;</code> 和任意 <code>'</code> 包围的部分之间不能有空格，这样它们就会被认为是完整的 <code>-d</code> 选项的内容，发起请求时就不会报错了。</p>
 <h2 id="使用-sed-快速去除无用字符">使用 sed 快速去除无用字符</h2>
 <p>sed 可以很简单快速去除空白行，首尾空白字符，注释行。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 删除空白行</span>
@@ -415,7 +415,7 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 十进制转科学计数</span>
 </span></span><span class="line"><span class="cl">$ <span class="nb">printf</span> <span class="s2">&#34;%e&#34;</span> <span class="m">12345</span>
 </span></span></code></pre></div><h2 id="在-shell-中使用数组">在 shell 中使用数组</h2>
-<p>bash 4 原生支持一维数组，在某些情况下可能会使用到这种数据结构。</p>
+<p>Bash 4 原生支持一维数组，在某些情况下可能会使用到这种数据结构。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># 使用之前需要先声明数组</span>
 </span></span><span class="line"><span class="cl"><span class="nb">declare</span> -a array
@@ -446,8 +446,8 @@
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="si">${#</span><span class="nv">array</span><span class="p">[@]</span><span class="si">}</span><span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 如果指定了确切的 index ，将会获取对应 value 的长度</span>
 </span></span><span class="line"><span class="cl"><span class="nb">echo</span> <span class="si">${#</span><span class="nv">array</span><span class="p">[</span><span class="s2">&#34;index&#34;</span><span class="p">]</span><span class="si">}</span><span class="p">;</span>
-</span></span></code></pre></div><h2 id="bash-变量操作符">bash 变量操作符</h2>
-<p>bash 变量支持操作符，可以基于原有值做一些快速变换。</p>
+</span></span></code></pre></div><h2 id="bash-变量操作符">Bash 变量操作符</h2>
+<p>Bash 变量支持操作符，可以基于原有值做一些快速变换。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ <span class="nv">var</span><span class="o">=</span>file.name.sh
 </span></span><span class="line"><span class="cl"><span class="c1"># 修改第一个匹配字符 . 为 _</span>
 </span></span><span class="line"><span class="cl">$ <span class="nb">echo</span> <span class="si">${</span><span class="nv">var</span><span class="p">/./_</span><span class="si">}</span>
@@ -474,7 +474,7 @@
 </span></span><span class="line"><span class="cl">file
 </span></span></code></pre></div><p>使用时需要注意 <code>#</code> 和 <code>%</code> 必须是从左或从右的完整匹配，或者是方向一致的通配符匹配才能正确删除字符。</p>
 <p>关于这两个定义符的记忆，我建议直接看键盘， <code>#</code> 在 <code>$</code> 左边， <code>%</code> 在 <code>$</code> 右边，把它们指向 <code>$</code> 则暗合它们的开始匹配方向。</p>
-<h2 id="awk-内置函数-split">awk 内置函数 split()</h2>
+<h2 id="awk-内置函数-split">AWK 内置函数 split()</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># awk 内置函数 split() 的用法：</span>
 </span></span><span class="line"><span class="cl">
@@ -487,7 +487,7 @@
 </span></span><span class="line"><span class="cl">split<span class="o">(</span><span class="s2">&#34;A;B;C;D&#34;</span>,array,<span class="s1">&#39;;&#39;</span><span class="o">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 执行完成后，array=[&#39;A&#39;,&#39;B&#39;,&#39;C&#39;,&#39;D&#39;]</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 值得注意的是 array 是 awk 的内部变量</span>
-</span></span></code></pre></div><h2 id="awk-导入外部数据">awk 导入外部数据</h2>
+</span></span></code></pre></div><h2 id="awk-导入外部数据">AWK 导入外部数据</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="cp">#!/bin/bash
 </span></span></span><span class="line"><span class="cl"><span class="cp"></span><span class="c1"># awk 可以导入外部数据，通常会用来导入 shell 变量进行进一步处理</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 灵活利用导入可以实现多样的数据处理</span>
@@ -620,7 +620,7 @@
 <ul>
 <li><code>name</code> 是对 Repository 的描述。</li>
 <li><code>enable</code> 规定对应 Repository 是否启用，可以使用这个选项屏蔽 Repository 。</li>
-<li><code>baseurl</code> 是指向 Repository 的 repodata 目录的地址，里面存放了软件包和他们的依赖关系。它可以指向本地和云端，本地文件以 <code>file://</code> 来指定，云端可以使用 http，ftp 等工具。</li>
+<li><code>baseurl</code> 是指向 Repository 的 repodata 目录的地址，里面存放了软件包和他们的依赖关系。它可以指向本地和云端，本地文件以 <code>file://</code> 来指定，云端可以使用 http，FTP 等工具。</li>
 <li><code>mirrorlist</code> 是 <code>baseurl</code> 的一种集合形式，可以说 <code>mirrorlist</code> 指向的是一系列的 <code>baseurl</code> ，配合 fastestmirror 插件能找到响应速度最快的 Repository 。</li>
 <li><code>gpgcheck</code> 规定是否进行签名检查。</li>
 <li><code>gpgkey</code> 指定了签名检查的合法签名数据源。</li>

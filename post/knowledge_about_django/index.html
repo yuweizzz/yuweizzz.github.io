@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -276,7 +276,7 @@
 </span></span><span class="line"><span class="cl"><span class="o">(</span>project<span class="o">)</span> $ python manage.py runserver
 </span></span></code></pre></div><p>不带 directory 的初始化会在当前工作目录创建新的项目目录，然后你可以在其中找到 <code>manage.py</code> 和保存项目配置文件的目录。</p>
 <h2 id="使用-mysql-做后端存储">使用 MySQL 做后端存储</h2>
-<p>Django 默认的后端存储是 sqlite3 ，可以用更强大的 MySQL 或者 PostgreSQL 代替。</p>
+<p>Django 默认的后端存储是 SQLite3 ，可以用更强大的 MySQL 或者 PostgreSQL 代替。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 安装依赖</span>
 </span></span><span class="line"><span class="cl"><span class="o">(</span>project<span class="o">)</span> $ pip install mysqlclient
 </span></span><span class="line"><span class="cl">
@@ -501,8 +501,8 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># 通过 Celery 启动 flower</span>
 </span></span><span class="line"><span class="cl"><span class="o">(</span>project<span class="o">)</span> $ celery -A project flower --address<span class="o">=</span>127.0.0.1 --port<span class="o">=</span><span class="m">5555</span>
 </span></span></code></pre></div><h2 id="使用-django-序列化器">使用 Django 序列化器</h2>
-<p>序列化实际上是比较广泛的定义，在 Django 中一般指将 Django Model 转换为通用型数据格式，最常用的就是 json 格式。</p>
-<p>原生的 Django serializers 可以将 Model 转换为 json 格式的纯文本，除了 json 还包括 XML 和 YAML 这两种格式。</p>
+<p>序列化实际上是比较广泛的定义，在 Django 中一般指将 Django Model 转换为通用型数据格式，最常用的就是 JSON 格式。</p>
+<p>原生的 Django serializers 可以将 Model 转换为 JSON 格式的纯文本，除了 JSON 还包括 XML 和 YAML 这两种格式。</p>
 <p>通常情况下会使用 Django REST framework 提供的 serializers 来替代原生的序列化器， Django REST framework 是非常强大的 Django 扩展库，在 Django 原有的基础类上做了增强封装，它的 serializers 拥有更丰富的内置函数，可以轻松实现序列化和反序列化。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-python" data-lang="python"><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">django.core</span> <span class="kn">import</span> <span class="n">serializers</span>
 </span></span><span class="line"><span class="cl"><span class="kn">from</span> <span class="nn">rest_framework</span> <span class="kn">import</span> <span class="n">serializers</span> <span class="k">as</span> <span class="n">drf_serializers</span>

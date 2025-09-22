@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -320,7 +320,7 @@
 <li><code>net.ipv6.conf.eth0.use_tempaddr</code> ：参数为 0 代表不生成临时地址，参数为 1 代表使用并生成临时地址。</li>
 </ul>
 <p>在我使用的 Armbian 中， <code>accept_ra</code> 参数为 1 ， <code>autoconf</code> 参数为 1 ， <code>addr_gen_mode</code> 参数为 0 ， <code>use_tempaddr</code> 参数为 0 ，所以最终只获取到一个由 SLAAC 生成的 IPv6 地址。</p>
-<p>现在的 DNS 设置仍然是由 ipv4 的 DHCP 服务配置的，因为 SLAAC 并不会配置 DNS 信息，如果想要在 Linux 中使用 DHCPv6 自动配置 DNS 信息，应该使用命令 <code>dhclient -6 &lt;interface&gt;</code> 主动拉起 DHCPv6 客户端，这样 DNS 设置就会由 DHCPv6 客户端接管配置。在 Armbian 中，和 DNS 配置相关的文件是 <code>/etc/resolv.conf</code> 和 <code>/etc/resolvconf/run/resolv.conf</code> ，它们之间应该通过软链接相关联。</p>
+<p>现在的 DNS 设置仍然是由 IPv4 的 DHCP 服务配置的，因为 SLAAC 并不会配置 DNS 信息，如果想要在 Linux 中使用 DHCPv6 自动配置 DNS 信息，应该使用命令 <code>dhclient -6 &lt;interface&gt;</code> 主动拉起 DHCPv6 客户端，这样 DNS 设置就会由 DHCPv6 客户端接管配置。在 Armbian 中，和 DNS 配置相关的文件是 <code>/etc/resolv.conf</code> 和 <code>/etc/resolvconf/run/resolv.conf</code> ，它们之间应该通过软链接相关联。</p>
 <h2 id="配置硬盘休眠">配置硬盘休眠</h2>
 <p>由于主机有 USB 2.0 接口，并且家里有一块闲置的西数 500GB SATA 硬盘，所以就将这块硬盘作为主机的外置存储。因为在实际使用过程中并不会经常地读写硬盘，所以我希望硬盘在平时可以处于休眠状态，并且在真正读写工作完成后继续休眠。</p>
 <p>在一开始时优先想到使用 <code>hdparm</code> 工具来设置硬盘的待机模式：</p>

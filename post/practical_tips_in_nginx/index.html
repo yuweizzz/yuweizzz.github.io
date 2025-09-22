@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -322,8 +322,8 @@
 </span></span><span class="line"><span class="cl"><span class="o">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 获取 HTTP 请求头 User-Agent 的值，如果使用正则匹配到 Opera Mini 则设置变量 mobile 为 1 ，其他情况默认为 0</span>
-</span></span></code></pre></div><h2 id="设置-json-格式日志">设置 json 格式日志</h2>
-<p>Nginx 原生的日志格式是列出了关键信息的单行文本，我们可以创建模拟 json 格式的日志写入规则。</p>
+</span></span></code></pre></div><h2 id="设置-json-格式日志">设置 JSON 格式日志</h2>
+<p>Nginx 原生的日志格式是列出了关键信息的单行文本，我们可以创建模拟 JSON 格式的日志写入规则。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 模拟 json 的日志格式</span>
 </span></span><span class="line"><span class="cl">http <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    log_format main <span class="nv">escape</span><span class="o">=</span>json <span class="s1">&#39;{&#39;</span>
@@ -369,7 +369,7 @@
 <p><code>postrotate</code> 的关键点在于 <code>kill -USR1 nginx.pid</code> 这个命令，它可以使 Nginx 重新打开日志文件。</p>
 <h2 id="代理-websocket">代理 WebSocket</h2>
 <p>WebSocket 是基于 HTTP 协议的实时双向通讯协议，它属于应用层的协议。</p>
-<p>在浏览器中， WebSocket 会以 <code>ws://</code> 的形式出现，基于 ssl 加密则会以 <code>wss://</code> 的形式出现，在 Nginx 中，所有的 WebSocket 请求只是带有特定请求头的普通 HTTP 请求。</p>
+<p>在浏览器中， WebSocket 会以 <code>ws://</code> 的形式出现，基于 SSL 加密则会以 <code>wss://</code> 的形式出现，在 Nginx 中，所有的 WebSocket 请求只是带有特定请求头的普通 HTTP 请求。</p>
 <p>WebSocket 的握手请求带有重要的两个请求头 <code>Upgrade: websocket</code> 和 <code>Connection: Upgrade</code> ，握手成功将会返回 <code>101 Switching Protocols</code> ，后续双方就可以使用 WebSocket 的方法互相通信。</p>
 <p>通常 WebSocket 代理是这样做的：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">http <span class="o">{</span>
@@ -633,7 +633,7 @@
 </span></span><span class="line"><span class="cl">github.pem: good
 </span></span><span class="line"><span class="cl"> This Update: Nov <span class="m">10</span> 13:15:02 <span class="m">2022</span> GMT
 </span></span><span class="line"><span class="cl"> Next Update: Nov <span class="m">17</span> 12:30:02 <span class="m">2022</span> GMT
-</span></span></code></pre></div><p>在 Nginx 中可以通过 ssl 模块中的相关指令来开启 OCSP 支持。</p>
+</span></span></code></pre></div><p>在 Nginx 中可以通过 SSL 模块中的相关指令来开启 OCSP 支持。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 开启 OCSP 支持</span>
 </span></span><span class="line"><span class="cl">http <span class="o">{</span>
 </span></span><span class="line"><span class="cl">    server <span class="o">{</span>

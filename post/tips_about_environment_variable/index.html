@@ -175,9 +175,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:24:47 &#43;0000"
+                  Modified <relative-time datetime="Mon, 22 Sep 2025 07:28:35 &#43;0000"
                     class="no-wrap">
-                    Mon, 22 Sep 2025 07:24:47 &#43;0000</relative-time>
+                    Mon, 22 Sep 2025 07:28:35 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -261,7 +261,7 @@
 <p>最近经常需要自行编译安装一些开源软件，它们有着各自的运行方式，经常需要定义一些环境变量，那么在何处定义这些变量成了需要探究的问题。</p>
 <h2 id="设置即时生效的环境变量">设置即时生效的环境变量</h2>
 <p>我们可以从最常用的环境变量 <code>PATH</code> 开始，它是寻找解释器或者命令的默认路径，以 <code>:</code> 分割不同路径的形式出现。在这个变量定义的路径中，可执行文件可以被快速搜索并直接执行，而且路径的顺序是有意义的，越靠前的搜索优先级越高。经常可以在一些软件的使用文档中看到 <code>export PATH=/path/to/bin:$PATH</code> 的类似用法。</p>
-<p>除了 <code>export</code> 之外，还有 <code>source</code> 也可以用来设置一些环境变量， python 的虚拟环境 venv 就用到了 <code>source</code> 来设置一些环境变量，实际上 <code>export</code> 和 <code>source</code> 都是 bash 的内置命令。</p>
+<p>除了 <code>export</code> 之外，还有 <code>source</code> 也可以用来设置一些环境变量， python 的虚拟环境 venv 就用到了 <code>source</code> 来设置一些环境变量，实际上 <code>export</code> 和 <code>source</code> 都是 Bash 的内置命令。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以下出自 bash 的相关文档</span>
 </span></span><span class="line"><span class="cl">$ man bash
 </span></span><span class="line"><span class="cl">...
@@ -290,9 +290,9 @@
 </span></span></code></pre></div><p>从文档可以看到， <code>export</code> 被明确定位用来快速设置环境变量。而 <code>source</code> 则要特殊一些，可以看到它是对文件级进行操作的，实际上它并不明确涉及任何变量改动。但是它们有一个相同点在于它们的生效范围都是当前 shell 。所以当你使用了 <code>export</code> 设置了一些变量，或者使用 <code>source</code> 执行了某个文件，那么它们涉及的变量改动就影响了当前 shell ，起到了改变环境变量的效果。</p>
 <h2 id="设置可持久化的环境变量">设置可持久化的环境变量</h2>
 <p>由于前面所述的方法只对当前 shell 生效，那么持久方案也值得我们额外关注。</p>
-<p>这里只讨论 Linux 环境下的 bash ，其他类型的 shell 和 bash 可能略有差别，但它们的机制应该是相近的。</p>
+<p>这里只讨论 Linux 环境下的 Bash ，其他类型的 shell 和 Bash 可能略有差别，但它们的机制应该是相近的。</p>
 <h3 id="shell-的属性">shell 的属性</h3>
-<p>bash 的机制比表面看上去的复杂得多，它隐藏了很多的属性设置。可以根据我们比较关系的属性，来简单划分 shell 的种类。</p>
+<p>Bash 的机制比表面看上去的复杂得多，它隐藏了很多的属性设置。可以根据我们比较关系的属性，来简单划分 shell 的种类。</p>
 <p>影响环境变量的属性有比较关键的两个，分别是登录相关的属性和交互相关的属性。</p>
 <p>根据登录相关的属性分为登录式 login shell 和非登录式 non-login shell ，根据交互相关的属性分为交互式 interactive shell 和非交互式 non-interactive shell ，将两种属性组合起来可以将 shell 分为四个种类。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以下结果由直接登录系统后的 shell 中执行得出</span>
@@ -344,7 +344,7 @@
 </span></span><span class="line"><span class="cl">                      <span class="c1"># 允许快速索引存在历史记录中的命令</span>
 </span></span><span class="line"><span class="cl">...
 </span></span></code></pre></div><h3 id="profile-和-rc">profile 和 rc</h3>
-<p>bash 使用了 profile 和 rc 来完成一些 bash 环境的设置工作，环境变量的设置会在这一步完成。</p>
+<p>Bash 使用了 profile 和 rc 来完成一些 Bash 环境的设置工作，环境变量的设置会在这一步完成。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 以下出自 bash 的相关文档</span>
 </span></span><span class="line"><span class="cl">$ man bash
 </span></span><span class="line"><span class="cl">...
@@ -386,7 +386,7 @@
 </span></span><span class="line"><span class="cl">              <span class="k">if</span> <span class="o">[</span> -n <span class="s2">&#34;</span><span class="nv">$BASH_ENV</span><span class="s2">&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span> . <span class="s2">&#34;</span><span class="nv">$BASH_ENV</span><span class="s2">&#34;</span><span class="p">;</span> <span class="k">fi</span>
 </span></span><span class="line"><span class="cl">       but the value of the PATH variable is not used to search <span class="k">for</span> the file name.
 </span></span><span class="line"><span class="cl">...
-</span></span></code></pre></div><p>加载 profile 和 rc 是由 shell 属性决定的，从 bash 文档可以得出，登录式 shell 启动时会加载 profile 系列文件，非登陆交互式 shell 启动时会加载 rc 系列文件。</p>
+</span></span></code></pre></div><p>加载 profile 和 rc 是由 shell 属性决定的，从 Bash 文档可以得出，登录式 shell 启动时会加载 profile 系列文件，非登陆交互式 shell 启动时会加载 rc 系列文件。</p>
 <p>根据上述文档，只要是登录式 shell ，不论是否带有交互属性，它的显式预加载链为 <code>/etc/profile --&gt; ~/.bash_profile</code> ，可以通过 <code>bash -i -l -x</code> 进行验证，读取整体链条文件可以知道完整的预加载链为：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">/etc/profile    --&gt;    ~/.bash_profile
 </span></span><span class="line"><span class="cl">      <span class="p">|</span>                       <span class="p">|</span>
@@ -409,7 +409,7 @@
 </span></span></code></pre></div><p>现在只剩最后一种 shell ，非登录式非交互式 shell 听上去不可思议，但它确实是存在的，其实在前面运行 shell 的属性检查脚本 <code>bash test.sh</code> 的那个 shell 就是非登录式非交互式 shell ，它并不会加载任何 profile 或者 rc ，但它会从父进程继承环境变量，并且执行完文件中的命令这个 shell 就消亡了。</p>
 <h2 id="选择合理的设置文件">选择合理的设置文件</h2>
 <p>综合上面来看，我们可以在两个地方设置持久的环境变量，那就是 <code>/etc/profile.d/*.sh</code> 和 <code>~/.bashrc</code> 。</p>
-<p>将变量写在 <code>/etc/profile.d/*.sh</code> 是 bash 本身推荐的做法，但是如果仔细阅读过 <code>/etc/bashrc</code> 和 <code>/etc/profile</code> 的代码你会知道，它们对 <code>/etc/profile.d/*.sh</code> 的处理是一致的，只有对应的用户拥有 <code>/etc/profile.d/</code> 中的文件可读权限，那么这个脚本才会被执行。如果有时候自行写入了 <code>/etc/profile.d/</code> 中的文件却无法正常加载变量，很可能就是权限导致的问题。</p>
+<p>将变量写在 <code>/etc/profile.d/*.sh</code> 是 Bash 本身推荐的做法，但是如果仔细阅读过 <code>/etc/bashrc</code> 和 <code>/etc/profile</code> 的代码你会知道，它们对 <code>/etc/profile.d/*.sh</code> 的处理是一致的，只有对应的用户拥有 <code>/etc/profile.d/</code> 中的文件可读权限，那么这个脚本才会被执行。如果有时候自行写入了 <code>/etc/profile.d/</code> 中的文件却无法正常加载变量，很可能就是权限导致的问题。</p>
 <p>将变量写在常用用户的 <code>~/.bashrc</code> 我个人认为是更好的办法，它的好处在于方便隔离，各个用户之间不会互相影响。</p>
 <p>实际使用需要基于实际场景来设置，如果是公共性质比较强的环境变量，写在 <code>/etc/profile.d/*.sh</code> 中更方便，如果是一些个人环境和调试使用的环境变量，写在 <code>~/.bashrc</code> 更好。</p>
 <h2 id="题外话">题外话</h2>
