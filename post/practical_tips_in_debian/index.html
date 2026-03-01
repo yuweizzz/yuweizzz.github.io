@@ -17,6 +17,9 @@
     <meta name="theme-color" content="#1e2327">
 
     
+    <script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script><script type="text/javascript" src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+
+    
     <meta name="description"
   content="这篇笔记用来记录 Debian 系统中的一些实用技巧。
 " />
@@ -84,6 +87,7 @@
 
 
 </head>
+
 
 <body>
   <div style="position: relative">
@@ -175,9 +179,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Tue, 24 Feb 2026 04:52:03 &#43;0000"
+                  Modified <relative-time datetime="Sun, 01 Mar 2026 09:47:51 &#43;0000"
                     class="no-wrap">
-                    Tue, 24 Feb 2026 04:52:03 &#43;0000</relative-time>
+                    Sun, 01 Mar 2026 09:47:51 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -207,14 +211,14 @@
                         </div>
                       </div>
                     </details-menu>
-                      2836 Words
+                      2900 Words
                     
 
                   </div>
                   <div class="file-actions flex-order-2 pt-0">
                     
                     
-                    <a class="muted-link mr-3" href="/tags/linux">
+                    <a class="muted-link mr-3" href="https://yuweizzz.github.io/tags/linux">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
@@ -223,7 +227,7 @@
                       Linux
                     </a>
                     
-                    <a class="muted-link mr-3" href="/tags/debian">
+                    <a class="muted-link mr-3" href="https://yuweizzz.github.io/tags/debian">
                       <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
                         <path fill-rule="evenodd"
                           d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
@@ -584,20 +588,34 @@
 </span></span><span class="line"><span class="cl">$ systemctl restart systemd-timesyncd.service
 </span></span></code></pre></div><h2 id="通过-dpkg-管理-deb-软件包">通过 dpkg 管理 deb 软件包</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 查询系统已经安装的 deb 软件包，对标 redhat 系列的 rpm -qa</span>
-</span></span><span class="line"><span class="cl">$ dpkg -l
+</span></span><span class="line"><span class="cl">dpkg -l
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查询 deb 软件包安装的所有文件，对标 redhat 系列的 rpm -ql &lt;package_name&gt;</span>
-</span></span><span class="line"><span class="cl">$ dpkg -L &lt;package_name&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询 deb 软件包安装的所有文件，对标 redhat 系列的 rpm -ql &#34;package_name&#34;</span>
+</span></span><span class="line"><span class="cl">dpkg -L <span class="s2">&#34;package_name&#34;</span>
 </span></span><span class="line"><span class="cl">
-</span></span><span class="line"><span class="cl"><span class="c1"># 查询文件的 deb 软件包归属，对标 redhat 系列的 rpm -qf &lt;filename&gt;</span>
-</span></span><span class="line"><span class="cl">$ dpkg -S &lt;filename&gt;
+</span></span><span class="line"><span class="cl"><span class="c1"># 查询文件的 deb 软件包归属，对标 redhat 系列的 rpm -qf &#34;filename&#34;</span>
+</span></span><span class="line"><span class="cl">dpkg -S <span class="s2">&#34;filename&#34;</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 不执行安装，只下载 deb 软件包，会默认下载到 apt 的缓存目录</span>
-</span></span><span class="line"><span class="cl">$ apt install --download-only &lt;package_name&gt;
-</span></span><span class="line"><span class="cl">$ ls /var/cache/apt/archives
+</span></span><span class="line"><span class="cl">apt install --download-only <span class="s2">&#34;package_name&#34;</span>
+</span></span><span class="line"><span class="cl">ls /var/cache/apt/archives
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1"># 不执行安装，直接解压 deb 软件包，可以自由指定解压目录</span>
-</span></span><span class="line"><span class="cl">$ dpkg -x &lt;package_name&gt; /tmp/deb
+</span></span><span class="line"><span class="cl">dpkg -x <span class="s2">&#34;package_name&#34;</span> /tmp/deb
+</span></span></code></pre></div><h2 id="gpg-key-的导出和导入">GPG KEY 的导出和导入</h2>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">apt update
+</span></span><span class="line"><span class="cl">apt install gpg gpg-agent
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查现有的 gpg key</span>
+</span></span><span class="line"><span class="cl">gpg --list-signatures
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 获取 keyid 后执行导出，导出私钥时需要对应的密码</span>
+</span></span><span class="line"><span class="cl">gpg --output pub.gpg --armor --export <span class="s2">&#34;keyid&#34;</span>
+</span></span><span class="line"><span class="cl">gpg --output pri.gpg --armor --export-secret-key <span class="s2">&#34;keyid&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 执行导入</span>
+</span></span><span class="line"><span class="cl">gpg --import pub.gpg
+</span></span><span class="line"><span class="cl">gpg --allow-secret-key-import --import pri.gpg
 </span></span></code></pre></div></article>
               </div>
             </div>
@@ -627,6 +645,7 @@
       
       <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
       
+      <li class="mr-3 mr-lg-0">GitHub and the Invertocat logo are trademarks of <a href="https://github.com/">GitHub, Inc.</a></li>
     </ul>
   </div>
   <div class="d-flex flex-justify-center pb-6">
@@ -635,6 +654,7 @@
 
 
 </div>
+
 </body>
 
 <script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
@@ -646,9 +666,6 @@
 <script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
 <script type="application/javascript" src='https://yuweizzz.github.io/js/search.js'></script>
 
-
-<script src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
-<script type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
 
 
 </html>
