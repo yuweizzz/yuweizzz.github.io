@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <script type="application/javascript" src='https://yuweizzz.github.io/js/theme-mode.js'></script>
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/frameworks.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github.min.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/github-style.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/light.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/dark.css' />
+    <link rel="stylesheet" href='https://yuweizzz.github.io/css/syntax.css' />
+    <title>使用 vector 进行日志采集 - Wei&#39;s blog</title>
+    
+    <link rel="icon" type="image/x-icon" href='/images/favicon.svg'>
+    
+    <meta name="theme-color" content="#1e2327">
+
+    
+    <script type="text/javascript" src="https://cubism.live2d.com/sdk-web/cubismcore/live2dcubismcore.min.js"></script>
+    <script defer type="text/javascript" src="https://yuweizzz.github.io/js/CustomLive2D.js"></script>
+
+    
+    <meta name="description"
+  content="" />
+<meta name="keywords"
+  content='blog, google analytics' />
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="https://yuweizzz.github.io/post/using_vector_to_collect_logs/" />
+
+
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content="使用 vector 进行日志采集 - Wei&#39;s blog" />
+<meta name="twitter:description"
+  content="" />
+<meta name="twitter:site" content="https://yuweizzz.github.io/" />
+<meta name="twitter:creator" content="" />
+<meta name="twitter:image"
+  content="https://yuweizzz.github.io/">
+
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="使用 vector 进行日志采集 - Wei&#39;s blog">
+<meta property="og:description"
+  content="" />
+<meta property="og:url" content="https://yuweizzz.github.io/post/using_vector_to_collect_logs/" />
+<meta property="og:site_name" content="使用 vector 进行日志采集" />
+<meta property="og:image"
+  content="https://yuweizzz.github.io/">
+<meta property="og:image:width" content="2048">
+<meta property="og:image:height" content="1024">
+
+<meta property="article:published_time" content="2026-04-10 10:00:00 &#43;0000 UTC" />
+
+
+
+
+
+
+
+
+
+
+
+  
+    
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-RFSQDKSFR1"></script>
+      <script>
+        var doNotTrack = false;
+        if ( false ) {
+          var dnt = (navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack);
+          var doNotTrack = (dnt == "1" || dnt == "yes");
+        }
+        if (!doNotTrack) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-RFSQDKSFR1');
+        }
+      </script>
+    
+  
+
+
+
+
+</head>
+
+
+<body>
+  <div style="position: relative">
+  <header class="Header js-details-container Details px-3 px-md-4 px-lg-5 flex-wrap flex-md-nowrap open Details--on">
+    <div class="Header-item mobile-none" style="margin-top: -4px; margin-bottom: -4px;">
+      <a class="Header-link" href="https://yuweizzz.github.io/">
+        <img class="octicon" height="32" width="32" src="/images/github-mark-white.png">
+      </a>
+    </div>
+    <div class="Header-item d-md-none">
+      <button class="Header-link btn-link js-details-target" type="button"
+        onclick="document.querySelector('#header-search').style.display = document.querySelector('#header-search').style.display == 'none'? 'block': 'none'">
+        <svg height="24" class="octicon octicon-three-bars" viewBox="0 0 16 16" version="1.1" width="24">
+          <path fill-rule="evenodd" d="M1 2.75A.75.75 0 011.75 2h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 2.75zm0 5A.75.75 0 011.75 7h12.5a.75.75 0 110 1.5H1.75A.75.75 0 011 7.75zM1.75 12a.75.75 0 100 1.5h12.5a.75.75 0 100-1.5H1.75z">
+          </path>
+        </svg>
+      </button>
+    </div>
+    <div style="display: none;" id="header-search"
+      class="Header-item Header-item--full flex-column flex-md-row width-full flex-order-2 flex-md-order-none mr-0 mr-md-3 mt-3 mt-md-0 Details-content--hidden-not-important d-md-flex">
+      <div
+        class="Header-search header-search flex-auto js-site-search position-relative flex-self-stretch flex-md-self-auto mb-3 mb-md-0 mr-0 mr-md-3 scoped-search site-scoped-search js-jump-to">
+        <div class="position-relative">
+          
+          <form target="_blank" id="search-form" action="" accept-charset="UTF-8" method="get"
+            autocomplete="off">
+            <label
+              class="Header-search-label form-control input-sm header-search-wrapper p-0 js-chromeless-input-container header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center">
+              <input type="text"
+                class="Header-search-input form-control input-sm header-search-input jump-to-field js-jump-to-field js-site-search-focus js-site-search-field is-clearable"
+                name="q" value="" placeholder="Search" autocomplete="off">
+            </label>
+          </form>
+          
+        </div>
+      </div>
+    </div>
+
+    <div class="Header-item Header-item--full flex-justify-center d-md-none position-relative">
+      <a class="Header-link " href="https://yuweizzz.github.io/">
+        <img class="octicon octicon-mark-github v-align-middle" height="32" width="32" src="/images/github-mark-white.png">
+      </a>
+    </div>
+    <div class="Header-item" style="margin-right: 0;">
+      <a href="javascript:void(0)" class="Header-link no-select" onclick="switchTheme()">
+        <svg style="fill: var(--color-profile-color-modes-toggle-moon);" class="no-select" viewBox="0 0 16 16"
+          version="1.1" width="16" height="16">
+          <path fill-rule="evenodd" clip-rule="evenodd"
+            d="M4.52208 7.71754C7.5782 7.71754 10.0557 5.24006 10.0557 2.18394C10.0557 1.93498 10.0392 1.68986 10.0074 1.44961C9.95801 1.07727 10.3495 0.771159 10.6474 0.99992C12.1153 2.12716 13.0615 3.89999 13.0615 5.89383C13.0615 9.29958 10.3006 12.0605 6.89485 12.0605C3.95334 12.0605 1.49286 10.001 0.876728 7.24527C0.794841 6.87902 1.23668 6.65289 1.55321 6.85451C2.41106 7.40095 3.4296 7.71754 4.52208 7.71754Z">
+          </path>
+        </svg>
+      </a>
+    </div>
+  </header>
+</div>
+
+  <div id="search-result" class="container-lg px-3 new-discussion-timeline" style="display: none;">
+</div>
+
+  
+<div class="application-main">
+  <div>
+  <main>
+    <div class="gisthead pagehead bg-gray-light pb-0 pt-3 mb-4">
+      <div class="px-0">
+        <div class="mb-3 d-flex px-3 px-md-3 px-lg-5">
+          <div class="flex-auto min-width-0 width-fit mr-3">
+            <div class="d-flex">
+              <div class="d-none d-md-block">
+                <a class="avatar mr-2 flex-shrink-0" href="https://yuweizzz.github.io/">
+                  <img class=" avatar-user"
+                    src="https://yuweizzz.github.io/images/avatar.png"
+                    width="32" height="32"></a>
+              </div>
+              <div class="d-flex flex-column">
+                <h1 class="break-word f3 text-normal mb-md-0 mb-1">
+                  <span class="author">
+                    <a href="https://yuweizzz.github.io/">Wei</a>
+                  </span>
+                  <span class="path-divider">/</span>
+                  <strong class="css-truncate css-truncate-target mr-1" style="max-width: 410px">
+                    <a href="https://yuweizzz.github.io/post/using_vector_to_collect_logs/">使用 vector 进行日志采集</a>
+                  </strong>
+                </h1>
+                <div class="note m-0">
+                  Created <relative-time datetime="Fri, 10 Apr 2026 10:00:00 &#43;0000"
+                    class="no-wrap">
+                    Fri, 10 Apr 2026 10:00:00 &#43;0000</relative-time>
+
+                  
+                  <span class="file-info-divider"></span>
+                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:38:48 &#43;0000"
+                    class="no-wrap">
+                    Mon, 13 Jul 2026 09:38:48 &#43;0000</relative-time>
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-lg px-3 new-discussion-timeline">
+      <div class="repository-content gist-content">
+        <div>
+          <div class="js-gist-file-update-container js-task-list-container file-box">
+            <div id="file-pytest" class="file my-2">
+              <div id="post-header" class="file-header d-flex flex-md-items-center flex-items-start sticky-header" style="z-index: 2">
+                <div class="file-info d-flex flex-md-items-center flex-items-start flex-order-1 flex-auto">
+                  <div class="text-mono f6 flex-auto pr-3 flex-order-2 flex-md-order-1 mt-2 mt-md-0">
+                    
+                    <summary id="toc-toggle" onclick="clickToc()" class="btn btn-octicon m-0 mr-2 p-2">
+                      <svg aria-hidden="true" viewBox="0 0 16 16" height="16" width="16" class="octicon octicon-list-unordered">
+                        <path fill-rule="evenodd" d="M2 4a1 1 0 100-2 1 1 0 000 2zm3.75-1.5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zm0 5a.75.75 0 000 1.5h8.5a.75.75 0 000-1.5h-8.5zM3 8a1 1 0 11-2 0 1 1 0 012 0zm-1 6a1 1 0 100-2 1 1 0 000 2z"></path>
+                      </svg>
+                    </summary>
+                    <details-menu class="SelectMenu" id="toc-details" style="display: none;">
+                      <div class="SelectMenu-modal rounded-3 mt-1" style="max-height: 340px;">
+                        <div class="SelectMenu-list SelectMenu-list--borderless p-2" style="overscroll-behavior: contain;" id="toc-list">
+                        </div>
+                      </div>
+                    </details-menu>
+                      1016 Words
+                    
+
+                  </div>
+                  <div class="file-actions flex-order-2 pt-0">
+                    
+                    
+                    <a class="muted-link mr-3" href="https://yuweizzz.github.io/tags/s3">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      s3
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="https://yuweizzz.github.io/tags/vector">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      vector
+                    </a>
+                    
+                    <a class="muted-link mr-3" href="https://yuweizzz.github.io/tags/victorialogs">
+                      <svg class="octicon octicon-tag" viewBox="0 0 16 16" version="1.1" width="16" height="16">
+                        <path fill-rule="evenodd"
+                          d="M2.5 7.775V2.75a.25.25 0 01.25-.25h5.025a.25.25 0 01.177.073l6.25 6.25a.25.25 0 010 .354l-5.025 5.025a.25.25 0 01-.354 0l-6.25-6.25a.25.25 0 01-.073-.177zm-1.5 0V2.75C1 1.784 1.784 1 2.75 1h5.025c.464 0 .91.184 1.238.513l6.25 6.25a1.75 1.75 0 010 2.474l-5.026 5.026a1.75 1.75 0 01-2.474 0l-6.25-6.25A1.75 1.75 0 011 7.775zM6 5a1 1 0 100 2 1 1 0 000-2z">
+                        </path>
+                      </svg>
+                      victorialogs
+                    </a>
+                    
+                    
+                  </div>
+                </div>
+              </div>
+
+
+              <div class="Box-body px-5 pb-5" style="z-index: 1">
+                <article class="markdown-body entry-content container-lg"><div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                                       <span class="o">(</span>@@<span class="o">)</span> <span class="o">(</span>  <span class="o">)</span> <span class="o">(</span>@<span class="o">)</span>  <span class="o">(</span> <span class="o">)</span>  @@    <span class="o">()</span>    @     O     @     O      @
+</span></span><span class="line"><span class="cl">                                  <span class="o">(</span>   <span class="o">)</span>
+</span></span><span class="line"><span class="cl">                              <span class="o">(</span>@@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                           <span class="o">(</span>    <span class="o">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                         <span class="o">(</span>@@@<span class="o">)</span>
+</span></span><span class="line"><span class="cl">                       <span class="o">====</span>        ________                ___________
+</span></span><span class="line"><span class="cl">                   _D _<span class="p">|</span>  <span class="p">|</span>_______/        <span class="se">\_</span>_I_I_____<span class="o">===</span>__<span class="p">|</span>_________<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                    <span class="p">|</span><span class="o">(</span>_<span class="o">)</span>---  <span class="p">|</span>   H<span class="se">\_</span>_______/ <span class="p">|</span>   <span class="p">|</span>        <span class="o">=</span><span class="p">|</span>___ ___<span class="p">|</span>      _________________
+</span></span><span class="line"><span class="cl">                    /     <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>  <span class="p">|</span>     <span class="p">|</span>   <span class="p">|</span>         <span class="o">||</span>_<span class="p">|</span> <span class="p">|</span>_<span class="o">||</span>     _<span class="p">|</span>                <span class="se">\_</span>____A
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>      <span class="p">|</span>  <span class="p">|</span>   H  <span class="p">|</span>__--------------------<span class="p">|</span> <span class="o">[</span>___<span class="o">]</span> <span class="p">|</span>   <span class="o">=</span><span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span> ________<span class="p">|</span>___H__/__<span class="p">|</span>_____/<span class="o">[][]</span>~<span class="se">\_</span>______<span class="p">|</span>       <span class="p">|</span>   -<span class="p">|</span>                        <span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="p">|</span>/ <span class="p">|</span>   <span class="p">|</span>-----------I_____I <span class="o">[][]</span> <span class="o">[]</span>  D   <span class="p">|</span><span class="o">=======</span><span class="p">|</span>____<span class="p">|</span>________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                 __/ <span class="o">=</span><span class="p">|</span> o <span class="p">|</span><span class="o">=</span>-~O<span class="o">=====</span><span class="nv">O</span><span class="o">=====</span><span class="nv">O</span><span class="o">=====</span>O<span class="se">\ </span>____Y___________<span class="p">|</span>__<span class="p">|</span>__________________________<span class="p">|</span>_
+</span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
+</span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
+</span></span></code></pre></div><p>vector 是日志采集工具的新秀，性能确实很优越，但是代价是资源消耗高，在使用它之前应该权衡自己的业务日志量和计算资源是否适配。</p>
+<p>以下是 vector 可以使用的 toml 格式配置文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-toml" data-lang="toml"><span class="line"><span class="cl"><span class="nx">timezone</span> <span class="p">=</span> <span class="s2">&#34;local&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">data_dir</span> <span class="p">=</span> <span class="s2">&#34;/var/lib/vector&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">sources</span><span class="p">.</span><span class="nx">app_log</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;file&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">include</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;/var/logs/app-*.log&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 允许最大的行大小为 5MB</span>
+</span></span><span class="line"><span class="cl"><span class="nx">max_line_bytes</span> <span class="p">=</span> <span class="mi">5242880</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 跨行合并</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">sources</span><span class="p">.</span><span class="nx">app_log</span><span class="p">.</span><span class="nx">multiline</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 首行正则</span>
+</span></span><span class="line"><span class="cl"><span class="nx">start_pattern</span> <span class="p">=</span> <span class="s1">&#39;^\d{4}&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">mode</span> <span class="p">=</span> <span class="s2">&#34;continue_through&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 子行正则</span>
+</span></span><span class="line"><span class="cl"><span class="nx">condition_pattern</span> <span class="p">=</span> <span class="s1">&#39;^[\D]+&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">timeout_ms</span> <span class="p">=</span> <span class="mi">1000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 从 S3 存储桶取回日志，需要配置带有 sqs 队列的存储桶</span>
+</span></span><span class="line"><span class="cl"><span class="c"># [sources.from_aws_s3]</span>
+</span></span><span class="line"><span class="cl"><span class="c"># type = &#34;aws_s3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># region = &#34;ap-southeast-1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># auth.access_key_id = &#34;xxxxxxxxxxxxxxxxxxxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># auth.secret_access_key = &#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># sqs.queue_url = &#34;https://sqs.ap-southeast-1.amazonaws.com/000000000001/applog_queue&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># decoding.codec = &#34;json&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">transforms</span><span class="p">.</span><span class="nx">remap_applog</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">inputs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;app_log&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;remap&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">source</span> <span class="p">=</span> <span class="s1">&#39;&#39;&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">  # 默认的消息体存储在 .message 之中，这里使用日志内容覆写，只单独提取时间和应用名字段
+</span></span></span><span class="line"><span class="cl"><span class="s1">  pattern = r&#39;</span><span class="err">^(?</span><span class="nx">P</span><span class="err">&lt;</span><span class="nx">date</span><span class="err">&gt;\</span><span class="nx">d</span><span class="p">{</span><span class="mi">4</span><span class="p">}</span><span class="nx">-</span><span class="err">\</span><span class="nx">d</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span><span class="nx">-</span><span class="err">\</span><span class="nx">d</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span> <span class="err">\</span><span class="nx">d</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span><span class="err">:\</span><span class="nx">d</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span><span class="err">:\</span><span class="nx">d</span><span class="p">{</span><span class="mi">2</span><span class="p">}</span><span class="err">\</span><span class="p">.</span><span class="err">\</span><span class="nx">d</span><span class="p">{</span><span class="mi">3</span><span class="p">}</span><span class="err">)\</span><span class="nx">s</span><span class="err">+(?</span><span class="nx">P</span><span class="err">&lt;</span><span class="nx">application</span><span class="err">&gt;</span><span class="p">[</span><span class="err">\</span><span class="nx">w</span><span class="p">]</span><span class="err">+)\</span><span class="nx">s</span><span class="err">+(?</span><span class="nx">P</span><span class="err">&lt;</span><span class="nx">message</span><span class="err">&gt;</span><span class="p">[</span><span class="err">\</span><span class="nx">s</span><span class="err">\</span><span class="nx">S</span><span class="p">]</span><span class="err">+)</span><span class="s1">&#39;
+</span></span></span><span class="line"><span class="cl"><span class="s1">  parsed_message, err = parse_regex(.message, pattern)
+</span></span></span><span class="line"><span class="cl"><span class="s1">  if err == null {
+</span></span></span><span class="line"><span class="cl"><span class="s1">    . = merge(., parsed_message)
+</span></span></span><span class="line"><span class="cl"><span class="s1">  } else {
+</span></span></span><span class="line"><span class="cl"><span class="s1">    .format_log_error = err
+</span></span></span><span class="line"><span class="cl"><span class="s1">  }
+</span></span></span><span class="line"><span class="cl"><span class="s1">  # 将时间戳带上时区信息进行转换
+</span></span></span><span class="line"><span class="cl"><span class="s1">  parsed_timestamp, err = parse_timestamp(.date, format: &#34;%Y-%m-%d %H:%M:%S.%f&#34;, timezone: &#34;Asia/Shanghai&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="s1">  if err == null {
+</span></span></span><span class="line"><span class="cl"><span class="s1">    .date = parsed_timestamp
+</span></span></span><span class="line"><span class="cl"><span class="s1">  } else {
+</span></span></span><span class="line"><span class="cl"><span class="s1">    .format_timestamp_error = err
+</span></span></span><span class="line"><span class="cl"><span class="s1">  }
+</span></span></span><span class="line"><span class="cl"><span class="s1">  # 删除无用的字段
+</span></span></span><span class="line"><span class="cl"><span class="s1">  del(.useless)
+</span></span></span><span class="line"><span class="cl"><span class="s1">&#39;&#39;&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 写入到 VictoriaLogs</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">sinks</span><span class="p">.</span><span class="nx">to_vlog</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">inputs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;remap_applog&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;http&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">uri</span> <span class="p">=</span> <span class="s2">&#34;http://localhost:9428/insert/jsonline?_stream_fields=host&amp;_msg_field=message&amp;_time_field=date&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">compression</span> <span class="p">=</span> <span class="s2">&#34;gzip&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">encoding</span><span class="p">.</span><span class="nx">codec</span> <span class="p">=</span> <span class="s2">&#34;json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">framing</span><span class="p">.</span><span class="nx">method</span> <span class="p">=</span> <span class="s2">&#34;newline_delimited&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">healthcheck</span><span class="p">.</span><span class="nx">enabled</span> <span class="p">=</span> <span class="kc">false</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c"># 写入到 s3 存储桶</span>
+</span></span><span class="line"><span class="cl"><span class="p">[</span><span class="nx">sinks</span><span class="p">.</span><span class="nx">to_aws_s3</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">inputs</span> <span class="p">=</span> <span class="p">[</span><span class="s2">&#34;remap_applog&#34;</span><span class="p">]</span>
+</span></span><span class="line"><span class="cl"><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;aws_s3&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">region</span> <span class="p">=</span> <span class="s2">&#34;ap-southeast-1&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">storage_class</span> <span class="p">=</span> <span class="s2">&#34;STANDARD&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">auth</span><span class="p">.</span><span class="nx">access_key_id</span> <span class="p">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">auth</span><span class="p">.</span><span class="nx">secret_access_key</span> <span class="p">=</span> <span class="s2">&#34;xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">bucket</span> <span class="p">=</span> <span class="s2">&#34;bucket&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">encoding</span><span class="p">.</span><span class="nx">codec</span> <span class="p">=</span> <span class="s2">&#34;json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">buffer</span><span class="p">.</span><span class="nx">type</span> <span class="p">=</span> <span class="s2">&#34;disk&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 使用 1Gb 的磁盘缓冲空间</span>
+</span></span><span class="line"><span class="cl"><span class="nx">buffer</span><span class="p">.</span><span class="nx">max_size</span> <span class="p">=</span> <span class="mi">1073741824</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 当缓冲空间不足时，阻塞消息写入</span>
+</span></span><span class="line"><span class="cl"><span class="nx">buffer</span><span class="p">.</span><span class="nx">when_full</span> <span class="p">=</span> <span class="s2">&#34;block&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 每 15 分钟执行一次 batch</span>
+</span></span><span class="line"><span class="cl"><span class="nx">batch</span><span class="p">.</span><span class="nx">timeout_secs</span> <span class="p">=</span> <span class="mi">900</span>
+</span></span><span class="line"><span class="cl"><span class="c"># 单次 batch 最大使用 500MB</span>
+</span></span><span class="line"><span class="cl"><span class="nx">batch</span><span class="p">.</span><span class="nx">max_bytes</span> <span class="p">=</span> <span class="mi">524288000</span>
+</span></span><span class="line"><span class="cl"><span class="nx">compression</span> <span class="p">=</span> <span class="s2">&#34;gzip&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">content_encoding</span> <span class="p">=</span> <span class="s2">&#34;gzip&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">content_type</span> <span class="p">=</span> <span class="s2">&#34;application/json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">filename_append_uuid</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">filename_extension</span> <span class="p">=</span> <span class="s2">&#34;json&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">filename_time_format</span> <span class="p">=</span> <span class="s2">&#34;%H:%M:%S&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nx">force_path_style</span> <span class="p">=</span> <span class="kc">true</span>
+</span></span><span class="line"><span class="cl"><span class="nx">key_prefix</span> <span class="p">=</span> <span class="s2">&#34;/{{ application }}/%F/&#34;</span>
+</span></span></code></pre></div><p>单行采集和多行匹配的机制，和其他文件采集工具没有特别大的差别，比较特殊的是数据处理的部分， vector 使用了独特的 <code>Vector Remap Language</code> ，也就是 <code>VRL</code> 进行数据处理，这里使用到的 <code>VRL</code> 适用于最简单的场景，使用正则表达式取出相应的字段，同时进行时区转换。</p>
+<p>关于数据传输的目标端的部分，大部分常用的解决方案都支持，包括 elasticsearch ，消息队列，或者是 s3 以及各种云厂商的云存储服务。</p>
+<p>在数据输出时， s3 有比较特殊处理机制，就是通过 <a href="https://vector.dev/docs/reference/configuration/sinks/aws_s3/#buffers-and-batches">buffer 和 batch</a> 进行数据缓冲， vector 会将处理后的数据存放在 buffer 中，在达到一个 batch 的量值再进行上传，这里可以优化的地方是 buffer 应该尽量放在磁盘中，并且调大存储空间，相应的 batch 的触发值可以调整成较长时间和较大值，这样发送到 s3 时就不会特别细碎，但是单次数据量太大也不太合适，这样回放数据时可能非常吃资源，示例的配置文件使用了压缩，最终数据大小基本维持在 200 MB 以下。</p>
+<p>使用 s3 进行数据回放时， <code>sqs.queue_url</code> 是必填选项，因为 vector 的机制是从通知队列获取到新上传的对象信息，再根据这些信息从 s3 中进行下载。首先需要在 sqs 中创建队列，在 IAM 设置时，需要允许对应的 s3 bucket 向 sqs 中发送消息，然后需要在 s3 bucket 的属性中，创建事件通知的规则，只需要对象创建事件即可。</p></article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/toc.js'></script>
+<link rel="stylesheet" href='https://yuweizzz.github.io/css/toc.css' />
+
+  
+</div>
+
+  <div class="footer container-xl width-full p-responsive">
+  <div
+    class="position-relative d-flex flex-row-reverse flex-lg-row flex-wrap flex-lg-nowrap flex-justify-center flex-lg-justify-between flex-sm-items-center pt-6 pb-2 mt-6 f6 text-gray border-top border-gray-light ">
+    <a aria-label="Homepage" title="GitHub" class="footer-octicon d-none d-lg-block mr-lg-4" href="https://yuweizzz.github.io/">
+      <svg height="24" class="octicon octicon-mark-github" viewBox="0 0 16 16" version="1.1" width="24">
+        <path fill-rule="evenodd"
+          d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+        </path>
+      </svg>
+    </a>
+    <ul class="list-style-none d-flex flex-wrap col-12 flex-justify-center flex-lg-justify-between mb-2 mb-lg-0">
+      
+      <li class="mr-3 mr-lg-0">Theme by <a href='https://github.com/MeiK2333/github-style'>github-style</a></li>
+      
+      <li class="mr-3 mr-lg-0">GitHub and the Invertocat logo are trademarks of <a href="https://github.com/">GitHub, Inc.</a></li>
+    </ul>
+  </div>
+  <div class="d-flex flex-justify-center pb-6">
+    <span class="f6 text-gray-light"></span>
+  </div>
+
+
+</div>
+
+</body>
+
+<script type="application/javascript" src="https://yuweizzz.github.io/js/github-style.js"></script>
+
+
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/fuse.js/dist/fuse.min.js"></script>
+<script type="application/javascript" src='https://yuweizzz.github.io/js/search.js'></script>
+
+
+
+</html>

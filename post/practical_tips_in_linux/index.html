@@ -180,9 +180,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 01 Mar 2026 10:35:16 &#43;0000"
+                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:38:48 &#43;0000"
                     class="no-wrap">
-                    Sun, 01 Mar 2026 10:35:16 &#43;0000</relative-time>
+                    Mon, 13 Jul 2026 09:38:48 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -212,7 +212,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      6060 Words
+                      6166 Words
                     
 
                   </div>
@@ -396,8 +396,11 @@
 </span></span><span class="line"><span class="cl"><span class="c1"># * 用来表示零个或多个字符，可以结合确定的单个字符或者字符范围使用</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># 可以用来代表字符的特殊符号有：</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># . 用来表示任意单一字符</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># ? 用来代表零个或一个字符</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># ? 用来代表零个或一个字符，可以用于非贪婪匹配</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># + 用来代表一个或多个字符</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \d 用来代表任意数字字符，\D 用来代表任意非数字字符</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \s 用来代表任意空白字符，一般包括空格和制表符 \t ，对应的 \S 是任意非空白字符，使用 \s\S 可以匹配所有内容</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># \w 用来表示单词字符，等价于 [a-zA-Z0-9_] ，不包括横杠</span>
 </span></span></code></pre></div><h2 id="快速生成随机强密码">快速生成随机强密码</h2>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 随机生成含有特殊字符，数字，大小写字母的强密码</span>
 </span></span><span class="line"><span class="cl"><span class="c1"># head -c 可以设置密码长度</span>

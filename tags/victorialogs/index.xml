@@ -1,13 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>VictoriaLogs on Wei&#39;s blog</title>
+    <title>Victorialogs on Wei&#39;s blog</title>
     <link>https://yuweizzz.github.io/tags/victorialogs/</link>
-    <description>Recent content in VictoriaLogs on Wei&#39;s blog</description>
+    <description>Recent content in Victorialogs on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 01 Mar 2026 10:35:16 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 09:38:48 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/victorialogs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 vector 进行日志采集</title>
+      <link>https://yuweizzz.github.io/post/using_vector_to_collect_logs/</link>
+      <pubDate>Fri, 10 Apr 2026 10:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_vector_to_collect_logs/</guid>
+      <description></description>
+    </item>
     <item>
       <title>使用 Categraf 采集日志存储到 VictoriaLogs</title>
       <link>https://yuweizzz.github.io/post/using_categraf_to_collect_logs_and_store_in_victorialogs/</link>

@@ -180,9 +180,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 01 Mar 2026 10:35:16 &#43;0000"
+                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:38:48 &#43;0000"
                     class="no-wrap">
-                    Sun, 01 Mar 2026 10:35:16 &#43;0000</relative-time>
+                    Mon, 13 Jul 2026 09:38:48 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -212,7 +212,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      430 Words
+                      536 Words
                     
 
                   </div>
@@ -300,7 +300,20 @@
 </span></span><span class="line"><span class="cl"><span class="o">[</span>Service<span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nv">Restart</span><span class="o">=</span>on-failure
 </span></span><span class="line"><span class="cl"><span class="nv">WorkingDirectory</span><span class="o">=</span>/opt/victorialogs/
-</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/opt/victorialogs/victoria-logs-prod -storageDataPath<span class="o">=</span>victoria-logs-data
+</span></span><span class="line"><span class="cl"><span class="nv">ExecStart</span><span class="o">=</span>/opt/victorialogs/victoria-logs-prod <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -storageDataPath<span class="o">=</span>victoria-logs-data <span class="se">\ </span>
+</span></span><span class="line"><span class="cl">  -retentionPeriod<span class="o">=</span>90d <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -httpListenAddr<span class="o">=</span>:9428 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -loggerFormat<span class="o">=</span>json <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -insert.maxLineSizeBytes<span class="o">=</span><span class="m">10485760</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  -memory.allowedPercent<span class="o">=</span><span class="m">70</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># storageDataPath 用来指定日志数据存储的路径</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># retentionPeriod 用来指定日志数据的保留时间</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># httpListenAddr 用来设置服务的监听地址和端口</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># loggerFormat 用来设置日志格式</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># insert.maxLineSizeBytes 用来设置允许插入的最大单行日志大小</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># memory.allowedPercent 用来设置允许占用的系统内存大小的比例</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="o">[</span>Install<span class="o">]</span>
 </span></span><span class="line"><span class="cl"><span class="nv">WantedBy</span><span class="o">=</span>multi-user.target

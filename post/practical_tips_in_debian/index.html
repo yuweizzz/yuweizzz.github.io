@@ -180,9 +180,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 01 Mar 2026 10:35:16 &#43;0000"
+                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:38:48 &#43;0000"
                     class="no-wrap">
-                    Sun, 01 Mar 2026 10:35:16 &#43;0000</relative-time>
+                    Mon, 13 Jul 2026 09:38:48 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -212,7 +212,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      2900 Words
+                      3074 Words
                     
 
                   </div>
@@ -503,7 +503,12 @@
 </span></span><span class="line"><span class="cl">$ chown sftp:sftp /data/sftp/sftp
 </span></span><span class="line"><span class="cl">$ chmod <span class="m">750</span> /data/sftp/sftp
 </span></span><span class="line"><span class="cl"><span class="c1"># 使用 sftp 用户登陆后会被限制在 /data/sftp 中，并且只能修改 /data/sftp/sftp 下的文件</span>
-</span></span></code></pre></div><h2 id="debian-用户安全加固">Debian 用户安全加固</h2>
+</span></span></code></pre></div><h3 id="ssh-tunnel">SSH Tunnel</h3>
+<p>通过 SSH Tunnel 访问有网络限制的端口或者特定服务。</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">ssh -i key -NfL &lt;local_ip&gt;:&lt;local_port&gt;:&lt;dest_ip&gt;:&lt;dest_port&gt; &lt;user&gt;@&lt;remote_server_ip&gt;
+</span></span></code></pre></div><p><code>dest_ip</code> 和 <code>dest_port</code> 是有网络限制的服务端的地址和端口，相对的 <code>remote_server_ip</code> 是有能力访问 <code>dest_ip</code> 的远程服务器，可以执行这条命令的机器就是 <code>local_ip</code> ，它有相对自由的选择，可以是个人电脑或者是任何内网中的机器，但都需要有访问 <code>remote_server_ip</code> 的能力。</p>
+<p>原理就是通过 <code>local_ip</code> 和 <code>remote_server_ip</code> 之间建立 SSH 隧道，本地流量通过直接访问 <code>local_ip</code> 进行流量转发，经由 <code>remote_server_ip</code> 到达 <code>dest_ip</code> ，从而绕开网络限制。</p>
+<h2 id="debian-用户安全加固">Debian 用户安全加固</h2>
 <h3 id="增加用户登陆会话超时时间">增加用户登陆会话超时时间</h3>
 <p>设置用户登陆会话的超时时间为 15 分钟，到达对应的空闲时间后会自动退出会话。</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 追加环境变量到 /etc/profile.d/session_timeout.sh 文件中</span>

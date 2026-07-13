@@ -180,9 +180,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 01 Mar 2026 10:35:16 &#43;0000"
+                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:38:48 &#43;0000"
                     class="no-wrap">
-                    Sun, 01 Mar 2026 10:35:16 &#43;0000</relative-time>
+                    Mon, 13 Jul 2026 09:38:48 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -212,7 +212,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      1135 Words
+                      1380 Words
                     
 
                   </div>
@@ -284,6 +284,19 @@
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">curl http://localhost:8428/api/v1/admin/tsdb/delete_series <span class="se">\
 </span></span></span><span class="line"><span class="cl"><span class="se"></span>  -d <span class="s1">&#39;match[]=http_requests_total&#39;</span>
 </span></span></code></pre></div><p>该操作会将整个指标都直接删除，并且占用的存储空间不会立即释放。</p>
+<h2 id="使用-vmctl-迁移数据">使用 VMctl 迁移数据</h2>
+<p>这里涉及的内容是单机节点到单点节点的迁移：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># 指定时间范围和指标选取值，以月份为单位步长进行迁移</span>
+</span></span><span class="line"><span class="cl">./vmctl vm-native <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --vm-native-src-addr<span class="o">=</span>http://127.0.0.1:8428 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --vm-native-dst-addr<span class="o">=</span>http://192.168.1.1:8428 <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --vm-native-filter-time-start<span class="o">=</span><span class="s1">&#39;2025-11-20T00:00:00+08:00&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --vm-native-filter-time-end<span class="o">=</span><span class="s1">&#39;2026-01-19T18:29:00+08:00&#39;</span> <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --vm-native-step-interval<span class="o">=</span>month <span class="se">\
+</span></span></span><span class="line"><span class="cl"><span class="se"></span>  --vm-native-filter-match<span class="o">=</span><span class="s1">&#39;{__name__!~&#34;vm_.*&#34;}&#39;</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># --vm-intercluster 在集群间迁移数据应该带上这个参数</span>
+</span></span></code></pre></div><p>在迁移过程中会大量写入旧时间的数据，可能会触发大量 <code>rollupResult cache has been cleared</code> 错误日志，这个错误应该是因为写入新数据导致原有缓存失效，可以使用 <code>-search.disableAutoCacheReset</code> 暂时禁用，迁移完成后可以去掉，使用较大的 <code>--cacheTimestampOffset</code> 值代替，这样可以使得缓存在指标延迟写入时不被重置。</p>
+<p>时间步长较大时，单次取出的序列数据可能大于默认的限制值，可以通过较大的 <code>-search.maxSeries</code> 选项值来允许取出更多的数据。</p>
 <h2 id="常用的-promql">常用的 PromQL</h2>
 <p>这里会介绍一些比较常用的 PromQL 。</p>
 <h3 id="label_replace">label_replace</h3>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fluent-Bit on Wei&#39;s blog</title>
+    <link>https://yuweizzz.github.io/tags/fluent-bit/</link>
+    <description>Recent content in Fluent-Bit on Wei&#39;s blog</description>
+    <generator>Hugo</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 13 Jul 2026 09:38:48 +0000</lastBuildDate>
+    <atom:link href="https://yuweizzz.github.io/tags/fluent-bit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>使用 fluent-bit 进行日志采集</title>
+      <link>https://yuweizzz.github.io/post/using_fluent_bit_to_collect_logs/</link>
+      <pubDate>Fri, 10 Apr 2026 10:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_fluent_bit_to_collect_logs/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>

@@ -180,9 +180,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Sun, 01 Mar 2026 10:35:16 &#43;0000"
+                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:38:48 &#43;0000"
                     class="no-wrap">
-                    Sun, 01 Mar 2026 10:35:16 &#43;0000</relative-time>
+                    Mon, 13 Jul 2026 09:38:48 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -212,7 +212,7 @@
                         </div>
                       </div>
                     </details-menu>
-                      3327 Words
+                      3439 Words
                     
 
                   </div>
@@ -617,6 +617,28 @@
 </span></span><span class="line"><span class="cl"><span class="k">with</span> <span class="n">smtplib</span><span class="o">.</span><span class="n">SMTP_SSL</span><span class="p">(</span><span class="n">stmp_address</span><span class="p">,</span> <span class="n">stmp_port</span><span class="p">)</span> <span class="k">as</span> <span class="n">server</span><span class="p">:</span>
 </span></span><span class="line"><span class="cl">    <span class="n">server</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="p">,</span> <span class="n">password</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">    <span class="n">server</span><span class="o">.</span><span class="n">send_message</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span>
+</span></span></code></pre></div><h2 id="将-python-项目打包-docker-镜像">将 python 项目打包 docker 镜像</h2>
+<p>首先将依赖写入到 <code>requirements.txt</code> 中：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">pip freeze &gt; requirements.txt
+</span></span></code></pre></div><p>然后创建 <code>Dockerfile</code> 文件：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-Dockerfile" data-lang="Dockerfile"><span class="line"><span class="cl"><span class="k">FROM</span><span class="s"> python:3.10.19-slim-trixie AS base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> base AS builder</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> requirements.txt /requirements.txt<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> pip install --user -r /requirements.txt<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">FROM</span><span class="s"> base</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="c"># copy only the dependencies installation from the 1st stage image</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> --from<span class="o">=</span>builder /root/.local /root/.local<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">RUN</span> mkdir /app<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">COPY</span> app.py /app<span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">WORKDIR</span><span class="s"> /app</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">ENTRYPOINT</span> <span class="p">[</span><span class="s2">&#34;python3&#34;</span><span class="p">,</span> <span class="s2">&#34;-u&#34;</span><span class="p">,</span> <span class="s2">&#34;app.py&#34;</span><span class="p">]</span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="k">EXPOSE</span><span class="s"> 8080</span><span class="err">
+</span></span></span></code></pre></div><p>执行镜像构建，完成之后就可以在本地运行镜像：</p>
+<div class="highlight"><pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">docker buildx build . --tag image_name:latest
+</span></span><span class="line"><span class="cl">docker run -d image_name:latest
 </span></span></code></pre></div></article>
               </div>
             </div>

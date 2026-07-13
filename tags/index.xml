@@ -6,8 +6,57 @@
     <description>Recent content in Tags on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 01 Mar 2026 10:35:16 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 09:38:48 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Elasticsearch</title>
+      <link>https://yuweizzz.github.io/tags/elasticsearch/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/elasticsearch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Fluent-Bit</title>
+      <link>https://yuweizzz.github.io/tags/fluent-bit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/fluent-bit/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>S3</title>
+      <link>https://yuweizzz.github.io/tags/s3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/s3/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Vector</title>
+      <link>https://yuweizzz.github.io/tags/vector/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/vector/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Victorialogs</title>
+      <link>https://yuweizzz.github.io/tags/victorialogs/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/victorialogs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>PowerShell</title>
+      <link>https://yuweizzz.github.io/tags/powershell/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/powershell/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows</title>
+      <link>https://yuweizzz.github.io/tags/windows/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/tags/windows/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Mysql</title>
       <link>https://yuweizzz.github.io/tags/mysql/</link>
@@ -27,13 +76,6 @@
       <link>https://yuweizzz.github.io/tags/categraf/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/tags/categraf/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>VictoriaLogs</title>
-      <link>https://yuweizzz.github.io/tags/victorialogs/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yuweizzz.github.io/tags/victorialogs/</guid>
       <description></description>
     </item>
     <item>
@@ -76,20 +118,6 @@
       <link>https://yuweizzz.github.io/tags/otp/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/tags/otp/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>PowerShell</title>
-      <link>https://yuweizzz.github.io/tags/powershell/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yuweizzz.github.io/tags/powershell/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Windows</title>
-      <link>https://yuweizzz.github.io/tags/windows/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yuweizzz.github.io/tags/windows/</guid>
       <description></description>
     </item>
     <item>
@@ -447,13 +475,6 @@
       <link>https://yuweizzz.github.io/tags/django/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       <guid>https://yuweizzz.github.io/tags/django/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>ElasticSearch</title>
-      <link>https://yuweizzz.github.io/tags/elasticsearch/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>https://yuweizzz.github.io/tags/elasticsearch/</guid>
       <description></description>
     </item>
     <item>

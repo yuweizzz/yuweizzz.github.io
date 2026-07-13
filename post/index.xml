@@ -6,8 +6,43 @@
     <description>Recent content in Posts on Wei&#39;s blog</description>
     <generator>Hugo</generator>
     <language>zh-cn</language>
-    <lastBuildDate>Sun, 01 Mar 2026 10:35:16 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 13 Jul 2026 09:38:48 +0000</lastBuildDate>
     <atom:link href="https://yuweizzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>elasticsearch 维护和管理</title>
+      <link>https://yuweizzz.github.io/post/maintenance_and_management_of_elasticsearch/</link>
+      <pubDate>Sun, 14 Jun 2026 10:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/maintenance_and_management_of_elasticsearch/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>使用 fluent-bit 进行日志采集</title>
+      <link>https://yuweizzz.github.io/post/using_fluent_bit_to_collect_logs/</link>
+      <pubDate>Fri, 10 Apr 2026 10:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_fluent_bit_to_collect_logs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>使用 vector 进行日志采集</title>
+      <link>https://yuweizzz.github.io/post/using_vector_to_collect_logs/</link>
+      <pubDate>Fri, 10 Apr 2026 10:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/using_vector_to_collect_logs/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>清理 S3 multipart upload 对象</title>
+      <link>https://yuweizzz.github.io/post/abort_s3_multipart_upload_objects/</link>
+      <pubDate>Thu, 02 Apr 2026 10:00:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/abort_s3_multipart_upload_objects/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Windows 系统激活绕过网络连接和创建本地账户</title>
+      <link>https://yuweizzz.github.io/post/bypass_network_and_create_local_account_when_use_windows/</link>
+      <pubDate>Tue, 10 Mar 2026 11:14:00 +0000</pubDate>
+      <guid>https://yuweizzz.github.io/post/bypass_network_and_create_local_account_when_use_windows/</guid>
+      <description></description>
+    </item>
     <item>
       <title>设置 mysql 主从复制</title>
       <link>https://yuweizzz.github.io/post/set_up_mysql_master_slave_replication/</link>
