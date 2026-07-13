@@ -177,9 +177,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:38:48 &#43;0000"
+                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:43:17 &#43;0000"
                     class="no-wrap">
-                    Mon, 13 Jul 2026 09:38:48 &#43;0000</relative-time>
+                    Mon, 13 Jul 2026 09:43:17 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -357,7 +357,7 @@
 </span></span><span class="line"><span class="cl"><span class="nx">force_path_style</span> <span class="p">=</span> <span class="kc">true</span>
 </span></span><span class="line"><span class="cl"><span class="nx">key_prefix</span> <span class="p">=</span> <span class="s2">&#34;/{{ application }}/%F/&#34;</span>
 </span></span></code></pre></div><p>单行采集和多行匹配的机制，和其他文件采集工具没有特别大的差别，比较特殊的是数据处理的部分， vector 使用了独特的 <code>Vector Remap Language</code> ，也就是 <code>VRL</code> 进行数据处理，这里使用到的 <code>VRL</code> 适用于最简单的场景，使用正则表达式取出相应的字段，同时进行时区转换。</p>
-<p>关于数据传输的目标端的部分，大部分常用的解决方案都支持，包括 elasticsearch ，消息队列，或者是 s3 以及各种云厂商的云存储服务。</p>
+<p>关于数据传输的目标端的部分，大部分常用的解决方案都支持，包括 Elasticsearch ，消息队列，或者是 s3 以及各种云厂商的云存储服务。</p>
 <p>在数据输出时， s3 有比较特殊处理机制，就是通过 <a href="https://vector.dev/docs/reference/configuration/sinks/aws_s3/#buffers-and-batches">buffer 和 batch</a> 进行数据缓冲， vector 会将处理后的数据存放在 buffer 中，在达到一个 batch 的量值再进行上传，这里可以优化的地方是 buffer 应该尽量放在磁盘中，并且调大存储空间，相应的 batch 的触发值可以调整成较长时间和较大值，这样发送到 s3 时就不会特别细碎，但是单次数据量太大也不太合适，这样回放数据时可能非常吃资源，示例的配置文件使用了压缩，最终数据大小基本维持在 200 MB 以下。</p>
 <p>使用 s3 进行数据回放时， <code>sqs.queue_url</code> 是必填选项，因为 vector 的机制是从通知队列获取到新上传的对象信息，再根据这些信息从 s3 中进行下载。首先需要在 sqs 中创建队列，在 IAM 设置时，需要允许对应的 s3 bucket 向 sqs 中发送消息，然后需要在 s3 bucket 的属性中，创建事件通知的规则，只需要对象创建事件即可。</p></article>
               </div>

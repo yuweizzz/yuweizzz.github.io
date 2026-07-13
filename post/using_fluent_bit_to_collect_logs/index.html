@@ -177,9 +177,9 @@
 
                   
                   <span class="file-info-divider"></span>
-                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:38:48 &#43;0000"
+                  Modified <relative-time datetime="Mon, 13 Jul 2026 09:43:17 &#43;0000"
                     class="no-wrap">
-                    Mon, 13 Jul 2026 09:38:48 &#43;0000</relative-time>
+                    Mon, 13 Jul 2026 09:43:17 &#43;0000</relative-time>
                   
                 </div>
               </div>
@@ -268,8 +268,8 @@
 </span></span><span class="line"><span class="cl">                  <span class="p">|</span>/-<span class="o">=</span><span class="p">|</span>___<span class="p">|</span><span class="o">=</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="o">||</span>    <span class="p">|</span>_____/~<span class="se">\_</span>__/          <span class="p">|</span>_D__D__D_<span class="p">|</span>  <span class="p">|</span>_D__D__D_<span class="p">|</span>
 </span></span><span class="line"><span class="cl">                   <span class="se">\_</span>/      <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/  <span class="se">\_</span>_/      <span class="se">\_</span>/               <span class="se">\_</span>/   <span class="se">\_</span>/    <span class="se">\_</span>/   <span class="se">\_</span>/
 </span></span></code></pre></div><p>这里介绍如何使用 fluent-bit 进行日志采集。</p>
-<p>虽然 fluent-bit 可以使用自有格式的配置文件，但是为了通用性起见，这里一般使用 yaml 格式。</p>
-<p>以下是 fluent-bit 可以使用的 yaml 格式配置文件：</p>
+<p>虽然 fluent-bit 可以使用自有格式的配置文件，但是为了通用性起见，这里一般使用 YAML 格式。</p>
+<p>以下是 fluent-bit 可以使用的 YAML 格式配置文件：</p>
 <div class="highlight"><pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">service</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">http_server</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">http_listen</span><span class="p">:</span><span class="w"> </span><span class="m">0.0.0.0</span><span class="w">
@@ -311,11 +311,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">filters</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">record_modifier</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">record</span><span class="p">:</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">       </span>- <span class="l">hostname ${HOSTNAME}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span>- <span class="l">hostname ${HOSTNAME}</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">lua</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">call</span><span class="p">:</span><span class="w"> </span><span class="l">append_tag</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">code</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
 </span></span></span><span class="line"><span class="cl"><span class="sd">        function append_tag(tag, timestamp, record)
@@ -324,7 +324,7 @@
 </span></span></span><span class="line"><span class="cl"><span class="sd">          return 2, timestamp, new_record
 </span></span></span><span class="line"><span class="cl"><span class="sd">        end</span><span class="w">        
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">parser</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">key_name</span><span class="p">:</span><span class="w"> </span><span class="l">log</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">parser</span><span class="p">:</span><span class="w"> </span><span class="l">myparser</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">preserve_key</span><span class="p">:</span><span class="w"> </span><span class="kc">on</span><span class="w">
@@ -332,12 +332,12 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">outputs</span><span class="p">:</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">stdout</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">file</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">format</span><span class="p">:</span><span class="w"> </span><span class="l">plain</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">s3</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">bucket</span><span class="p">:</span><span class="w"> </span><span class="l">mybucket</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">region</span><span class="p">:</span><span class="w"> </span><span class="l">ap-southeast-1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">compression</span><span class="p">:</span><span class="w"> </span><span class="l">gzip</span><span class="w">
@@ -346,11 +346,11 @@
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">total_file_size</span><span class="p">:</span><span class="w"> </span><span class="l">200M</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">upload_timeout</span><span class="p">:</span><span class="w"> </span><span class="l">20m</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">retry_limit</span><span class="p">:</span><span class="w"> </span><span class="m">10</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">s3_key_format</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;/$TAG/%Y-%m-%d/%H:%M:%S-$UUID.json&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">s3_key_format</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;/$TAG/%Y-%m-%d/%H:%M:%S-$UUID.json&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># s3_key_format: &#39;/$TAG[0]/$TAG[1]/%Y-%m-%d/%H:%M:%S-$UUID.gz&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="c"># s3_key_format_tag_delimiters: &#39;.&#39;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">    </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">es</span><span class="w">
-</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;*&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">match</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;*&#34;</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">host</span><span class="p">:</span><span class="w"> </span><span class="m">192.168.1.1</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="m">9200</span><span class="w">
 </span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">index</span><span class="p">:</span><span class="w"> </span><span class="l">app</span><span class="w">
@@ -368,7 +368,7 @@
 <p><code>parser filter</code> 可以配合正则表达式，对指定的 <code>key_name</code> 字段的内容进行匹配，从而生成新的字段，其中 <code>preserve_key</code> 用来决定是否保留被指定的字段，而 <code>reserve_data</code> 用来决定是否保留其他未被指定的字段。</p>
 <p>s3 可以使用 multipart upload 进行对象上传，在使用磁盘缓冲的情况下，可以节省非常多的内存资源，但是如果 multipart upload 上传中断，处理起来比较麻烦，这里是使用 put object 的上传方式，坏处是会占用 <code>total_file_size</code> 的内存空间，而且当你的输入管道越多，占用越高。所以可以根据具体情况来决定使用哪种上传方式。</p>
 <p>s3 可以自定义上传的文件路径，通过 <code>s3_key_format_tag_delimiters</code> 设定 tag 的分隔符，就可以以数组的方式来读取分割后的 tag 值。参考注释的 <code>s3_key_format</code> 部分。</p>
-<p>在 es 中， <code>suppress_type_name</code> 用来兼容没有 <code>_type</code> 字段的高版本 elasticsearch ， <code>index</code> 则是写入的索引名称， tls 根据目标集群的配置来设置即可，这里开启了 tls 传输但是不做证书验证， <code>trace_*</code> 用来输出 elasticsearch 的 api 返回值，可以用于排查错误。</p></article>
+<p>在 es 中， <code>suppress_type_name</code> 用来兼容没有 <code>_type</code> 字段的高版本 Elasticsearch ， <code>index</code> 则是写入的索引名称， tls 根据目标集群的配置来设置即可，这里开启了 tls 传输但是不做证书验证， <code>trace_*</code> 用来输出 Elasticsearch 的 API 返回值，可以用于排查错误。</p></article>
               </div>
             </div>
           </div>
